@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5D3BDB45-DCC8-40F2-BD94-E92048CD6CF5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>qxDotNet</RootNamespace>
+    <AssemblyName>qxDotNet</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\AbstractGui.code.cs" />
+    <Compile Include="Application\AbstractGui.cs" />
+    <Compile Include="Application\Basic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Application\Inline.code.cs" />
+    <Compile Include="Application\IApplication.cs" />
+    <Compile Include="Application\Inline.cs" />
+    <Compile Include="Application\Mobile.cs" />
+    <Compile Include="Application\Native.cs" />
+    <Compile Include="Application\Standalone.code.cs" />
+    <Compile Include="Application\Standalone.cs" />
+    <Compile Include="Common\AppPathAttribute.cs" />
+    <Compile Include="Common\ClientHandler.cs" />
+    <Compile Include="Common\ApplicationState.cs" />
+    <Compile Include="Common\ConfigHandler.cs" />
+    <Compile Include="Common\PropertyNameAttribute.cs" />
+    <Compile Include="Data\Array.cs" />
+    <Compile Include="Data\IListData.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Font.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\Object.code.cs" />
+    <Compile Include="UI\Basic\Atom.cs" />
+    <Compile Include="UI\Basic\Image.cs" />
+    <Compile Include="UI\Basic\Label.cs" />
+    <Compile Include="UI\Container\Composite.code.cs" />
+    <Compile Include="UI\Container\Composite.cs" />
+    <Compile Include="UI\Container\Scroll.code.cs" />
+    <Compile Include="UI\Container\Resizer.cs" />
+    <Compile Include="UI\Container\Scroll.cs" />
+    <Compile Include="UI\Container\SlideBar.cs" />
+    <Compile Include="UI\Container\Stack.cs" />
+    <Compile Include="UI\Control\ColorPopup.cs" />
+    <Compile Include="UI\Control\ColorSelector.cs" />
+    <Compile Include="UI\Control\ColorPopup.code.cs" />
+    <Compile Include="UI\Control\DateChooser.cs" />
+    <Compile Include="UI\Core\Blocker.cs" />
+    <Compile Include="UI\Core\ColumnData.cs" />
+    <Compile Include="UI\Core\Command.cs" />
+    <Compile Include="UI\Core\Command.code.cs" />
+    <Compile Include="UI\Core\IMultiSelection.cs" />
+    <Compile Include="UI\Core\ISingleSelection.cs" />
+    <Compile Include="UI\Core\LayoutItem.cs" />
+    <Compile Include="UI\Core\Scroll\AbstractScrollArea.cs" />
+    <Compile Include="UI\Core\Scroll\IScrollBar.cs" />
+    <Compile Include="UI\Core\Scroll\NativeScrollBar.cs" />
+    <Compile Include="UI\Core\Scroll\ScrollBar.cs" />
+    <Compile Include="UI\Core\Scroll\ScrollPane.cs" />
+    <Compile Include="UI\Core\Selection\Abstract.cs" />
+    <Compile Include="UI\Core\Selection\ScrollArea.cs" />
+    <Compile Include="UI\Core\Selection\Widget.cs" />
+    <Compile Include="UI\Core\Spacer.cs" />
+    <Compile Include="UI\Core\Widget.code.cs" />
+    <Compile Include="UI\Core\Widget.cs" />
+    <Compile Include="UI\Form\AbstractField.cs" />
+    <Compile Include="UI\Form\AbstractSelectBox.cs" />
+    <Compile Include="UI\Form\Button.cs" />
+    <Compile Include="UI\Form\CheckBox.cs" />
+    <Compile Include="UI\Form\ComboBox.cs" />
+    <Compile Include="UI\Form\ComboBox.code.cs" />
+    <Compile Include="UI\Form\Spinner.code.cs" />
+    <Compile Include="UI\Form\Slider.code.cs" />
+    <Compile Include="UI\Form\VirtualComboBox.code.cs" />
+    <Compile Include="UI\Form\Core\AbstractVirtualBox.cs" />
+    <Compile Include="UI\Form\DateField.cs" />
+    <Compile Include="UI\Form\Form.cs" />
+    <Compile Include="UI\Form\HoverButton.cs" />
+    <Compile Include="UI\Form\IBooleanForm.cs" />
+    <Compile Include="UI\Form\IColorForm.cs" />
+    <Compile Include="UI\Form\IDateForm.cs" />
+    <Compile Include="UI\Form\IExecutable.cs" />
+    <Compile Include="UI\Form\IForm.cs" />
+    <Compile Include="UI\Form\IModel.cs" />
+    <Compile Include="UI\Form\IModelSelection.cs" />
+    <Compile Include="UI\Form\INumberForm.cs" />
+    <Compile Include="UI\Form\IRadioItem.cs" />
+    <Compile Include="UI\Form\IRange.cs" />
+    <Compile Include="UI\Form\IStringForm.cs" />
+    <Compile Include="UI\Form\List.cs" />
+    <Compile Include="UI\Form\ListItem.cs" />
+    <Compile Include="UI\Form\MenuButton.cs" />
+    <Compile Include="UI\Form\PasswordField.cs" />
+    <Compile Include="UI\Form\RadioButton.cs" />
+    <Compile Include="UI\Form\RadioButtonGroup.cs" />
+    <Compile Include="UI\Form\RadioGroup.cs" />
+    <Compile Include="UI\Form\RepeatButton.cs" />
+    <Compile Include="UI\Form\Resetter.cs" />
+    <Compile Include="UI\Form\SelectBox.cs" />
+    <Compile Include="UI\Form\Slider.cs" />
+    <Compile Include="UI\Form\Spinner.cs" />
+    <Compile Include="UI\Form\SplitButton.cs" />
+    <Compile Include="UI\Form\TextArea.cs" />
+    <Compile Include="UI\Form\TextField.cs" />
+    <Compile Include="UI\Form\ToggleButton.cs" />
+    <Compile Include="UI\Form\VirtualComboBox.cs" />
+    <Compile Include="UI\Form\VirtualSelectBox.cs" />
+    <Compile Include="UI\Groupbox\CheckGroupBox.cs" />
+    <Compile Include="UI\Groupbox\CheckGroupBox.code.cs" />
+    <Compile Include="UI\Groupbox\RadioGroupBox.code.cs" />
+    <Compile Include="UI\Groupbox\GroupBox.cs" />
+    <Compile Include="UI\Groupbox\RadioGroupBox.cs" />
+    <Compile Include="UI\Indicator\ProgressBar.code.cs" />
+    <Compile Include="UI\Indicator\ProgressBar.cs" />
+    <Compile Include="UI\Layout\Abstract.cs" />
+    <Compile Include="UI\Layout\Atom.cs" />
+    <Compile Include="UI\Layout\Basic.cs" />
+    <Compile Include="UI\Layout\Canvas.cs" />
+    <Compile Include="UI\Layout\Dock.cs" />
+    <Compile Include="UI\Layout\Flow.cs" />
+    <Compile Include="UI\Layout\Grid.cs" />
+    <Compile Include="UI\Layout\Grow.cs" />
+    <Compile Include="UI\Layout\HBox.cs" />
+    <Compile Include="UI\Layout\VBox.cs" />
+    <Compile Include="UI\List\Core\IListDelegate.cs" />
+    <Compile Include="UI\List\List.cs" />
+    <Compile Include="UI\Menubar\Button.cs" />
+    <Compile Include="UI\Menubar\MenuBar.code.cs" />
+    <Compile Include="UI\Menubar\MenuBar.cs" />
+    <Compile Include="UI\Menu\AbstractButton.cs" />
+    <Compile Include="UI\Menu\Button.cs" />
+    <Compile Include="UI\Menu\CheckBox.cs" />
+    <Compile Include="UI\Menu\Menu.code.cs" />
+    <Compile Include="UI\Menu\Menu.cs" />
+    <Compile Include="UI\Menu\RadioButton.cs" />
+    <Compile Include="UI\Menu\Separator.cs" />
+    <Compile Include="UI\Popup\Popup.cs" />
+    <Compile Include="UI\Splitpane\Pane.cs" />
+    <Compile Include="UI\Table\Columnmenu\Button.cs" />
+    <Compile Include="UI\Table\Columnmenu\MenuItem.cs" />
+    <Compile Include="UI\Table\ICellEditorFactory.cs" />
+    <Compile Include="UI\Table\ICellRenderer.cs" />
+    <Compile Include="UI\Table\IColumnMenuButton.cs" />
+    <Compile Include="UI\Table\IColumnMenuItem.cs" />
+    <Compile Include="UI\Table\IHeaderRenderer.cs" />
+    <Compile Include="UI\Table\IRowRenderer.cs" />
+    <Compile Include="UI\Table\ITableModel.cs" />
+    <Compile Include="UI\Table\Pane\Clipper.cs" />
+    <Compile Include="UI\Table\Pane\FocusIndicator.cs" />
+    <Compile Include="UI\Table\Pane\Header.cs" />
+    <Compile Include="UI\Table\Pane\Pane.cs" />
+    <Compile Include="UI\Table\Selection\Model.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Table\Table.cs" />
+    <Compile Include="UI\Tabview\TabView.code.cs" />
+    <Compile Include="UI\Tabview\Page.cs" />
+    <Compile Include="UI\Tabview\TabButton.cs" />
+    <Compile Include="UI\Tabview\TabView.cs" />
+    <Compile Include="UI\Toolbar\Button.cs" />
+    <Compile Include="UI\Toolbar\CheckBox.cs" />
+    <Compile Include="UI\Toolbar\ToolBar.code.cs" />
+    <Compile Include="UI\Toolbar\MenuButton.cs" />
+    <Compile Include="UI\Toolbar\Part.cs" />
+    <Compile Include="UI\Toolbar\RadioButton.cs" />
+    <Compile Include="UI\Toolbar\Separator.cs" />
+    <Compile Include="UI\Toolbar\SplitButton.cs" />
+    <Compile Include="UI\Toolbar\ToolBar.cs" />
+    <Compile Include="UI\Tooltip\ToolTip.cs" />
+    <Compile Include="UI\Treevirtual\TreeVirtual.cs" />
+    <Compile Include="UI\Tree\Core\AbstractItem.cs" />
+    <Compile Include="UI\Tree\Core\AbstractTreeItem.cs" />
+    <Compile Include="UI\Tree\Core\FolderOpenButton.cs" />
+    <Compile Include="UI\Tree\Core\IVirtualTree.cs" />
+    <Compile Include="UI\Tree\Core\IVirtualTreeDelegate.cs" />
+    <Compile Include="UI\Tree\Tree.cs" />
+    <Compile Include="UI\Tree\TreeFile.cs" />
+    <Compile Include="UI\Tree\TreeFolder.cs" />
+    <Compile Include="UI\Tree\VirtualTree.cs" />
+    <Compile Include="UI\Tree\VirtualTreeItem.cs" />
+    <Compile Include="UI\Virtual\Core\Axis.cs" />
+    <Compile Include="UI\Virtual\Core\IHtmlCellProvider.cs" />
+    <Compile Include="UI\Virtual\Core\ILayer.cs" />
+    <Compile Include="UI\Virtual\Core\IWidgetCellProvider.cs" />
+    <Compile Include="UI\Virtual\Core\Pane.cs" />
+    <Compile Include="UI\Virtual\Core\Scroller.cs" />
+    <Compile Include="UI\Virtual\Layer\Abstract.cs" />
+    <Compile Include="UI\Virtual\Layer\AbstractBackground.cs" />
+    <Compile Include="UI\Virtual\Layer\Column.cs" />
+    <Compile Include="UI\Virtual\Layer\GridLines.cs" />
+    <Compile Include="UI\Virtual\Layer\HtmlCell.cs" />
+    <Compile Include="UI\Virtual\Layer\HtmlCellSpan.cs" />
+    <Compile Include="UI\Virtual\Layer\Row.cs" />
+    <Compile Include="UI\Virtual\Layer\WidgetCell.cs" />
+    <Compile Include="UI\Virtual\Layer\WidgetCellSpan.cs" />
+    <Compile Include="UI\Window\Desktop.cs" />
+    <Compile Include="UI\Window\IDesktop.cs" />
+    <Compile Include="UI\Window\IWindowManager.cs" />
+    <Compile Include="UI\Window\Window.cs" />
+    <Compile Include="Encoder.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="Pair.cs" />
+    <Compile Include="Util\Format\DateFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\Format\IFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\Format\NumberFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="class\qxdotnet\Application.js" />
+    <Content Include="class\qxdotnet\theme\Appearance.js" />
+    <Content Include="class\qxdotnet\theme\Color.js" />
+    <Content Include="class\qxdotnet\theme\Decoration.js" />
+    <Content Include="class\qxdotnet\theme\Font.js" />
+    <Content Include="class\qxdotnet\theme\Theme.js" />
+    <Content Include="Common\StandaloneBootstrap.htm" />
+    <Content Include="resource\qxdotnet\loading.gif" />
+    <Content Include="translation\readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="key.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>python $(ProjectDir)..\generate.py build</PostBuildEvent>
+  </PropertyGroup>
+</Project>

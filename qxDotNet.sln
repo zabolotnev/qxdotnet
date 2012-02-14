@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qxDotNet", "source\qxDotNet.csproj", "{5D3BDB45-DCC8-40F2-BD94-E92048CD6CF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApplication", "DemoApplication\DemoApplication.csproj", "{1626974E-D847-4E6A-AA7A-872AF799C665}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D3BDB45-DCC8-40F2-BD94-E92048CD6CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3BDB45-DCC8-40F2-BD94-E92048CD6CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3BDB45-DCC8-40F2-BD94-E92048CD6CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3BDB45-DCC8-40F2-BD94-E92048CD6CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1626974E-D847-4E6A-AA7A-872AF799C665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1626974E-D847-4E6A-AA7A-872AF799C665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1626974E-D847-4E6A-AA7A-872AF799C665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1626974E-D847-4E6A-AA7A-872AF799C665}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
