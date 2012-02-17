@@ -57,15 +57,18 @@ namespace qxDotNet.Common
         private static Application.AbstractGui createAppFromConfig(string path)
         {
             var section = (ConfigHandler)ConfigurationManager.GetSection("qxSettings");
-            foreach (ConfigApplicationHandler item in section.Applications)
+            if (section != null)
             {
-                if (path == item.Path.ToLower())
+                foreach (ConfigApplicationHandler item in section.Applications)
                 {
-                    var t = Type.GetType(item.Type);
-                    var ctcr = t.GetConstructor(System.Type.EmptyTypes);
-                    if (ctcr != null)
+                    if (path == item.Path.ToLower())
                     {
-                        return (Application.AbstractGui)ctcr.Invoke(null);
+                        var t = Type.GetType(item.Type);
+                        var ctcr = t.GetConstructor(System.Type.EmptyTypes);
+                        if (ctcr != null)
+                        {
+                            return (Application.AbstractGui)ctcr.Invoke(null);
+                        }
                     }
                 }
             }

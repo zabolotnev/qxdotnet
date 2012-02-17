@@ -39,12 +39,17 @@ qx.Class.define("qxdotnet.Application",
         },
 
         escapeXMLAttribute: function(attr) {
-            return
-            attr.toString().replace("&", "&amp;")
-                .replace("\"", "&quot;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;")
-                .replace("\n", "&amp;#10;");
+            if (attr) {
+                return
+                attr.toString().replace("&", "&amp;")
+                    .replace("\"", "&quot;")
+                    .replace("<", "&lt;")
+                    .replace(">", "&gt;")
+                    .replace("\n", "&amp;#10;");
+            }
+            else {
+                return "";
+            }
         },
 
         showLoading: function() {
@@ -71,7 +76,7 @@ qx.Class.define("qxdotnet.Application",
             event.propname = new Array();
             event.propvalue = new Array();
             event.pr = function(propName, propAccessor) {
-                this.propname[propName] = propName;
+                this.propname.push(propName);
                 this.propvalue[propName] = propAccessor;
             }
             if (!this.isLoading) {
@@ -118,14 +123,18 @@ qx.Class.define("qxdotnet.Application",
                 var evData = "<ev>";
                 for (var i in this.events) {
                     var ev = this.events[i];
-                    evData += "<e _id=\"" + ev.control + "\" ";
-                    evData += "_n=\"" + ev.name + "\" ";
-                    for (var i in ev.propname) {
-                        var name = ev.propname[i];
-                        var propRef = "var App = qx.core.Init.getApplication();var ctr = App.getControls();" + ev.propvalue[i];
-                        evData += name + "=\"" + this.escapeXMLAttribute(eval(propRef)) + "\" ";
+                    if (ev.propname) {
+                        evData += "<e _id=\"" + ev.control + "\" ";
+                        evData += "_n=\"" + ev.name + "\" ";
+                        for (var j = 0; j < ev.propname.length; j++) {
+                            var name = ev.propname[j];
+                            if (name) {
+                                var propRef = "var App = qx.core.Init.getApplication();var ctr = App.getControls();" + ev.propvalue[name];
+                                evData += name + "=\"" + this.escapeXMLAttribute(eval(propRef)) + "\" ";
+                            }
+                        }
+                        evData += "/>";
                     }
-                    evData += "/>";
                 }
                 evData += "</ev>";
                 params = params + "&ev=" + encodeURIComponent(evData);
