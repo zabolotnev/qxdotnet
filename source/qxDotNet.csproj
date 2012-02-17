@@ -285,6 +285,10 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>python $(ProjectDir)..\generate.py build</PostBuildEvent>
+    <PostBuildEvent>python $(ProjectDir)..\generate.py build
+xcopy /E /Y $(ProjectDir)bin\debug\qxdotnet.dll $(SolutionDir)build\bin\
+xcopy /E /Y $(SolutionDir)build\script\* $(SolutionDir)DemoApplication\script\
+xcopy /E /Y $(SolutionDir)build\resource\* $(SolutionDir)DemoApplication\resource\
+xcopy /E /Y $(SolutionDir)build\bin\* $(SolutionDir)DemoApplication\bin\</PostBuildEvent>
   </PropertyGroup>
 </Project>
