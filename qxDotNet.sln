@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qxDotNet", "source\qxDotNet.csproj", "{5D3BDB45-DCC8-40F2-BD94-E92048CD6CF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApplication", "DemoApplication\DemoApplication.csproj", "{1626974E-D847-4E6A-AA7A-872AF799C665}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5D3BDB45-DCC8-40F2-BD94-E92048CD6CF5} = {5D3BDB45-DCC8-40F2-BD94-E92048CD6CF5}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
