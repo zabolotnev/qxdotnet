@@ -15,8 +15,11 @@ namespace qxDotNet.UI.Toolbar
 //        private _var _model = null;
 
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.toolbar.RadioButton";
         }

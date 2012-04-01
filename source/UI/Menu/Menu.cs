@@ -15,7 +15,7 @@ namespace qxDotNet.UI.Menu
         private int _arrowColumnWidth = 0;
         private bool? _blockBackground = false;
         private string _blockerColor = null;
-        private decimal _blockerOpacity = 1;
+        private decimal _blockerOpacity = 1m;
         private int _closeInterval = 250;
         private int _iconColumnWidth = 0;
         private qxDotNet.UI.Core.Widget _openedButton = null;
@@ -350,8 +350,11 @@ namespace qxDotNet.UI.Menu
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.menu.Menu";
         }
@@ -362,7 +365,7 @@ namespace qxDotNet.UI.Menu
             state.SetPropertyValue("arrowColumnWidth", _arrowColumnWidth, 0);
             state.SetPropertyValue("blockBackground", _blockBackground, false);
             state.SetPropertyValue("blockerColor", _blockerColor, null);
-            state.SetPropertyValue("blockerOpacity", _blockerOpacity, 1);
+            state.SetPropertyValue("blockerOpacity", _blockerOpacity, 1m);
             state.SetPropertyValue("closeInterval", _closeInterval, 250);
             state.SetPropertyValue("iconColumnWidth", _iconColumnWidth, 0);
             state.SetPropertyValue("openedButton", _openedButton, null);

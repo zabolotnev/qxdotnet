@@ -5,7 +5,7 @@ namespace qxDotNet
 
     public enum DecorationEnum
     {
-        underline,line_through,overline
+        @null,underline,line_through,overline
     }
     public enum StateEnum
     {
@@ -150,5 +150,13 @@ namespace qxDotNet
     public enum EdgeEnum
     {
         top,right,bottom,left
+    }
+    public enum TableSelectionModelEnum
+    {
+        NO_SELECTION = 1,
+        SINGLE_SELECTION = 2,
+        SINGLE_INTERVAL_SELECTION = 3,
+        MULTIPLE_INTERVAL_SELECTION = 4,
+        MULTIPLE_INTERVAL_SELECTION_TOGGLE = 5
     }
 }

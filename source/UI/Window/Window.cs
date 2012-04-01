@@ -9,7 +9,7 @@ namespace qxDotNet.UI.Window
     /// <summary>
     /// A window widget  More information can be found in the package description {@link qx.ui.window}.
     /// </summary>
-    public partial class Window : qxDotNet.UI.Core.Widget
+    public partial class Window : qxDotNet.UI.Container.Composite
     {
 
         private bool? _active = false;
@@ -17,7 +17,7 @@ namespace qxDotNet.UI.Window
         private bool? _allowMaximize = true;
         private bool? _allowMinimize = true;
         private bool? _alwaysOnTop = false;
-//        private _var _caption = null;
+        private string _caption = "";
         private string _icon = "";
         private bool? _modal = false;
         private bool? _showClose = true;
@@ -114,6 +114,18 @@ namespace qxDotNet.UI.Window
             {
                _alwaysOnTop = value;
                OnChangeAlwaysOnTop();
+            }
+        }
+
+        public string Caption
+        {
+            get
+            {
+                return _caption;
+            }
+            set
+            {
+                _caption = value;
             }
         }
 
@@ -420,20 +432,25 @@ namespace qxDotNet.UI.Window
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.window.Window";
         }
 
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
+            if (_closed) return;
             base.Render(state);
             state.SetPropertyValue("active", _active, false);
             state.SetPropertyValue("allowClose", _allowClose, true);
             state.SetPropertyValue("allowMaximize", _allowMaximize, true);
             state.SetPropertyValue("allowMinimize", _allowMinimize, true);
             state.SetPropertyValue("alwaysOnTop", _alwaysOnTop, false);
+            state.SetPropertyValue("caption", _caption, "");
             state.SetPropertyValue("icon", _icon, "");
             state.SetPropertyValue("modal", _modal, false);
             state.SetPropertyValue("showClose", _showClose, true);
@@ -473,7 +490,7 @@ namespace qxDotNet.UI.Window
             }
             if (Close != null)
             {
-                state.SetEvent("close", false);
+                state.SetEvent("close", true);
             }
             if (Maximize != null)
             {

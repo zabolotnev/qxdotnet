@@ -23,7 +23,12 @@ namespace qxDotNet.Application
 
         }
 
-        internal override System.Collections.IEnumerable GetChildren(bool isNewOnly)
+        public virtual void ProcessRequest()
+        {
+
+        }
+
+        protected internal override System.Collections.IEnumerable GetChildren(bool isNewOnly)
         {
             if (isNewOnly)
             {
@@ -51,7 +56,7 @@ namespace qxDotNet.Application
         private class rootContainer : UI.Container.Composite
         {
 
-            internal override string GetReference()
+            protected internal override string GetReference()
             {
                 return "root";
             }

@@ -15,7 +15,7 @@ namespace qxDotNet.UI.Window
         private qxDotNet.UI.Window.Window _activeWindow = null;
         private qxDotNet.UI.Window.IWindowManager _windowManager = null;
         private string _blockerColor = null;
-        private decimal _blockerOpacity = 1;
+        private decimal _blockerOpacity = 1m;
 
 
         /// <summary>
@@ -78,8 +78,11 @@ namespace qxDotNet.UI.Window
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.window.Desktop";
         }
@@ -90,7 +93,7 @@ namespace qxDotNet.UI.Window
             state.SetPropertyValue("activeWindow", _activeWindow, null);
             state.SetPropertyValue("windowManager", _windowManager, null);
             state.SetPropertyValue("blockerColor", _blockerColor, null);
-            state.SetPropertyValue("blockerOpacity", _blockerOpacity, 1);
+            state.SetPropertyValue("blockerOpacity", _blockerOpacity, 1m);
 
 
         }

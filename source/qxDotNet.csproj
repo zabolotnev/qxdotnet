@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\qxDotNet.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -66,9 +67,11 @@
     <Compile Include="Common\ApplicationState.cs" />
     <Compile Include="Common\ConfigHandler.cs" />
     <Compile Include="Common\PropertyNameAttribute.cs" />
+    <Compile Include="Common\TableState.cs" />
     <Compile Include="Data\Array.cs" />
     <Compile Include="Data\IListData.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Event\Timer.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -109,12 +112,29 @@
     <Compile Include="UI\Core\Spacer.cs" />
     <Compile Include="UI\Core\Widget.code.cs" />
     <Compile Include="UI\Core\Widget.cs" />
+    <Compile Include="UI\Decoration\Abstract.cs" />
+    <Compile Include="UI\Decoration\AbstractBox.cs" />
+    <Compile Include="UI\Decoration\Background.cs" />
+    <Compile Include="UI\Decoration\Beveled.cs" />
+    <Compile Include="UI\Decoration\BoxDiv.cs" />
+    <Compile Include="UI\Decoration\Double.cs" />
+    <Compile Include="UI\Decoration\DynamicDecorator.cs" />
+    <Compile Include="UI\Decoration\Grid.cs" />
+    <Compile Include="UI\Decoration\GridDiv.cs" />
+    <Compile Include="UI\Decoration\HBox.cs" />
+    <Compile Include="UI\Decoration\IDecorator.cs" />
+    <Compile Include="UI\Decoration\Single.cs" />
+    <Compile Include="UI\Decoration\Uniform.cs" />
+    <Compile Include="UI\Decoration\VBox.cs" />
+    <Compile Include="UI\Dialog\MessageBox.cs" />
     <Compile Include="UI\Form\AbstractField.cs" />
     <Compile Include="UI\Form\AbstractSelectBox.cs" />
     <Compile Include="UI\Form\Button.cs" />
     <Compile Include="UI\Form\CheckBox.cs" />
     <Compile Include="UI\Form\ComboBox.cs" />
     <Compile Include="UI\Form\ComboBox.code.cs" />
+    <Compile Include="UI\Form\AbstractSelectBox.code.cs" />
+    <Compile Include="UI\Form\SelectBox.code.cs" />
     <Compile Include="UI\Form\Spinner.code.cs" />
     <Compile Include="UI\Form\Slider.code.cs" />
     <Compile Include="UI\Form\VirtualComboBox.code.cs" />
@@ -153,6 +173,7 @@
     <Compile Include="UI\Form\VirtualSelectBox.cs" />
     <Compile Include="UI\Groupbox\CheckGroupBox.cs" />
     <Compile Include="UI\Groupbox\CheckGroupBox.code.cs" />
+    <Compile Include="UI\Groupbox\GroupBox.code.cs" />
     <Compile Include="UI\Groupbox\RadioGroupBox.code.cs" />
     <Compile Include="UI\Groupbox\GroupBox.cs" />
     <Compile Include="UI\Groupbox\RadioGroupBox.cs" />
@@ -182,23 +203,37 @@
     <Compile Include="UI\Menu\Separator.cs" />
     <Compile Include="UI\Popup\Popup.cs" />
     <Compile Include="UI\Splitpane\Pane.cs" />
-    <Compile Include="UI\Table\Columnmenu\Button.cs" />
-    <Compile Include="UI\Table\Columnmenu\MenuItem.cs" />
+    <Compile Include="UI\Table\Celleditor\AbstractField.cs" />
+    <Compile Include="UI\Table\Celleditor\CheckBox.cs" />
+    <Compile Include="UI\Table\Celleditor\ComboBox.cs" />
+    <Compile Include="UI\Table\Celleditor\PasswordField.cs" />
+    <Compile Include="UI\Table\Celleditor\SelectBox.cs" />
+    <Compile Include="UI\Table\Celleditor\TextField.cs" />
+    <Compile Include="UI\Table\Cellrenderer\Abstract.cs" />
+    <Compile Include="UI\Table\Cellrenderer\AbstractImage.cs" />
+    <Compile Include="UI\Table\Cellrenderer\Boolean.cs" />
+    <Compile Include="UI\Table\Cellrenderer\Conditional.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Table\Cellrenderer\Date.cs" />
+    <Compile Include="UI\Table\Cellrenderer\Default.cs" />
+    <Compile Include="UI\Table\Cellrenderer\Image.cs" />
+    <Compile Include="UI\Table\Cellrenderer\Number.cs" />
+    <Compile Include="UI\Table\Cellrenderer\Password.cs" />
+    <Compile Include="UI\Table\Cellrenderer\Replace.cs" />
+    <Compile Include="UI\Table\Cellrenderer\String.cs" />
     <Compile Include="UI\Table\ICellEditorFactory.cs" />
     <Compile Include="UI\Table\ICellRenderer.cs" />
-    <Compile Include="UI\Table\IColumnMenuButton.cs" />
-    <Compile Include="UI\Table\IColumnMenuItem.cs" />
-    <Compile Include="UI\Table\IHeaderRenderer.cs" />
     <Compile Include="UI\Table\IRowRenderer.cs" />
-    <Compile Include="UI\Table\ITableModel.cs" />
-    <Compile Include="UI\Table\Pane\Clipper.cs" />
-    <Compile Include="UI\Table\Pane\FocusIndicator.cs" />
-    <Compile Include="UI\Table\Pane\Header.cs" />
-    <Compile Include="UI\Table\Pane\Pane.cs" />
+    <Compile Include="UI\Table\RemoteModel.code.cs" />
+    <Compile Include="UI\Table\Selection\Model.Code.cs" />
+    <Compile Include="UI\Table\Table.code.cs" />
     <Compile Include="UI\Table\Selection\Model.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UI\Table\Table.cs" />
+    <Compile Include="UI\Table\TableColumn.code.cs" />
+    <Compile Include="UI\Table\TableRow.code.cs" />
     <Compile Include="UI\Tabview\TabView.code.cs" />
     <Compile Include="UI\Tabview\Page.cs" />
     <Compile Include="UI\Tabview\TabButton.cs" />
@@ -239,6 +274,7 @@
     <Compile Include="UI\Virtual\Layer\Row.cs" />
     <Compile Include="UI\Virtual\Layer\WidgetCell.cs" />
     <Compile Include="UI\Virtual\Layer\WidgetCellSpan.cs" />
+    <Compile Include="UI\Window\Window.code.cs" />
     <Compile Include="UI\Window\Desktop.cs" />
     <Compile Include="UI\Window\IDesktop.cs" />
     <Compile Include="UI\Window\IWindowManager.cs" />
@@ -246,6 +282,7 @@
     <Compile Include="Encoder.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Pair.cs" />
+    <Compile Include="Util\Format\DateFormat.code.cs" />
     <Compile Include="Util\Format\DateFormat.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -258,6 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="class\qxdotnet\Application.js" />
+    <Content Include="class\qxdotnet\table\RemoteDataModel.js" />
     <Content Include="class\qxdotnet\theme\Appearance.js" />
     <Content Include="class\qxdotnet\theme\Color.js" />
     <Content Include="class\qxdotnet\theme\Decoration.js" />
@@ -287,6 +325,7 @@
   <PropertyGroup>
     <PostBuildEvent>python "$(ProjectDir)..\generate.py" build
 xcopy /E /Y "$(ProjectDir)bin\debug\qxdotnet.dll" "$(SolutionDir)build\bin\"
+xcopy /E /Y "$(ProjectDir)bin\debug\qxdotnet.xml" "$(SolutionDir)build\bin\"
 xcopy /E /Y "$(SolutionDir)build\script\*" "$(SolutionDir)DemoApplication\script\"
 xcopy /E /Y "$(SolutionDir)build\resource\*" "$(SolutionDir)DemoApplication\resource\"
 xcopy /E /Y "$(SolutionDir)build\bin\*" "$(SolutionDir)DemoApplication\bin\"</PostBuildEvent>

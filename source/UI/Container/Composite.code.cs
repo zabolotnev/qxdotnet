@@ -18,7 +18,7 @@ namespace qxDotNet.UI.Container
             SetLayout(layout);
         }
 
-        internal override string GetAddObjectReference(qxDotNet.Core.Object obj)
+        protected internal override string GetAddObjectReference(qxDotNet.Core.Object obj)
         {
             if (ItemOptions.ContainsKey((Core.LayoutItem)obj) && ItemOptions[(Core.LayoutItem)obj] != null)
             {
@@ -30,7 +30,7 @@ namespace qxDotNet.UI.Container
             }
         }
 
-        internal override string GetRemoveObjectReference(qxDotNet.Core.Object obj)
+        protected internal override string GetRemoveObjectReference(qxDotNet.Core.Object obj)
         {
             return GetReference() + ".remove(" + obj.GetReference() + ");\n";
         }
@@ -47,13 +47,31 @@ namespace qxDotNet.UI.Container
                 Remove(child);
             }
             Children.Add(child);
-            ItemOptions.Add(child, options);
+            if (!ItemOptions.ContainsKey(child))
+            {
+                ItemOptions.Add(child, options);
+            }
+            else
+            {
+                if (options!=null)
+                {
+                    if (!options.Equals(ItemOptions[child]))
+                    {
+                        Children.EnsureAdded(child);
+                    }
+                }
+            }
         }
 
         public void Remove(Core.LayoutItem child)
         {
             Children.Remove(child);
-            ItemOptions.Remove(child);
+        }
+
+        public void RemoveAll()
+        {
+            Children.Clear();
+            ItemOptions.Clear();
         }
 
         public void SetLayout(Layout.Abstract layout)

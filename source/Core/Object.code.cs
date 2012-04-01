@@ -52,7 +52,7 @@ namespace qxDotNet.Core
             }
         }
 
-        internal void SetPropertyValue(string name, string value)
+        protected internal virtual void SetPropertyValue(string name, string value)
         {
             name = name.ToLower();
             var t = this.GetType();
@@ -75,7 +75,7 @@ namespace qxDotNet.Core
             }
         }
 
-        internal long clientId
+        public long clientId
         {
             get
             {
@@ -87,34 +87,53 @@ namespace qxDotNet.Core
             }
         }
 
-        public abstract string GetTypeName();
+        /// <summary>
+        /// Returns native class name
+        /// </summary>
+        /// <returns>Native class name</returns>
+        protected internal abstract string GetTypeName();
 
         internal virtual void Render(PropertyBag state)
         {
             
         }
 
+        protected internal virtual void CustomPreRender(System.Web.HttpResponse response, bool isRefreshRequest)
+        {
+
+        }
+
+        protected internal virtual void CustomPostRender(System.Web.HttpResponse response, bool isRefreshRequest)
+        {
+
+        }
+
+        protected internal virtual string GetCustomConstructor()
+        {
+            return string.Empty;
+        }
+
         internal virtual void InvokeEvent(string eventName)
         {
 
         }
-        
-        internal virtual System.Collections.IEnumerable GetChildren(bool isNewOnly)
+
+        protected internal virtual System.Collections.IEnumerable GetChildren(bool isNewOnly)
         {
             return null;
         }
 
-        internal virtual System.Collections.IEnumerable GetRemovedChildren()
+        protected internal virtual System.Collections.IEnumerable GetRemovedChildren()
         {
             return null;
         }
 
-        internal virtual string GetAddObjectReference(Object obj)
+        protected internal virtual string GetAddObjectReference(Object obj)
         {
             return null;
         }
 
-        internal virtual string GetRemoveObjectReference(Object obj)
+        protected internal virtual string GetRemoveObjectReference(Object obj)
         {
             return null;
         }
@@ -146,21 +165,21 @@ namespace qxDotNet.Core
             _state.Commit();
         }
 
-        internal virtual string GetReference()
+        protected internal virtual string GetReference()
         {
             return "ctr[" + clientId + "]";
         }
 
-        internal virtual string GetGetPropertyAccessor(string name, bool isRef)
+        protected internal virtual string GetGetPropertyAccessor(string name, bool isRef)
         {
             if (char.IsLetter(name[0]))
             {
                 var fl = char.ToUpper(name[0]);
-                name = "get" + fl + name.Substring(1) + "()";
+                name = GetReference() + ".get" + fl + name.Substring(1) + "()";
             }
             else
             {
-                name = "get" + name + "()";
+                name = GetReference() + ".get" + name + "()";
             }
             if (isRef)
             {
@@ -169,12 +188,12 @@ namespace qxDotNet.Core
             return name;
         }
 
-        internal virtual string GetSetPropertyValueExpression(string name, object value)
+        protected internal virtual string GetSetPropertyValueExpression(string name, object value)
         {
             return GetReference() + "." + GetSetPropertyAccessor(name) + "(" + GetClientValue(value) + ");\n";
         }
 
-        internal virtual string GetSetPropertyAccessor(string name)
+        protected internal virtual string GetSetPropertyAccessor(string name)
         {
             if (char.IsLetter(name[0]))
             {
@@ -188,11 +207,43 @@ namespace qxDotNet.Core
             return name;
         }
 
-        internal virtual string GetClientValue(object value)
+        protected internal virtual string GetClientValue(object value)
         {
             if (value == null)
             {
                 return "null";
+            }
+            else if (value is bool)
+            {
+                var v = (bool)value;
+                return v ? "true" : "false";
+            }
+            else if (value is bool?)
+            {
+                var v = (bool?)value;
+                if (v.HasValue)
+                {
+                    return v.Value ? "true" : "false";
+                }
+                else
+                {
+                    return "null";
+                }
+            }
+            else if (value is DateTime)
+            {
+                return "new Date(Date.parse(\"" + ((DateTime)value).ToString("dd MMM yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture) + "\"))";
+            }
+            else if (value is DateTime?)
+            {
+                if (!((DateTime?)value).HasValue)
+                {
+                    return "null";
+                }
+                else
+                {
+                    return "new Date(Date.parse(\"" + ((DateTime?)value).Value.ToString("dd MMM yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture) + "\"))";
+                }
             }
             else if (value is string)
             {
@@ -212,7 +263,7 @@ namespace qxDotNet.Core
             }
         }
 
-        internal virtual object ConvertToType(Type type, string value)
+        protected internal virtual object ConvertToType(Type type, string value)
         {
             if (type.IsSubclassOf(typeof(Core.Object)))
             {
@@ -229,6 +280,29 @@ namespace qxDotNet.Core
             else if (type.IsSubclassOf(typeof(Enum)))
             {
                 return Enum.Parse(type, value, false);
+            }
+            else if (type == typeof(DateTime))
+            {
+                var v = value.Substring(0, value.IndexOf(" GMT"));
+                return DateTime.ParseExact(v, "ddd MMM d yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            }
+            else if (type == typeof(DateTime?))
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    return null;
+                }
+                DateTime r;
+                var v = value.Substring(0, value.IndexOf(" GMT"));
+                if (DateTime.TryParseExact(v, "ddd MMM d yyyy HH:mm:ss", 
+                    System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out r))
+                {
+                    return r;
+                }
+                else
+                {
+                    return null;
+                }
             }
             else return value;
         }
@@ -307,11 +381,11 @@ namespace qxDotNet.Core
             {
                 if (_committedPropertyValues.ContainsKey(propertyName))
                 {
-                    if (_committedPropertyValues[propertyName] == value)
+                    if (object.Equals(_committedPropertyValues[propertyName], value))
                     {
                         return;
                     }
-                    if (_owner.IsCreated || value != defaultValue)
+                    if (_owner.IsCreated || !object.Equals(value, defaultValue))
                     {
                         _newPropertyValues[propertyName] = value;
                     }

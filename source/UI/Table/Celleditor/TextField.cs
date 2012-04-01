@@ -4,20 +4,23 @@ using System.Linq;
 using System.Text;
 using qxDotNet;
 
-namespace qxDotNet.UI.Table.Pane
+namespace qxDotNet.UI.Table.Celleditor
 {
     /// <summary>
-    /// Shows the header of a table.
+    /// A cell editor factory creating text fields.
     /// </summary>
-    public partial class Header : qxDotNet.UI.Core.Widget
+    public partial class TextField : qxDotNet.UI.Table.Celleditor.AbstractField
     {
 
 
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
-            return "qx.ui.table.pane.Header";
+            return "qx.ui.table.celleditor.TextField";
         }
 
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)

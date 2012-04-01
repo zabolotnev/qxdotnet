@@ -13,6 +13,36 @@ namespace qxDotNet
             return this;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !(obj is Map))
+            {
+                return false;
+            }
+            var obj_ = obj as Map;
+            if (Count != obj_.Count)
+            {
+                return false;
+            }
+            foreach (var item in this)
+            {
+                if (!obj_.ContainsKey(item.Key))
+                {
+                    return false;
+                }
+                if (!object.Equals(item.Value, obj_[item.Key]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return ToString().GetHashCode();
+        }
+
         public override string ToString()
         {
             var sb = new StringBuilder();

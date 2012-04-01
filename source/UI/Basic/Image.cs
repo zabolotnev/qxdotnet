@@ -47,8 +47,11 @@ namespace qxDotNet.UI.Basic
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.basic.Image";
         }

@@ -13,11 +13,11 @@ namespace qxDotNet.UI.Form
     {
 
         private bool? _editable = true;
-        private decimal _maximum = 100;
-        private decimal _minimum = 0;
+        private decimal _maximum = 100m;
+        private decimal _minimum = 0m;
         private qxDotNet.Util.Format.NumberFormat _numberFormat = null;
-        private decimal _pageStep = 10;
-        private decimal _singleStep = 1;
+        private decimal _pageStep = 10m;
+        private decimal _singleStep = 1m;
 //        private _var _value = 0;
         private bool? _wrap = false;
         private int _contentPaddingBottom = 0;
@@ -261,8 +261,11 @@ namespace qxDotNet.UI.Form
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.form.Spinner";
         }
@@ -271,11 +274,11 @@ namespace qxDotNet.UI.Form
         {
             base.Render(state);
             state.SetPropertyValue("editable", _editable, true);
-            state.SetPropertyValue("maximum", _maximum, 100);
-            state.SetPropertyValue("minimum", _minimum, 0);
+            state.SetPropertyValue("maximum", _maximum, 100m);
+            state.SetPropertyValue("minimum", _minimum, 0m);
             state.SetPropertyValue("numberFormat", _numberFormat, null);
-            state.SetPropertyValue("pageStep", _pageStep, 10);
-            state.SetPropertyValue("singleStep", _singleStep, 1);
+            state.SetPropertyValue("pageStep", _pageStep, 10m);
+            state.SetPropertyValue("singleStep", _singleStep, 1m);
             state.SetPropertyValue("wrap", _wrap, false);
             state.SetPropertyValue("contentPaddingBottom", _contentPaddingBottom, 0);
             state.SetPropertyValue("contentPaddingLeft", _contentPaddingLeft, 0);

@@ -42,15 +42,23 @@ namespace qxDotNet.Common
                 appState = new ApplicationState(p, app);
                 context.Session["__qxAppState"] = appState;
             }
-            if (context.Request.HttpMethod.ToLower() == "post")
+
+            if (context.Request.Params["r"] == "grid")
             {
-                context.Response.ContentType = "text/plain";
-                appState.ProcessRequest(context);
+                TableState.Instance.ProcessRequest(context);
             }
             else
             {
-                context.Response.ContentType = "text/html";
-                context.Response.Write(Properties.Resources.StandaloneBootstrap.Replace("%APPNAME%", appState.Name));
+                if (context.Request.HttpMethod.ToLower() == "post")
+                {
+                    context.Response.ContentType = "text/plain";
+                    appState.ProcessRequest(context);
+                }
+                else
+                {
+                    context.Response.ContentType = "text/html";
+                    context.Response.Write(Properties.Resources.StandaloneBootstrap.Replace("%APPNAME%", appState.Name));
+                }
             }
         }
 

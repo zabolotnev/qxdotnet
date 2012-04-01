@@ -12,7 +12,7 @@ namespace qxDotNet.UI.Form
     public abstract partial class AbstractSelectBox : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IForm
     {
 
-        private decimal _maxListHeight = 200;
+        private decimal _maxListHeight = 200m;
         private string _invalidMessage = "";
         private bool? _required = false;
         private string _requiredInvalidMessage = "";
@@ -98,8 +98,11 @@ namespace qxDotNet.UI.Form
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.form.AbstractSelectBox";
         }
@@ -107,7 +110,7 @@ namespace qxDotNet.UI.Form
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
-            state.SetPropertyValue("maxListHeight", _maxListHeight, 200);
+            state.SetPropertyValue("maxListHeight", _maxListHeight, 200m);
             state.SetPropertyValue("invalidMessage", _invalidMessage, "");
             state.SetPropertyValue("required", _required, false);
             state.SetPropertyValue("requiredInvalidMessage", _requiredInvalidMessage, "");

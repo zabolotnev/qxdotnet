@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace qxDotNet.Common
 {
-    internal class ApplicationState
+    public class ApplicationState
     {
 
         private Application.AbstractGui _app;
@@ -16,7 +16,7 @@ namespace qxDotNet.Common
         private long _controlCounter = 0;
         private bool _isRefreshRequest;
         private List<Core.Object> _createdControls;
-
+        private List<Core.Object> _renderedControls;
         private Dictionary<long, WeakReference> _registeredControls;
 
         public ApplicationState(string name, Application.AbstractGui app)
@@ -36,6 +36,14 @@ namespace qxDotNet.Common
             }
         }
 
+        public qxDotNet.Application.AbstractGui GUI
+        {
+            get
+            {
+                return _app;
+            }
+        }
+
         public string Name
         {
             get
@@ -44,7 +52,7 @@ namespace qxDotNet.Common
             }
         }
 
-        public void ProcessRequest(HttpContext context)
+        internal void ProcessRequest(HttpContext context)
         {
             _isRefreshRequest = false;
             var response = context.Response;
@@ -126,6 +134,8 @@ namespace qxDotNet.Common
                 _isRefreshRequest = true;
             }
 
+            _app.ProcessRequest();
+
             response.Write("var App = qx.core.Init.getApplication();\n");
             response.Write("var ctr = App.getControls();\n");
             response.Write("var root = App.getRoot();\n");
@@ -134,9 +144,14 @@ namespace qxDotNet.Common
             CreateRecursive(_app, context.Response);
             _createdControls = null;
 
+            _renderedControls = new List<qxDotNet.Core.Object>();
             RenderRecursive(_app, context.Response);
+            _renderedControls = null;
 
-            _requestId++;
+            if (!_isRefreshRequest)
+            {
+                _requestId++;
+            }
             response.Write("App.requestCounter = \"" + _requestId.ToString() + "\";\n");
         }
 
@@ -150,7 +165,7 @@ namespace qxDotNet.Common
                 .Replace("&amp;", "&");
         }
 
-        public long RequestControlId()
+        internal long RequestControlId()
         {
             _controlCounter++;
             return _controlCounter;
@@ -180,7 +195,7 @@ namespace qxDotNet.Common
                 {
                     _registeredControls.Add(obj.clientId, new WeakReference(obj));
                 }
-                response.Write(string.Format("{0} = new {1}();\n", obj.GetReference(), obj.GetTypeName()));
+                response.Write(string.Format("{0} = new {1}({2});\n", obj.GetReference(), obj.GetTypeName(), obj.GetCustomConstructor()));
             }
 
             var props = st.GetAllProperies();
@@ -238,6 +253,19 @@ namespace qxDotNet.Common
 
             var children = obj.GetChildren(!_isRefreshRequest);
 
+            // font hack
+            var fontList = new List<qxDotNet.Font>();
+            foreach (var p in st.GetAllProperies())
+            {
+                if (p.Value is qxDotNet.Font)
+                {
+                    (p.Value as qxDotNet.Font).fontRenderPhase = false;
+                    RenderRecursive(p.Value as qxDotNet.Core.Object, response);
+                    (p.Value as qxDotNet.Font).fontRenderPhase = true;
+                    fontList.Add(p.Value as qxDotNet.Font);
+                }
+            }
+
             if (children != null)
             {
                 foreach (Core.Object item in children)
@@ -252,10 +280,68 @@ namespace qxDotNet.Common
                 }
             }
 
+            children = obj.GetChildren(false);
 
-            foreach (var prop in properties)
+            obj.CustomPreRender(response, _isRefreshRequest);
+
+            foreach (var p in st.GetAllProperies())
             {
-                response.Write(obj.GetSetPropertyValueExpression(prop.Key, prop.Value));
+                if (p.Value is qxDotNet.Core.Object)
+                {
+                    RenderRecursive(p.Value as qxDotNet.Core.Object, response);
+                    _renderedControls.Add(p.Value as qxDotNet.Core.Object);
+                }
+            }
+
+            if (children != null)
+            {
+                foreach (var item in children)
+                {
+                    if (item != null)
+                    {
+                        if (!_renderedControls.Contains(item as Core.Object))
+                        {
+                            RenderRecursive((item as Core.Object), response);
+                        }
+                    }
+                }
+            }
+
+            if (obj is qxDotNet.Font)
+            {
+                //font hack
+                foreach (var prop in properties)
+                {
+                    var fontObj = obj as qxDotNet.Font;
+                    if (prop.Key == "size")
+                    {
+                        if (!fontObj.fontRenderPhase)
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        if (fontObj.fontRenderPhase)
+                        {
+                            continue;
+                        }
+                    }
+                    response.Write(obj.GetSetPropertyValueExpression(prop.Key, prop.Value));
+                }
+            }
+            else
+            {
+                foreach (var prop in properties)
+                {
+                    response.Write(obj.GetSetPropertyValueExpression(prop.Key, prop.Value));
+                }
+            }
+
+            // font hack
+            foreach (var item in fontList)
+            {
+                RenderRecursive(item as qxDotNet.Core.Object, response);
             }
 
             foreach (var ev in events)
@@ -273,13 +359,13 @@ namespace qxDotNet.Common
                         if (ev.referencedProperies.Contains(item))
                         {
                             props += ".pr(\"" + item + "\",";
-                            props += "\"" + obj.GetReference() + "." + obj.GetGetPropertyAccessor(item, true) + "\"";
+                            props += "\"" + obj.GetGetPropertyAccessor(item, true) + "\"";
                             props += ")";
                         }
                         else
                         {
                             props += ".pr(\"" + item + "\",";
-                            props += "\"" + obj.GetReference() + "." + obj.GetGetPropertyAccessor(item, false) + "\"";
+                            props += "\"" + obj.GetGetPropertyAccessor(item, false) + "\"";
                             props += ")";
                         }
                     }
@@ -292,28 +378,12 @@ namespace qxDotNet.Common
                 response.Write("});");
             }
 
-            children = obj.GetChildren(false);
+            obj.CustomPostRender(response, _isRefreshRequest);
 
-            foreach (var p in st.GetAllProperies())
+            if (!(obj is qxDotNet.Font) || (obj as qxDotNet.Font).fontRenderPhase)
             {
-                if (p.Value is qxDotNet.Core.Object)
-                {
-                    RenderRecursive(p.Value as qxDotNet.Core.Object, response);
-                }
+                obj.Commit();
             }
-
-            if (children != null)
-            {
-                foreach (var item in children)
-                {
-                    if (item != null)
-                    {
-                        RenderRecursive((item as Core.Object), response);
-                    }
-                }
-            }
-            
-            obj.Commit();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace qxDotNet.Application
 
 
 
-        public override string GetTypeName()
+        protected internal override string GetTypeName()
         {
             return "qx.application.Mobile";
         }

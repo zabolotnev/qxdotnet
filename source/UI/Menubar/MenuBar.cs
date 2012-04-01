@@ -14,8 +14,11 @@ namespace qxDotNet.UI.Menubar
 
 
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.menubar.MenuBar";
         }

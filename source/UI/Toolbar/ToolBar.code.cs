@@ -31,12 +31,17 @@ namespace qxDotNet.UI.Toolbar
             Children.Remove(child);
         }
 
-        internal override string GetAddObjectReference(qxDotNet.Core.Object obj)
+        public void RemoveAll()
+        {
+            Children.Clear();
+        }
+
+        protected internal override string GetAddObjectReference(qxDotNet.Core.Object obj)
         {
             return GetReference() + ".add(" + obj.GetReference() + ");\n";
         }
 
-        internal override string GetRemoveObjectReference(qxDotNet.Core.Object obj)
+        protected internal override string GetRemoveObjectReference(qxDotNet.Core.Object obj)
         {
             return GetReference() + ".remove(" + obj.GetReference() + ");\n";
         }

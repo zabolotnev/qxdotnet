@@ -18,7 +18,7 @@ namespace qxDotNet.UI.Core
         private bool? _blockToolTip = false;
         private qxDotNet.UI.Menu.Menu _contextMenu = null;
         private string _cursor = null;
-        private string _decorator = null;
+        private qxDotNet.UI.Decoration.Abstract _decorator = null;
         private bool? _draggable = false;
         private bool? _droppable = false;
         private bool? _enabled = true;
@@ -139,7 +139,7 @@ namespace qxDotNet.UI.Core
         /// <summary>
         /// The decorator property points to an object, which is responsible for drawing the widget&#8217;s decoration, e.g. border, background or shadow.  This can be a decorator object or a string pointing to a decorator defined in the decoration theme.
         /// </summary>
-        public string Decorator
+        public qxDotNet.UI.Decoration.Abstract Decorator
         {
             get
             {
@@ -492,8 +492,11 @@ namespace qxDotNet.UI.Core
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.core.Widget";
         }
@@ -531,7 +534,7 @@ namespace qxDotNet.UI.Core
             state.SetPropertyValue("visibility", _visibility, VisibilityEnum.visible);
             state.SetPropertyValue("zIndex", _zIndex, 0);
 
-            if (Activate != null)
+            if (Activated != null)
             {
                 state.SetEvent("activate", false);
             }
@@ -567,7 +570,7 @@ namespace qxDotNet.UI.Core
             {
                 state.SetEvent("dblclick", false);
             }
-            if (Deactivate != null)
+            if (Deactivated != null)
             {
                 state.SetEvent("deactivate", false);
             }
@@ -607,7 +610,7 @@ namespace qxDotNet.UI.Core
             {
                 state.SetEvent("droprequest", false);
             }
-            if (Focus != null)
+            if (Focused != null)
             {
                 state.SetEvent("focus", false);
             }
@@ -707,7 +710,7 @@ namespace qxDotNet.UI.Core
             base.InvokeEvent(eventName);
             if (eventName == "activate")
             {
-                OnActivate();
+                OnActivated();
             }
             if (eventName == "appear")
             {
@@ -743,7 +746,7 @@ namespace qxDotNet.UI.Core
             }
             if (eventName == "deactivate")
             {
-                OnDeactivate();
+                OnDeactivated();
             }
             if (eventName == "disappear")
             {
@@ -783,7 +786,7 @@ namespace qxDotNet.UI.Core
             }
             if (eventName == "focus")
             {
-                OnFocus();
+                OnFocused();
             }
             if (eventName == "focusin")
             {
@@ -875,18 +878,18 @@ namespace qxDotNet.UI.Core
             }
         }
 
-        protected virtual void OnActivate()
+        protected virtual void OnActivated()
         {
-            if (Activate != null)
+            if (Activated != null)
             {
-                Activate.Invoke(this, System.EventArgs.Empty);
+                Activated.Invoke(this, System.EventArgs.Empty);
             }
         }
 
         /// <summary>
         /// When the widget gets active (receives keyboard events etc.)
         /// </summary>
-        public event EventHandler Activate;
+        public event EventHandler Activated;
 
         protected virtual void OnAppear()
         {
@@ -1161,18 +1164,18 @@ namespace qxDotNet.UI.Core
         /// </summary>
         public event EventHandler Dblclick;
 
-        protected virtual void OnDeactivate()
+        protected virtual void OnDeactivated()
         {
-            if (Deactivate != null)
+            if (Deactivated != null)
             {
-                Deactivate.Invoke(this, System.EventArgs.Empty);
+                Deactivated.Invoke(this, System.EventArgs.Empty);
             }
         }
 
         /// <summary>
         /// When the widget gets inactive
         /// </summary>
-        public event EventHandler Deactivate;
+        public event EventHandler Deactivated;
 
         protected virtual void OnDisappear()
         {
@@ -1291,18 +1294,18 @@ namespace qxDotNet.UI.Core
         /// </summary>
         public event EventHandler Droprequest;
 
-        protected virtual void OnFocus()
+        protected virtual void OnFocused()
         {
-            if (Focus != null)
+            if (Focused != null)
             {
-                Focus.Invoke(this, System.EventArgs.Empty);
+                Focused.Invoke(this, System.EventArgs.Empty);
             }
         }
 
         /// <summary>
         /// The event is fired when the widget gets focused. Only widgets which are {@link #focusable} receive this event.
         /// </summary>
-        public event EventHandler Focus;
+        public event EventHandler Focused;
 
         protected virtual void OnFocusin()
         {

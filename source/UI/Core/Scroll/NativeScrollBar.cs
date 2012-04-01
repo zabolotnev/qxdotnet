@@ -15,7 +15,7 @@ namespace qxDotNet.UI.Core.Scroll
         private decimal _knobFactor = 0m;
         private int _maximum = 100;
         private qxDotNet.OrientationEnum _orientation = OrientationEnum.horizontal;
-        private decimal _position = 0;
+        private decimal _position = 0m;
         private int _singleStep = 20;
 
 
@@ -94,8 +94,11 @@ namespace qxDotNet.UI.Core.Scroll
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.core.scroll.NativeScrollBar";
         }
@@ -106,7 +109,7 @@ namespace qxDotNet.UI.Core.Scroll
             state.SetPropertyValue("knobFactor", _knobFactor, 0m);
             state.SetPropertyValue("maximum", _maximum, 100);
             state.SetPropertyValue("orientation", _orientation, OrientationEnum.horizontal);
-            state.SetPropertyValue("position", _position, 0);
+            state.SetPropertyValue("position", _position, 0m);
             state.SetPropertyValue("singleStep", _singleStep, 20);
 
             if (Scroll != null)

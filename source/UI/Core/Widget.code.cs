@@ -33,7 +33,23 @@ namespace qxDotNet.UI.Core
             _children.Commit();
         }
 
-        internal override System.Collections.IEnumerable GetChildren(bool isNewOnly)
+        protected internal override void CustomPostRender(System.Web.HttpResponse response, bool isRefreshRequest)
+        {
+            base.CustomPostRender(response, isRefreshRequest);
+            if (_needToActivate)
+            {
+                response.Write(GetReference() + ".activate();\n");
+                _needToActivate = false;
+            }
+            if (_needToFocus)
+            {
+                response.Write(GetReference() + ".focus();\n");
+                _needToFocus = false;
+            }
+            base.CustomPostRender(response, isRefreshRequest);
+        }
+
+        protected internal override System.Collections.IEnumerable GetChildren(bool isNewOnly)
         {
             if (isNewOnly)
             {
@@ -45,16 +61,32 @@ namespace qxDotNet.UI.Core
             }
         }
 
-        internal override System.Collections.IEnumerable GetRemovedChildren()
+        protected internal override System.Collections.IEnumerable GetRemovedChildren()
         {
             return _children.GetRemovedItems();
         }
 
         public class ItemOptionCollection : Dictionary<Core.LayoutItem, Map> {}
 
+        private bool _needToActivate = false;
+
+        public void Activate()
+        {
+            _needToActivate = true;
+            OnActivated();
+        }
+
+        private bool _needToFocus = false;
+
+        public void Focus()
+        {
+            _needToFocus = true;
+            OnFocused();
+        }
+
     }
 
-    internal class LayoutCollection : System.Collections.ObjectModel.Collection<LayoutItem>
+    public class LayoutCollection : System.Collections.ObjectModel.Collection<LayoutItem>
     {
         private List<LayoutItem> _newItems = new List<LayoutItem>();
         private List<LayoutItem> _removedItems = new List<LayoutItem>();
@@ -72,13 +104,24 @@ namespace qxDotNet.UI.Core
         protected override void InsertItem(int index, LayoutItem item)
         {
             base.InsertItem(index, item);
-            if (!_newItems.Contains(item))
-            {
-                _newItems.Add(item);
-            }
             if (_removedItems.Contains(item))
             {
                 _removedItems.Remove(item);
+            }
+            else
+            {
+                if (!_newItems.Contains(item))
+                {
+                    _newItems.Add(item);
+                }
+            }
+        }
+
+        public void EnsureAdded(LayoutItem item)
+        {
+            if (!_newItems.Contains(item))
+            {
+                _newItems.Add(item);
             }
         }
 
@@ -102,11 +145,14 @@ namespace qxDotNet.UI.Core
             {
                 _removedItems.Add(this[index]);
             }
-            base.SetItem(index, item);
-            if (!_newItems.Contains(item))
+            else
             {
-                _newItems.Add(item);
+                if (!_newItems.Contains(item))
+                {
+                    _newItems.Add(item);
+                }
             }
+            base.SetItem(index, item);
         }
 
         public void Commit()

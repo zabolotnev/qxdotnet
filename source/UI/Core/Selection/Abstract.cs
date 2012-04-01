@@ -62,8 +62,11 @@ namespace qxDotNet.UI.Core.Selection
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.core.selection.Abstract";
         }
@@ -91,6 +94,9 @@ namespace qxDotNet.UI.Core.Selection
             }
         }
 
+        /// <summary>
+        /// Invokes after the selection was modified. Contains the selection under the data property.
+        /// </summary>
         protected virtual void OnChangeSelection()
         {
             if (ChangeSelection != null)

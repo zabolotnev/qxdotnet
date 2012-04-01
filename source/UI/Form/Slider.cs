@@ -18,7 +18,7 @@ namespace qxDotNet.UI.Form
         private qxDotNet.OrientationEnum _orientation = OrientationEnum.horizontal;
         private int _pageStep = 10;
         private int _singleStep = 1;
-        private decimal _value = 0;
+        private decimal _value = 0m;
         private string _invalidMessage = "";
         private bool? _required = false;
         private string _requiredInvalidMessage = "";
@@ -196,8 +196,11 @@ namespace qxDotNet.UI.Form
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.form.Slider";
         }
@@ -211,7 +214,7 @@ namespace qxDotNet.UI.Form
             state.SetPropertyValue("orientation", _orientation, OrientationEnum.horizontal);
             state.SetPropertyValue("pageStep", _pageStep, 10);
             state.SetPropertyValue("singleStep", _singleStep, 1);
-            state.SetPropertyValue("value", _value, 0);
+            state.SetPropertyValue("value", _value, 0m);
             state.SetPropertyValue("invalidMessage", _invalidMessage, "");
             state.SetPropertyValue("required", _required, false);
             state.SetPropertyValue("requiredInvalidMessage", _requiredInvalidMessage, "");

@@ -11,9 +11,13 @@ namespace DemoApplication
     public class MainForm : qxDotNet.Application.Standalone
     {
 
-        private qxDotNet.UI.Form.TextField text;
+        private qxDotNet.UI.Form.DateField text;
         private qxDotNet.UI.Form.Button btn;
         private qxDotNet.UI.Tabview.TabView tabs;
+        private qxDotNet.UI.Basic.Label label;
+        private qxDotNet.UI.Tabview.Page page;
+        private qxDotNet.UI.Tabview.Page page2;
+        private qxDotNet.UI.Container.Composite dock;
 
         public override void Main()
         {
@@ -21,7 +25,7 @@ namespace DemoApplication
             var root = GetRoot();
 
             // using dock container for menu and toolbar
-            var dock = new qxDotNet.UI.Container.Composite(new qxDotNet.UI.Layout.Dock());
+            dock = new qxDotNet.UI.Container.Composite(new qxDotNet.UI.Layout.Dock());
             root.Add(dock,
                 new Map()
                 .Add("left", 0)
@@ -74,7 +78,7 @@ namespace DemoApplication
                 .Add("edge", "center"));
 
             // this is a page 1
-            var page = new qxDotNet.UI.Tabview.Page();
+            page = new qxDotNet.UI.Tabview.Page();
             page.Layout = new qxDotNet.UI.Layout.Canvas();
             page.Label = "page 1";
             tabs.Add(page);
@@ -97,20 +101,24 @@ namespace DemoApplication
             cm1.Add(cm2);
 
             // add a label
-            var label = new qxDotNet.UI.Basic.Label();
+            label = new qxDotNet.UI.Basic.Label();
             label.Value = "Enter value here:";
+
             cm2.Add(label,
                 new Map()
                 .Add("left", 50)
                 .Add("top", 50));
 
             // and a textbox
-            text = new qxDotNet.UI.Form.TextField();
+            text = new qxDotNet.UI.Form.DateField();
             text.Width = 200;
             cm2.Add(text,
                 new Map()
                 .Add("left", 150)
                 .Add("top", 50));
+            text.Value = DateTime.Today;
+            text.DateFormat = new qxDotNet.Util.Format.DateFormat("HH.mm");
+
 
             // button underneath
             btn = new qxDotNet.UI.Form.Button();
@@ -121,32 +129,72 @@ namespace DemoApplication
                 .Add("top", 80));
             btn.Execute += new EventHandler(btn_Execute);
 
-            
             // empty page for tabcontrol for example
-            var page2 = new qxDotNet.UI.Tabview.Page();
-            page2.Layout = new qxDotNet.UI.Layout.Canvas();
+            page2 = new qxDotNet.UI.Tabview.Page();
+            page2.Layout = new qxDotNet.UI.Layout.Grow();
             page2.Label = "page 2";
             tabs.Add(page2);
 
+            var table = new qxDotNet.UI.Table.Table();
+            var c = new qxDotNet.UI.Table.Column();
+            c.Name = "First name";
+            c.Field = "FirstName";
+            c.Width = 200;
+            table.Columns.Add(c);
+            c = new qxDotNet.UI.Table.Column();
+            c.Name = "Last name";
+            c.Field = "LastName";
+            c.Width = 300;
+            table.Columns.Add(c);
+
+            var d = new List<testData>();
+
+            var r = new testData();
+            r.FirstName = "john";
+            r.LastName = "doe";
+            d.Add(r);
+
+            r = new testData();
+            r.FirstName = "will";
+            r.LastName = "smith";
+            d.Add(r);
+
+            table.DataSource = d;
+
+            page2.Add(table);
+
+        }
+
+        class testData
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
         }
 
         void btn_Execute(object sender, EventArgs e)
         {
             // assign value of textbox to label of button
-            btn.Label = text.Value;
+            btn.Label = text.Value.ToString();
+
+            //qxDotNet.UI.Dialog.MessageBox.Show(text.Value, "Сообщение", qxDotNet.UI.Dialog.MessageBoxButtonsEnum.AbortRetryIgnore, qxDotNet.UI.Dialog.MessageBoxIconEnum.Error, qxDotNet.UI.Dialog.MessageBoxDefaultButtonEnum.Button2, result);
+        }
+
+        private void result(qxDotNet.UI.Dialog.DialogResultEnum result)
+        {
+
         }
 
         void toolbtn_Execute(object sender, EventArgs e)
         {
             // set the random value to textbox
             var rnd = new Random();
-            text.Value = rnd.NextDouble().ToString();
+            //text.Value = rnd.NextDouble().ToString();
         }
 
         void fileNewMenu_Execute(object sender, EventArgs e)
         {
             // set this text to a textbox
-            text.Value = "new file";
+            //text.Value = "new file";
         }
 
 

@@ -18,20 +18,23 @@ namespace qxDotNet.UI.Table.Selection
         /// <summary>
         /// Set the selection mode. Valid values are {@link #NO_SELECTION}, {@link #SINGLE_SELECTION}, {@link #SINGLE_INTERVAL_SELECTION}, {@link #MULTIPLE_INTERVAL_SELECTION} and {@link #MULTIPLE_INTERVAL_SELECTION_TOGGLE}.
         /// </summary>
-        public int SelectionMode
+        public TableSelectionModelEnum SelectionMode
         {
             get
             {
-                return _selectionMode;
+                return (TableSelectionModelEnum)_selectionMode;
             }
             set
             {
-               _selectionMode = value;
+               _selectionMode = (int)value;
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.table.selection.Model";
         }
@@ -40,12 +43,9 @@ namespace qxDotNet.UI.Table.Selection
         {
             base.Render(state);
             state.SetPropertyValue("selectionMode", _selectionMode, 2);
+            state.SetPropertyValue("selection", _selectedIndex, -1);
 
-            if (ChangeSelection != null)
-            {
-                state.SetEvent("changeSelection", false);
-            }
-
+            state.SetEvent("changeSelection", false, "selectedRanges");
         }
 
         internal override void InvokeEvent(string eventName)

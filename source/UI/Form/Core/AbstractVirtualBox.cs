@@ -18,7 +18,7 @@ namespace qxDotNet.UI.Form.Core
         private int _itemHeight = 25;
 //        private _var _labelOptions = null;
         private string _labelPath = "";
-        private decimal _maxListHeight = 200;
+        private decimal _maxListHeight = 200m;
         private qxDotNet.Data.Array _model = null;
         private string _invalidMessage = "";
         private bool? _required = false;
@@ -168,8 +168,11 @@ namespace qxDotNet.UI.Form.Core
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.form.core.AbstractVirtualBox";
         }
@@ -180,7 +183,7 @@ namespace qxDotNet.UI.Form.Core
             state.SetPropertyValue("iconPath", _iconPath, "");
             state.SetPropertyValue("itemHeight", _itemHeight, 25);
             state.SetPropertyValue("labelPath", _labelPath, "");
-            state.SetPropertyValue("maxListHeight", _maxListHeight, 200);
+            state.SetPropertyValue("maxListHeight", _maxListHeight, 200m);
             state.SetPropertyValue("model", _model, null);
             state.SetPropertyValue("invalidMessage", _invalidMessage, "");
             state.SetPropertyValue("required", _required, false);

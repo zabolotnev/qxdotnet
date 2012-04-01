@@ -12,8 +12,8 @@ namespace qxDotNet.UI.Core.Scroll
     public partial class ScrollPane : qxDotNet.UI.Core.Widget
     {
 
-        private decimal _scrollX = 0;
-        private decimal _scrollY = 0;
+        private decimal _scrollX = 0m;
+        private decimal _scrollY = 0m;
 
 
         /// <summary>
@@ -46,8 +46,11 @@ namespace qxDotNet.UI.Core.Scroll
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.core.scroll.ScrollPane";
         }
@@ -55,8 +58,8 @@ namespace qxDotNet.UI.Core.Scroll
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
-            state.SetPropertyValue("scrollX", _scrollX, 0);
-            state.SetPropertyValue("scrollY", _scrollY, 0);
+            state.SetPropertyValue("scrollX", _scrollX, 0m);
+            state.SetPropertyValue("scrollY", _scrollY, 0m);
 
             if (DoScrollX != null)
             {

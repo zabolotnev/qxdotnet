@@ -79,7 +79,7 @@ namespace qxDotNet.UI.Container
         }
 
 
-        public override string GetTypeName()
+        protected internal override string GetTypeName()
         {
             return "qx.ui.container.Scroll";
         }

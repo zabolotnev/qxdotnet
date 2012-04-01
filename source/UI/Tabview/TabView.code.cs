@@ -30,6 +30,11 @@ namespace qxDotNet.UI.Tabview
             _pages.Remove(child);
         }
 
+        public void RemoveAll()
+        {
+            _pages.Clear();
+        }
+
         public PageCollection Pages
         {
             get
@@ -38,21 +43,21 @@ namespace qxDotNet.UI.Tabview
             }
         }
 
-        internal override string GetAddObjectReference(qxDotNet.Core.Object obj)
+        protected internal override string GetAddObjectReference(qxDotNet.Core.Object obj)
         {
             return GetReference() + ".add(" + obj.GetReference() + ");\n";
         }
 
-        internal override string GetRemoveObjectReference(qxDotNet.Core.Object obj)
+        protected internal override string GetRemoveObjectReference(qxDotNet.Core.Object obj)
         {
             return GetReference() + ".remove(" + obj.GetReference() + ");\n";
         }
 
-        internal override string GetGetPropertyAccessor(string name, bool isRef)
+        protected internal override string GetGetPropertyAccessor(string name, bool isRef)
         {
             if (name == "selection")
             {
-                return "getSelection().pop()._id_";
+                return GetReference() + ".getSelection().pop()._id_";
             }
             else
             {
@@ -60,7 +65,7 @@ namespace qxDotNet.UI.Tabview
             }
         }
 
-        internal override string GetSetPropertyValueExpression(string name, object value)
+        protected internal override string GetSetPropertyValueExpression(string name, object value)
         {
             if (name == "selection")
             {
@@ -117,12 +122,22 @@ namespace qxDotNet.UI.Tabview
 
         protected override void RemoveItem(int index)
         {
+            var itm = this[index];
+            if (_owner.Selection == itm)
+            {
+                _owner.Selection = null;
+            }
             base.RemoveItem(index);
             _owner.Children.RemoveAt(index);
         }
 
         protected override void SetItem(int index, Page item)
         {
+            var itm = this[index];
+            if (_owner.Selection == itm)
+            {
+                _owner.Selection = null;
+            }
             base.SetItem(index, item);
             _owner.Children.RemoveAt(index);
             _owner.Children.Insert(index, item);

@@ -38,7 +38,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="qxDotNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=34db26123aadf373, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -91,10 +90,15 @@
     <Content Include="MainForm.ashx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\source\qxDotNet.csproj">
+      <Project>{5D3BDB45-DCC8-40F2-BD94-E92048CD6CF5}</Project>
+      <Name>qxDotNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

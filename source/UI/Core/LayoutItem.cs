@@ -14,10 +14,10 @@ namespace qxDotNet.UI.Core
 
         private qxDotNet.AlignXEnum _alignX = (AlignXEnum)(-1);
         private qxDotNet.AlignYEnum _alignY = (AlignYEnum)(-1);
-        private bool? _allowGrowX = true;
-        private bool? _allowGrowY = true;
-        private bool? _allowShrinkX = true;
-        private bool? _allowShrinkY = true;
+        private bool? _allowGrowX = null;
+        private bool? _allowGrowY = null;
+        private bool? _allowShrinkX = null;
+        private bool? _allowShrinkY = null;
         private int _height = 0;
         private int _marginBottom = 0;
         private int _marginLeft = 0;
@@ -302,8 +302,11 @@ namespace qxDotNet.UI.Core
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.core.LayoutItem";
         }
@@ -313,10 +316,10 @@ namespace qxDotNet.UI.Core
             base.Render(state);
             state.SetPropertyValue("alignX", _alignX, (AlignXEnum)(-1));
             state.SetPropertyValue("alignY", _alignY, (AlignYEnum)(-1));
-            state.SetPropertyValue("allowGrowX", _allowGrowX, true);
-            state.SetPropertyValue("allowGrowY", _allowGrowY, true);
-            state.SetPropertyValue("allowShrinkX", _allowShrinkX, true);
-            state.SetPropertyValue("allowShrinkY", _allowShrinkY, true);
+            state.SetPropertyValue("allowGrowX", _allowGrowX, null);
+            state.SetPropertyValue("allowGrowY", _allowGrowY, null);
+            state.SetPropertyValue("allowShrinkX", _allowShrinkX, null);
+            state.SetPropertyValue("allowShrinkY", _allowShrinkY, null);
             state.SetPropertyValue("height", _height, 0);
             state.SetPropertyValue("marginBottom", _marginBottom, 0);
             state.SetPropertyValue("marginLeft", _marginLeft, 0);

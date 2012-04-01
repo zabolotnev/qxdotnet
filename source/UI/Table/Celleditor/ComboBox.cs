@@ -4,20 +4,24 @@ using System.Linq;
 using System.Text;
 using qxDotNet;
 
-namespace qxDotNet.UI.Table.Pane
+namespace qxDotNet.UI.Table.Celleditor
 {
     /// <summary>
-    /// Clipping area for the table header and table pane.
+    /// A cell editor factory creating combo boxes.
     /// </summary>
-    public partial class Clipper : qxDotNet.UI.Container.Composite
+    public partial class ComboBox : qxDotNet.Core.Object, qxDotNet.UI.Table.ICellEditorFactory
     {
 
+//        private _array _listData = null;
 
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
-            return "qx.ui.table.pane.Clipper";
+            return "qx.ui.table.celleditor.ComboBox";
         }
 
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)

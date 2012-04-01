@@ -13,11 +13,11 @@ namespace qxDotNet.UI.Control
     {
 
         private int _blue = 255;
-        private decimal _brightness = 100;
+        private decimal _brightness = 100m;
         private int _green = 255;
-        private decimal _hue = 0;
+        private decimal _hue = 0m;
         private int _red = 255;
-        private decimal _saturation = 0;
+        private decimal _saturation = 0m;
         private string _value = "";
 
 
@@ -126,8 +126,11 @@ namespace qxDotNet.UI.Control
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.control.ColorSelector";
         }
@@ -136,11 +139,11 @@ namespace qxDotNet.UI.Control
         {
             base.Render(state);
             state.SetPropertyValue("blue", _blue, 255);
-            state.SetPropertyValue("brightness", _brightness, 100);
+            state.SetPropertyValue("brightness", _brightness, 100m);
             state.SetPropertyValue("green", _green, 255);
-            state.SetPropertyValue("hue", _hue, 0);
+            state.SetPropertyValue("hue", _hue, 0m);
             state.SetPropertyValue("red", _red, 255);
-            state.SetPropertyValue("saturation", _saturation, 0);
+            state.SetPropertyValue("saturation", _saturation, 0m);
             state.SetPropertyValue("value", _value, "");
 
             if (ChangeValue != null)

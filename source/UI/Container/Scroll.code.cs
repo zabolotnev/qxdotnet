@@ -9,12 +9,12 @@ namespace qxDotNet.UI.Container
     public partial class Scroll : qxDotNet.UI.Core.Scroll.AbstractScrollArea
     {
 
-        internal override string GetAddObjectReference(qxDotNet.Core.Object obj)
+        protected internal override string GetAddObjectReference(qxDotNet.Core.Object obj)
         {
             return GetReference() + ".add(" + obj.GetReference() + ");\n";
         }
 
-        internal override string GetRemoveObjectReference(qxDotNet.Core.Object obj)
+        protected internal override string GetRemoveObjectReference(qxDotNet.Core.Object obj)
         {
             return GetReference() + ".remove(" + obj.GetReference() + ");\n";
         }

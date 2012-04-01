@@ -211,8 +211,11 @@ namespace qxDotNet.UI.Form
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.form.AbstractField";
         }
@@ -233,10 +236,6 @@ namespace qxDotNet.UI.Form
             state.SetPropertyValue("requiredInvalidMessage", _requiredInvalidMessage, "");
             state.SetPropertyValue("valid", _valid, true);
 
-            if (ChangeValue != null)
-            {
-                state.SetEvent("changeValue", false);
-            }
             if (Input != null)
             {
                 state.SetEvent("input", false);

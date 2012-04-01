@@ -15,8 +15,8 @@ namespace qxDotNet.Util.Format
         private bool? _groupingUsed = true;
         private decimal _maximumFractionDigits = 0m;
         private decimal _maximumIntegerDigits = 0m;
-        private decimal _minimumFractionDigits = 0;
-        private decimal _minimumIntegerDigits = 0;
+        private decimal _minimumFractionDigits = 0m;
+        private decimal _minimumIntegerDigits = 0m;
         private string _postfix = "";
         private string _prefix = "";
 
@@ -128,8 +128,11 @@ namespace qxDotNet.Util.Format
             }
         }
 
-
-        public override string GetTypeName()
+        /// <summary>
+        /// Internal implementation
+        /// </summary>
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.util.format.NumberFormat";
         }
@@ -140,8 +143,8 @@ namespace qxDotNet.Util.Format
             state.SetPropertyValue("groupingUsed", _groupingUsed, true);
             state.SetPropertyValue("maximumFractionDigits", _maximumFractionDigits, 0m);
             state.SetPropertyValue("maximumIntegerDigits", _maximumIntegerDigits, 0m);
-            state.SetPropertyValue("minimumFractionDigits", _minimumFractionDigits, 0);
-            state.SetPropertyValue("minimumIntegerDigits", _minimumIntegerDigits, 0);
+            state.SetPropertyValue("minimumFractionDigits", _minimumFractionDigits, 0m);
+            state.SetPropertyValue("minimumIntegerDigits", _minimumIntegerDigits, 0m);
             state.SetPropertyValue("postfix", _postfix, "");
             state.SetPropertyValue("prefix", _prefix, "");
 

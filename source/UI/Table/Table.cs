@@ -26,12 +26,10 @@ namespace qxDotNet.UI.Table
 //        private _var _metaColumnCounts = null;
         private bool? _resetSelectionOnHeaderClick = true;
         private bool? _rowFocusChangeModifiesSelection = true;
-        private decimal _rowHeight = 20;
+        private decimal _rowHeight = 20m;
         private qxDotNet.UI.Table.Selection.Model _selectionModel = null;
         private bool? _showCellFocusIndicator = true;
         private bool? _statusBarVisible = true;
-        private qxDotNet.UI.Table.ITableModel _tableModel = null;
-
 
         /// <summary>
         /// Whether the table cells should be updated when only the selection or the focus changed. This slows down the table update but allows to react on a changed selection or a changed focus in a cell renderer.
@@ -263,23 +261,10 @@ namespace qxDotNet.UI.Table
         }
 
         /// <summary>
-        /// The table model.
+        /// Internal implementation
         /// </summary>
-        public qxDotNet.UI.Table.ITableModel TableModel
-        {
-            get
-            {
-                return _tableModel;
-            }
-            set
-            {
-               _tableModel = value;
-               OnChangeTableModel();
-            }
-        }
-
-
-        public override string GetTypeName()
+        /// <returns></returns>
+        protected internal override string GetTypeName()
         {
             return "qx.ui.table.Table";
         }
@@ -298,11 +283,11 @@ namespace qxDotNet.UI.Table
             state.SetPropertyValue("keepFirstVisibleRowComplete", _keepFirstVisibleRowComplete, true);
             state.SetPropertyValue("resetSelectionOnHeaderClick", _resetSelectionOnHeaderClick, true);
             state.SetPropertyValue("rowFocusChangeModifiesSelection", _rowFocusChangeModifiesSelection, true);
-            state.SetPropertyValue("rowHeight", _rowHeight, 20);
+            state.SetPropertyValue("rowHeight", _rowHeight, 20m);
             state.SetPropertyValue("selectionModel", _selectionModel, null);
             state.SetPropertyValue("showCellFocusIndicator", _showCellFocusIndicator, true);
             state.SetPropertyValue("statusBarVisible", _statusBarVisible, true);
-            state.SetPropertyValue("tableModel", _tableModel, null);
+            state.SetPropertyValue("tableModel", _model, null);
 
             if (CellClick != null)
             {

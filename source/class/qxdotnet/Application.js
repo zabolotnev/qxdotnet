@@ -1,5 +1,6 @@
 /* ***
-#asset(qxdotnet/loading.gif)
+#asset(qxdotnet/*)
+#asset(qx/icon/Oxygen/48/status*)
 */
 
 qx.Class.define("qxdotnet.Application",
@@ -76,7 +77,9 @@ qx.Class.define("qxdotnet.Application",
             event.propname = new Array();
             event.propvalue = new Array();
             event.pr = function(propName, propAccessor) {
-                this.propname.push(propName);
+                if (this.propname.indexOf(propName) == -1) {
+                    this.propname.push(propName);
+                }
                 this.propvalue[propName] = propAccessor;
             }
             if (!this.isLoading) {
@@ -175,6 +178,18 @@ qx.Class.define("qxdotnet.Application",
             this.requestCounter = 0;
             this.send();
 
+        },
+
+        gts: function(e) {
+            var r = "";
+            for (var j in e) {
+                var i = e[j];
+                if (r != "") {
+                    r += ";";
+                }
+                r += i.minIndex + "," + i.maxIndex;
+            }
+            return r;
         },
 
         prepareReferences: function() {
@@ -436,6 +451,14 @@ qx.Class.define("qxdotnet.Application",
             a = new qx.ui.virtual.layer.WidgetCellSpan();
             a = new qx.util.format.DateFormat();
             a = new qx.util.format.NumberFormat();
+            a = new qxdotnet.table.RemoteDataModel();
         }
     }
 });
+
+if (!Array.prototype.indexOf)
+    Array.prototype.indexOf = function(searchElement, fromIndex) {
+        for (var i = fromIndex || 0, length = this.length; i < length; i++)
+            if (this[i] === searchElement) return i;
+        return -1
+    };

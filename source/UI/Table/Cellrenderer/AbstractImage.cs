@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using qxDotNet;
 
-namespace qxDotNet.UI.Table.Columnmenu
+namespace qxDotNet.UI.Table.Cellrenderer
 {
     /// <summary>
-    /// The traditional qx.ui.menu.MenuButton to access the column visibility menu.
+    /// A template class for cell renderer, which display images. Concrete implementations must implement the method {@link #_identifyImage}.
     /// </summary>
-    public partial class Button : qxDotNet.UI.Form.MenuButton, qxDotNet.UI.Table.IColumnMenuButton
+    public abstract partial class AbstractImage : qxDotNet.UI.Table.Cellrenderer.Abstract
     {
 
+//        private _var _repeat = "no-repeat";
 
 
 
-        public override string GetTypeName()
+        protected internal override string GetTypeName()
         {
-            return "qx.ui.table.columnmenu.Button";
+            return "qx.ui.table.cellrenderer.AbstractImage";
         }
 
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
