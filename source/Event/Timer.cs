@@ -12,8 +12,8 @@ namespace qxDotNet.Event
     public partial class Timer : qxDotNet.Core.Object
     {
 
-        private bool? _enabled = true;
-        private int _interval = 1000;
+        private bool? _enabled = false;
+        private int _interval = -1;
 
 
         /// <summary>
@@ -58,8 +58,8 @@ namespace qxDotNet.Event
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
-            state.SetPropertyValue("enabled", _enabled, true);
-            state.SetPropertyValue("interval", _interval, 1000);
+            state.SetPropertyValue("enabled", _enabled, false);
+            state.SetPropertyValue("interval", _interval, -1);
 
             if (Interval >= 0)
             {

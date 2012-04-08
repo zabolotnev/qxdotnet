@@ -71,6 +71,7 @@
     <Compile Include="Data\Array.cs" />
     <Compile Include="Data\IListData.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Event\Timer.code.cs" />
     <Compile Include="Event\Timer.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

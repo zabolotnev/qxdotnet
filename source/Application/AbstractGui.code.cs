@@ -9,10 +9,12 @@ namespace qxDotNet.Application
     {
 
         private UI.Container.Composite _container;
+        private List<WeakReference> _timers;
 
         public AbstractGui()
         {
             _container = new rootContainer();
+            _timers = new List<WeakReference>();
         }
 
         protected internal abstract qxDotNet.UI.Layout.Abstract getLayout();
@@ -37,6 +39,14 @@ namespace qxDotNet.Application
             else
             {
                 yield return _container;
+                foreach (var timerRef in _timers)
+                {
+                    var timer = timerRef.Target;
+                    if (timer != null)
+                    {
+                        yield return timer;
+                    }
+                }
             }
         }
 
@@ -69,6 +79,12 @@ namespace qxDotNet.Application
                 }
             }
 
+        }
+
+        internal void RegisterTimer(Event.Timer timer)
+        {
+            var wr = new WeakReference(timer);
+            _timers.Add(wr);
         }
 
     }

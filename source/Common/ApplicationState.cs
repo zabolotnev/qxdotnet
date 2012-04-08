@@ -24,8 +24,6 @@ namespace qxDotNet.Common
             _registeredControls = new Dictionary<long, WeakReference>();
             _name = name;
             _app = app;
-            app.Main();
-            app.Commit();
         }
 
         public static ApplicationState Instance
@@ -385,5 +383,12 @@ namespace qxDotNet.Common
                 obj.Commit();
             }
         }
+
+        public static void RestartApplication()
+        {
+            System.Web.HttpContext.Current.Session["__qxAppState"] = null;
+            System.Web.HttpContext.Current.Response.Write("window.location.reload();\n");
+        }
+
     }
 }

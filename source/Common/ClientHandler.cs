@@ -41,6 +41,8 @@ namespace qxDotNet.Common
 
                 appState = new ApplicationState(p, app);
                 context.Session["__qxAppState"] = appState;
+                appState.GUI.Main();
+                appState.GUI.Commit();
             }
 
             if (context.Request.Params["r"] == "grid")
