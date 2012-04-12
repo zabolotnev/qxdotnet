@@ -140,5 +140,18 @@ namespace qxDotNet.UI.Form
         }
 
         #endregion
+
+        protected internal override object ConvertToType(Type type, string value)
+        {
+            if (type == typeof(decimal))
+            {
+                if (value == string.Empty)
+                {
+                    value = Minimum.ToString();
+                }
+            }
+            return base.ConvertToType(type, value);
+        }
+
     }
 }

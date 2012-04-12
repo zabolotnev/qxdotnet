@@ -2,27 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using qxDotNet;
+using qxDotNet.UI.Core;
 
-namespace qxDotNet.UI.Container
+namespace qxDotNet.UI.Form
 {
-    public partial class Composite : qxDotNet.UI.Core.Widget
+
+    public partial class List : qxDotNet.UI.Core.Scroll.AbstractScrollArea, qxDotNet.UI.Core.IMultiSelection, qxDotNet.UI.Form.IForm, qxDotNet.UI.Form.IModelSelection
     {
-
-        public Composite()
-        {
-
-        }
-
-        public Composite(Layout.Abstract layout)
-        {
-            SetLayout(layout);
-        }
 
         protected internal override string GetAddObjectReference(qxDotNet.Core.Object obj)
         {
-            if (ItemOptions.ContainsKey((Core.LayoutItem)obj) && ItemOptions[(Core.LayoutItem)obj] != null)
+            if (ItemOptions.ContainsKey((LayoutItem)obj) && ItemOptions[(LayoutItem)obj] != null)
             {
-                return GetReference() + ".add(" + obj.GetReference() + "," + base.ItemOptions[(Core.LayoutItem)obj].ToString() + ");\n";
+                return GetReference() + ".add(" + obj.GetReference() + "," + base.ItemOptions[(LayoutItem)obj].ToString() + ");\n";
             }
             else
             {
@@ -35,12 +28,12 @@ namespace qxDotNet.UI.Container
             return GetReference() + ".remove(" + obj.GetReference() + ");\n";
         }
 
-        public void Add(Core.LayoutItem child)
+        public void Add(LayoutItem child)
         {
             Add(child, null);
         }
 
-        public void Add(Core.LayoutItem child, Map options)
+        public void Add(LayoutItem child, Map options)
         {
             if (Children.Contains(child))
             {
@@ -53,7 +46,7 @@ namespace qxDotNet.UI.Container
             }
             else
             {
-                if (options!=null)
+                if (options != null)
                 {
                     if (!options.Equals(ItemOptions[child]))
                     {
@@ -63,7 +56,7 @@ namespace qxDotNet.UI.Container
             }
         }
 
-        public void Remove(Core.LayoutItem child)
+        public void Remove(LayoutItem child)
         {
             Children.Remove(child);
         }
@@ -72,11 +65,6 @@ namespace qxDotNet.UI.Container
         {
             Children.Clear();
             ItemOptions.Clear();
-        }
-
-        public void SetLayout(Layout.Abstract layout)
-        {
-            _layout = layout;
         }
 
     }

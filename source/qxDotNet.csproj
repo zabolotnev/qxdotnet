@@ -135,6 +135,14 @@
     <Compile Include="UI\Form\ComboBox.cs" />
     <Compile Include="UI\Form\ComboBox.code.cs" />
     <Compile Include="UI\Form\AbstractSelectBox.code.cs" />
+    <Compile Include="UI\Form\List.code.cs" />
+    <Compile Include="UI\Form\RadioButtonGroup.code.cs" />
+    <Compile Include="UI\Form\Form.code.cs" />
+    <Compile Include="UI\Form\Renderer\AbstractRenderer.cs" />
+    <Compile Include="UI\Form\Renderer\AbstractRenderer.code.cs" />
+    <Compile Include="UI\Form\Renderer\SinglePlaceholder.cs" />
+    <Compile Include="UI\Form\Renderer\Double.cs" />
+    <Compile Include="UI\Form\Renderer\Single.cs" />
     <Compile Include="UI\Form\SelectBox.code.cs" />
     <Compile Include="UI\Form\Spinner.code.cs" />
     <Compile Include="UI\Form\Slider.code.cs" />

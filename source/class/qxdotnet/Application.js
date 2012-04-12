@@ -257,6 +257,9 @@ qx.Class.define("qxdotnet.Application",
             a = new qx.ui.embed.HtmlArea();
             a = new qx.ui.embed.Iframe();
             a = new qx.ui.embed.ThemedIframe();
+            a = new qx.ui.form.renderer.Single();
+            a = new qx.ui.form.renderer.Double();
+            a = new qx.ui.form.renderer.SinglePlaceholder();
             a = new qx.ui.form.AbstractField();
             a = new qx.ui.form.AbstractSelectBox();
             a = new qx.ui.form.Button();

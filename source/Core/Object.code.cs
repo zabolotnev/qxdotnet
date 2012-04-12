@@ -10,10 +10,15 @@ namespace qxDotNet.Core
         private long _clientId = 0;
         private bool _created = false;
         private PropertyBag _state;
+        private Dictionary<string, BindingInfo> _newBindings;
+        private Dictionary<string, BindingInfo> _appliedBindings;
+        private bool _needToRemoveBindings = false;
 
         public Object()
         {
             _state = new PropertyBag(this);
+            _newBindings = new Dictionary<string, BindingInfo>();
+            _appliedBindings = new Dictionary<string, BindingInfo>();
         }
 
         private static Dictionary<string, Dictionary<string, System.Reflection.PropertyInfo>> _propertyCache 
@@ -105,7 +110,67 @@ namespace qxDotNet.Core
 
         protected internal virtual void CustomPostRender(System.Web.HttpResponse response, bool isRefreshRequest)
         {
-
+            foreach (var item in _newBindings)
+            {
+                if (item.Value.options == null)
+                {
+                    response.Write(
+                        GetReference() +
+                        ".bind(" +
+                        GetClientValue(item.Value.sourceProperty) +
+                        "," +
+                        item.Value.target.GetReference() +
+                        "," +
+                        GetClientValue(item.Value.targetProperty) + ");\n");
+                }
+                else
+                {
+                    response.Write(
+                        GetReference() +
+                        ".bind(" +
+                        GetClientValue(item.Value.sourceProperty) +
+                        "," +
+                        item.Value.target.GetReference() +
+                        "," +
+                        GetClientValue(item.Value.targetProperty) + 
+                        "," +
+                        item.Value.options.ToString() + ");\n");
+                }
+            }
+            if (isRefreshRequest)
+            {
+                foreach (var item in _appliedBindings)
+                {
+                    if (item.Value.options == null)
+                    {
+                        response.Write(
+                            GetReference() +
+                            ".bind(" +
+                            GetClientValue(item.Value.sourceProperty) +
+                            "," +
+                            item.Value.target.GetReference() +
+                            "," +
+                            GetClientValue(item.Value.targetProperty) + ");\n");
+                    }
+                    else
+                    {
+                        response.Write(
+                            GetReference() +
+                            ".bind(" +
+                            GetClientValue(item.Value.sourceProperty) +
+                            "," +
+                            item.Value.target.GetReference() +
+                            "," +
+                            GetClientValue(item.Value.targetProperty) +
+                            "," +
+                            item.Value.options.ToString() + ");\n");
+                    }
+                }
+            }
+            if (_needToRemoveBindings)
+            {
+                response.Write(GetReference() + ".removeAllBindings();\n");
+            }
         }
 
         protected internal virtual string GetCustomConstructor()
@@ -121,6 +186,14 @@ namespace qxDotNet.Core
         protected internal virtual System.Collections.IEnumerable GetChildren(bool isNewOnly)
         {
             return null;
+        }
+
+        protected internal virtual bool RenderChildrenBeforeAdd
+        {
+            get
+            {
+                return false;
+            }
         }
 
         protected internal virtual System.Collections.IEnumerable GetRemovedChildren()
@@ -163,6 +236,38 @@ namespace qxDotNet.Core
         {
             _created = true;
             _state.Commit();
+            foreach (var item in _newBindings)
+            {
+                _appliedBindings.Add(item.Key, item.Value);
+            }
+            _newBindings.Clear();
+            _needToRemoveBindings = false;
+        }
+
+        public void Bind(string sourcePropertyChain, qxDotNet.Core.Object targetObject, string targetProperty)
+        {
+            this.Bind(sourcePropertyChain, targetObject, targetProperty, null);
+        }
+
+        public void Bind(string sourcePropertyChain, qxDotNet.Core.Object targetObject, string targetProperty, Map options)
+        {
+            var b = new BindingInfo();
+            b.sourceProperty = sourcePropertyChain;
+            b.target = targetObject;
+            b.targetProperty = targetProperty;
+            b.options = options;
+            var key = b.getKey();
+            if (!_appliedBindings.ContainsKey(key) && !_newBindings.ContainsKey(key))
+            {
+                _newBindings.Add(key, b);
+            }
+        }
+
+        public void RemoveAllBindings()
+        {
+            _needToRemoveBindings = true;
+            _newBindings.Clear();
+            _appliedBindings.Clear();
         }
 
         protected internal virtual string GetReference()
@@ -281,6 +386,22 @@ namespace qxDotNet.Core
             {
                 return Enum.Parse(type, value, false);
             }
+            else if (type == typeof(bool))
+            {
+                return bool.Parse(value);
+            }
+            else if (type == typeof(bool?))
+            {
+                bool b;
+                if (bool.TryParse(value, out b))
+                {
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
             else if (type == typeof(DateTime))
             {
                 var v = value.Substring(0, value.IndexOf(" GMT"));
@@ -294,7 +415,7 @@ namespace qxDotNet.Core
                 }
                 DateTime r;
                 var v = value.Substring(0, value.IndexOf(" GMT"));
-                if (DateTime.TryParseExact(v, "ddd MMM d yyyy HH:mm:ss", 
+                if (DateTime.TryParseExact(v, "ddd MMM d yyyy HH:mm:ss",
                     System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out r))
                 {
                     return r;
@@ -304,7 +425,19 @@ namespace qxDotNet.Core
                     return null;
                 }
             }
-            else return value;
+            else if (type == typeof(int))
+            {
+                return int.Parse(value);
+            }
+            else if (type == typeof(long))
+            {
+                return long.Parse(value);
+            }
+            else if (type == typeof(decimal))
+            {
+                return decimal.Parse(value, System.Globalization.CultureInfo.InvariantCulture);
+            }
+            else return Convert.ChangeType(value, type, System.Globalization.CultureInfo.InvariantCulture);
         }
 
         internal class PropertyBag
@@ -473,6 +606,19 @@ namespace qxDotNet.Core
             public bool callServer { get; set; }
             public List<string> referencedProperies { get; set; }
 
+        }
+
+        private class BindingInfo
+        {
+            public string getKey()
+            {
+                return sourceProperty + "_" + target.clientId.ToString() + "_" + targetProperty;
+            }
+
+            public string sourceProperty;
+            public qxDotNet.Core.Object target;
+            public string targetProperty;
+            public Map options;
         }
 
     }

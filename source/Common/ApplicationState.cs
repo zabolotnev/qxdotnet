@@ -187,14 +187,6 @@ namespace qxDotNet.Common
             _createdControls.Add(obj);
             var st = obj.GetState();
             obj.Render(st);
-            if (!obj.DisallowCreation && (_isRefreshRequest || !obj.IsCreated))
-            {
-                if (!_registeredControls.ContainsKey(obj.clientId))
-                {
-                    _registeredControls.Add(obj.clientId, new WeakReference(obj));
-                }
-                response.Write(string.Format("{0} = new {1}({2});\n", obj.GetReference(), obj.GetTypeName(), obj.GetCustomConstructor()));
-            }
 
             var props = st.GetAllProperies();
 
@@ -218,6 +210,15 @@ namespace qxDotNet.Common
                     }
                 }
             }
+
+            if (!obj.DisallowCreation && (_isRefreshRequest || !obj.IsCreated))
+            {
+                if (!_registeredControls.ContainsKey(obj.clientId))
+                {
+                    _registeredControls.Add(obj.clientId, new WeakReference(obj));
+                }
+                response.Write(string.Format("{0} = new {1}({2});\n", obj.GetReference(), obj.GetTypeName(), obj.GetCustomConstructor()));
+            }
         }
 
         private void RenderRecursive(Core.Object obj, HttpResponse response)
@@ -237,6 +238,8 @@ namespace qxDotNet.Common
                 events = st.GetNewEvents();
             }
 
+            obj.CustomPreRender(response, _isRefreshRequest);
+
             if (!_isRefreshRequest)
             {
                 var removed = obj.GetRemovedChildren();
@@ -250,6 +253,7 @@ namespace qxDotNet.Common
             }
 
             var children = obj.GetChildren(!_isRefreshRequest);
+            var newChildren = children;
 
             // font hack
             var fontList = new List<qxDotNet.Font>();
@@ -264,23 +268,8 @@ namespace qxDotNet.Common
                 }
             }
 
-            if (children != null)
-            {
-                foreach (Core.Object item in children)
-                {
-                    if (item != null)
-                    {
-                        if (!item.DisallowCreation)
-                        {
-                            response.Write(obj.GetAddObjectReference(item));
-                        }
-                    }
-                }
-            }
-
             children = obj.GetChildren(false);
 
-            obj.CustomPreRender(response, _isRefreshRequest);
 
             foreach (var p in st.GetAllProperies())
             {
@@ -300,6 +289,20 @@ namespace qxDotNet.Common
                         if (!_renderedControls.Contains(item as Core.Object))
                         {
                             RenderRecursive((item as Core.Object), response);
+                        }
+                    }
+                }
+            }
+
+            if (newChildren != null)
+            {
+                foreach (Core.Object item in newChildren)
+                {
+                    if (item != null)
+                    {
+                        if (!item.DisallowCreation)
+                        {
+                            response.Write(obj.GetAddObjectReference(item));
                         }
                     }
                 }
@@ -335,6 +338,7 @@ namespace qxDotNet.Common
                     response.Write(obj.GetSetPropertyValueExpression(prop.Key, prop.Value));
                 }
             }
+            
 
             // font hack
             foreach (var item in fontList)

@@ -65,9 +65,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1.Form.cs" />
+    <Compile Include="4.Windows.cs" />
     <Compile Include="2.Table.cs" />
     <Compile Include="3.Timer.cs" />
+    <Compile Include="1.Form.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

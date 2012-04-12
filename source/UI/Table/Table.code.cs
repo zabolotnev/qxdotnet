@@ -153,7 +153,7 @@ namespace qxDotNet.UI.Table
             {
                 var sb = new StringBuilder();
 
-                sb.AppendLine(_model.GetReference() + "._id_=" + _model.clientId);
+                sb.AppendLine(_model.GetReference() + "._id_=" + _model.clientId + ";");
 
                 // setColumns
                 sb.Append(_model.GetReference() + ".setColumns([");
