@@ -33,6 +33,7 @@ namespace qxDotNet.UI.Form.Renderer
             {
                 response.Write(GetReference() + " = new qx.ui.form.renderer.Single(" + _form.GetReference() + ");");
             }
+            base.CustomPostRender(response, isRefreshRequest);
         }
     }
 }

@@ -60,6 +60,7 @@ namespace qxDotNet.UI.Table.Cellrenderer
                 response.Write(GetReference() + ".addReversedReplaceMap();\n");
             }
             _prevMap = map;
+            base.CustomPostRender(response, isRefreshRequest);
         }
 
         internal override void InvokeEvent(string eventName)

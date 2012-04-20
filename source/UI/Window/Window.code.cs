@@ -25,6 +25,7 @@ namespace qxDotNet.UI.Window
 
         protected internal override void CustomPostRender(System.Web.HttpResponse response, bool isRefreshRequest)
         {
+            base.CustomPostRender(response, isRefreshRequest);
             if (_closed) return;
             if (_needToOpen || isRefreshRequest)
             {

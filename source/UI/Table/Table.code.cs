@@ -220,6 +220,7 @@ namespace qxDotNet.UI.Table
                 response.Write(_model.GetReference() + ".reloadData();\n");
                 _needToRefresh = false;
             }
+            base.CustomPostRender(response, isRefreshRequest);
         }
 
     }

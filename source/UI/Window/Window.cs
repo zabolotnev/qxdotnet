@@ -25,7 +25,6 @@ namespace qxDotNet.UI.Window
         private bool? _showMinimize = true;
         private bool? _showStatusbar = false;
         private string _status = "";
-        private qxDotNet.UI.Layout.Abstract _layout = null;
         private bool? _resizableBottom = true;
         private bool? _resizableLeft = true;
         private bool? _resizableRight = true;
@@ -238,21 +237,6 @@ namespace qxDotNet.UI.Window
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public qxDotNet.UI.Layout.Abstract Layout
-        {
-            get
-            {
-                return _layout;
-            }
-            set
-            {
-               _layout = value;
-            }
-        }
-
-        /// <summary>
         /// Whether the bottom edge is resizable
         /// </summary>
         public bool? ResizableBottom
@@ -458,7 +442,6 @@ namespace qxDotNet.UI.Window
             state.SetPropertyValue("showMinimize", _showMinimize, true);
             state.SetPropertyValue("showStatusbar", _showStatusbar, false);
             state.SetPropertyValue("status", _status, "");
-            state.SetPropertyValue("layout", _layout, null);
             state.SetPropertyValue("resizableBottom", _resizableBottom, true);
             state.SetPropertyValue("resizableLeft", _resizableLeft, true);
             state.SetPropertyValue("resizableRight", _resizableRight, true);

@@ -83,6 +83,7 @@ namespace qxDotNet.UI.Form
                     }
                 }
             }
+            base.CustomPostRender(response, isRefreshRequest);
         }
 
         internal override void Commit()

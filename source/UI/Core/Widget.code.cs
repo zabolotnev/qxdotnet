@@ -46,7 +46,6 @@ namespace qxDotNet.UI.Core
                 response.Write(GetReference() + ".focus();\n");
                 _needToFocus = false;
             }
-            base.CustomPostRender(response, isRefreshRequest);
         }
 
         protected internal override System.Collections.IEnumerable GetChildren(bool isNewOnly)
