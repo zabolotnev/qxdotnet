@@ -41,12 +41,13 @@ qx.Class.define("qxdotnet.Application",
 
         escapeXMLAttribute: function(attr) {
             if (attr) {
-                return
-                attr.toString().replace("&", "&amp;")
+                var result =
+                    attr.toString().replace("&", "&amp;")
                     .replace("\"", "&quot;")
                     .replace("<", "&lt;")
                     .replace(">", "&gt;")
                     .replace("\n", "&amp;#10;");
+                return result;
             }
             else {
                 return "";
@@ -55,7 +56,13 @@ qx.Class.define("qxdotnet.Application",
 
         showLoading: function() {
             var root = this.getRoot();
+            this.loadingControl.setOpacity(0);
+            qx.event.Timer.once(this.showLoading2, this, 500);
             root.add(this.loadingControl, { left: 0, top: 0, width: "100%", height: "100%" });
+        },
+
+        showLoading2: function() {
+            this.loadingControl.setOpacity(0.5);
         },
 
         hideLoading: function() {
@@ -133,7 +140,9 @@ qx.Class.define("qxdotnet.Application",
                             var name = ev.propname[j];
                             if (name) {
                                 var propRef = "var App = qx.core.Init.getApplication();var ctr = App.getControls();" + ev.propvalue[name];
-                                evData += name + "=\"" + this.escapeXMLAttribute(eval(propRef)) + "\" ";
+                                var value = eval(propRef);
+                                value = this.escapeXMLAttribute(value);
+                                evData += name + "=\"" + value + "\" ";
                             }
                         }
                         evData += "/>";
