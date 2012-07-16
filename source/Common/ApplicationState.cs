@@ -217,12 +217,22 @@ namespace qxDotNet.Common
                 {
                     _registeredControls.Add(obj.clientId, new WeakReference(obj));
                 }
-                response.Write(string.Format("{0} = new {1}({2});\n", obj.GetReference(), obj.GetTypeName(), obj.GetCustomConstructor()));
+                var typeName = obj.GetTypeName();
+                if (typeName != null)
+                {
+                    response.Write(string.Format("{0} = new {1}({2});\n", obj.GetReference(), typeName, obj.GetCustomConstructor()));
+                }
             }
         }
 
         private void RenderRecursive(Core.Object obj, HttpResponse response)
         {
+            if (obj.GetTypeName() == null)
+            {
+                obj.CustomPreRender(response, _isRefreshRequest);
+                obj.CustomPostRender(response, _isRefreshRequest);
+                return;
+            }
             var stateBag = obj.GetState();
             Dictionary<string, object> properties;
             List<Core.Object.EventInfo> events;
@@ -247,7 +257,10 @@ namespace qxDotNet.Common
                 {
                     foreach (Core.Object item in removed)
                     {
-                        response.Write(obj.GetRemoveObjectReference(item));
+                        if (item.GetTypeName() != null)
+                        {
+                            response.Write(obj.GetRemoveObjectReference(item));
+                        }
                     }
                 }
             }
@@ -300,7 +313,7 @@ namespace qxDotNet.Common
                 {
                     if (item != null)
                     {
-                        if (!item.DisallowCreation)
+                        if (!item.DisallowCreation && item.GetTypeName() != null)
                         {
                             response.Write(obj.GetAddObjectReference(item));
                         }
