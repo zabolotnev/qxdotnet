@@ -10,6 +10,8 @@ namespace qxDotNet.Application
 
         private UI.Container.Composite _container;
         private List<WeakReference> _timers;
+        private List<URLInfo> _openURL = new List<URLInfo>();
+        
 
         public AbstractGui()
         {
@@ -86,6 +88,39 @@ namespace qxDotNet.Application
             var wr = new WeakReference(timer);
             _timers.Add(wr);
         }
+
+        public void Open(string URL, bool blank)
+        {
+            var rec = new URLInfo();
+            rec.path = URL;
+            rec.isBlank = blank;
+            _openURL.Add(rec);
+        }
+
+        protected internal override void CustomPostRender(System.Web.HttpResponse response, bool isRefreshRequest)
+        {
+            base.CustomPostRender(response, isRefreshRequest);
+            foreach (var rec in _openURL)
+            {
+                if (rec.isBlank)
+                {
+                    response.Write("window.open('" + rec.path + "', '_blank');");
+                }
+                else
+                {
+                    response.Write("window.open('" + rec.path + "');");
+                }
+            }
+            _openURL.Clear();
+        }
+
+        private class URLInfo
+        {
+            public string path;
+
+            public bool isBlank;
+        }
+
 
     }
 }
