@@ -26,7 +26,14 @@ namespace qxDotNet.UI.Form
         {
             if (name == "selection")
             {
-                return GetReference() + "." + GetSetPropertyAccessor(name) + "([" + GetClientValue(value) + "]);\n";
+                if (value == null)
+                {
+                    return GetReference() + "." + GetSetPropertyAccessor(name) + "([]);\n";
+                }
+                else
+                {
+                    return GetReference() + "." + GetSetPropertyAccessor(name) + "([" + GetClientValue(value) + "]);\n";
+                }
             }
             else
             {
