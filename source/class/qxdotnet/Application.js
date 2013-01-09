@@ -108,10 +108,26 @@ qx.Class.define("qxdotnet.Application",
                 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
             xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState != 4) return;
+
+                clearTimeout('ajax');
+
                 var app = qx.core.Init.getApplication();
                 app.isLoading = true;
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+                if (xmlhttp.status == 200) {
+                    if (xmlhttp.getResponseHeader("Content-Type").indexOf("application/javascript") == -1) {
+
+                        app.hideLoading();
+                        app.isLoading = false;
+
+                        var messageWin = window.open("about:blank");
+                        messageWin.document.write(xmlhttp.responseText);
+
+                        return;
+                    }
                     try {
+
                         eval(xmlhttp.responseText);
                         var ctr = app.getControls();
                         for (var i in ctr) {
@@ -121,12 +137,33 @@ qx.Class.define("qxdotnet.Application",
                             }
                         }
                     }
+                    catch (ex) {
+                        var messageWin = window.open("about:blank");
+                        messageWin.document.title = ex;
+                        messageWin.document.write(xmlhttp.responseText);
+                    }
                     finally {
                         app.hideLoading();
                         app.isLoading = false;
                     }
                 }
+                else {
+                    app.hideLoading();
+                    app.isLoading = false;
+
+                    var messageWin = window.open("about:blank");
+                    messageWin.document.write(xmlhttp.responseText);
+
+                }
             }
+
+            var timeout = setTimeout('ajax',
+                function() {
+                    var app = qx.core.Init.getApplication();
+                    app.hideLoading();
+                    app.isLoading = false;
+                    alert("Communication error!");
+                }, 30000);
 
             var params = "req=" + this.requestCounter;
             if (this.events.length > 0) {
@@ -151,6 +188,8 @@ qx.Class.define("qxdotnet.Application",
                 evData += "</ev>";
                 params = params + "&ev=" + encodeURIComponent(evData);
             }
+
+            this.isLoading = false;
 
             xmlhttp.open("POST", ApplicationName, true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

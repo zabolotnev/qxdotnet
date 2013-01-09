@@ -53,7 +53,7 @@ namespace qxDotNet.Common
             {
                 if (context.Request.HttpMethod.ToLower() == "post")
                 {
-                    context.Response.ContentType = "text/plain";
+                    context.Response.ContentType = "application/javascript";
                     appState.ProcessRequest(context);
                 }
                 else
