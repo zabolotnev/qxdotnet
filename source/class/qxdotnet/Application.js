@@ -123,7 +123,7 @@ qx.Class.define("qxdotnet.Application",
 
                         var messageWin = window.open("about:blank");
                         messageWin.document.write(xmlhttp.responseText);
-
+                        history.go(0);
                         return;
                     }
                     try {
@@ -141,6 +141,7 @@ qx.Class.define("qxdotnet.Application",
                         var messageWin = window.open("about:blank");
                         messageWin.document.title = ex;
                         messageWin.document.write(xmlhttp.responseText);
+                        history.go(0);
                     }
                     finally {
                         app.hideLoading();
@@ -153,7 +154,7 @@ qx.Class.define("qxdotnet.Application",
 
                     var messageWin = window.open("about:blank");
                     messageWin.document.write(xmlhttp.responseText);
-
+                    history.go(0);
                 }
             }
 
@@ -402,8 +403,6 @@ qx.Class.define("qxdotnet.Application",
             a = new qx.ui.mobile.navigationbar.Button();
             a = new qx.ui.mobile.navigationbar.NavigationBar();
             a = new qx.ui.mobile.navigationbar.Title();
-            a = new qx.ui.mobile.page.manager.Animation();
-            a = new qx.ui.mobile.page.manager.Simple();
             a = new qx.ui.mobile.page.NavigationPage();
             a = new qx.ui.mobile.page.Page();
             a = new qx.ui.mobile.tabbar.TabBar();
