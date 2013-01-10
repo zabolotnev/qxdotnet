@@ -95,6 +95,8 @@ qx.Class.define("qxdotnet.Application",
             return event;
         },
 
+        sendTimeout: null,
+
         send: function() {
             if (this.isLoading) {
                 return;
@@ -110,9 +112,9 @@ qx.Class.define("qxdotnet.Application",
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState != 4) return;
 
-                clearTimeout('ajax');
-
                 var app = qx.core.Init.getApplication();
+
+                clearTimeout(app.sendTimeout);
                 app.isLoading = true;
 
                 if (xmlhttp.status == 200) {
@@ -158,7 +160,7 @@ qx.Class.define("qxdotnet.Application",
                 }
             }
 
-            var timeout = setTimeout('ajax',
+            this.sendTimeout = setTimeout(
                 function() {
                     var app = qx.core.Init.getApplication();
                     app.hideLoading();
