@@ -19,7 +19,7 @@ namespace qxDotNet.UI.Core
             }
         }
 
-        internal LayoutCollection Children
+        public LayoutCollection Children
         {
             get
             {
@@ -154,18 +154,18 @@ namespace qxDotNet.UI.Core
             base.SetItem(index, item);
         }
 
-        public void Commit()
+        internal void Commit()
         {
             _newItems.Clear();
             _removedItems.Clear();
         }
 
-        public List<LayoutItem> GetNewItems()
+        internal List<LayoutItem> GetNewItems()
         {
             return _newItems;
         }
 
-        public List<LayoutItem> GetRemovedItems()
+        internal List<LayoutItem> GetRemovedItems()
         {
             return _removedItems;
         }

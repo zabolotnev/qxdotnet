@@ -125,7 +125,6 @@ qx.Class.define("qxdotnet.Application",
 
                         var messageWin = window.open("about:blank");
                         messageWin.document.write(xmlhttp.responseText);
-                        history.go(0);
                         return;
                     }
                     try {
@@ -140,10 +139,7 @@ qx.Class.define("qxdotnet.Application",
                         }
                     }
                     catch (ex) {
-                        var messageWin = window.open("about:blank");
-                        messageWin.document.title = ex;
-                        messageWin.document.write(xmlhttp.responseText);
-                        history.go(0);
+                        alert("Internal server error. Try again.");
                     }
                     finally {
                         app.hideLoading();
@@ -156,7 +152,6 @@ qx.Class.define("qxdotnet.Application",
 
                     var messageWin = window.open("about:blank");
                     messageWin.document.write(xmlhttp.responseText);
-                    history.go(0);
                 }
             }
 

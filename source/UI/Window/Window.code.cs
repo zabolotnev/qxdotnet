@@ -13,6 +13,8 @@ namespace qxDotNet.UI.Window
         private bool _needToOpen;
         private bool _closed = false;
 
+        public bool Centered { get; set; }
+
         public Window()
         {
             Close += new EventHandler(Window_Close);
@@ -32,6 +34,15 @@ namespace qxDotNet.UI.Window
                 response.Write(GetReference() + ".open();\n");
                 _needToOpen = false;
             }
+        }
+
+        protected internal override void CustomPreRender(System.Web.HttpResponse response, bool isRefreshRequest)
+        {
+            if (!WindowClosed && Centered)
+            {
+                response.Write(GetReference() + ".addListener(\"appear\",function(){this.center();}, " + GetReference() + ");");
+            }
+            base.CustomPostRender(response, isRefreshRequest);
         }
 
         public void Open()

@@ -14,7 +14,7 @@ namespace qxDotNet
             {
                 value = "";
             }
-            return value.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
+            return value.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", "\\r").Replace("\n", "\\n").Replace("\t", "\\t");
         }
 
     }

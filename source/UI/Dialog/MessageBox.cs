@@ -297,6 +297,7 @@ namespace qxDotNet.UI.Dialog
         public static MessageBox Show(string text, string caption, MessageBoxButtonsEnum buttons, MessageBoxIconEnum icon, MessageBoxDefaultButtonEnum defaultButton, MessageBoxCallback callback)
         {
             var r = new MessageBox();
+            r.Centered = true;
             r.Caption = caption;
             r._buttons = buttons;
             r._icon = icon;
@@ -354,15 +355,6 @@ namespace qxDotNet.UI.Dialog
         public static MessageBox Show(string text)
         {
             return Show(text, _caption, MessageBoxButtonsEnum.Ok, MessageBoxIconEnum.Information, MessageBoxDefaultButtonEnum.Button1, null);
-        }
-
-        protected internal override void CustomPreRender(System.Web.HttpResponse response, bool isRefreshRequest)
-        {
-            if (!WindowClosed)
-            {
-                response.Write(GetReference() + ".addListener(\"appear\",function(){this.center();}, " + GetReference() + ");");
-            }
-            base.CustomPostRender(response, isRefreshRequest);
         }
 
         protected override void OnClose()
