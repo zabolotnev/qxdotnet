@@ -88,6 +88,7 @@ namespace qxDotNet.Common
                     var model = _models[id].Target as UI.Table.RemoteModel;
                     if (model == null)
                     {
+                        _models.Remove(id);
                         return;
                     }
 
@@ -135,7 +136,22 @@ namespace qxDotNet.Common
                             }
                             fCol = true;
                             sb.Append("\"c" + c + "\":");
-                            sb.Append(model.GetClientValue(Convert.ToString(row.GetValue(c))));
+                            var format = model.GetColumnFormat(c);
+                            if (string.IsNullOrEmpty(format))
+                            {
+                                sb.Append(model.GetClientValue(Convert.ToString(row.GetValue(c))));
+                            }
+                            else
+                            {
+                                var value = row.GetValue(c);
+                                try
+                                {
+                                    value = string.Format("{0: " + format + "}", value);
+                                }
+                                catch { }
+                                sb.Append(model.GetClientValue(value));
+                            }
+                            
                         }
                         sb.Append("}");
                     }

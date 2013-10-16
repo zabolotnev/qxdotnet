@@ -18,6 +18,7 @@ namespace qxDotNet.UI.Table
         private int _width = 0;
         private Cellrenderer.Abstract _cellRenderer;
         private Celleditor.AbstractField _cellEditor;
+        private string _format;
 
         internal void setOwner(RemoteModel owner)
         {
@@ -41,6 +42,19 @@ namespace qxDotNet.UI.Table
             set
             {
                 _name = value;
+                modelModified();
+            }
+        }
+
+        public string Format
+        {
+            get
+            {
+                return _format;
+            }
+            set
+            {
+                _format = value;
                 modelModified();
             }
         }

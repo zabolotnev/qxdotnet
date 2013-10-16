@@ -57,6 +57,11 @@ namespace qxDotNet.UI.Table
             return _owner.Columns.Count;
         }
 
+        internal string GetColumnFormat(int columnIndex)
+        {
+            return _owner.Columns[columnIndex].Format;
+        }
+
         internal int GetRowCount()
         {
             return _owner.GetRows().Count;

@@ -42,11 +42,13 @@ qx.Class.define("qxdotnet.Application",
         escapeXMLAttribute: function(attr) {
             if (attr) {
                 var result =
-                    attr.toString().replace("&", "&amp;")
-                    .replace("\"", "&quot;")
-                    .replace("<", "&lt;")
-                    .replace(">", "&gt;")
-                    .replace("\n", "&amp;#10;");
+                    attr.toString()
+                    .replace(/\&/g, "&amp;")
+                    .replace(/\"/g, "&quot;")
+                    .replace(/\</g, "&lt;")
+                    .replace(/\>/g, "&gt;")
+                    .replace(/\n/g, "&amp;#10;")
+                    .replace(/\r/g, "&amp;#13;");
                 return result;
             }
             else {
