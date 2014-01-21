@@ -63,14 +63,16 @@ namespace qxDotNet.UI.Form
 
             if (ChangeSelection != null)
             {
-                state.SetEvent("changeSelection", false);
+                state.SetEvent("changeSelection", true, "selection");
+            }
+            else
+            {
+                state.SetEvent("changeSelection", false, "selection");
             }
             if (ChangeModelSelection != null)
             {
                 state.SetEvent("changeModelSelection", false);
             }
-
-            state.SetEvent("changeSelection", false, "selection");
 
         }
 

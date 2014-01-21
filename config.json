@@ -40,7 +40,7 @@
     "QOOXDOO_PATH" : "qooxdoo-2.0-sdk",
     "QXTHEME"      : "qxdotnet.theme.Theme",
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.theme.*", "${APPLICATION}.test.*", "${APPLICATION}.simulation.*"],
-    "LOCALES"      : [ "en" ],
+    "LOCALES"      : [ "ru", "en" ],
     "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",
     "ROOT"         : "."
   },
