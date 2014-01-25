@@ -12,10 +12,10 @@ qx.Theme.define("qxdotnet.theme.Theme",
 {
   meta :
   {
-    color : qxdotnet.theme.Color,
+    color      : qxdotnet.theme.Color,
     decoration : qxdotnet.theme.Decoration,
-    font : qxdotnet.theme.Font,
-    icon : qx.theme.icon.Tango,
+    font       : qxdotnet.theme.Font,
+    icon       : qx.theme.icon.Tango,
     appearance : qxdotnet.theme.Appearance
   }
 });

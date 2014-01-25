@@ -85,6 +85,17 @@ namespace qxDotNet.UI.Table
             _modified = false;
         }
 
+        public void Sort(int columnIndex, bool isDesc)
+        {
+            _owner.Sort(columnIndex, isDesc);
+        }
+
+        protected internal override void CustomPostRender(System.Web.HttpResponse response, bool isRefreshRequest)
+        {
+            base.CustomPostRender(response, isRefreshRequest);
+            ResetModified();
+        }
+
     }
 
 }

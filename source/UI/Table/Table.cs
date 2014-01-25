@@ -9,7 +9,7 @@ namespace qxDotNet.UI.Table
     /// <summary>
     /// Table  A detailed description can be found in the package description {@link qx.ui.table}.
     /// </summary>
-    public partial class Table : qxDotNet.UI.Core.Widget
+    public partial class Table : qxDotNet.UI.Core.Widget, Selection.ISelectionModelMapper
     {
 
 //        private _var _additionalStatusBarText = null;
@@ -226,6 +226,10 @@ namespace qxDotNet.UI.Table
             set
             {
                _selectionModel = value;
+               if (_selectionModel != null)
+               {
+                   _selectionModel._mapper = this;
+               }
                OnChangeSelectionModel();
             }
         }

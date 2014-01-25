@@ -35,6 +35,8 @@ namespace qxDotNet.UI.Table
             }
         }
 
+        public int UserIndex { get; set; }
+
     }
 
     public class RowCollection : Collection<Row>

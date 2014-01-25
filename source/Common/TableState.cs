@@ -92,7 +92,19 @@ namespace qxDotNet.Common
                         return;
                     }
 
-                    var sFrom = context.Request["f"];
+                    var sortOrder = context.Request.Params["so"];
+                    var sortColumnIndex = context.Request.Params["si"];
+
+                    if (!string.IsNullOrEmpty(sortOrder) && !string.IsNullOrEmpty(sortColumnIndex))
+                    {
+                        var intSortIndex = 0;
+                        if (int.TryParse(sortColumnIndex, out intSortIndex))
+                        {
+                            model.Sort(intSortIndex, sortOrder == "desc");
+                        }
+                    }
+
+                    var sFrom = context.Request.Params["f"];
                     var sTo = context.Request.Params["t"];
 
                     int from;

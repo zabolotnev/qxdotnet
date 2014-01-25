@@ -1,3 +1,4 @@
+
 /* ***
 #asset(qxdotnet/*)
 #asset(qx/icon/Oxygen/48/status*)
@@ -22,13 +23,9 @@ qx.Class.define("qxdotnet.Application",
         */
 
         requestCounter: 0,
-
         isLoading: false,
-
         loadingControl: new qx.ui.container.Composite(),
-
         controls: new Array(),
-
         events: new Array(),
 
         getControls: function() {
@@ -39,10 +36,10 @@ qx.Class.define("qxdotnet.Application",
             this.requestCounter = id;
         },
 
+
         escapeXMLAttribute: function(attr) {
             if (attr) {
-                var result =
-                    attr.toString()
+                var result = attr.toString()
                     .replace(/\&/g, "&amp;")
                     .replace(/\"/g, "&quot;")
                     .replace(/\</g, "&lt;")
@@ -60,8 +57,16 @@ qx.Class.define("qxdotnet.Application",
             var root = this.getRoot();
             this.loadingControl.setOpacity(0);
             qx.event.Timer.once(this.showLoading2, this, 500);
-            root.add(this.loadingControl, { left: 0, top: 0, width: "100%", height: "100%" });
-        },
+
+            root.add(this.loadingControl,
+            {
+                left: 0,
+                top: 0,
+                width: "100%",
+                height: "100%"
+            });
+            },
+
 
         showLoading2: function() {
             this.loadingControl.setOpacity(0.5);
@@ -71,29 +76,42 @@ qx.Class.define("qxdotnet.Application",
             if (!this.isLoading) {
                 return;
             }
+
             var root = this.getRoot();
             root.remove(this.loadingControl);
         },
 
+
         ev: function(control, name) {
             for (var i in this.events) {
                 var ev = this.events[i];
+
                 if (ev.control === control && ev.name == name) {
                     return ev;
                 }
             }
-            var event = { control: control, name: name };
+
+            var event =
+            {
+                control: control,
+                name: name
+            };
+
             event.propname = new Array();
             event.propvalue = new Array();
+
             event.pr = function(propName, propAccessor) {
                 if (this.propname.indexOf(propName) == -1) {
                     this.propname.push(propName);
                 }
+
                 this.propvalue[propName] = propAccessor;
-            }
+            };
+
             if (!this.isLoading) {
                 this.events.push(event);
             }
+
             return event;
         },
 
@@ -103,14 +121,17 @@ qx.Class.define("qxdotnet.Application",
             if (this.isLoading) {
                 return;
             }
+
             this.showLoading();
             var xmlhttp;
+
             if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp = new XMLHttpRequest();
             }
             else {// code for IE6, IE5
                 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
+
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState != 4) return;
 
@@ -121,7 +142,6 @@ qx.Class.define("qxdotnet.Application",
 
                 if (xmlhttp.status == 200) {
                     if (xmlhttp.getResponseHeader("Content-Type").indexOf("application/javascript") == -1) {
-
                         app.hideLoading();
                         app.isLoading = false;
 
@@ -129,19 +149,28 @@ qx.Class.define("qxdotnet.Application",
                         messageWin.document.write(xmlhttp.responseText);
                         return;
                     }
-                    try {
 
-                        eval(xmlhttp.responseText);
+                    try {
+                        var response = String(xmlhttp.responseText)
+                        //alert(response);
+                        eval(response);
+
                         var ctr = app.getControls();
                         for (var i in ctr) {
                             var c = ctr[i];
+
                             if (c) {
                                 c._id_ = i;
                             }
                         }
                     }
                     catch (ex) {
-                        alert("Internal server error. Try again.");
+                        if (app.requestCounter == 0) {
+                            alert("Internal server error. Try again.");
+                        } else {
+                            //alert("Script error: " + ex);
+                            history.go(0);
+                        }
                     }
                     finally {
                         app.hideLoading();
@@ -155,26 +184,31 @@ qx.Class.define("qxdotnet.Application",
                     var messageWin = window.open("about:blank");
                     messageWin.document.write(xmlhttp.responseText);
                 }
-            }
+            };
 
-            this.sendTimeout = setTimeout(
-                function() {
-                    var app = qx.core.Init.getApplication();
-                    app.hideLoading();
-                    app.isLoading = false;
-                    alert("Communication error!");
-                }, 30000);
+            this.sendTimeout = setTimeout(function() {
+                var app = qx.core.Init.getApplication();
+                app.hideLoading();
+                app.isLoading = false;
+                alert("Communication error!");
+            },
+            30000);
 
             var params = "req=" + this.requestCounter;
+
             if (this.events.length > 0) {
                 var evData = "<ev>";
+
                 for (var i in this.events) {
                     var ev = this.events[i];
+
                     if (ev.propname) {
                         evData += "<e _id=\"" + ev.control + "\" ";
                         evData += "_n=\"" + ev.name + "\" ";
+
                         for (var j = 0; j < ev.propname.length; j++) {
                             var name = ev.propname[j];
+
                             if (name) {
                                 var propRef = "var App = qx.core.Init.getApplication();var ctr = App.getControls();" + ev.propvalue[name];
                                 var value = eval(propRef);
@@ -182,9 +216,11 @@ qx.Class.define("qxdotnet.Application",
                                 evData += name + "=\"" + value + "\" ";
                             }
                         }
+
                         evData += "/>";
                     }
                 }
+
                 evData += "</ev>";
                 params = params + "&ev=" + encodeURIComponent(evData);
             }
@@ -200,8 +236,8 @@ qx.Class.define("qxdotnet.Application",
             this.events = new Array();
 
             this.requestCounter++;
-
         },
+
 
         main: function() {
             // Call super class
@@ -211,6 +247,7 @@ qx.Class.define("qxdotnet.Application",
             if (qx.core.Environment.get("qx.debug")) {
                 // support native logging capabilities, e.g. Firebug for Firefox
                 qx.log.appender.Native;
+
                 // support additional cross-browser console. Press F7 to toggle visibility
                 qx.log.appender.Console;
             }
@@ -221,22 +258,33 @@ qx.Class.define("qxdotnet.Application",
             var img = new qx.ui.basic.Image("resource/qxdotnet/loading.gif");
             img.width = 64;
             img.height = 64;
-            this.loadingControl.add(img, { left: "50%", top: "50%", width: "100%", height: "100%" });
+
+            this.loadingControl.add(img,
+            {
+                left: "50%",
+                top: "50%",
+                width: "100%",
+                height: "100%"
+            });
 
             this.requestCounter = 0;
             this.send();
-
         },
+
 
         gts: function(e) {
             var r = "";
+
             for (var j in e) {
                 var i = e[j];
+
                 if (r != "") {
                     r += ";";
                 }
+
                 r += i.minIndex + "," + i.maxIndex;
             }
+
             return r;
         },
 
@@ -506,8 +554,9 @@ qx.Class.define("qxdotnet.Application",
 });
 
 if (!Array.prototype.indexOf)
+
     Array.prototype.indexOf = function(searchElement, fromIndex) {
         for (var i = fromIndex || 0, length = this.length; i < length; i++)
             if (this[i] === searchElement) return i;
-        return -1
+        return -1;
     };

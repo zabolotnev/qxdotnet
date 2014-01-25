@@ -384,13 +384,13 @@ namespace qxDotNet.Common
                             props += ")";
                         }
                     }
-                    response.Write("App.ev(" + obj.clientId + ", \"" + ev.name + "\")" + props + ";\n");
+                    response.Write("App.ev(" + obj.clientId + ", \"" + ev.name + "\")" + props + ";");
                 }
                 if (ev.callServer)
                 {
                     response.Write("App.send();");
                 }
-                response.Write("});");
+                response.Write("});\n");
             }
 
             obj.CustomPostRender(response, _isRefreshRequest);

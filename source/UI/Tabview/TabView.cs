@@ -129,12 +129,7 @@ namespace qxDotNet.UI.Tabview
             state.SetPropertyValue("contentPaddingRight", _contentPaddingRight, 0);
             state.SetPropertyValue("contentPaddingTop", _contentPaddingTop, 0);
 
-            if (ChangeSelection != null)
-            {
-                state.SetEvent("changeSelection", false);
-            }
-
-            state.SetEvent("changeSelection", false, "selection");
+            state.SetEvent("changeSelection", true, "selection");
 
         }
 

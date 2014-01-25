@@ -20,6 +20,9 @@ namespace qxDotNet.UI.Table
         private bool _needToRefresh = true;
         private List<System.Reflection.PropertyInfo> _accessors;
 
+        private int _sortColumnIndex = -1;
+        private bool _sordDescendant;
+
         public Table()
         {
             _rows = new RowCollection(this);
@@ -51,10 +54,6 @@ namespace qxDotNet.UI.Table
 
         internal RowCollection GetRows()
         {
-            if (_accessors == null)
-            {
-                Refresh();
-            }
             return _rows;
         }
 
@@ -64,12 +63,43 @@ namespace qxDotNet.UI.Table
             _rows.Clear();
             if (_dataSource != null)
             {
+                var list = new List<Row>();
+                int index = 0;
                 foreach (var item in _dataSource)
 	            {
             		var r = new Row(item);
-                    _rows.Add(r);
-                    _selectionModel.SelectedIndex = 0;
+                    r.UserIndex = index;
+                    list.Add(r);
+                    index++;
 	            }
+                if (_sortColumnIndex >= 0 && _sortColumnIndex < _columns.Count)
+                {
+                    if (!_sordDescendant)
+                    {
+                        foreach (var item in list.OrderBy(r => GetValue(r.BindingItem, _sortColumnIndex)))
+                        {
+                            _rows.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in list.OrderByDescending(r => GetValue(r.BindingItem, _sortColumnIndex)))
+                        {
+                            _rows.Add(item);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var item in list)
+                    {
+                        _rows.Add(item);
+                    }
+                }
+                if (list.Count > 0)
+                {
+                    _selectionModel.SelectedIndex = 0;
+                }
             }
             _needToRefresh = true;
         }
@@ -138,6 +168,17 @@ namespace qxDotNet.UI.Table
                 return null;
             }
             return p.GetValue(item, null);
+        }
+
+        public void Sort(int columnIndex, bool isDesc)
+        {
+            if (columnIndex != _sortColumnIndex
+                || isDesc != _sordDescendant)
+            {
+                _sortColumnIndex = columnIndex;
+                _sordDescendant = isDesc;
+                Refresh();
+            }
         }
 
         protected internal override System.Collections.IEnumerable GetChildren(bool isNewOnly)
@@ -222,6 +263,41 @@ namespace qxDotNet.UI.Table
             }
             base.CustomPostRender(response, isRefreshRequest);
         }
+
+        #region ISelectionModelMapper Members
+
+        public int MapToUser(int nativeIndex)
+        {
+            if (nativeIndex < 0 || nativeIndex >= _rows.Count)
+            {
+                return 0;
+            }
+            else
+            {
+                return _rows[nativeIndex].UserIndex;
+            }
+        }
+
+        public int MapToNative(int userIndex)
+        {
+            foreach (var r in _rows)
+            {
+                if (r.UserIndex == userIndex)
+                {
+                    return _rows.IndexOf(r);
+                }
+            }
+            if (_rows.Count > 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        #endregion
 
     }
 

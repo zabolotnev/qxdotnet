@@ -12,6 +12,8 @@ namespace qxDotNet.UI.Table.Selection
 
         private int _selectedIndex = -1;
 
+        internal ISelectionModelMapper _mapper;
+
         public int SelectedIndex
         {
             get
@@ -36,7 +38,16 @@ namespace qxDotNet.UI.Table.Selection
                 {
                     var s1 = value.Split(';');
                     var s2 = s1[0].Split(',');
-                    int.TryParse(s2[0], out _selectedIndex);
+                    if (_mapper != null)
+                    {
+                        int v;
+                        int.TryParse(s2[0], out v);
+                        _selectedIndex = _mapper.MapToUser(v);
+                    }
+                    else
+                    {
+                        int.TryParse(s2[0], out _selectedIndex);
+                    }
                 }
             }
             else
@@ -61,7 +72,12 @@ namespace qxDotNet.UI.Table.Selection
         {
             if (name == "selection")
             {
-                return this.GetReference() + ".setSelectionInterval(" + _selectedIndex + "," + _selectedIndex + ");";
+                var v = _selectedIndex;
+                if (_mapper != null)
+                {
+                    v = _mapper.MapToNative(v);
+                }
+                return this.GetReference() + ".setSelectionInterval(" + v + "," + v + ");";
             }
             else
             {
@@ -70,4 +86,13 @@ namespace qxDotNet.UI.Table.Selection
         }
 
     }
+
+    internal interface ISelectionModelMapper
+    {
+        int MapToUser(int nativeIndex);
+
+        int MapToNative(int userIndex);
+
+    }
+
 }

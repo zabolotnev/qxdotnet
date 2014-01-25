@@ -66,7 +66,7 @@ namespace qxDotNet.UI.Form
 
             if (ChangeValue != null)
             {
-                state.SetEvent("changeValue", false);
+                state.SetEvent("changeValue", true);
             }
 
             state.SetEvent("changeValue", false, "value");
