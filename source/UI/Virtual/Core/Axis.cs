@@ -78,10 +78,7 @@ namespace qxDotNet.UI.Virtual.Core
             state.SetPropertyValue("itemCount", _itemCount, 0);
             state.SetPropertyValue("itemSize", _itemSize, 0);
 
-            if (Change != null)
-            {
-                state.SetEvent("change", false);
-            }
+            state.SetEvent("change", false);
 
         }
 

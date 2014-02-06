@@ -135,10 +135,7 @@ namespace qxDotNet.UI.Core
             state.SetPropertyValue("shortcut", _shortcut, "");
             state.SetPropertyValue("toolTipText", _toolTipText, "");
 
-            if (Execute != null)
-            {
-                state.SetEvent("execute", false);
-            }
+            state.SetEvent("execute", true);
 
         }
 
@@ -238,7 +235,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// Fired when the command is executed. Sets the &#8220;data&#8221; property of the event to the object that issued the command.
+        /// Fired when the command is executed. Sets the "data" property of the event to the object that issued the command.
         /// </summary>
         public event EventHandler Execute;
 

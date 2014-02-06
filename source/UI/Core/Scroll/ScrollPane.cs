@@ -61,24 +61,26 @@ namespace qxDotNet.UI.Core.Scroll
             state.SetPropertyValue("scrollX", _scrollX, 0m);
             state.SetPropertyValue("scrollY", _scrollY, 0m);
 
-            if (DoScrollX != null)
+            state.SetEvent("scrollAnimationEnd", false);
+            if (ScrollX != null)
             {
                 state.SetEvent("scrollX", false, "scrollX");
             }
-            if (DoScrollY != null)
+            if (ScrollY != null)
             {
                 state.SetEvent("scrollY", false, "scrollY");
             }
-            if (Update != null)
-            {
-                state.SetEvent("update", false);
-            }
+            state.SetEvent("update", false);
 
         }
 
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
+            if (eventName == "scrollAnimationEnd")
+            {
+                OnScrollAnimationEnd();
+            }
             if (eventName == "scrollX")
             {
                 OnScrollX();
@@ -93,31 +95,44 @@ namespace qxDotNet.UI.Core.Scroll
             }
         }
 
+        protected virtual void OnScrollAnimationEnd()
+        {
+            if (ScrollAnimationEnd != null)
+            {
+                ScrollAnimationEnd.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired on scroll animation end invoked by "scroll*"; methods.
+        /// </summary>
+        public event EventHandler ScrollAnimationEnd;
+
         protected virtual void OnScrollX()
         {
-            if (DoScrollX != null)
+            if (ScrollXElapsed != null)
             {
-                DoScrollX.Invoke(this, System.EventArgs.Empty);
+                ScrollXElapsed.Invoke(this, System.EventArgs.Empty);
             }
         }
 
         /// <summary>
         /// Fired on change of the property {@link #scrollX}.
         /// </summary>
-        public event EventHandler DoScrollX;
+        public event EventHandler ScrollXElapsed;
 
         protected virtual void OnScrollY()
         {
-            if (DoScrollY != null)
+            if (ScrollYElapsed != null)
             {
-                DoScrollY.Invoke(this, System.EventArgs.Empty);
+                ScrollYElapsed.Invoke(this, System.EventArgs.Empty);
             }
         }
 
         /// <summary>
         /// Fired on change of the property {@link #scrollY}.
         /// </summary>
-        public event EventHandler DoScrollY;
+        public event EventHandler ScrollYElapsed;
 
         protected virtual void OnUpdate()
         {

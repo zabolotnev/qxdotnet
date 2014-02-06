@@ -14,10 +14,10 @@ namespace qxDotNet.UI.Core
 
         private qxDotNet.AlignXEnum _alignX = (AlignXEnum)(-1);
         private qxDotNet.AlignYEnum _alignY = (AlignYEnum)(-1);
-        private bool? _allowGrowX = null;
-        private bool? _allowGrowY = null;
-        private bool? _allowShrinkX = null;
-        private bool? _allowShrinkY = null;
+        private bool? _allowGrowX = true;
+        private bool? _allowGrowY = true;
+        private bool? _allowShrinkX = true;
+        private bool? _allowShrinkY = true;
         private int _height = 0;
         private int _marginBottom = 0;
         private int _marginLeft = 0;
@@ -123,7 +123,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The item&#8217;s preferred height.  The computed height may differ from the given height due to stretching. Also take a look at the related properties {@link #minHeight} and {@link #maxHeight}.
+        /// The item's preferred height.  The computed height may differ from the given height due to stretching. Also take a look at the related properties {@link #minHeight} and {@link #maxHeight}.
         /// </summary>
         public int Height
         {
@@ -134,6 +134,7 @@ namespace qxDotNet.UI.Core
             set
             {
                _height = value;
+               OnChangeHeight();
             }
         }
 
@@ -258,7 +259,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The item&#8217;s preferred width.  The computed width may differ from the given width due to stretching. Also take a look at the related properties {@link #minWidth} and {@link #maxWidth}.
+        /// The LayoutItem's preferred width.  The computed width may differ from the given width due to stretching. Also take a look at the related properties {@link #minWidth} and {@link #maxWidth}.
         /// </summary>
         public int Width
         {
@@ -269,6 +270,7 @@ namespace qxDotNet.UI.Core
             set
             {
                _width = value;
+               OnChangeWidth();
             }
         }
 
@@ -316,10 +318,10 @@ namespace qxDotNet.UI.Core
             base.Render(state);
             state.SetPropertyValue("alignX", _alignX, (AlignXEnum)(-1));
             state.SetPropertyValue("alignY", _alignY, (AlignYEnum)(-1));
-            state.SetPropertyValue("allowGrowX", _allowGrowX, null);
-            state.SetPropertyValue("allowGrowY", _allowGrowY, null);
-            state.SetPropertyValue("allowShrinkX", _allowShrinkX, null);
-            state.SetPropertyValue("allowShrinkY", _allowShrinkY, null);
+            state.SetPropertyValue("allowGrowX", _allowGrowX, true);
+            state.SetPropertyValue("allowGrowY", _allowGrowY, true);
+            state.SetPropertyValue("allowShrinkX", _allowShrinkX, true);
+            state.SetPropertyValue("allowShrinkY", _allowShrinkY, true);
             state.SetPropertyValue("height", _height, 0);
             state.SetPropertyValue("marginBottom", _marginBottom, 0);
             state.SetPropertyValue("marginLeft", _marginLeft, 0);
@@ -340,6 +342,32 @@ namespace qxDotNet.UI.Core
         {
             base.InvokeEvent(eventName);
         }
+
+        protected virtual void OnChangeHeight()
+        {
+            if (ChangeHeight != null)
+            {
+                ChangeHeight.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired on change of the property {@link #height}.
+        /// </summary>
+        public event EventHandler ChangeHeight;
+
+        protected virtual void OnChangeWidth()
+        {
+            if (ChangeWidth != null)
+            {
+                ChangeWidth.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired on change of the property {@link #width}.
+        /// </summary>
+        public event EventHandler ChangeWidth;
 
     }
 }

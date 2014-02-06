@@ -61,30 +61,12 @@ namespace qxDotNet.UI.Virtual.Core
             state.SetPropertyValue("scrollX", _scrollX, 0);
             state.SetPropertyValue("scrollY", _scrollY, 0);
 
-            if (CellClick != null)
-            {
-                state.SetEvent("cellClick", false);
-            }
-            if (CellContextmenu != null)
-            {
-                state.SetEvent("cellContextmenu", false);
-            }
-            if (CellDblclick != null)
-            {
-                state.SetEvent("cellDblclick", false);
-            }
-            if (DoScrollX != null)
-            {
-                state.SetEvent("scrollX", false);
-            }
-            if (DoScrollY != null)
-            {
-                state.SetEvent("scrollY", false);
-            }
-            if (Update != null)
-            {
-                state.SetEvent("update", false);
-            }
+            state.SetEvent("cellClick", false);
+            state.SetEvent("cellContextmenu", false);
+            state.SetEvent("cellDblclick", false);
+            state.SetEvent("scrollX", false);
+            state.SetEvent("scrollY", false);
+            state.SetEvent("update", false);
 
         }
 
@@ -158,29 +140,29 @@ namespace qxDotNet.UI.Virtual.Core
 
         protected virtual void OnScrollX()
         {
-            if (DoScrollX != null)
+            if (ScrollXElapsed != null)
             {
-                DoScrollX.Invoke(this, System.EventArgs.Empty);
+                ScrollXElapsed.Invoke(this, System.EventArgs.Empty);
             }
         }
 
         /// <summary>
         /// Fired if the pane is scrolled horizontally.
         /// </summary>
-        public event EventHandler DoScrollX;
+        public event EventHandler ScrollXElapsed;
 
         protected virtual void OnScrollY()
         {
-            if (DoScrollY != null)
+            if (ScrollYElapsed != null)
             {
-                DoScrollY.Invoke(this, System.EventArgs.Empty);
+                ScrollYElapsed.Invoke(this, System.EventArgs.Empty);
             }
         }
 
         /// <summary>
         /// Fired if the pane is scrolled vertically.
         /// </summary>
-        public event EventHandler DoScrollY;
+        public event EventHandler ScrollYElapsed;
 
         protected virtual void OnUpdate()
         {

@@ -114,14 +114,8 @@ namespace qxDotNet.UI.Toolbar
             state.SetPropertyValue("show", _show, ShowEnum.both);
             state.SetPropertyValue("spacing", _spacing, 0);
 
-            if (HideItem != null)
-            {
-                state.SetEvent("hideItem", false);
-            }
-            if (ShowItem != null)
-            {
-                state.SetEvent("showItem", false);
-            }
+            state.SetEvent("hideItem", false);
+            state.SetEvent("showItem", false);
 
         }
 

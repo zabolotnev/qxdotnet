@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// Form interface for all form widgets which have date as their primary data type like datechooser&#8217;s.
+    /// Form interface for all form widgets which have date as their primary data type like datechooser's.
     /// </summary>
     public interface IDateForm
     {

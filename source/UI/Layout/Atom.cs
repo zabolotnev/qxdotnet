@@ -18,7 +18,7 @@ namespace qxDotNet.UI.Layout
 
 
         /// <summary>
-        /// Whether the content should be rendered centrally when to much space is available. Affects both axis.
+        /// Whether the content should be rendered centrally when to much space is available. Enabling this property centers in both axis. The behavior when disabled of the centering depends on the {@link #iconPosition} property. If the icon position is left or right, the X axis is not centered, only the Y axis. If the icon position is top or bottom, the Y axis is not centered. In case of e.g. an icon position of top-left no axis is centered.
         /// </summary>
         public bool? Center
         {

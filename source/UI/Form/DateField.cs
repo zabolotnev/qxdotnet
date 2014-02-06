@@ -150,11 +150,6 @@ namespace qxDotNet.UI.Form
             state.SetPropertyValue("requiredInvalidMessage", _requiredInvalidMessage, "");
             state.SetPropertyValue("valid", _valid, true);
 
-            if (ChangeValue != null)
-            {
-                state.SetEvent("changeValue", false);
-            }
-
             state.SetEvent("changeValue", false, "value");
 
         }

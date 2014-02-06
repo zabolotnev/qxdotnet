@@ -9,14 +9,14 @@ namespace qxDotNet.Application
     {
 
         private UI.Container.Composite _container;
-        private List<WeakReference> _timers;
+        private List<WeakReference> _nonVisuals;
         private List<URLInfo> _openURL = new List<URLInfo>();
         
 
         public AbstractGui()
         {
             _container = new rootContainer();
-            _timers = new List<WeakReference>();
+            _nonVisuals = new List<WeakReference>();
         }
 
         protected internal abstract qxDotNet.UI.Layout.Abstract getLayout();
@@ -41,12 +41,12 @@ namespace qxDotNet.Application
             else
             {
                 yield return _container;
-                foreach (var timerRef in _timers)
+                foreach (var objRef in _nonVisuals)
                 {
-                    var timer = timerRef.Target;
-                    if (timer != null)
+                    var obj = objRef.Target;
+                    if (obj != null)
                     {
-                        yield return timer;
+                        yield return obj;
                     }
                 }
             }
@@ -83,10 +83,10 @@ namespace qxDotNet.Application
 
         }
 
-        internal void RegisterTimer(Event.Timer timer)
+        internal void RegisterNonVisual(qxDotNet.Core.Object obj)
         {
-            var wr = new WeakReference(timer);
-            _timers.Add(wr);
+            var wr = new WeakReference(obj);
+            _nonVisuals.Add(wr);
         }
 
         public void Open(string URL, bool blank)

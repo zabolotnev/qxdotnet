@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// The HoverButton is an {@link qx.ui.basic.Atom}, which fires repeatedly execute events while the mouse is over the widget.  The rate at which the execute event is fired accelerates is the mouse keeps inside of the widget. The initial delay and the interval time can be set using the properties {@link #firstInterval} and {@link #interval}. The {@link #execute} events will be fired in a shorter amount of time if the mouse remains over the widget, until the min {@link #minTimer} is reached. The {@link #timerDecrease} property sets the amount of milliseconds which will decreased after every firing.  Example  Here is a little example of how to use the widget.    var button = new qx.ui.form.HoverButton(\HelloWorld\);   button.addListener(\execute\, function(e) {  alert(\Buttonishovered\);  }, this);   this.getRoot.add(button);   This example creates a button with the label &#8220;Hello World&#8221; and attaches an event listener to the {@link #execute} event.  External Documentation   Documentation of this widget in the qooxdoo manual.
+    /// The HoverButton is an {@link qx.ui.basic.Atom}, which fires repeatedly execute events while the mouse is over the widget.  The rate at which the execute event is fired accelerates is the mouse keeps inside of the widget. The initial delay and the interval time can be set using the properties {@link #firstInterval} and {@link #interval}. The {@link #execute} events will be fired in a shorter amount of time if the mouse remains over the widget, until the min {@link #minTimer} is reached. The {@link #timerDecrease} property sets the amount of milliseconds which will decreased after every firing.  Example  Here is a little example of how to use the widget.    var button = new qx.ui.form.HoverButton(\HelloWorld\);   button.addListener(\execute\, function(e) {  alert(\Buttonishovered\);  }, this);   this.getRoot.add(button);   This example creates a button with the label "Hello World" and attaches an event listener to the {@link #execute} event.  External Documentation   Documentation of this widget in the qooxdoo manual.
     /// </summary>
     public partial class HoverButton : qxDotNet.UI.Basic.Atom, qxDotNet.UI.Form.IExecutable
     {
@@ -20,7 +20,7 @@ namespace qxDotNet.UI.Form
 
 
         /// <summary>
-        /// Interval used for the first run of the timer. Usually a greater value than the &#8220;interval&#8221; property value to a little delayed reaction at the first time.
+        /// Interval used for the first run of the timer. Usually a greater value than the "interval" property value to a little delayed reaction at the first time.
         /// </summary>
         public int FirstInterval
         {
@@ -35,7 +35,7 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Interval used after the first run of the timer. Usually a smaller value than the &#8220;firstInterval&#8221; property value to get a faster reaction.
+        /// Interval used after the first run of the timer. Usually a smaller value than the "firstInterval" property value to get a faster reaction.
         /// </summary>
         public int Interval
         {
@@ -113,10 +113,6 @@ namespace qxDotNet.UI.Form
             state.SetPropertyValue("timerDecrease", _timerDecrease, 2);
             state.SetPropertyValue("command", _command, null);
 
-            if (Execute != null)
-            {
-                state.SetEvent("execute", false);
-            }
 
             state.SetEvent("execute", true);
 

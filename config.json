@@ -15,6 +15,7 @@
     "build",
     "clean",
     "distclean",
+    "dependencies",
     "fix",
     "info",
     "inspector",
@@ -24,20 +25,26 @@
     "profiling",
     "source",
     "source-all",
-    "source-hybrid",    
+    "source-hybrid",
+    "source-server",
+    "source-server-reload",
+    "source-httpd-config",
     "simulation-build",
     "simulation-run",
     "test",
     "test-source",
-    "translation"
+    "translation",
+    "validate-config",
+    "validate-manifest",
+    "watch"
   ],
-  
+
   "default-job" : "build",
 
   "let" :
   {
     "APPLICATION"  : "qxdotnet",
-    "QOOXDOO_PATH" : "qooxdoo-2.0-sdk",
+    "QOOXDOO_PATH" : "qooxdoo-3.5-sdk",
     "QXTHEME"      : "qxdotnet.theme.Theme",
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.theme.*", "${APPLICATION}.test.*", "${APPLICATION}.simulation.*"],
     "LOCALES"      : [ "ru", "en" ],
@@ -55,7 +62,7 @@
     // using a contrib: library, it will be downloaded into the path specified
     // by the 'cache/downloads' config key
     /*
-    "libraries" : 
+    "libraries" :
     {
       "library" :
       [
@@ -72,7 +79,7 @@
 	/*
     ,"build-script" :
     {
-      "compile-options" : 
+      "compile-options" :
       {
         "code" :
         {

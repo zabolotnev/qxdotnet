@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.Application
 {
     /// <summary>
-    /// EXPERIMENTAL &#8211; NOT READY FOR PRODUCTION  For a mobile application. Supports the mobile widget set.
+    /// For a mobile application. Supports the mobile widget set.
     /// </summary>
     public partial class Mobile : qxDotNet.Core.Object, qxDotNet.Application.IApplication
     {

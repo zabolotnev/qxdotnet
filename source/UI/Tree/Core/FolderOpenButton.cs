@@ -17,7 +17,7 @@ namespace qxDotNet.UI.Tree.Core
 
 
         /// <summary>
-        /// Whether the button state is &#8220;open&#8221;
+        /// Whether the button state is "open"
         /// </summary>
         public bool? Open
         {
@@ -63,10 +63,7 @@ namespace qxDotNet.UI.Tree.Core
             state.SetPropertyValue("open", _open, false);
             state.SetPropertyValue("command", _command, null);
 
-            if (Execute != null)
-            {
-                state.SetEvent("execute", false);
-            }
+            state.SetEvent("execute", false);
 
         }
 

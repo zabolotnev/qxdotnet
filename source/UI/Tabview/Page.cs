@@ -18,7 +18,7 @@ namespace qxDotNet.UI.Tabview
 
 
         /// <summary>
-        /// Any URI String supported by qx.ui.basic.Image to display an icon in Page&#8217;s button.
+        /// Any URI String supported by qx.ui.basic.Image to display an icon in Page's button.
         /// </summary>
         public string Icon
         {
@@ -33,7 +33,7 @@ namespace qxDotNet.UI.Tabview
         }
 
         /// <summary>
-        /// The label/caption/text of the Page&#8217;s button.
+        /// The label/caption/text of the Page's button.
         /// </summary>
         public string Label
         {
@@ -77,11 +77,6 @@ namespace qxDotNet.UI.Tabview
             state.SetPropertyValue("icon", _icon, "");
             state.SetPropertyValue("label", _label, "");
             state.SetPropertyValue("showCloseButton", _showCloseButton, false);
-
-            if (Close != null)
-            {
-                state.SetEvent("close", false);
-            }
 
             state.SetEvent("close", true);
 

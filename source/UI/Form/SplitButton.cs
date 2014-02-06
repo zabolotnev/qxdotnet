@@ -115,10 +115,6 @@ namespace qxDotNet.UI.Form
             state.SetPropertyValue("show", _show, ShowEnum.both);
             state.SetPropertyValue("command", _command, null);
 
-            if (Execute != null)
-            {
-                state.SetEvent("execute", false);
-            }
 
             state.SetEvent("execute", true);
 

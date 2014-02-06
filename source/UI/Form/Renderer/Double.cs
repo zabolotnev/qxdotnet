@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Form.Renderer
 {
     /// <summary>
-    /// Double column renderer for qx.ui.form.Form.
+    /// Double column renderer for {@link qx.ui.form.Form}.
     /// </summary>
     public partial class Double : qxDotNet.UI.Form.Renderer.AbstractRenderer
     {

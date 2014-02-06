@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Treevirtual
 {
     /// <summary>
-    /// A &#8220;virtual&#8221; tree  A number of convenience methods are available in the following mixins:    {@link qx.ui.treevirtual.MNode}  {@link qx.ui.treevirtual.MFamily}  
+    /// A "virtual" tree  A number of convenience methods are available in the following mixins:    {@link qx.ui.treevirtual.MNode}  {@link qx.ui.treevirtual.MFamily}  
     /// </summary>
     public partial class TreeVirtual : qxDotNet.UI.Table.Table
     {
@@ -112,22 +112,10 @@ namespace qxDotNet.UI.Treevirtual
             state.SetPropertyValue("selectionMode", _selectionMode, 0);
             state.SetPropertyValue("useTreeLines", _useTreeLines, false);
 
-            if (ChangeSelection != null)
-            {
-                state.SetEvent("changeSelection", false);
-            }
-            if (TreeClose != null)
-            {
-                state.SetEvent("treeClose", false);
-            }
-            if (TreeOpenWhileEmpty != null)
-            {
-                state.SetEvent("treeOpenWhileEmpty", false);
-            }
-            if (TreeOpenWithContent != null)
-            {
-                state.SetEvent("treeOpenWithContent", false);
-            }
+            state.SetEvent("changeSelection", false);
+            state.SetEvent("treeClose", false);
+            state.SetEvent("treeOpenWhileEmpty", false);
+            state.SetEvent("treeOpenWithContent", false);
 
         }
 
@@ -161,7 +149,7 @@ namespace qxDotNet.UI.Treevirtual
         }
 
         /// <summary>
-        /// Fired when the selected rows change.  Event data: An array of node objects (the selected rows&#8217; nodes) from the data model. Each node object is described in {@link qx.ui.treevirtual.SimpleTreeDataModel}
+        /// Fired when the selected rows change.  Event data: An array of node objects (the selected rows' nodes) from the data model. Each node object is described in {@link qx.ui.treevirtual.SimpleTreeDataModel}
         /// </summary>
         public event EventHandler ChangeSelection;
 

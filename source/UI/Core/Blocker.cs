@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Core
 {
     /// <summary>
-    /// This class blocks events and can be included into all widgets.  The {@link #block} and {@link #unblock} methods provided by this class can be used to block any event from the widget. When blocked, the blocker widget overlays the widget to block, including the padding area.  The second set of methods ({@link #blockContent}, {@link #unblockContent}) can be used to block child widgets with a zIndex below a certain value.
+    /// This class blocks events and can be included into all widgets.  The {@link #block} and {@link #unblock} methods provided by this class can be used to block any event from the widget. When blocked, the blocker widget overlays the widget to block, including the padding area.
     /// </summary>
     public partial class Blocker : qxDotNet.Core.Object
     {
@@ -78,13 +78,49 @@ namespace qxDotNet.UI.Core
             state.SetPropertyValue("keepBlockerActive", _keepBlockerActive, false);
             state.SetPropertyValue("opacity", _opacity, 1);
 
+            state.SetEvent("blocked", false);
+            state.SetEvent("unblocked", false);
 
         }
 
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
+            if (eventName == "blocked")
+            {
+                OnBlocked();
+            }
+            if (eventName == "unblocked")
+            {
+                OnUnblocked();
+            }
         }
+
+        protected virtual void OnBlocked()
+        {
+            if (Blocked != null)
+            {
+                Blocked.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fires after {@link #block} executed.
+        /// </summary>
+        public event EventHandler Blocked;
+
+        protected virtual void OnUnblocked()
+        {
+            if (Unblocked != null)
+            {
+                Unblocked.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fires after {@link #unblock} executed.
+        /// </summary>
+        public event EventHandler Unblocked;
 
     }
 }

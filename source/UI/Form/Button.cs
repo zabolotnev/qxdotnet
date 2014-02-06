@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// A Button widget which supports various states and allows it to be used via the mouse and the keyboard.  If the user presses the button by clicking on it, or the Enter or Space keys, the button fires an {@link qx.ui.core.MExecutable#execute} event.  If the {@link qx.ui.core.MExecutable#command} property is set, the command is executed as well.  Example  Here is a little example of how to use the widget.    var button = new qx.ui.form.Button(\HelloWorld\);   button.addListener(\execute\, function(e) {  alert(\Buttonwasclicked\);  }, this);   this.getRoot.add(button);   This example creates a button with the label &#8220;Hello World&#8221; and attaches an event listener to the {@link #execute} event.  External Documentation   Documentation of this widget in the qooxdoo manual.
+    /// A Button widget which supports various states and allows it to be used via the mouse and the keyboard.  If the user presses the button by clicking on it, or the Enter or Space keys, the button fires an {@link qx.ui.core.MExecutable#execute} event.  If the {@link qx.ui.core.MExecutable#command} property is set, the command is executed as well.  Example  Here is a little example of how to use the widget.    var button = new qx.ui.form.Button(\HelloWorld\);   button.addListener(\execute\, function(e) {  alert(\Buttonwasclicked\);  }, this);   this.getRoot.add(button);   This example creates a button with the label "Hello World" and attaches an event listener to the {@link #execute} event.  External Documentation   Documentation of this widget in the qooxdoo manual.
     /// </summary>
     public partial class Button : qxDotNet.UI.Basic.Atom, qxDotNet.UI.Form.IExecutable
     {

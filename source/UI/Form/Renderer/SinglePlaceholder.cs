@@ -7,9 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Form.Renderer
 {
     /// <summary>
-    /// Rendere using the placeholder property of qx.ui.form.AbstractField to visualize the name.
+    /// Rendere using the placeholder property of {@link qx.ui.form.AbstractField} to visualize the name.
     /// </summary>
-    public partial class SinglePlaceholder : qxDotNet.UI.Form.Renderer.Single
+    public partial class SinglePlaceholder : qxDotNet.UI.Form.Renderer.Single, qxDotNet.UI.Form.Renderer.IFormRenderer
     {
 
         public SinglePlaceholder(qxDotNet.UI.Form.Form form)

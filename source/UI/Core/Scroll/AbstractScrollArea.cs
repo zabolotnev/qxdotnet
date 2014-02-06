@@ -14,6 +14,9 @@ namespace qxDotNet.UI.Core.Scroll
 
         private qxDotNet.ScrollbarEnum _scrollbarX = ScrollbarEnum.auto;
         private qxDotNet.ScrollbarEnum _scrollbarY = ScrollbarEnum.auto;
+        private float _dragScrollSlowDownFactor = 0.1f;
+        private int _dragScrollThresholdX = 30;
+        private int _dragScrollThresholdY = 30;
 
 
         /// <summary>
@@ -47,6 +50,51 @@ namespace qxDotNet.UI.Core.Scroll
         }
 
         /// <summary>
+        /// The factor for slowing down the scrolling.
+        /// </summary>
+        public float DragScrollSlowDownFactor
+        {
+            get
+            {
+                return _dragScrollSlowDownFactor;
+            }
+            set
+            {
+               _dragScrollSlowDownFactor = value;
+            }
+        }
+
+        /// <summary>
+        /// The threshold for the x-axis (in pixel) to activate scrolling at the edges.
+        /// </summary>
+        public int DragScrollThresholdX
+        {
+            get
+            {
+                return _dragScrollThresholdX;
+            }
+            set
+            {
+               _dragScrollThresholdX = value;
+            }
+        }
+
+        /// <summary>
+        /// The threshold for the y-axis (in pixel) to activate scrolling at the edges.
+        /// </summary>
+        public int DragScrollThresholdY
+        {
+            get
+            {
+                return _dragScrollThresholdY;
+            }
+            set
+            {
+               _dragScrollThresholdY = value;
+            }
+        }
+
+        /// <summary>
         /// Internal implementation
         /// </summary>
         /// <returns></returns>
@@ -60,14 +108,53 @@ namespace qxDotNet.UI.Core.Scroll
             base.Render(state);
             state.SetPropertyValue("scrollbarX", _scrollbarX, ScrollbarEnum.auto);
             state.SetPropertyValue("scrollbarY", _scrollbarY, ScrollbarEnum.auto);
+            state.SetPropertyValue("dragScrollSlowDownFactor", _dragScrollSlowDownFactor, 0.1f);
+            state.SetPropertyValue("dragScrollThresholdX", _dragScrollThresholdX, 30);
+            state.SetPropertyValue("dragScrollThresholdY", _dragScrollThresholdY, 30);
 
+            state.SetEvent("scrollAnimationXEnd", false);
+            state.SetEvent("scrollAnimationYEnd", false);
 
         }
 
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
+            if (eventName == "scrollAnimationXEnd")
+            {
+                OnScrollAnimationXEnd();
+            }
+            if (eventName == "scrollAnimationYEnd")
+            {
+                OnScrollAnimationYEnd();
+            }
         }
+
+        protected virtual void OnScrollAnimationXEnd()
+        {
+            if (ScrollAnimationXEnd != null)
+            {
+                ScrollAnimationXEnd.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired as soon as the scroll animation in X direction ends.
+        /// </summary>
+        public event EventHandler ScrollAnimationXEnd;
+
+        protected virtual void OnScrollAnimationYEnd()
+        {
+            if (ScrollAnimationYEnd != null)
+            {
+                ScrollAnimationYEnd.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired as soon as the scroll animation in X direction ends.
+        /// </summary>
+        public event EventHandler ScrollAnimationYEnd;
 
     }
 }

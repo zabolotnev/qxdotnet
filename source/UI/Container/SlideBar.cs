@@ -78,13 +78,31 @@ namespace qxDotNet.UI.Container
             state.SetPropertyValue("scrollStep", _scrollStep, 15);
             state.SetPropertyValue("layout", _layout, null);
 
+            state.SetEvent("scrollAnimationEnd", false);
 
         }
 
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
+            if (eventName == "scrollAnimationEnd")
+            {
+                OnScrollAnimationEnd();
+            }
         }
+
+        protected virtual void OnScrollAnimationEnd()
+        {
+            if (ScrollAnimationEnd != null)
+            {
+                ScrollAnimationEnd.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired on scroll animation end invoked by "scroll*"; methods.
+        /// </summary>
+        public event EventHandler ScrollAnimationEnd;
 
     }
 }

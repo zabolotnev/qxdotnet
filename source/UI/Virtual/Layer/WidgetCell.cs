@@ -27,10 +27,7 @@ namespace qxDotNet.UI.Virtual.Layer
         {
             base.Render(state);
 
-            if (Updated != null)
-            {
-                state.SetEvent("updated", false);
-            }
+            state.SetEvent("updated", false);
 
         }
 

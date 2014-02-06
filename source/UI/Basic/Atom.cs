@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Basic
 {
     /// <summary>
-    /// A multi-purpose widget, which combines a label with an icon.  The intended purpose of qx.ui.basic.Atom is to easily align the common icon-text combination in different ways.  This is useful for all types of buttons, tooltips, ...  Example  Here is a little example of how to use the widget.    var atom = new qx.ui.basic.Atom(\IconRight\, \icon/32/actions/go-next.png\);  this.getRoot().add(atom);   This example creates an atom with the label &#8220;Icon Right&#8221; and an icon.  External Documentation   Documentation of this widget in the qooxdoo manual.
+    /// A multi-purpose widget, which combines a label with an icon.  The intended purpose of qx.ui.basic.Atom is to easily align the common icon-text combination in different ways.  This is useful for all types of buttons, tooltips, ...  Example  Here is a little example of how to use the widget.    var atom = new qx.ui.basic.Atom(\IconRight\, \icon/32/actions/go-next.png\);  this.getRoot().add(atom);   This example creates an atom with the label "Icon Right" and an icon.  External Documentation   Documentation of this widget in the qooxdoo manual.
     /// </summary>
     public partial class Atom : qxDotNet.UI.Core.Widget
     {
@@ -22,7 +22,7 @@ namespace qxDotNet.UI.Basic
 
 
         /// <summary>
-        /// Whether the content should be rendered centrally when to much space is available. Affects both axis.
+        /// Whether the content should be rendered centrally when to much space is available. Enabling this property centers in both axis. The behavior when disabled of the centering depends on the {@link #iconPosition} property. If the icon position is left or right, the X axis is not centered, only the Y axis. If the icon position is top or bottom, the Y axis is not centered. In case of e.g. an icon position of top-left no axis is centered.
         /// </summary>
         public bool? Center
         {
@@ -69,7 +69,7 @@ namespace qxDotNet.UI.Basic
         }
 
         /// <summary>
-        /// The position of the icon in relation to the text. Only useful/needed if text and icon is configured and &#8216;show&#8217; is configured as &#8216;both&#8217; (default)
+        /// The position of the icon in relation to the text. Only useful/needed if text and icon is configured and "show" is configured as "both" (default)
         /// </summary>
         public qxDotNet.IconPositionEnum IconPosition
         {
@@ -115,7 +115,7 @@ namespace qxDotNet.UI.Basic
         }
 
         /// <summary>
-        /// Configure the visibility of the sub elements/widgets. Possible values: both, text, icon
+        /// Configure the visibility of the sub elements/widgets. Possible values: both, label, icon
         /// </summary>
         public qxDotNet.ShowEnum Show
         {

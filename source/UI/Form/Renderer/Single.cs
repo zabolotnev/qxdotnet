@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Form.Renderer
 {
     /// <summary>
-    /// Single column renderer for qx.ui.form.Form.
+    /// Single column renderer for {@link qx.ui.form.Form}.
     /// </summary>
     public partial class Single : qxDotNet.UI.Form.Renderer.AbstractRenderer
     {

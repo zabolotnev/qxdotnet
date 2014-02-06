@@ -31,7 +31,7 @@ namespace qxDotNet.UI.Table.Selection
         }
 
 
-        public override string GetTypeName()
+        protected internal override string GetTypeName()
         {
             return "qx.ui.table.selection.Manager";
         }

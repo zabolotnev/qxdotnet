@@ -9,7 +9,7 @@ namespace qxDotNet.UI.Table
     /// <summary>
     /// Table  A detailed description can be found in the package description {@link qx.ui.table}.
     /// </summary>
-    public partial class Table : qxDotNet.UI.Core.Widget, Selection.ISelectionModelMapper
+    public partial class Table : qxDotNet.UI.Core.Widget
     {
 
 //        private _var _additionalStatusBarText = null;
@@ -30,6 +30,10 @@ namespace qxDotNet.UI.Table
         private qxDotNet.UI.Table.Selection.Model _selectionModel = null;
         private bool? _showCellFocusIndicator = true;
         private bool? _statusBarVisible = true;
+        private float _dragScrollSlowDownFactor = 0.1F;
+        private int _dragScrollThresholdX = 30;
+        private int _dragScrollThresholdY = 30;
+
 
         /// <summary>
         /// Whether the table cells should be updated when only the selection or the focus changed. This slows down the table update but allows to react on a changed selection or a changed focus in a cell renderer.
@@ -62,7 +66,7 @@ namespace qxDotNet.UI.Table
         }
 
         /// <summary>
-        /// By default, the &#8220;cellContextmenu&#8221; event is fired only when a data cell is right-clicked. It is not fired when a right-click occurs in the empty area of the table below the last data row. By turning on this property, &#8220;cellContextMenu&#8221; events will also be generated when a right-click occurs in that empty area. In such a case, row identifier in the event data will be null, so event handlers can check (row === null) to handle this case.
+        /// By default, the "cellContextmenu" event is fired only when a data cell is right-clicked. It is not fired when a right-click occurs in the empty area of the table below the last data row. By turning on this property, "cellContextMenu" events will also be generated when a right-click occurs in that empty area. In such a case, row identifier in the event data will be null, so event handlers can check (row === null) to handle this case.
         /// </summary>
         public bool? ContextMenuFromDataCellsOnly
         {
@@ -139,7 +143,7 @@ namespace qxDotNet.UI.Table
         }
 
         /// <summary>
-        /// Whether the header cells are visible. When setting this to false,  you&#8217;ll likely also want to set the {#columnVisibilityButtonVisible}  property to false as well, to entirely remove the header row.
+        /// Whether the header cells are visible. When setting this to false,  you'll likely also want to set the {#columnVisibilityButtonVisible}  property to false as well, to entirely remove the header row.
         /// </summary>
         public bool? HeaderCellsVisible
         {
@@ -265,6 +269,51 @@ namespace qxDotNet.UI.Table
         }
 
         /// <summary>
+        /// The factor for slowing down the scrolling.
+        /// </summary>
+        public float DragScrollSlowDownFactor
+        {
+            get
+            {
+                return _dragScrollSlowDownFactor;
+            }
+            set
+            {
+               _dragScrollSlowDownFactor = value;
+            }
+        }
+
+        /// <summary>
+        /// The threshold for the x-axis (in pixel) to activate scrolling at the edges.
+        /// </summary>
+        public int DragScrollThresholdX
+        {
+            get
+            {
+                return _dragScrollThresholdX;
+            }
+            set
+            {
+               _dragScrollThresholdX = value;
+            }
+        }
+
+        /// <summary>
+        /// The threshold for the y-axis (in pixel) to activate scrolling at the edges.
+        /// </summary>
+        public int DragScrollThresholdY
+        {
+            get
+            {
+                return _dragScrollThresholdY;
+            }
+            set
+            {
+               _dragScrollThresholdY = value;
+            }
+        }
+
+        /// <summary>
         /// Internal implementation
         /// </summary>
         /// <returns></returns>
@@ -292,6 +341,9 @@ namespace qxDotNet.UI.Table
             state.SetPropertyValue("showCellFocusIndicator", _showCellFocusIndicator, true);
             state.SetPropertyValue("statusBarVisible", _statusBarVisible, true);
             state.SetPropertyValue("tableModel", _model, null);
+            state.SetPropertyValue("dragScrollSlowDownFactor", _dragScrollSlowDownFactor, 0.1F);
+            state.SetPropertyValue("dragScrollThresholdX", _dragScrollThresholdX, 30);
+            state.SetPropertyValue("dragScrollThresholdY", _dragScrollThresholdY, 30);
 
             if (CellClick != null)
             {

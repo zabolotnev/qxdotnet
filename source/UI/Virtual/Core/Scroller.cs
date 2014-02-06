@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Virtual.Core
 {
     /// <summary>
-    /// EXPERIMENTAL!  The Scroller wraps a {@link Pane} and provides scroll bars to interactively scroll the pane&#8217;s content.
+    /// EXPERIMENTAL!  The Scroller wraps a {@link Pane} and provides scroll bars to interactively scroll the pane's content.
     /// </summary>
     public partial class Scroller : qxDotNet.UI.Core.Scroll.AbstractScrollArea
     {

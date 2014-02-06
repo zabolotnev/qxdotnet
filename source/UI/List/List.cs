@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.List
 {
     /// <summary>
-    /// The qx.ui.list.List is based on the virtual infrastructure and supports filtering, sorting, grouping, single selection, multi selection, data binding and custom rendering.  Using the virtual infrastructure has considerable advantages when there is a huge amount of model items to render because the virtual infrastructure only creates widgets for visible items and reuses them. This saves both creation time and memory.  With the {@link qx.ui.list.core.IListDelegate} interface it is possible to configure the list&#8217;s behavior (item and group renderer configuration, filtering, sorting, grouping, etc.).  Here&#8217;s an example of how to use the widget:   //create the model data var rawData = []; for (var i = 0; i  b ? 1 : a 
+    /// The qx.ui.list.List is based on the virtual infrastructure and supports filtering, sorting, grouping, single selection, multi selection, data binding and custom rendering.  Using the virtual infrastructure has considerable advantages when there is a huge amount of model items to render because the virtual infrastructure only creates widgets for visible items and reuses them. This saves both creation time and memory.  With the {@link qx.ui.list.core.IListDelegate} interface it is possible to configure the list's behavior (item and group renderer configuration, filtering, sorting, grouping, etc.).  Here";s an example of how to use the widget:   //create the model data var rawData = []; for (var i = 0; i  b ? 1 : a 
     /// </summary>
     public partial class List : qxDotNet.UI.Virtual.Core.Scroller
     {
@@ -22,7 +22,7 @@ namespace qxDotNet.UI.List
         private int _itemHeight = 25;
 //        private _var _labelOptions = null;
         private string _labelPath = "";
-        private qxDotNet.Data.Array _model = null;
+        private qxDotNet.Data.IListData _model = null;
 
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace qxDotNet.UI.List
         /// <summary>
         /// Data array containing the data which should be shown in the list.
         /// </summary>
-        public qxDotNet.Data.Array Model
+        public qxDotNet.Data.IListData Model
         {
             get
             {

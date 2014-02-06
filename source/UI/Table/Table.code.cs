@@ -9,7 +9,7 @@ using System.Collections;
 namespace qxDotNet.UI.Table
 {
 
-    public partial class Table : qxDotNet.UI.Core.Widget
+    public partial class Table : qxDotNet.UI.Core.Widget, Selection.ISelectionModelMapper 
     {
 
         private RemoteModel _model;

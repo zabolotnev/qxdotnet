@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Tree
 {
     /// <summary>
-    /// Virtual tree implementation.  The virtual tree can be used to render node and leafs. Nodes and leafs are both items for a tree. The difference between a node and a leaf is that a node has child items, but a leaf not.  With the {@link qx.ui.tree.core.IVirtualTreeDelegate} interface it is possible to configure the tree&#8217;s behavior (item renderer configuration, etc.).  Here&#8217;s an example of how to use the widget:   //create the model data var nodes = []; for (var i = 0; i 
+    /// Virtual tree implementation.  The virtual tree can be used to render node and leafs. Nodes and leafs are both items for a tree. The difference between a node and a leaf is that a node has child items, but a leaf not.  With the {@link qx.ui.tree.core.IVirtualTreeDelegate} interface it is possible to configure the tree's behavior (item renderer configuration, etc.).  Here's an example of how to use the widget:   //create the model data var nodes = []; for (var i = 0; i 
     /// </summary>
     public partial class VirtualTree : qxDotNet.UI.Virtual.Core.Scroller, qxDotNet.UI.Tree.Core.IVirtualTree
     {
@@ -46,7 +46,7 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// Hides only the root node, not the node&#8217;s children when the property is set to true.
+        /// Hides only the root node, not the node's children when the property is set to true.
         /// </summary>
         public bool? HideRoot
         {
@@ -253,14 +253,8 @@ namespace qxDotNet.UI.Tree
             state.SetPropertyValue("contentPaddingRight", _contentPaddingRight, 0);
             state.SetPropertyValue("contentPaddingTop", _contentPaddingTop, 0);
 
-            if (Close != null)
-            {
-                state.SetEvent("close", false);
-            }
-            if (Open != null)
-            {
-                state.SetEvent("open", false);
-            }
+            state.SetEvent("close", false);
+            state.SetEvent("open", false);
 
         }
 

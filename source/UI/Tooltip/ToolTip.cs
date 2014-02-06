@@ -12,6 +12,7 @@ namespace qxDotNet.UI.Tooltip
     public partial class ToolTip : qxDotNet.UI.Popup.Popup
     {
 
+        private qxDotNet.ArrowPositionEnum _arrowPosition = ArrowPositionEnum.left;
         private int _hideTimeout = 4000;
         private string _icon = "";
         private string _label = "";
@@ -19,6 +20,21 @@ namespace qxDotNet.UI.Tooltip
         private bool? _rich = false;
         private int _showTimeout = 700;
 
+
+        /// <summary>
+        /// Position of the arrow pointing towards the opening widget *
+        /// </summary>
+        public qxDotNet.ArrowPositionEnum ArrowPosition
+        {
+            get
+            {
+                return _arrowPosition;
+            }
+            set
+            {
+               _arrowPosition = value;
+            }
+        }
 
         /// <summary>
         /// Interval after the tooltip is hidden (in milliseconds)
@@ -36,7 +52,7 @@ namespace qxDotNet.UI.Tooltip
         }
 
         /// <summary>
-        /// Any URI String supported by qx.ui.basic.Image to display an icon in ToolTips&#8217;s atom.
+        /// Any URI String supported by qx.ui.basic.Image to display an icon in ToolTips's atom.
         /// </summary>
         public string Icon
         {
@@ -51,7 +67,7 @@ namespace qxDotNet.UI.Tooltip
         }
 
         /// <summary>
-        /// The label/caption/text of the ToolTip&#8217;s atom.
+        /// The label/caption/text of the ToolTip's atom.
         /// </summary>
         public string Label
         {
@@ -122,6 +138,7 @@ namespace qxDotNet.UI.Tooltip
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
+            state.SetPropertyValue("arrowPosition", _arrowPosition, ArrowPositionEnum.left);
             state.SetPropertyValue("hideTimeout", _hideTimeout, 4000);
             state.SetPropertyValue("icon", _icon, "");
             state.SetPropertyValue("label", _label, "");

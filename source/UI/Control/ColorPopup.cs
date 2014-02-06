@@ -15,8 +15,6 @@ namespace qxDotNet.UI.Control
         private decimal _blue = 0m;
         private decimal _green = 0m;
         private decimal _red = 0m;
-//        private _var _value = null;
-
 
         /// <summary>
         /// The numeric blue value of the selected color.

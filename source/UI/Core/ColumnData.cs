@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Core
 {
     /// <summary>
-    /// All of the resizing information about a column.  This is used internally by qx.ui.table and qx.ui.progressive&#8217;s table and  may be used for other widgets as well.
+    /// All of the resizing information about a column.  This is used internally by qx.ui.table and qx.ui.progressive's table and  may be used for other widgets as well.
     /// </summary>
     public partial class ColumnData : qxDotNet.UI.Core.LayoutItem
     {

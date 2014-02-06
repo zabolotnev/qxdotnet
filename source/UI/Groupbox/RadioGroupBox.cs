@@ -63,15 +63,7 @@ namespace qxDotNet.UI.Groupbox
             state.SetPropertyValue("group", _group, null);
             state.SetPropertyValue("value", _value, false);
 
-            if (ChangeValue != null)
-            {
-                state.SetEvent("changeValue", false);
-            }
-            if (Execute != null)
-            {
-                state.SetEvent("execute", false);
-            }
-
+            state.SetEvent("changeValue", false, "value");
             state.SetEvent("execute", true);
 
         }

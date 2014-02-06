@@ -11,7 +11,7 @@ namespace qxDotNet.Event
 
         public Timer()
         {
-            Common.ApplicationState.Instance.GUI.RegisterTimer(this);
+            Common.ApplicationState.Instance.GUI.RegisterNonVisual(this);
         }
 
     }

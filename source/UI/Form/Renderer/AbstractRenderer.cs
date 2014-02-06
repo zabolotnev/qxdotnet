@@ -7,9 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Form.Renderer
 {
     /// <summary>
-    /// Abstract renderer for qx.ui.form.Form. This abstract rendere should be the superclass of all form renderer. It takes the form, which is supplied as constructor parameter and configures itself. So if you need to set some additional information on your renderer before adding the widgets, be sure to do that before calling this.base(arguments, form).
+    /// Abstract renderer for {@link qx.ui.form.Form}. This abstract renderer should be the superclass of all form renderer. It takes the form, which is supplied as constructor parameter and configures itself. So if you need to set some additional information on your renderer before adding the widgets, be sure to do that before calling this.base(arguments, form).
     /// </summary>
-    public abstract partial class AbstractRenderer : qxDotNet.UI.Core.Widget
+    public abstract partial class AbstractRenderer : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.Renderer.IFormRenderer
     {
 
 

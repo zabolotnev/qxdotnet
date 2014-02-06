@@ -17,7 +17,7 @@ namespace qxDotNet.Event
 
 
         /// <summary>
-        /// With the enabled property the Timer can be started and suspended. Setting it to &#8220;true&#8221; is equivalent to {@link #start}, setting it to &#8220;false&#8221; is equivalent to {@link #stop}.
+        /// With the enabled property the Timer can be started and suspended. Setting it to "true" is equivalent to {@link #start}, setting it to "false" is equivalent to {@link #stop}.
         /// </summary>
         public bool? Enabled
         {
@@ -73,11 +73,11 @@ namespace qxDotNet.Event
             base.InvokeEvent(eventName);
             if (eventName == "interval")
             {
-                OnIntervalElapsed();
+                OnInterval();
             }
         }
 
-        protected virtual void OnIntervalElapsed()
+        protected virtual void OnInterval()
         {
             if (IntervalElapsed != null)
             {

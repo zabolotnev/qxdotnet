@@ -44,10 +44,7 @@ namespace qxDotNet.UI.Tabview
             base.Render(state);
             state.SetPropertyValue("showCloseButton", _showCloseButton, false);
 
-            if (Close != null)
-            {
-                state.SetEvent("close", false);
-            }
+            state.SetEvent("close", false);
 
         }
 

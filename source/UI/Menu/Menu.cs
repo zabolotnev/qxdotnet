@@ -336,7 +336,7 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// Position of the aligned object in relation to the opener.  Please note than changes to this property are only applied when re-aligning the widget.  The first part of the value is the edge to attach to. The second part the alignment of the orthogonal edge after the widget has been attached.  The default value &#8220;bottom-left&#8221; for example means that the widget should be shown directly under the given target and then should be aligned to be left edge:   +--------+ | target | +--------+ +-------------+ | widget | +-------------+ 
+        /// Position of the aligned object in relation to the opener.  Please note than changes to this property are only applied when re-aligning the widget.  The first part of the value is the edge to attach to. The second part the alignment of the orthogonal edge after the widget has been attached.  The default value "bottom-left" for example means that the widget should be shown directly under the given target and then should be aligned to be left edge:   +--------+ | target | +--------+ +-------------+ | widget | +-------------+ 
         /// </summary>
         public qxDotNet.AlignmentEnum Position
         {

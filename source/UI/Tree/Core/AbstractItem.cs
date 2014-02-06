@@ -22,7 +22,7 @@ namespace qxDotNet.UI.Tree.Core
 
 
         /// <summary>
-        /// URI of &#8220;closed&#8221; icon. Can be any URI String supported by qx.ui.basic.Image.
+        /// URI of "closed" icon. Can be any URI String supported by qx.ui.basic.Image.
         /// </summary>
         public string Icon
         {
@@ -38,7 +38,7 @@ namespace qxDotNet.UI.Tree.Core
         }
 
         /// <summary>
-        /// URI of &#8220;opened&#8221; icon. Can be any URI String supported by qx.ui.basic.Image.
+        /// URI of "opened" icon. Can be any URI String supported by qx.ui.basic.Image.
         /// </summary>
         public string IconOpened
         {
@@ -102,7 +102,7 @@ namespace qxDotNet.UI.Tree.Core
         }
 
         /// <summary>
-        /// Controls, when to show the open symbol. If the mode is &#8220;auto&#8221; , the open symbol is shown only if the item has child items.
+        /// Controls, when to show the open symbol. If the mode is "auto" , the open symbol is shown only if the item has child items.
         /// </summary>
         public qxDotNet.OpenSymbolModeEnum OpenSymbolMode
         {

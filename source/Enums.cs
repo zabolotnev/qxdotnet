@@ -5,23 +5,11 @@ namespace qxDotNet
 
     public enum DecorationEnum
     {
-        @null,underline,line_through,overline
+        @null=-1, underline, line_through, overline
     }
     public enum StateEnum
     {
         created,configured,queued,sending,receiving,completed,aborted,timeout,failed
-    }
-    public enum TransitionEnum
-    {
-        linear,easeInQuad,easeOutQuad,sinodial,reverse,flicker,wobble,pulse,spring,none,full
-    }
-    public enum DirectionEnum
-    {
-        south,west,east,north,south_west,south_east,north_east,north_west
-    }
-    public enum ModeEnum
-    {
-        @in,@out
     }
     public enum AlignmentEnum
     {
@@ -41,7 +29,7 @@ namespace qxDotNet
     }
     public enum IconPositionEnum
     {
-        top,right,bottom,left,top_left,bottom_left
+        top,right,bottom,left,top_left,bottom_left,top_right,bottom_right
     }
     public enum ShowEnum
     {
@@ -49,7 +37,7 @@ namespace qxDotNet
     }
     public enum TextAlignEnum
     {
-        @null,left,center,right,justify
+        @null=-1, left, center, right, justify
     }
     public enum ActionEnum
     {
@@ -81,27 +69,35 @@ namespace qxDotNet
     }
     public enum ScrollbarEnum
     {
-        auto,on,off
+        @null=-1,auto,on,off,yes,no
+    }
+    public enum ModeEnum
+    {
+        single,multi,additive,one
     }
     public enum VisibilityEnum
     {
         visible,hidden,excluded
     }
-    public enum BackgroundRepeatEnum
+    public enum ColorPositionUnitEnum
     {
-        repeat,repeat_x,repeat_y,no_repeat,scale
+        px,percent
+    }
+    public enum BorderImageModeEnum
+    {
+        horizontal,vertical,grid
     }
     public enum RepeatEnum
     {
         stretch,repeat,round
     }
+    public enum BackgroundRepeatEnum
+    {
+        repeat,repeat_x,repeat_y,no_repeat,scale
+    }
     public enum StyleEnum
     {
-        solid,dotted,dashed,@double
-    }
-    public enum ColorPositionUnitEnum
-    {
-        px,percent
+        solid,dotted,dashed,@double,inset,outset,ridge,groove
     }
     public enum AllowScriptAccessEnum
     {
@@ -119,10 +115,6 @@ namespace qxDotNet
     {
         window,opaque,transparent
     }
-    public enum ScrollbarVisibleEnum
-    {
-        auto,no,yes
-    }
     public enum LegendPositionEnum
     {
         top,middle
@@ -131,9 +123,25 @@ namespace qxDotNet
     {
         auto,y,x
     }
+    public enum PositionZEnum
+    {
+        above,below
+    }
+    public enum TransformUnitEnum
+    {
+        rem,px
+    }
+    public enum DisplayValueEnum
+    {
+        value,percent
+    }
     public enum BarPositionEnum
     {
         left,right,top,bottom
+    }
+    public enum ArrowPositionEnum
+    {
+        left,right
     }
     public enum OpenSymbolModeEnum
     {
@@ -145,7 +153,7 @@ namespace qxDotNet
     }
     public enum AlignEnum
     {
-        top,right,bottom,left
+        top,right,bottom,left,center,middle
     }
     public enum EdgeEnum
     {

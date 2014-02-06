@@ -48,14 +48,8 @@ namespace qxDotNet.UI.Groupbox
 
             state.SetPropertyValue("command", _command, null);
 
-            if (ChangeValue != null)
-            {
-                state.SetEvent("changeValue", false);
-            }
-            if (Execute != null)
-            {
-                state.SetEvent("execute", false);
-            }
+            state.SetEvent("changeValue", false, "value");
+            state.SetEvent("execute", true);
 
         }
 

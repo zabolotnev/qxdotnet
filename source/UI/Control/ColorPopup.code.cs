@@ -11,6 +11,9 @@ namespace qxDotNet.UI.Control
 
         private string _value = null;
 
+        /// <summary>
+        /// The hex value of the selected color.
+        /// </summary>
         public string Value
         {
             get

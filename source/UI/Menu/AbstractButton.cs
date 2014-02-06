@@ -15,6 +15,7 @@ namespace qxDotNet.UI.Menu
         private string _icon = "";
         private string _label = "";
         private qxDotNet.UI.Menu.Menu _menu = null;
+        private bool? _showCommandLabel = true;
         private qxDotNet.UI.Core.Command _command = null;
 
 
@@ -30,6 +31,7 @@ namespace qxDotNet.UI.Menu
             set
             {
                _icon = value;
+               OnChangeIcon();
             }
         }
 
@@ -45,6 +47,7 @@ namespace qxDotNet.UI.Menu
             set
             {
                _label = value;
+               OnChangeLabel();
             }
         }
 
@@ -60,6 +63,23 @@ namespace qxDotNet.UI.Menu
             set
             {
                _menu = value;
+               OnChangeMenu();
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether the label for the command (shortcut) should be visible or not.
+        /// </summary>
+        public bool? ShowCommandLabel
+        {
+            get
+            {
+                return _showCommandLabel;
+            }
+            set
+            {
+               _showCommandLabel = value;
+               OnChangeShowCommandLabel();
             }
         }
 
@@ -94,12 +114,11 @@ namespace qxDotNet.UI.Menu
             state.SetPropertyValue("icon", _icon, "");
             state.SetPropertyValue("label", _label, "");
             state.SetPropertyValue("menu", _menu, null);
+            state.SetPropertyValue("showCommandLabel", _showCommandLabel, true);
             state.SetPropertyValue("command", _command, null);
 
-            if (Execute != null)
-            {
-                state.SetEvent("execute", true);
-            }
+            state.SetEvent("execute", true);
+
         }
 
         internal override void InvokeEvent(string eventName)
@@ -110,6 +129,58 @@ namespace qxDotNet.UI.Menu
                 OnExecute();
             }
         }
+
+        protected virtual void OnChangeIcon()
+        {
+            if (ChangeIcon != null)
+            {
+                ChangeIcon.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired on change of the property {@link #icon}.
+        /// </summary>
+        public event EventHandler ChangeIcon;
+
+        protected virtual void OnChangeLabel()
+        {
+            if (ChangeLabel != null)
+            {
+                ChangeLabel.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired on change of the property {@link #label}.
+        /// </summary>
+        public event EventHandler ChangeLabel;
+
+        protected virtual void OnChangeMenu()
+        {
+            if (ChangeMenu != null)
+            {
+                ChangeMenu.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired on change of the property {@link #menu}.
+        /// </summary>
+        public event EventHandler ChangeMenu;
+
+        protected virtual void OnChangeShowCommandLabel()
+        {
+            if (ChangeShowCommandLabel != null)
+            {
+                ChangeShowCommandLabel.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired on change of the property {@link #showCommandLabel}.
+        /// </summary>
+        public event EventHandler ChangeShowCommandLabel;
 
         protected virtual void OnChangeCommand()
         {

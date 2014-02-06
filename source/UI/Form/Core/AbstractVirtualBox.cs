@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Form.Core
 {
     /// <summary>
-    /// Basic class for widgets which need a virtual list as popup for example a SelectBox. It&#8217;s basically supports a drop-down as popup with a virtual list and the whole children management.
+    /// Basic class for widgets which need a virtual list as popup for example a SelectBox. It's basically supports a drop-down as popup with a virtual list and the whole children management.
     /// </summary>
     public abstract partial class AbstractVirtualBox : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IForm
     {

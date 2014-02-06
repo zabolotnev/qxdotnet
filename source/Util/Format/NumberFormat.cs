@@ -22,7 +22,7 @@ namespace qxDotNet.Util.Format
 
 
         /// <summary>
-        /// Whether thousand groupings should be used {e.g. &#8220;1,432,234.65&#8221;}.
+        /// Whether thousand groupings should be used {e.g. "1,432,234.65"}.
         /// </summary>
         public bool? GroupingUsed
         {
@@ -37,7 +37,7 @@ namespace qxDotNet.Util.Format
         }
 
         /// <summary>
-        /// The maximum number of fraction digits (digits after the decimal separator). Superfluous digits will cause rounding (&#8220;1.8277&#8221; -> &#8220;1.83&#8221;)
+        /// The maximum number of fraction digits (digits after the decimal separator). Superfluous digits will cause rounding ("1.8277" -> "1.83")
         /// </summary>
         public decimal MaximumFractionDigits
         {
@@ -52,7 +52,7 @@ namespace qxDotNet.Util.Format
         }
 
         /// <summary>
-        /// The maximum number of integer digits (superfluous digits will be cut off (&#8220;1923&#8221; -> &#8220;23&#8221;).
+        /// The maximum number of integer digits (superfluous digits will be cut off ("1923" -> "23").
         /// </summary>
         public decimal MaximumIntegerDigits
         {
@@ -67,7 +67,7 @@ namespace qxDotNet.Util.Format
         }
 
         /// <summary>
-        /// The minimum number of fraction digits (digits after the decimal separator). Missing digits will be filled up with 0 (&#8220;1.5&#8221; -> &#8220;1.500&#8221;)
+        /// The minimum number of fraction digits (digits after the decimal separator). Missing digits will be filled up with 0 ("1.5" -> "1.500")
         /// </summary>
         public decimal MinimumFractionDigits
         {
@@ -82,7 +82,7 @@ namespace qxDotNet.Util.Format
         }
 
         /// <summary>
-        /// The minimum number of integer digits (digits before the decimal separator). Missing digits will be filled up with 0 (&#8220;19&#8221; -> &#8220;0019&#8221;).
+        /// The minimum number of integer digits (digits before the decimal separator). Missing digits will be filled up with 0 ("19" -> "0019").
         /// </summary>
         public decimal MinimumIntegerDigits
         {
@@ -97,7 +97,7 @@ namespace qxDotNet.Util.Format
         }
 
         /// <summary>
-        /// Sets the postfix to put after the number {&#8221; %&#8221; -> &#8220;56.13 %&#8221;}.
+        /// Sets the postfix to put after the number {" %" -> "56.13 %"}.
         /// </summary>
         public string Postfix
         {
@@ -113,7 +113,7 @@ namespace qxDotNet.Util.Format
         }
 
         /// <summary>
-        /// The prefix to put before the number {&#8220;EUR &#8221; -> &#8220;EUR 12.31&#8221;}.
+        /// The prefix to put before the number {"EUR " -> "EUR 12.31"}.
         /// </summary>
         public string Prefix
         {

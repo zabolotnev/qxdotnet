@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Tree
 {
     /// <summary>
-    /// The Tree class implements a tree widget, with collapsible and expandable container nodes and terminal leaf nodes. You instantiate a Tree object and then assign the tree a root folder using the {@link #root} property.  If you don&#8217;t want to show the root item, you can hide it with the {@link #hideRoot} property.  The handling of selections within a tree is somewhat distributed between the root tree object and the attached {@link qx.ui.tree.selection.SelectionManager}. To get the currently selected element of a tree use the tree {@link #getSelection} method and tree {@link #setSelection} to set it. The TreeSelectionManager handles more coarse-grained issues like providing {@link #selectAll} and {@link #resetSelection} methods.
+    /// The Tree class implements a tree widget, with collapsible and expandable container nodes and terminal leaf nodes. You instantiate a Tree object and then assign the tree a root folder using the {@link #root} property.  If you don't want to show the root item, you can hide it with the {@link #hideRoot} property.  The handling of selections within a tree is somewhat distributed between the root tree object and the attached {@link qx.ui.tree.selection.SelectionManager}. To get the currently selected element of a tree use the tree {@link #getSelection} method and tree {@link #setSelection} to set it. The TreeSelectionManager handles more coarse-grained issues like providing {@link #selectAll} and {@link #resetSelection} methods.
     /// </summary>
     public partial class Tree : qxDotNet.UI.Core.Scroll.AbstractScrollArea, qxDotNet.UI.Core.IMultiSelection, qxDotNet.UI.Form.IModelSelection, qxDotNet.UI.Form.IForm
     {
@@ -32,7 +32,7 @@ namespace qxDotNet.UI.Tree
 
 
         /// <summary>
-        /// Hide the root (Tree) node. This differs from the visibility property in that this property hides only the root node, not the node&#8217;s children.
+        /// Hide the root (Tree) node. This differs from the visibility property in that this property hides only the root node, not the node's children.
         /// </summary>
         public bool? HideRoot
         {
@@ -322,22 +322,10 @@ namespace qxDotNet.UI.Tree
             state.SetPropertyValue("requiredInvalidMessage", _requiredInvalidMessage, "");
             state.SetPropertyValue("valid", _valid, true);
 
-            if (AddItem != null)
-            {
-                state.SetEvent("addItem", false);
-            }
-            if (RemoveItem != null)
-            {
-                state.SetEvent("removeItem", false);
-            }
-            if (ChangeSelection != null)
-            {
-                state.SetEvent("changeSelection", false);
-            }
-            if (ChangeModelSelection != null)
-            {
-                state.SetEvent("changeModelSelection", false);
-            }
+            state.SetEvent("addItem", false);
+            state.SetEvent("removeItem", false);
+            state.SetEvent("changeSelection", false);
+            state.SetEvent("changeModelSelection", false);
 
         }
 

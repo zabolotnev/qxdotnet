@@ -13,7 +13,7 @@ namespace qxDotNet.UI.Core.Selection
     {
 
         private bool? _drag = false;
-        private qxDotNet.SelectionModeEnum _mode = SelectionModeEnum.single;
+        private qxDotNet.ModeEnum _mode = ModeEnum.single;
         private bool? _quick = false;
 
 
@@ -35,7 +35,7 @@ namespace qxDotNet.UI.Core.Selection
         /// <summary>
         /// Selects the selection mode to use.   single: One or no element is selected multi: Multi items could be selected. Also allows empty selections. additive: Easy Web-2.0 selection mode. Allows multiple selections without modifier keys. one: If possible always exactly one item is selected 
         /// </summary>
-        public qxDotNet.SelectionModeEnum Mode
+        public qxDotNet.ModeEnum Mode
         {
             get
             {
@@ -75,13 +75,10 @@ namespace qxDotNet.UI.Core.Selection
         {
             base.Render(state);
             state.SetPropertyValue("drag", _drag, false);
-            state.SetPropertyValue("mode", _mode, SelectionModeEnum.single);
+            state.SetPropertyValue("mode", _mode, ModeEnum.single);
             state.SetPropertyValue("quick", _quick, false);
 
-            if (ChangeSelection != null)
-            {
-                state.SetEvent("changeSelection", false);
-            }
+            state.SetEvent("changeSelection", false);
 
         }
 
@@ -94,9 +91,6 @@ namespace qxDotNet.UI.Core.Selection
             }
         }
 
-        /// <summary>
-        /// Invokes after the selection was modified. Contains the selection under the data property.
-        /// </summary>
         protected virtual void OnChangeSelection()
         {
             if (ChangeSelection != null)

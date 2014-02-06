@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Table.Cellrenderer
 {
     /// <summary>
-    /// The conditional cell renderer allows special per cell formatting based on conditions on the cell&#8217;s value.
+    /// The conditional cell renderer allows special per cell formatting based on conditions on the cell's value.
     /// </summary>
     public partial class Conditional : qxDotNet.UI.Table.Cellrenderer.Default
     {

@@ -17,8 +17,8 @@
       }
     ],
 
-    "version" : "trunk",
-    "qooxdoo-versions": ["2.0"]
+    "version" : "master",
+    "qooxdoo-versions": ["3.5"]
   },
   
   "provides" : 

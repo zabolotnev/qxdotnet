@@ -34,7 +34,7 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Whether the button has a third state. Use this for tri-state checkboxes.  When enabled, the value null of the property value stands for &#8220;undetermined&#8221;, while true is mapped to &#8220;enabled&#8221; and false to &#8220;disabled&#8221; as usual. Note that the value property is set to false initially.
+        /// Whether the button has a third state. Use this for tri-state checkboxes.  When enabled, the value null of the property value stands for "undetermined", while true is mapped to "enabled" and false to "disabled" as usual. Note that the value property is set to false initially.
         /// </summary>
         public bool? TriState
         {
@@ -97,10 +97,6 @@ namespace qxDotNet.UI.Form
             state.SetPropertyValue("value", _value, false);
             state.SetPropertyValue("command", _command, null);
 
-            if (Execute != null)
-            {
-                state.SetEvent("execute", false);
-            }
 
             state.SetEvent("execute", true, "value");
 

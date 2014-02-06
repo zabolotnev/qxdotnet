@@ -133,6 +133,7 @@ namespace qxDotNet.UI.Core.Scroll
             {
                 state.SetEvent("scroll", false, "position");
             }
+            state.SetEvent("scrollAnimationEnd", false);
 
         }
 
@@ -142,6 +143,10 @@ namespace qxDotNet.UI.Core.Scroll
             if (eventName == "scroll")
             {
                 OnScroll();
+            }
+            if (eventName == "scrollAnimationEnd")
+            {
+                OnScrollAnimationEnd();
             }
         }
 
@@ -157,6 +162,19 @@ namespace qxDotNet.UI.Core.Scroll
         /// Fired on change of the property {@link #position}.
         /// </summary>
         public event EventHandler Scroll;
+
+        protected virtual void OnScrollAnimationEnd()
+        {
+            if (ScrollAnimationEnd != null)
+            {
+                ScrollAnimationEnd.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Change event for the value.
+        /// </summary>
+        public event EventHandler ScrollAnimationEnd;
 
     }
 }

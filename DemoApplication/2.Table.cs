@@ -17,12 +17,14 @@ namespace DemoApplication
 
             var data = new List<SampleData>();
 
-            for (int i = 0; i < 10; i++)
+            var rnd = new Random();
+
+            for (int i = 0; i < 10000; i++)
             {
                 var row = new SampleData();
                 row.Code = i;
-                row.Name = "Name of " + i.ToString();
-                row.Desc = "Description " + i.ToString();
+                row.Name = "Name of " + rnd.Next(100);
+                row.Desc = "Description " + rnd.Next(100);
                 data.Add(row);
             }
 

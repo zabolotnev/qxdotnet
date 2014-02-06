@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// A form widget which allows a single selection. Looks somewhat like a normal button, but opens a list of items to select when clicking on it.
+    /// A form widget which allows a single selection. Looks somewhat like a normal button, but opens a list of items to select when clicking on it.  Keep in mind that the SelectBox widget has always a selected item (due to the single selection mode). Right after adding the first item a changeSelection event is fired.   var selectBox = new qx.ui.form.SelectBox();  selectBox.addListener(\changeSelection\, function(e) {  // ... });  // now the 'changeSelection' event is fired selectBox.add(new qx.ui.form.ListItem(\Item1\)); 
     /// </summary>
     public partial class SelectBox : qxDotNet.UI.Form.AbstractSelectBox, qxDotNet.UI.Core.ISingleSelection, qxDotNet.UI.Form.IModelSelection
     {

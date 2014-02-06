@@ -86,7 +86,7 @@ namespace qxDotNet.Data
         }
 
         /// <summary>
-        /// The change event which will be fired if there is a change in the array. The data contains a map with three key value pairs: start: The start index of the change. end: The end index of the change. type: The type of the change as a String. This can be &#8216;add&#8217;, &#8216;remove&#8217; or &#8216;order&#8217; items: The items which has been changed (as a JavaScript array).
+        /// The change event which will be fired if there is a change in the array. The data contains a map with three key value pairs: start: The start index of the change. end: The end index of the change. type: The type of the change as a String. This can be "add";, "remove";, "order"; or "add/remove"; added: The items which has been added (as a JavaScript array) removed: The items which has been removed (as a JavaScript array)
         /// </summary>
         public event EventHandler Change;
 
@@ -112,7 +112,7 @@ namespace qxDotNet.Data
         }
 
         /// <summary>
-        /// The change event which will be fired on every change in the model no matter what property changes. This event bubbles so the root model will fire a change event on every change of its children properties too.  Note that properties are required to call {@link #_applyEventPropagation} on apply for changes to be tracked as desired. It is already taken care of that properties created with the {@link qx.data.marshal.Json} marshaler call this method.  The data will contain a map with the following three keys  value: The new value of the property  old: The old value of the property.  name: The name of the property changed including its parent  properties separated by dots. Due to that, the getOldData method will always return null because the old data is contained in the map.
+        /// The change event which will be fired on every change in the model no matter what property changes. This event bubbles so the root model will fire a change event on every change of its children properties too.  Note that properties are required to call {@link #_applyEventPropagation} on apply for changes to be tracked as desired. It is already taken care of that properties created with the {@link qx.data.marshal.Json} marshaler call this method.  The data will contain a map with the following three keys  value: The new value of the property  old: The old value of the property.  name: The name of the property changed including its parent  properties separated by dots.  item: The item which has the changed property. Due to that, the getOldData method will always return null because the old data is contained in the map.
         /// </summary>
         public event EventHandler ChangeBubble;
 

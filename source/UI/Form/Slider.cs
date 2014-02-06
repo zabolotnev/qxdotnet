@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// The Slider widget provides a vertical or horizontal slider.  The Slider is the classic widget for controlling a bounded value. It lets the user move a slider handle along a horizontal or vertical groove and translates the handle&#8217;s position into an integer value within the defined range.  The Slider has very few of its own functions. The most useful functions are slideTo() to set the slider directly to some value; setSingleStep(), setPageStep() to set the steps; and setMinimum() and setMaximum() to define the range of the slider.  A slider accepts focus on Tab and provides both a mouse wheel and a keyboard interface. The keyboard interface is the following:   Left/Right move a horizontal slider by one single step. Up/Down move a vertical slider by one single step. PageUp moves up one page. PageDown moves down one page. Home moves to the start (minimum). End moves to the end (maximum).   Here are the main properties of the class:   value: The bounded integer that {@link qx.ui.form.INumberForm} maintains. minimum: The lowest possible value. maximum: The highest possible value. singleStep: The smaller of two natural steps that an abstract sliders provides and typically corresponds to the user pressing an arrow key. pageStep: The larger of two natural steps that an abstract slider provides and typically corresponds to the user pressing PageUp or PageDown. 
+    /// The Slider widget provides a vertical or horizontal slider.  The Slider is the classic widget for controlling a bounded value. It lets the user move a slider handle along a horizontal or vertical groove and translates the handle's position into an integer value within the defined range.  The Slider has very few of its own functions. The most useful functions are slideTo() to set the slider directly to some value; setSingleStep(), setPageStep() to set the steps; and setMinimum() and setMaximum() to define the range of the slider.  A slider accepts focus on Tab and provides both a mouse wheel and a keyboard interface. The keyboard interface is the following:   Left/Right move a horizontal slider by one single step. Up/Down move a vertical slider by one single step. PageUp moves up one page. PageDown moves down one page. Home moves to the start (minimum). End moves to the end (maximum).   Here are the main properties of the class:   value: The bounded integer that {@link qx.ui.form.INumberForm} maintains. minimum: The lowest possible value. maximum: The highest possible value. singleStep: The smaller of two natural steps that an abstract sliders provides and typically corresponds to the user pressing an arrow key. pageStep: The larger of two natural steps that an abstract slider provides and typically corresponds to the user pressing PageUp or PageDown. 
     /// </summary>
     public partial class Slider : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IForm, qxDotNet.UI.Form.INumberForm, qxDotNet.UI.Form.IRange
     {
@@ -220,6 +220,9 @@ namespace qxDotNet.UI.Form
             state.SetPropertyValue("requiredInvalidMessage", _requiredInvalidMessage, "");
             state.SetPropertyValue("valid", _valid, true);
 
+            state.SetEvent("changeValue", false);
+            state.SetEvent("slideAnimationEnd", false);
+
             state.SetEvent("changeValue", false, "value");
 
         }
@@ -230,6 +233,10 @@ namespace qxDotNet.UI.Form
             if (eventName == "changeValue")
             {
                 OnChangeValue();
+            }
+            if (eventName == "slideAnimationEnd")
+            {
+                OnSlideAnimationEnd();
             }
         }
 
@@ -271,6 +278,19 @@ namespace qxDotNet.UI.Form
         /// Change event for the value.
         /// </summary>
         public event EventHandler ChangeValue;
+
+        protected virtual void OnSlideAnimationEnd()
+        {
+            if (SlideAnimationEnd != null)
+            {
+                SlideAnimationEnd.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired as soon as the slide animation ended.
+        /// </summary>
+        public event EventHandler SlideAnimationEnd;
 
         protected virtual void OnChangeInvalidMessage()
         {

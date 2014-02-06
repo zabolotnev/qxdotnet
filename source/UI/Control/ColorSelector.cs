@@ -204,7 +204,7 @@ namespace qxDotNet.UI.Control
         }
 
         /// <summary>
-        /// Fired when the &#8220;Cancel&#8221; button is clicked.
+        /// Fired when the "Cancel" button is clicked.
         /// </summary>
         public event EventHandler Dialogcancel;
 
@@ -217,7 +217,7 @@ namespace qxDotNet.UI.Control
         }
 
         /// <summary>
-        /// Fired when the &#8220;OK&#8221; button is clicked.
+        /// Fired when the "OK" button is clicked.
         /// </summary>
         public event EventHandler Dialogok;
 

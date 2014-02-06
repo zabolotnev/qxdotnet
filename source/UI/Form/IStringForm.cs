@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// Form interface for all form widgets which have strings as their primary data type like textfield&#8217;s.
+    /// Form interface for all form widgets which have strings as their primary data type like textfield's.
     /// </summary>
     public interface IStringForm
     {

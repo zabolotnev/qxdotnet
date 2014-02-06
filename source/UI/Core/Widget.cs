@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Core
 {
     /// <summary>
-    /// This is the base class for all widgets.  A widget consists of at least three HTML elements. The container element, which is added to the parent widget has two child Element: The &#8220;decoration&#8221; and the &#8220;content&#8221; element. The decoration element has a lower z-Index and contains markup to render the widget&#8217;s background and border using an implementation of {@link qx.ui.decoration.IDecorator}.The content element is positioned inside the &#8220;container&#8221; element to respect paddings and contains the &#8220;real&#8221; widget element.   -container------------ | | | -decoration---- | | | -content----|- | | | | || | | --|------------| | | -------------- | | | ----------------------   External Documentation   Documentation of this widget in the qooxdoo manual.
+    /// This is the base class for all widgets.  External Documentation   Documentation of this widget in the qooxdoo manual.
     /// </summary>
     public partial class Widget : qxDotNet.UI.Core.LayoutItem
     {
@@ -33,14 +33,13 @@ namespace qxDotNet.UI.Core
         private int _paddingRight = 0;
         private int _paddingTop = 0;
         private bool? _selectable = false;
-        private string _shadow = null;
         private int _tabIndex = 0;
         private string _textColor = null;
         private qxDotNet.UI.Tooltip.ToolTip _toolTip = null;
         private string _toolTipIcon = "";
         private string _toolTipText = "";
         private qxDotNet.VisibilityEnum _visibility = VisibilityEnum.visible;
-        private int _zIndex = 0;
+        private int _zIndex = 10;
 
 
         /// <summary>
@@ -122,7 +121,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// Mapping to native style property cursor.  The name of the cursor to show when the mouse pointer is over the widget. This is any valid CSS2 cursor name defined by W3C.  The following values are possible crossbrowser: default crosshair pointer move n-resize ne-resize e-resize se-resize s-resize sw-resize w-resize nw-resize text wait help  
+        /// Mapping to native style property cursor.  The name of the cursor to show when the mouse pointer is over the widget. This is any valid CSS2 cursor name defined by W3C.  The following values are possible crossbrowser: default crosshair pointer move n-resize ne-resize e-resize se-resize s-resize sw-resize w-resize nw-resize nesw-resize nwse-resize text wait help  
         /// </summary>
         public string Cursor
         {
@@ -137,7 +136,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The decorator property points to an object, which is responsible for drawing the widget&#8217;s decoration, e.g. border, background or shadow.  This can be a decorator object or a string pointing to a decorator defined in the decoration theme.
+        /// The decorator property points to an object, which is responsible for drawing the widget";s decoration, e.g. border, background or shadow.  This can be a decorator object or a string pointing to a decorator defined in the decoration theme.
         /// </summary>
         public qxDotNet.UI.Decoration.Abstract Decorator
         {
@@ -214,7 +213,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The widget&#8217;s font. The value is either a font name defined in the font theme or an instance of {@link qx.bom.Font}.
+        /// The widget's font. The value is either a font name defined in the font theme or an instance of {@link qx.bom.Font}.
         /// </summary>
         public Font Font
         {
@@ -367,22 +366,6 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The decorator used to render the widget&#8217;s outline/shadow. The decorator&#8217;s insets are interpreted as the amount of pixels the shadow extends the widget&#8217;s size.  This can be a decorator object or a string pointing to a decorator defined in the decoration theme.  Note that shadows work only properly in top level widgets like menus, windows or tooltips. If used in inner widgets the shadow may not be cut by the parent widget.
-        /// </summary>
-        public string Shadow
-        {
-            get
-            {
-                return _shadow;
-            }
-            set
-            {
-               _shadow = value;
-               OnChangeShadow();
-            }
-        }
-
-        /// <summary>
         /// Defines the tab index of an widget. If widgets with tab indexes are part of the current focus root these elements are sorted in first priority. Afterwards the sorting continues by rendered position, zIndex and other criteria.  Please note: The value must be between 1 and 32000.
         /// </summary>
         public int TabIndex
@@ -429,7 +412,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The icon URI of the widget&#8217;s tooltip. This icon is displayed using a shared tooltip instance. If the tooltip must be customized beyond the tooltip text {@link #toolTipText} and the icon, the {@link #toolTip} property has to be used.
+        /// The icon URI of the widget's tooltip. This icon is displayed using a shared tooltip instance. If the tooltip must be customized beyond the tooltip text {@link #toolTipText} and the icon, the {@link #toolTip} property has to be used.
         /// </summary>
         public string ToolTipIcon
         {
@@ -445,7 +428,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The text of the widget&#8217;s tooltip. This text can contain HTML markup. The text is displayed using a shared tooltip instance. If the tooltip must be customized beyond the text and an icon {@link #toolTipIcon}, the {@link #toolTip} property has to be used
+        /// The text of the widget's tooltip. This text can contain HTML markup. The text is displayed using a shared tooltip instance. If the tooltip must be customized beyond the text and an icon {@link #toolTipIcon}, the {@link #toolTip} property has to be used
         /// </summary>
         public string ToolTipText
         {
@@ -525,14 +508,13 @@ namespace qxDotNet.UI.Core
             state.SetPropertyValue("paddingRight", _paddingRight, 0);
             state.SetPropertyValue("paddingTop", _paddingTop, 0);
             state.SetPropertyValue("selectable", _selectable, false);
-            state.SetPropertyValue("shadow", _shadow, null);
             state.SetPropertyValue("tabIndex", _tabIndex, 0);
             state.SetPropertyValue("textColor", _textColor, null);
             state.SetPropertyValue("toolTip", _toolTip, null);
             state.SetPropertyValue("toolTipIcon", _toolTipIcon, "");
             state.SetPropertyValue("toolTipText", _toolTipText, "");
             state.SetPropertyValue("visibility", _visibility, VisibilityEnum.visible);
-            state.SetPropertyValue("zIndex", _zIndex, 0);
+            state.SetPropertyValue("zIndex", _zIndex, 10);
 
             if (Activated != null)
             {
@@ -812,6 +794,10 @@ namespace qxDotNet.UI.Core
             {
                 OnKeyup();
             }
+            if (eventName == "longtap")
+            {
+                OnLongtap();
+            }
             if (eventName == "losecapture")
             {
                 OnLosecapture();
@@ -1047,19 +1033,6 @@ namespace qxDotNet.UI.Core
         /// </summary>
         public event EventHandler ChangeSelectable;
 
-        protected virtual void OnChangeShadow()
-        {
-            if (ChangeShadow != null)
-            {
-                ChangeShadow.Invoke(this, System.EventArgs.Empty);
-            }
-        }
-
-        /// <summary>
-        /// Fired on change of the property {@link #shadow}.
-        /// </summary>
-        public event EventHandler ChangeShadow;
-
         protected virtual void OnChangeTextColor()
         {
             if (ChangeTextColor != null)
@@ -1212,7 +1185,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// Fired when the drag configuration has been modified e.g. the user pressed a key which changed the selected action.
+        /// Fired when the drag configuration has been modified e.g. the user pressed a key which changed the selected action. This event will be fired on the draggable and the droppable element. In case of the droppable element, you can cancel the event and prevent a drop based on e.g. the current action.
         /// </summary>
         public event EventHandler Dragchange;
 
@@ -1290,7 +1263,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// Fired when the drop was successfully done and the target widget is now asking for data. The listener should transfer the data, respecting the selected action, to the event. This can be done using the event&#8217;s {@link qx.event.type.Drag#addData} method.
+        /// Fired when the drop was successfully done and the target widget is now asking for data. The listener should transfer the data, respecting the selected action, to the event. This can be done using the event's {@link qx.event.type.Drag#addData} method.
         /// </summary>
         public event EventHandler Droprequest;
 
@@ -1385,6 +1358,19 @@ namespace qxDotNet.UI.Core
         /// </summary>
         public event EventHandler Keyup;
 
+        protected virtual void OnLongtap()
+        {
+            if (Longtap != null)
+            {
+                Longtap.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired when a finger holds on the screen.
+        /// </summary>
+        public event EventHandler Longtap;
+
         protected virtual void OnLosecapture()
         {
             if (Losecapture != null)
@@ -1420,7 +1406,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// Fired if the mouse cursor moves over the widget.  The data property of the event contains the widget&#8217;s computed location  and dimension as returned by {@link qx.ui.core.LayoutItem#getBounds}
+        /// Fired if the mouse cursor moves over the widget.  The data property of the event contains the widget's computed location  and dimension as returned by {@link qx.ui.core.LayoutItem#getBounds}
         /// </summary>
         public event EventHandler Mousemove;
 
@@ -1485,7 +1471,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// Fired on move (after layout) of the widget. The data property of the event contains the widget&#8217;s computed location and dimension as returned by {@link qx.ui.core.LayoutItem#getBounds}
+        /// Fired on move (after layout) of the widget. The data property of the event contains the widget's computed location and dimension as returned by {@link qx.ui.core.LayoutItem#getBounds}
         /// </summary>
         public event EventHandler Move;
 
@@ -1498,7 +1484,7 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// Fired on resize (after layout) of the widget. The data property of the event contains the widget&#8217;s computed location and dimension as returned by {@link qx.ui.core.LayoutItem#getBounds}
+        /// Fired on resize (after layout) of the widget. The data property of the event contains the widget's computed location and dimension as returned by {@link qx.ui.core.LayoutItem#getBounds}
         /// </summary>
         public event EventHandler Resize;
 
