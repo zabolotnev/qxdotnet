@@ -443,6 +443,9 @@
     <Compile Include="Encoder.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Pair.cs" />
+    <Compile Include="UploadWidget\UploadButton.cs" />
+    <Compile Include="UploadWidget\UploadField.cs" />
+    <Compile Include="UploadWidget\UploadForm.cs" />
     <Compile Include="Util\Format\DateFormat.code.cs" />
     <Compile Include="Util\Format\DateFormat.cs">
       <SubType>Code</SubType>

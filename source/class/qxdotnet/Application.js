@@ -65,7 +65,7 @@ qx.Class.define("qxdotnet.Application",
                 width: "100%",
                 height: "100%"
             });
-            },
+        },
 
 
         showLoading2: function() {
@@ -550,6 +550,9 @@ qx.Class.define("qxdotnet.Application",
             a = new qx.util.TimerManager();
             a = new qx.util.ValueManager();
             a = new qxdotnet.table.RemoteDataModel();
+            a = new uploadwidget.UploadButton();
+            a = new uploadwidget.UploadForm();
+            a = new uploadwidget.UploadField();
         }
     }
 });
