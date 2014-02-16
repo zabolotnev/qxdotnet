@@ -8,8 +8,13 @@ namespace qxDotNet.UI.Core
     public partial class Widget : qxDotNet.UI.Core.LayoutItem
     {
 
-        private LayoutCollection _children = new LayoutCollection();
+        private LayoutCollection _children;
         private ItemOptionCollection _options = new ItemOptionCollection();
+
+        public Widget()
+        {
+            _children = new LayoutCollection(this);
+        }
 
         protected ItemOptionCollection ItemOptions
         {
@@ -87,6 +92,22 @@ namespace qxDotNet.UI.Core
 
     public class LayoutCollection : System.Collections.ObjectModel.Collection<LayoutItem>
     {
+
+        private Widget _parent;
+
+        public LayoutCollection(Widget parent)
+        {
+            _parent = parent;
+        }
+
+        internal Widget Parent
+        {
+            get
+            {
+                return _parent;
+            }
+        }
+
         private List<LayoutItem> _newItems = new List<LayoutItem>();
         private List<LayoutItem> _removedItems = new List<LayoutItem>();
 
@@ -95,6 +116,7 @@ namespace qxDotNet.UI.Core
             foreach (var i in this)
             {
                 _removedItems.Add(i);
+                i.SetOwnerList(null);
             }
             base.ClearItems();
             _newItems.Clear();
@@ -114,6 +136,7 @@ namespace qxDotNet.UI.Core
                     _newItems.Add(item);
                 }
             }
+            item.SetOwnerList(this);
         }
 
         public void EnsureAdded(LayoutItem item)
@@ -121,6 +144,7 @@ namespace qxDotNet.UI.Core
             if (!_newItems.Contains(item))
             {
                 _newItems.Add(item);
+                item.SetOwnerList(this);
             }
         }
 
@@ -136,6 +160,7 @@ namespace qxDotNet.UI.Core
                 _removedItems.Add(itm);
             }
             base.RemoveItem(index);
+            itm.SetOwnerList(null);
         }
 
         protected override void SetItem(int index, LayoutItem item)
@@ -151,7 +176,9 @@ namespace qxDotNet.UI.Core
                     _newItems.Add(item);
                 }
             }
+            this[index].SetOwnerList(null);
             base.SetItem(index, item);
+            item.SetOwnerList(this);
         }
 
         internal void Commit()

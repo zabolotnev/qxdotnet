@@ -388,7 +388,7 @@ namespace qxDotNet.Common
                 }
                 if (ev.callServer)
                 {
-                    response.Write("App.send();");
+                    response.Write(ev.CustomCallServerExpression);
                 }
                 response.Write("});\n");
             }

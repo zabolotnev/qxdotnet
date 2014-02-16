@@ -18,7 +18,7 @@ namespace qxDotNet.UI.Table
 
         private IList _dataSource;
         private bool _needToRefresh = true;
-        private List<System.Reflection.PropertyInfo> _accessors;
+        private List<System.Reflection.MemberInfo> _accessors;
 
         private int _sortColumnIndex = -1;
         private bool _sordDescendant;
@@ -117,7 +117,8 @@ namespace qxDotNet.UI.Table
             if (sample == null) return;
                 
             var props = sample.GetType().GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-            _accessors = new List<System.Reflection.PropertyInfo>();
+            var flds = sample.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            _accessors = new List<System.Reflection.MemberInfo>();
             foreach (var c in Columns)
 	        {
         		if (string.IsNullOrEmpty(c.Field))
@@ -140,7 +141,20 @@ namespace qxDotNet.UI.Table
                         
                     if (!founded)
                     {
-                        _accessors.Add(null);
+                        foreach (var p in flds)
+                        {
+                            if (p.Name.ToLower() == cn)
+                            {
+                                founded = true;
+                                _accessors.Add(p);
+                                break;
+                            }
+                        }
+
+                        if (!founded)
+                        {
+                            _accessors.Add(null);
+                        }
                     }
                 }
                     
@@ -167,7 +181,18 @@ namespace qxDotNet.UI.Table
             {
                 return null;
             }
-            return p.GetValue(item, null);
+            if (p is System.Reflection.PropertyInfo)
+            {
+                return (p as System.Reflection.PropertyInfo).GetValue(item, null);
+            }
+            else if (p is System.Reflection.FieldInfo)
+            {
+                return (p as System.Reflection.FieldInfo).GetValue(item);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void Sort(int columnIndex, bool isDesc)

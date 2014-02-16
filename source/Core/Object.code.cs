@@ -542,12 +542,12 @@ namespace qxDotNet.Core
                 }
             }
 
-            public void SetEvent(string eventName, bool callServer, params string[] modifiedProperty)
+            public EventInfo SetEvent(string eventName, bool callServer, params string[] modifiedProperty)
             {
-                SetEvent(eventName, callServer, modifiedProperty.ToList());
+                return SetEvent(eventName, callServer, modifiedProperty.ToList());
             }
 
-            public void SetEvent(string eventName, bool callServer, List<string> modifiedProperties)
+            public EventInfo SetEvent(string eventName, bool callServer, List<string> modifiedProperties)
             {
                 var ev = new EventInfo() { name = eventName, modifiedProperies = modifiedProperties, callServer = callServer };
                 if (modifiedProperties != null)
@@ -574,12 +574,14 @@ namespace qxDotNet.Core
                     }
                 }
                 SetEvent(ev);
+                return ev;
             }
 
-            public void SetEvent(string eventName, bool callServer)
+            public EventInfo SetEvent(string eventName, bool callServer)
             {
                 var ev = new EventInfo() { name = eventName, callServer = callServer };
                 SetEvent(ev);
+                return ev;
             }
 
             public void SetEvent(EventInfo ev)
@@ -599,11 +601,13 @@ namespace qxDotNet.Core
             {
                 modifiedProperies = new List<string>();
                 referencedProperies = new List<string>();
+                CustomCallServerExpression = "App.send();";
             }
 
             public string name { get; set; }
             public List<string> modifiedProperies { get; set; }
             public bool callServer { get; set; }
+            public string CustomCallServerExpression { get; set; }
             public List<string> referencedProperies { get; set; }
 
         }

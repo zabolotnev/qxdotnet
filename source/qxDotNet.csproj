@@ -132,6 +132,7 @@
     <Compile Include="UI\Core\ColumnData.cs" />
     <Compile Include="UI\Core\Command.cs" />
     <Compile Include="UI\Core\Command.code.cs" />
+    <Compile Include="UI\Core\LayoutItem.Code.cs" />
     <Compile Include="UI\Core\IMultiSelection.cs" />
     <Compile Include="UI\Core\ISingleSelection.cs" />
     <Compile Include="UI\Core\LayoutItem.cs" />
@@ -466,6 +467,9 @@
     <Content Include="class\qxdotnet\theme\Decoration.js" />
     <Content Include="class\qxdotnet\theme\Font.js" />
     <Content Include="class\qxdotnet\theme\Theme.js" />
+    <Content Include="class\uploadwidget\UploadButton.js" />
+    <Content Include="class\uploadwidget\UploadField.js" />
+    <Content Include="class\uploadwidget\UploadForm.js" />
     <Content Include="Common\StandaloneBootstrap.htm" />
     <Content Include="resource\qxdotnet\loading.gif" />
     <Content Include="translation\readme.txt" />
