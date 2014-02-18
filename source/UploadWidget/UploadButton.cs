@@ -63,8 +63,8 @@ namespace qxDotNet.UploadWidget
             base.Render(state);
 
             state.SetPropertyValue("fieldName", _FieldName, null);
-            state.SetPropertyValue("fileName", _FileName, null);
-            state.SetPropertyValue("fileSize", _FileSize, 0);
+            state.SetPropertyValue("fileName", null, null);
+            state.SetPropertyValue("fileSize", 0, 0);
 
             var eventChangeFileName = state.SetEvent("changeFileName", true, "FileName");
 

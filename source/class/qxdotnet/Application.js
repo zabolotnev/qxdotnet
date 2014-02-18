@@ -23,6 +23,7 @@ qx.Class.define("qxdotnet.Application",
         */
 
         requestCounter: 0,
+        isFirstBoot: true,
         isLoading: false,
         loadingControl: new qx.ui.container.Composite(),
         controls: new Array(),
@@ -163,10 +164,11 @@ qx.Class.define("qxdotnet.Application",
                                 c._id_ = i;
                             }
                         }
+                        app.isFirstBoot = false;
                     }
                     catch (ex) {
-                        if (app.requestCounter == 0) {
-                            alert("Internal server error. Try again.");
+                        if (app.isFirstBoot) {
+                            alert("Internal server error: " + ex);
                         } else {
                             //alert("Script error: " + ex);
                             history.go(0);

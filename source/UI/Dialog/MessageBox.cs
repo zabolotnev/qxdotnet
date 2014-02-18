@@ -11,9 +11,9 @@ namespace qxDotNet.UI.Dialog
         private qxDotNet.UI.Basic.Label _label;
         private qxDotNet.UI.Basic.Image _img;
         private qxDotNet.UI.Container.Composite _panelButtons;
-        private qxDotNet.UI.Form.Button _btn1;
-        private qxDotNet.UI.Form.Button _btn2;
-        private qxDotNet.UI.Form.Button _btn3;
+        private HideButton _btn1;
+        private HideButton _btn2;
+        private HideButton _btn3;
         private qxDotNet.UI.Container.Composite _host;
         private MessageBoxCallback _callback;
         private MessageBoxIconEnum _icon = MessageBoxIconEnum.Information;
@@ -173,52 +173,52 @@ namespace qxDotNet.UI.Dialog
             switch (_buttons)
             {
                 case MessageBoxButtonsEnum.Ok:
-                    _btn1 = new qxDotNet.UI.Form.Button();
+                    _btn1 = new HideButton(this);
                     _btn1.Label = _buttonOk;
                     _btn1.MinWidth = 60;
                     _btn1.Execute += new EventHandler(_btn1_Execute);
                     _panelButtons.Add(_btn1);
                     break;
                 case MessageBoxButtonsEnum.OkCancel:
-                    _btn1 = new qxDotNet.UI.Form.Button();
+                    _btn1 = new HideButton(this);
                     _btn1.Label = _buttonOk;
                     _btn1.MinWidth = 60;
                     _btn1.Execute += new EventHandler(_btn1_Execute);
                     _panelButtons.Add(_btn1);
 
-                    _btn2 = new qxDotNet.UI.Form.Button();
+                    _btn2 = new HideButton(this);
                     _btn2.Label = _buttonCancel;
                     _btn2.MinWidth = 60;
                     _btn2.Execute += new EventHandler(_btn2_Execute);
                     _panelButtons.Add(_btn2);
                     break;
                 case MessageBoxButtonsEnum.YesNo:
-                    _btn1 = new qxDotNet.UI.Form.Button();
+                    _btn1 = new HideButton(this);
                     _btn1.Label = _buttonYes;
                     _btn1.MinWidth = 60;
                     _btn1.Execute += new EventHandler(_btn1_Execute);
                     _panelButtons.Add(_btn1);
 
-                    _btn2 = new qxDotNet.UI.Form.Button();
+                    _btn2 = new HideButton(this);
                     _btn2.Label = _buttonNo;
                     _btn2.MinWidth = 60;
                     _btn2.Execute += new EventHandler(_btn2_Execute);
                     _panelButtons.Add(_btn2);
                     break;
                 case MessageBoxButtonsEnum.YesNoCancel:
-                    _btn1 = new qxDotNet.UI.Form.Button();
+                    _btn1 = new HideButton(this);
                     _btn1.Label = _buttonYes;
                     _btn1.MinWidth = 60;
                     _btn1.Execute += new EventHandler(_btn1_Execute);
                     _panelButtons.Add(_btn1);
 
-                    _btn2 = new qxDotNet.UI.Form.Button();
+                    _btn2 = new HideButton(this);
                     _btn2.Label = _buttonNo;
                     _btn2.MinWidth = 60;
                     _btn2.Execute += new EventHandler(_btn2_Execute);
                     _panelButtons.Add(_btn2);
 
-                    _btn3 = new qxDotNet.UI.Form.Button();
+                    _btn3 = new HideButton(this);
                     _btn3.Label = _buttonCancel;
                     _btn3.MinWidth = 60;
                     _btn3.Execute += new EventHandler(_btn3_Execute);
@@ -226,32 +226,32 @@ namespace qxDotNet.UI.Dialog
 
                     break;
                 case MessageBoxButtonsEnum.AbortRetryIgnore:
-                    _btn1 = new qxDotNet.UI.Form.Button();
+                    _btn1 = new HideButton(this);
                     _btn1.Label = _buttonAbort;
                     _btn1.MinWidth = 60;
                     _btn1.Execute += new EventHandler(_btn1_Execute);
                     _panelButtons.Add(_btn1);
 
-                    _btn2 = new qxDotNet.UI.Form.Button();
+                    _btn2 = new HideButton(this);
                     _btn2.Label = _buttonRetry;
                     _btn2.MinWidth = 60;
                     _btn2.Execute += new EventHandler(_btn2_Execute);
                     _panelButtons.Add(_btn2);
 
-                    _btn3 = new qxDotNet.UI.Form.Button();
+                    _btn3 = new HideButton(this);
                     _btn3.Label = _buttonIgnore;
                     _btn3.MinWidth = 60;
                     _btn3.Execute += new EventHandler(_btn3_Execute);
                     _panelButtons.Add(_btn3);
                     break;
                 case MessageBoxButtonsEnum.RetryCancel:
-                    _btn1 = new qxDotNet.UI.Form.Button();
+                    _btn1 = new HideButton(this);
                     _btn1.Label = _buttonRetry;
                     _btn1.MinWidth = 60;
                     _btn1.Execute += new EventHandler(_btn1_Execute);
                     _panelButtons.Add(_btn1);
 
-                    _btn2 = new qxDotNet.UI.Form.Button();
+                    _btn2 = new HideButton(this);
                     _btn2.Label = _buttonCancel;
                     _btn2.MinWidth = 60;
                     _btn2.Execute += new EventHandler(_btn2_Execute);
@@ -387,6 +387,26 @@ namespace qxDotNet.UI.Dialog
             }
             base.OnClose();
         }
+
+        private class HideButton : qxDotNet.UI.Form.Button
+        {
+
+            private qxDotNet.UI.Window.Window _owner;
+
+            public HideButton(qxDotNet.UI.Window.Window owner)
+            {
+                _owner = owner;
+            }
+
+            internal override void Render(qxDotNet.Core.Object.PropertyBag state)
+            {
+                base.Render(state);
+
+                state.SetEvent("execute", true).CustomCallServerExpression = "ctr[" + _owner.clientId + "].hide();App.send();";
+            }
+
+        }
+
 
     }
 
