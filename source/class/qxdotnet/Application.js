@@ -58,7 +58,6 @@ qx.Class.define("qxdotnet.Application",
             var root = this.getRoot();
             this.loadingControl.setOpacity(0);
             qx.event.Timer.once(this.showLoading2, this, 500);
-
             root.add(this.loadingControl,
             {
                 left: 0,
@@ -109,16 +108,16 @@ qx.Class.define("qxdotnet.Application",
                 this.propvalue[propName] = propAccessor;
             };
 
-            if (!this.isLoading) {
+            //if (!this.isLoading) {
                 this.events.push(event);
-            }
+            //}
 
             return event;
         },
 
         sendTimeout: null,
 
-        send: function() {
+        send: function () {
             if (this.isLoading) {
                 return;
             }
@@ -146,9 +145,16 @@ qx.Class.define("qxdotnet.Application",
                         app.hideLoading();
                         app.isLoading = false;
 
-                        var messageWin = window.open("about:blank");
-                        messageWin.document.write(xmlhttp.responseText);
-                        return;
+                        var message = xmlhttp.responseText;
+
+                        if (message) {
+                            var messageWin = window.open("about:blank");
+                            messageWin.document.write(message);
+                            return;
+                        } else {
+                            history.go(0);
+                            return;
+                        }
                     }
 
                     try {
@@ -183,18 +189,26 @@ qx.Class.define("qxdotnet.Application",
                     app.hideLoading();
                     app.isLoading = false;
 
-                    var messageWin = window.open("about:blank");
-                    messageWin.document.write(xmlhttp.responseText);
+                    var message = xmlhttp.responseText;
+
+                    if (message) {
+                        var messageWin = window.open("about:blank");
+                        messageWin.document.write(message);
+                    }
+                    else {
+                        history.go(0);
+                    }
+
                 }
             };
 
-            this.sendTimeout = setTimeout(function() {
-                var app = qx.core.Init.getApplication();
-                app.hideLoading();
-                app.isLoading = false;
-                alert("Communication error!");
-            },
-            30000);
+            //this.sendTimeout = setTimeout(function() {
+            //    var app = qx.core.Init.getApplication();
+            //    app.hideLoading();
+            //    app.isLoading = false;
+            //    alert("Communication error!");
+            //},
+            //30000);
 
             var params = "req=" + this.requestCounter;
 
@@ -212,10 +226,15 @@ qx.Class.define("qxdotnet.Application",
                             var name = ev.propname[j];
 
                             if (name) {
-                                var propRef = "var App = qx.core.Init.getApplication();var ctr = App.getControls();" + ev.propvalue[name];
-                                var value = eval(propRef);
-                                value = this.escapeXMLAttribute(value);
-                                evData += name + "=\"" + value + "\" ";
+                                try {
+                                    var propRef = "var App = qx.core.Init.getApplication();var ctr = App.getControls();" + ev.propvalue[name];
+                                    var value = eval(propRef);
+                                    value = this.escapeXMLAttribute(value);
+                                    evData += name + "=\"" + value + "\" ";
+                                } 
+                                catch (ex) {
+                                    qx.log.Logger.error(this, ex.message);
+                                }
                             }
                         }
 
@@ -227,7 +246,7 @@ qx.Class.define("qxdotnet.Application",
                 params = params + "&ev=" + encodeURIComponent(evData);
             }
 
-            this.isLoading = false;
+            this.isLoading = true;
 
             xmlhttp.open("POST", ApplicationName, true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

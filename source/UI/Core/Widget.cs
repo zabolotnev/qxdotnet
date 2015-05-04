@@ -614,7 +614,9 @@ namespace qxDotNet.UI.Core
             }
             if (Keypress != null)
             {
-                state.SetEvent("keypress", false);
+                var ev = state.SetEvent("keypress", true);
+				ev.CustomEventCondition = "e.getKeyIdentifier() == \"Enter\"";
+                ev.CustomCallServerExpression = "setTimeout(function() { App.send();}, 1);";
             }
             if (Keyup != null)
             {

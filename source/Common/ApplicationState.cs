@@ -361,7 +361,15 @@ namespace qxDotNet.Common
 
             foreach (var ev in events)
             {
+                if (!_isRefreshRequest && ev.IsEventSent)
+                {
+                    continue;
+                }
                 response.Write(obj.GetReference() + ".addListener(\"" + ev.name + "\", function(e) {");
+				if (!string.IsNullOrEmpty(ev.CustomEventCondition))
+				{
+					response.Write("if (" + ev.CustomEventCondition + ") {\n");
+				}
                 if (ev.modifiedProperies.Count == 0)
                 {
                     response.Write("App.ev(" + obj.clientId + ", \"" + ev.name + "\", null);\n");
@@ -390,7 +398,12 @@ namespace qxDotNet.Common
                 {
                     response.Write(ev.CustomCallServerExpression);
                 }
+                if (!string.IsNullOrEmpty(ev.CustomEventCondition))
+				{
+					response.Write("}\n");
+				}
                 response.Write("});\n");
+                ev.IsEventSent = true;
             }
 
             obj.CustomPostRender(response, _isRefreshRequest);

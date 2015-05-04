@@ -502,12 +502,12 @@ namespace qxDotNet.Core
                 {
                     result[item.Key] = item.Value;
                 }
-                return result.Values.ToList();
+                return result.Values.OrderBy(f => f.callServer).ToList();
             }
 
             public List<EventInfo> GetNewEvents()
             {
-                return _newEvents.Values.ToList();
+                return _newEvents.Values.OrderBy(f => f.callServer).ToList();
             }
 
             public void SetPropertyValue(string propertyName, object value, object defaultValue)
@@ -608,8 +608,9 @@ namespace qxDotNet.Core
             public List<string> modifiedProperies { get; set; }
             public bool callServer { get; set; }
             public string CustomCallServerExpression { get; set; }
+			public string CustomEventCondition { get; set; }
             public List<string> referencedProperies { get; set; }
-
+            public bool IsEventSent { get; set; }
         }
 
         private class BindingInfo

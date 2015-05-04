@@ -115,7 +115,17 @@ namespace qxDotNet.UI.Core
         {
             foreach (var i in this)
             {
-                _removedItems.Add(i);
+                if (_newItems.Contains(i))
+                {
+                    _newItems.Remove(i);
+                }
+                else
+                {
+                    if (!_removedItems.Contains(i))
+                    {
+                        _removedItems.Add(i);
+                    }
+                }
                 i.SetOwnerList(null);
             }
             base.ClearItems();
@@ -155,9 +165,12 @@ namespace qxDotNet.UI.Core
             {
                 _newItems.Remove(itm);
             }
-            if (!_removedItems.Contains(itm))
+            else
             {
-                _removedItems.Add(itm);
+                if (!_removedItems.Contains(itm))
+                {
+                    _removedItems.Add(itm);
+                }
             }
             base.RemoveItem(index);
             itm.SetOwnerList(null);

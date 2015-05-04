@@ -90,12 +90,6 @@ namespace qxDotNet.UI.Table
             _owner.Sort(columnIndex, isDesc);
         }
 
-        protected internal override void CustomPostRender(System.Web.HttpResponse response, bool isRefreshRequest)
-        {
-            base.CustomPostRender(response, isRefreshRequest);
-            ResetModified();
-        }
-
     }
 
 }

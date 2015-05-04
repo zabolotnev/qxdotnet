@@ -280,6 +280,7 @@ namespace qxDotNet.UI.Table
                 }
 
                 response.Write(sb.ToString());
+                _model.ResetModified();
             }
             if (_needToRefresh)
             {
