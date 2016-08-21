@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Embed
 {
     /// <summary>
     /// The Flash widget embeds the HMTL Flash element
+    /// 
     /// </summary>
     public partial class Flash : qxDotNet.UI.Core.Widget
     {
@@ -29,6 +30,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Set allow script access
+        /// 
         /// </summary>
         public qxDotNet.AllowScriptAccessEnum AllowScriptAccess
         {
@@ -44,6 +46,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// The unique Flash movie id.
+        /// 
         /// </summary>
         public string Id
         {
@@ -59,6 +62,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Enable/disable live connection
+        /// 
         /// </summary>
         public bool? LiveConnect
         {
@@ -74,6 +78,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// A timeout when trying to load the flash source.
+        /// 
         /// </summary>
         public int LoadTimeout
         {
@@ -89,6 +94,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Set the loop attribute for the Flash movie.
+        /// 
         /// </summary>
         public bool? Loop
         {
@@ -104,6 +110,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Set the mayscript attribute for the Flash movie.
+        /// 
         /// </summary>
         public bool? MayScript
         {
@@ -119,6 +126,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Set the menu attribute for the Flash movie.
+        /// 
         /// </summary>
         public bool? Menu
         {
@@ -134,6 +142,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Set the play attribute for the Flash movie.
+        /// 
         /// </summary>
         public bool? Play
         {
@@ -149,6 +158,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Set the quality attribute for the Flash movie.
+        /// 
         /// </summary>
         public qxDotNet.QualityEnum Quality
         {
@@ -164,6 +174,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Set the scale attribute for the Flash movie.
+        /// 
         /// </summary>
         public qxDotNet.ScaleEnum Scale
         {
@@ -179,6 +190,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// The URL of the Flash movie.
+        /// 
         /// </summary>
         public string Source
         {
@@ -193,7 +205,8 @@ namespace qxDotNet.UI.Embed
         }
 
         /// <summary>
-        /// Set the &#8216;FlashVars' to pass variables to the Flash movie.
+        /// Set the 'FlashVars' to pass variables to the Flash movie.
+        /// 
         /// </summary>
         public Map Variables
         {
@@ -209,6 +222,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Set the wmode attribute for the Flash movie.
+        /// 
         /// </summary>
         public qxDotNet.WmodeEnum Wmode
         {
@@ -223,11 +237,19 @@ namespace qxDotNet.UI.Embed
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.embed.Flash";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -260,6 +282,10 @@ namespace qxDotNet.UI.Embed
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -277,6 +303,9 @@ namespace qxDotNet.UI.Embed
             }
         }
 
+        /// <summary>
+        /// Raises event 'Loaded'
+        /// </summary>
         protected virtual void OnLoaded()
         {
             if (Loaded != null)
@@ -286,10 +315,17 @@ namespace qxDotNet.UI.Embed
         }
 
         /// <summary>
-        /// Fired after the flash object has been loaded.  The loaded action can be prevented by calling {@link qx.event.type.Event#preventDefault} on the event object
+        /// Fired after the flash object has been loaded.
+        /// 
+        /// The loaded action can be prevented by calling
+        /// {@link qx.event.type.Event#preventDefault} on the event object
+        /// 
         /// </summary>
         public event EventHandler Loaded;
 
+        /// <summary>
+        /// Raises event 'Loading'
+        /// </summary>
         protected virtual void OnLoading()
         {
             if (Loading != null)
@@ -299,10 +335,17 @@ namespace qxDotNet.UI.Embed
         }
 
         /// <summary>
-        /// Fired when the flash object still is loading.  The loading action can be prevented by calling {@link qx.event.type.Event#preventDefault} on the event object
+        /// Fired when the flash object still is loading.
+        /// 
+        /// The loading action can be prevented by calling
+        /// {@link qx.event.type.Event#preventDefault} on the event object
+        /// 
         /// </summary>
         public event EventHandler Loading;
 
+        /// <summary>
+        /// Raises event 'Timeout'
+        /// </summary>
         protected virtual void OnTimeout()
         {
             if (Timeout != null)
@@ -312,7 +355,11 @@ namespace qxDotNet.UI.Embed
         }
 
         /// <summary>
-        /// Fired after the flash object has got a timeout.  The timeout action can be prevented by calling {@link qx.event.type.Event#preventDefault} on the event object
+        /// Fired after the flash object has got a timeout.
+        /// 
+        /// The timeout action can be prevented by calling
+        /// {@link qx.event.type.Event#preventDefault} on the event object
+        /// 
         /// </summary>
         public event EventHandler Timeout;
 

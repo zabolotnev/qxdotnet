@@ -7,7 +7,20 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// A date field is like a combo box with the date as popup. As button to open the calendar a calendar icon is shown at the right to the textfield.  To be conform with all form widgets, the {@link qx.ui.form.IForm} interface is implemented.  The following example creates a date field and sets the current date as selected.   var dateField = new qx.ui.form.DateField(); this.getRoot().add(dateField, {top: 20, left: 20}); dateField.setValue(new Date()); 
+    /// A date field is like a combo box with the date as popup. As button to
+    /// open the calendar a calendar icon is shown at the right to the textfield.
+    /// 
+    /// To be conform with all form widgets, the {@link qx.ui.form.IForm} interface
+    /// is implemented.
+    /// 
+    /// The following example creates a date field and sets the current
+    /// date as selected.
+    /// 
+    /// 
+    /// var dateField = new qx.ui.form.DateField();
+    /// this.getRoot().add(dateField, {top: 20, left: 20});
+    /// dateField.setValue(new Date());
+    /// 
     /// </summary>
     public partial class DateField : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IForm, qxDotNet.UI.Form.IDateForm
     {
@@ -23,6 +36,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// The formatter, which converts the selected date to a string. *
+        /// 
         /// </summary>
         public qxDotNet.Util.Format.DateFormat DateFormat
         {
@@ -37,7 +51,10 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// String value which will be shown as a hint if the field is all of: unset, unfocused and enabled. Set to null to not show a placeholder text.
+        /// String value which will be shown as a hint if the field is all of:
+        /// unset, unfocused and enabled. Set to null to not show a placeholder
+        /// text.
+        /// 
         /// </summary>
         public string Placeholder
         {
@@ -52,6 +69,13 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
+        /// Returns the current set date, parsed from the input-field
+        /// corresponding to the {@link #dateFormat}.
+        /// If the given text could not be parsed, null will be returned.
+        /// 
+        /// This method sets the date, which will be formatted according to
+        /// #dateFormat to the date field. It will also select the date in the
+        /// calendar popup.
         /// 
         /// </summary>
         public DateTime? Value
@@ -68,6 +92,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Message which is shown in an invalid tooltip.
+        /// 
         /// </summary>
         public string InvalidMessage
         {
@@ -84,6 +109,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Flag signaling if a widget is required.
+        /// 
         /// </summary>
         public bool? Required
         {
@@ -99,7 +125,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Message which is shown in an invalid tooltip if the {@link #required} is set to true.
+        /// Message which is shown in an invalid tooltip if the {@link #required} is
+        /// set to true.
+        /// 
         /// </summary>
         public string RequiredInvalidMessage
         {
@@ -115,7 +143,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid state will be set.
+        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid
+        /// state will be set.
+        /// 
         /// </summary>
         public bool? Valid
         {
@@ -130,15 +160,20 @@ namespace qxDotNet.UI.Form
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.form.DateField";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -154,6 +189,10 @@ namespace qxDotNet.UI.Form
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -163,6 +202,9 @@ namespace qxDotNet.UI.Form
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeValue'
+        /// </summary>
         protected virtual void OnChangeValue()
         {
             if (ChangeValue != null)
@@ -172,10 +214,16 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Whenever the value is changed this event is fired  Event data: The new text value of the field.
+        /// Whenever the value is changed this event is fired
+        /// 
+        /// Event data: The new text value of the field.
+        /// 
         /// </summary>
         public event EventHandler ChangeValue;
 
+        /// <summary>
+        /// Raises event 'ChangeInvalidMessage'
+        /// </summary>
         protected virtual void OnChangeInvalidMessage()
         {
             if (ChangeInvalidMessage != null)
@@ -189,6 +237,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeInvalidMessage;
 
+        /// <summary>
+        /// Raises event 'ChangeRequired'
+        /// </summary>
         protected virtual void OnChangeRequired()
         {
             if (ChangeRequired != null)
@@ -202,6 +253,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeRequired;
 
+        /// <summary>
+        /// Raises event 'ChangeValid'
+        /// </summary>
         protected virtual void OnChangeValid()
         {
             if (ChangeValid != null)

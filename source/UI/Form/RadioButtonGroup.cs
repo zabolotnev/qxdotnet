@@ -7,7 +7,17 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// The radio container handles a collection of items from which only one item can be selected. Selection another item will deselect the previously selected item. For that, it uses the {@link qx.ui.form.RadioGroup} object.  This class is used to create radio groups of {@link qx.ui.form.RadioButton} instances.  This widget takes care of the layout of the added items. If you want to take full control of the layout and just use the selection behavior, take a look at the {@link qx.ui.form.RadioGroup} object for a loose coupling.
+    /// The radio container handles a collection of items from which only one item
+    /// can be selected. Selection another item will deselect the previously selected
+    /// item. For that, it uses the {@link qx.ui.form.RadioGroup} object.
+    /// 
+    /// This class is used to create radio groups of {@link qx.ui.form.RadioButton}
+    /// instances.
+    /// 
+    /// This widget takes care of the layout of the added items. If you want to
+    /// take full control of the layout and just use the selection behavior,
+    /// take a look at the {@link qx.ui.form.RadioGroup} object for a loose coupling.
+    /// 
     /// </summary>
     public partial class RadioButtonGroup : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IForm, qxDotNet.UI.Core.ISingleSelection, qxDotNet.UI.Form.IModelSelection
     {
@@ -23,6 +33,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Message which is shown in an invalid tooltip.
+        /// 
         /// </summary>
         public string InvalidMessage
         {
@@ -39,6 +50,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Flag signaling if the group is required.
+        /// 
         /// </summary>
         public bool? Required
         {
@@ -54,7 +66,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Message which is shown in an invalid tooltip if the {@link #required} is set to true.
+        /// Message which is shown in an invalid tooltip if the {@link #required} is
+        /// set to true.
+        /// 
         /// </summary>
         public string RequiredInvalidMessage
         {
@@ -70,7 +84,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Flag signaling if the group at all is valid. All children will have the same state.
+        /// Flag signaling if the group at all is valid. All children will have the
+        /// same state.
+        /// 
         /// </summary>
         public bool? Valid
         {
@@ -86,6 +102,12 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
+        /// Returns an array of currently selected items.
+        /// 
+        /// Note: The result is only a set of selected items, so the order can
+        /// differ from the sequence in which the items were added.
+        /// 
+        /// Replaces current selection with the given items.
         /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget Selection
@@ -101,6 +123,11 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
+        /// Get the widget's layout manager.
+        /// 
+        /// Set a layout manager for the widget. A a layout manager can only be connected
+        /// with one widget. Reset the connection with a previous widget first, if you
+        /// like to use it in another widget instead.
         /// 
         /// </summary>
         public qxDotNet.UI.Layout.Abstract Layout
@@ -116,6 +143,20 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
+        /// Returns always an array of the models of the selected items. If no
+        /// item is selected or no model is given, the array will be empty.
+        /// 
+        /// CAREFUL! The model selection can only work if every item item in the
+        /// selection providing widget has a model property!
+        /// 
+        /// Takes the given models in the array and searches for the corresponding
+        /// selectables. If an selectable does have that model attached, it will be
+        /// selected.
+        /// 
+        /// Attention: This method can have a time complexity of O(n^2)!
+        /// 
+        /// CAREFUL! The model selection can only work if every item item in the
+        /// selection providing widget has a model property!
         /// 
         /// </summary>
         public qxDotNet.Data.Array ModelSelection
@@ -130,15 +171,20 @@ namespace qxDotNet.UI.Form
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.form.RadioButtonGroup";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -152,17 +198,23 @@ namespace qxDotNet.UI.Form
 
             if (ChangeSelection != null)
             {
-                state.SetEvent("changeSelection", false);
+                state.SetEvent("changeSelection", true, "selection");
+            }
+            else
+            {
+                state.SetEvent("changeSelection", false, "selection");
             }
             if (ChangeModelSelection != null)
             {
                 state.SetEvent("changeModelSelection", false);
             }
 
-            state.SetEvent("changeSelection", false, "selection");
-
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -176,6 +228,9 @@ namespace qxDotNet.UI.Form
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeInvalidMessage'
+        /// </summary>
         protected virtual void OnChangeInvalidMessage()
         {
             if (ChangeInvalidMessage != null)
@@ -189,6 +244,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeInvalidMessage;
 
+        /// <summary>
+        /// Raises event 'ChangeRequired'
+        /// </summary>
         protected virtual void OnChangeRequired()
         {
             if (ChangeRequired != null)
@@ -202,6 +260,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeRequired;
 
+        /// <summary>
+        /// Raises event 'ChangeSelection'
+        /// </summary>
         protected virtual void OnChangeSelection()
         {
             if (ChangeSelection != null)
@@ -212,9 +273,13 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Fires after the selection was modified
+        /// 
         /// </summary>
         public event EventHandler ChangeSelection;
 
+        /// <summary>
+        /// Raises event 'ChangeValid'
+        /// </summary>
         protected virtual void OnChangeValid()
         {
             if (ChangeValid != null)
@@ -228,6 +293,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeValid;
 
+        /// <summary>
+        /// Raises event 'ChangeModelSelection'
+        /// </summary>
         protected virtual void OnChangeModelSelection()
         {
             if (ChangeModelSelection != null)
@@ -237,7 +305,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Pseudo event. It will never be fired because the array itself can not be changed. But the event description is needed for the data binding.
+        /// Pseudo event. It will never be fired because the array itself can not
+        /// be changed. But the event description is needed for the data binding.
+        /// 
         /// </summary>
         public event EventHandler ChangeModelSelection;
 

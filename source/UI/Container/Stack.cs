@@ -7,9 +7,46 @@ using qxDotNet;
 namespace qxDotNet.UI.Container
 {
     /// <summary>
-    /// The stack container puts its child widgets on top of each other and only the topmost widget is visible.  This is used e.g. in the tab view widget. Which widget is visible can be controlled by using the {@link #getSelection} method.  Example  Here is a little example of how to use the widget.    // create stack container  var stack = new qx.ui.container.Stack();   // add some children  stack.add(new qx.ui.core.Widget().set({  backgroundColor: \red\  }));  stack.add(new qx.ui.core.Widget().set({  backgroundColor: \green\  }));  stack.add(new qx.ui.core.Widget().set({  backgroundColor: \blue\  }));   // select green widget  stack.setSelection([stack.getChildren()[1]]);   this.getRoot().add(stack);   This example creates an stack with three children. Only the selected "green" widget is visible.  External Documentation   Documentation of this widget in the qooxdoo manual.
+    /// The stack container puts its child widgets on top of each other and only the
+    /// topmost widget is visible.
+    /// 
+    /// This is used e.g. in the tab view widget. Which widget is visible can be
+    /// controlled by using the {@link #getSelection} method.
+    /// 
+    /// Example
+    /// 
+    /// Here is a little example of how to use the widget.
+    /// 
+    /// 
+    ///  // create stack container
+    ///  var stack = new qx.ui.container.Stack();
+    /// 
+    ///  // add some children
+    ///  stack.add(new qx.ui.core.Widget().set({
+    ///  backgroundColor: "red"
+    ///  }));
+    ///  stack.add(new qx.ui.core.Widget().set({
+    ///  backgroundColor: "green"
+    ///  }));
+    ///  stack.add(new qx.ui.core.Widget().set({
+    ///  backgroundColor: "blue"
+    ///  }));
+    /// 
+    ///  // select green widget
+    ///  stack.setSelection([stack.getChildren()[1]]);
+    /// 
+    ///  this.getRoot().add(stack);
+    /// 
+    /// 
+    /// This example creates an stack with three children. Only the selected "green"
+    /// widget is visible.
+    /// 
+    /// External Documentation
+    /// 
+    /// 
+    /// Documentation of this widget in the qooxdoo manual.
     /// </summary>
-    public partial class Stack : qxDotNet.UI.Core.Widget, qxDotNet.UI.Core.ISingleSelection
+    public partial class Stack : qxDotNet.UI.Core.ChildrenHandling, qxDotNet.UI.Core.ISingleSelection
     {
 
         private bool? _dynamic = false;
@@ -17,7 +54,9 @@ namespace qxDotNet.UI.Container
 
 
         /// <summary>
-        /// Whether the size of the widget depends on the selected child. When disabled (default) the size is configured to the largest child.
+        /// Whether the size of the widget depends on the selected child. When
+        /// disabled (default) the size is configured to the largest child.
+        /// 
         /// </summary>
         public bool? Dynamic
         {
@@ -32,6 +71,12 @@ namespace qxDotNet.UI.Container
         }
 
         /// <summary>
+        /// Returns an array of currently selected items.
+        /// 
+        /// Note: The result is only a set of selected items, so the order can
+        /// differ from the sequence in which the items were added.
+        /// 
+        /// Replaces current selection with the given items.
         /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget Selection
@@ -46,15 +91,20 @@ namespace qxDotNet.UI.Container
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.container.Stack";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -68,6 +118,10 @@ namespace qxDotNet.UI.Container
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -77,6 +131,9 @@ namespace qxDotNet.UI.Container
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeSelection'
+        /// </summary>
         protected virtual void OnChangeSelection()
         {
             if (ChangeSelection != null)
@@ -87,6 +144,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Fires after the selection was modified
+        /// 
         /// </summary>
         public event EventHandler ChangeSelection;
 

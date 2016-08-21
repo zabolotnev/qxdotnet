@@ -7,7 +7,21 @@ using qxDotNet;
 namespace qxDotNet.UI.Embed
 {
     /// <summary>
-    /// The Html widget embeds plain HTML code into the application  Example  Here is a little example of how to use the canvas widget.   var html = new qx.ui.embed.Html(); html.setHtml(\HelloWorld\);   External Documentation   Documentation of this widget in the qooxdoo manual.
+    /// The Html widget embeds plain HTML code into the application
+    /// 
+    /// Example
+    /// 
+    /// Here is a little example of how to use the canvas widget.
+    /// 
+    /// 
+    /// var html = new qx.ui.embed.Html();
+    /// html.setHtml("Hello World");
+    /// 
+    /// 
+    /// External Documentation
+    /// 
+    /// 
+    /// Documentation of this widget in the qooxdoo manual.
     /// </summary>
     public partial class Html : qxDotNet.UI.Core.Widget
     {
@@ -19,7 +33,11 @@ namespace qxDotNet.UI.Embed
 
 
         /// <summary>
-        /// The css classname for the html embed. IMPORTANT Paddings and borders does not work in the css class. These styles cause conflicts with the layout engine.
+        /// The css classname for the html embed.
+        /// IMPORTANT Paddings and borders does not work
+        /// in the css class. These styles cause conflicts with
+        /// the layout engine.
+        /// 
         /// </summary>
         public string CssClass
         {
@@ -35,6 +53,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Any text string which can contain HTML, too
+        /// 
         /// </summary>
         public string HtmlText
         {
@@ -51,6 +70,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Whether the widget should have horizontal scrollbars.
+        /// 
         /// </summary>
         public qxDotNet.OverflowEnum OverflowX
         {
@@ -66,6 +86,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Whether the widget should have vertical scrollbars.
+        /// 
         /// </summary>
         public qxDotNet.OverflowEnum OverflowY
         {
@@ -80,11 +101,19 @@ namespace qxDotNet.UI.Embed
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.embed.Html";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -96,11 +125,18 @@ namespace qxDotNet.UI.Embed
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeHtml'
+        /// </summary>
         protected virtual void OnChangeHtml()
         {
             if (ChangeHtml != null)

@@ -8,6 +8,7 @@ namespace qxDotNet.Util.Format
 {
     /// <summary>
     /// Superclass for formatters and parsers.
+    /// 
     /// </summary>
     public interface IFormat
     {

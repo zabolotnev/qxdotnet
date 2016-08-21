@@ -7,7 +7,12 @@ using qxDotNet;
 namespace qxDotNet.UI.Core.Scroll
 {
     /// <summary>
-    /// The scroll bar widget, is a special slider, which is used in qooxdoo instead of the native browser scroll bars.  Scroll bars are used by the {@link qx.ui.container.Scroll} container. Usually a scroll bar is not used directly.
+    /// The scroll bar widget, is a special slider, which is used in qooxdoo instead
+    /// of the native browser scroll bars.
+    /// 
+    /// Scroll bars are used by the {@link qx.ui.container.Scroll} container. Usually
+    /// a scroll bar is not used directly.
+    /// 
     /// </summary>
     public partial class ScrollBar : qxDotNet.UI.Core.Widget, qxDotNet.UI.Core.Scroll.IScrollBar
     {
@@ -16,12 +21,14 @@ namespace qxDotNet.UI.Core.Scroll
         private int _maximum = 100;
         private qxDotNet.OrientationEnum _orientation = OrientationEnum.horizontal;
         private int _pageStep = 10;
-        private decimal _position = 0m;
+        private int _position = 0;
         private int _singleStep = 20;
 
 
         /// <summary>
-        /// Factor to apply to the width/height of the knob in relation to the dimension of the underlying area.
+        /// Factor to apply to the width/height of the knob in relation
+        /// to the dimension of the underlying area.
+        /// 
         /// </summary>
         public decimal KnobFactor
         {
@@ -36,7 +43,9 @@ namespace qxDotNet.UI.Core.Scroll
         }
 
         /// <summary>
-        /// The maximum value (difference between available size and content size).
+        /// The maximum value (difference between available size and
+        /// content size).
+        /// 
         /// </summary>
         public int Maximum
         {
@@ -52,6 +61,7 @@ namespace qxDotNet.UI.Core.Scroll
 
         /// <summary>
         /// The scroll bar orientation
+        /// 
         /// </summary>
         public qxDotNet.OrientationEnum Orientation
         {
@@ -66,7 +76,9 @@ namespace qxDotNet.UI.Core.Scroll
         }
 
         /// <summary>
-        /// The amount to increment on each event. Typically corresponds to the user pressing PageUp or PageDown.
+        /// The amount to increment on each event. Typically corresponds
+        /// to the user pressing PageUp or PageDown.
+        /// 
         /// </summary>
         public int PageStep
         {
@@ -81,9 +93,15 @@ namespace qxDotNet.UI.Core.Scroll
         }
 
         /// <summary>
-        /// Position of the scrollbar (which means the scroll left/top of the attached area&#8217;s pane)  Strictly validates according to {@link #maximum}. Does not apply any correction to the incoming value. If you depend on this, please use {@link #scrollTo} instead.
+        /// Position of the scrollbar (which means the scroll left/top of the
+        /// attached area's pane)
+        /// 
+        /// Strictly validates according to {@link #maximum}.
+        /// Does not apply any correction to the incoming value. If you depend
+        /// on this, please use {@link #scrollTo} instead.
+        /// 
         /// </summary>
-        public decimal Position
+        public int Position
         {
             get
             {
@@ -96,7 +114,8 @@ namespace qxDotNet.UI.Core.Scroll
         }
 
         /// <summary>
-        /// Step size for each click on the up/down or left/right buttons.
+        /// Step size for each tap on the up/down or left/right buttons.
+        /// 
         /// </summary>
         public int SingleStep
         {
@@ -110,15 +129,20 @@ namespace qxDotNet.UI.Core.Scroll
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.core.scroll.ScrollBar";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -126,17 +150,21 @@ namespace qxDotNet.UI.Core.Scroll
             state.SetPropertyValue("maximum", _maximum, 100);
             state.SetPropertyValue("orientation", _orientation, OrientationEnum.horizontal);
             state.SetPropertyValue("pageStep", _pageStep, 10);
-            state.SetPropertyValue("position", _position, 0m);
+            state.SetPropertyValue("position", _position, 0);
             state.SetPropertyValue("singleStep", _singleStep, 20);
 
-            if (Scroll != null)
+            state.SetEvent("scroll", false, "position");
+            if (ScrollAnimationEnd != null)
             {
-                state.SetEvent("scroll", false, "position");
+                state.SetEvent("scrollAnimationEnd", false);
             }
-            state.SetEvent("scrollAnimationEnd", false);
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -150,6 +178,9 @@ namespace qxDotNet.UI.Core.Scroll
             }
         }
 
+        /// <summary>
+        /// Raises event 'Scroll'
+        /// </summary>
         protected virtual void OnScroll()
         {
             if (Scroll != null)
@@ -163,6 +194,9 @@ namespace qxDotNet.UI.Core.Scroll
         /// </summary>
         public event EventHandler Scroll;
 
+        /// <summary>
+        /// Raises event 'ScrollAnimationEnd'
+        /// </summary>
         protected virtual void OnScrollAnimationEnd()
         {
             if (ScrollAnimationEnd != null)
@@ -173,6 +207,7 @@ namespace qxDotNet.UI.Core.Scroll
 
         /// <summary>
         /// Change event for the value.
+        /// 
         /// </summary>
         public event EventHandler ScrollAnimationEnd;
 

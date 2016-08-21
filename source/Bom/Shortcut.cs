@@ -8,6 +8,7 @@ namespace qxDotNet.Bom
 {
     /// <summary>
     /// Shortcuts can be used to globally define keyboard shortcuts.
+    /// 
     /// </summary>
     public partial class Shortcut : qxDotNet.Core.Object
     {
@@ -18,7 +19,9 @@ namespace qxDotNet.Bom
 
 
         /// <summary>
-        /// Whether the execute event should be fired repeatedly if the user keep the keys pressed.
+        /// Whether the execute event should be fired repeatedly if the user keep
+        /// the keys pressed.
+        /// 
         /// </summary>
         public bool? AutoRepeat
         {
@@ -34,6 +37,7 @@ namespace qxDotNet.Bom
 
         /// <summary>
         /// whether the command should be respected/enabled
+        /// 
         /// </summary>
         public bool? Enabled
         {
@@ -50,6 +54,7 @@ namespace qxDotNet.Bom
 
         /// <summary>
         /// The command shortcut
+        /// 
         /// </summary>
         public string ShortcutCommand
         {
@@ -64,11 +69,19 @@ namespace qxDotNet.Bom
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.bom.Shortcut";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -78,11 +91,15 @@ namespace qxDotNet.Bom
 
             if (Execute != null)
             {
-                state.SetEvent("execute", false);
+                state.SetEvent("execute", true);
             }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -92,6 +109,9 @@ namespace qxDotNet.Bom
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeEnabled'
+        /// </summary>
         protected virtual void OnChangeEnabled()
         {
             if (ChangeEnabled != null)
@@ -105,6 +125,9 @@ namespace qxDotNet.Bom
         /// </summary>
         public event EventHandler ChangeEnabled;
 
+        /// <summary>
+        /// Raises event 'Execute'
+        /// </summary>
         protected virtual void OnExecute()
         {
             if (Execute != null)
@@ -114,7 +137,9 @@ namespace qxDotNet.Bom
         }
 
         /// <summary>
-        /// Fired when the command is executed. Sets the "data" property of the event to the object that issued the command.
+        /// Fired when the command is executed. Sets the "data" property of the event to
+        /// the object that issued the command.
+        /// 
         /// </summary>
         public event EventHandler Execute;
 

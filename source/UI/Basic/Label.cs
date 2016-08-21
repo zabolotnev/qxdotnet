@@ -7,7 +7,41 @@ using qxDotNet;
 namespace qxDotNet.UI.Basic
 {
     /// <summary>
-    /// The label class brings typical text content to the widget system.  It supports simple text nodes and complex HTML (rich). The default content mode is for text only. The mode is changeable through the property {@link #rich}.  The label supports heightForWidth when used in HTML mode. This means that multi line HTML automatically computes the correct preferred height.  Example  Here is a little example of how to use the widget.    // a simple text label without wrapping and markup support  var label1 = new qx.ui.basic.Label(\Simpletextlabel\);  this.getRoot().add(label1, {left:20, top:10});   // a HTML label with automatic line wrapping  var label2 = new qx.ui.basic.Label().set({  value: \Alonglabeltextwithauto-wrapping.ThisalsomaycontainrichHTMLmarkup.\,  rich : true,  width: 120  });  this.getRoot().add(label2, {left:20, top:50});   The first label in this example is a basic text only label. As such no automatic wrapping is supported. The second label is a long label containing HTML markup with automatic line wrapping.  External Documentation   Documentation of this widget in the qooxdoo manual.
+    /// The label class brings typical text content to the widget system.
+    /// 
+    /// It supports simple text nodes and complex HTML (rich). The default
+    /// content mode is for text only. The mode is changeable through the property
+    /// {@link #rich}.
+    /// 
+    /// The label supports heightForWidth when used in HTML mode. This means
+    /// that multi line HTML automatically computes the correct preferred height.
+    /// 
+    /// Example
+    /// 
+    /// Here is a little example of how to use the widget.
+    /// 
+    /// 
+    ///  // a simple text label without wrapping and markup support
+    ///  var label1 = new qx.ui.basic.Label("Simple text label");
+    ///  this.getRoot().add(label1, {left:20, top:10});
+    /// 
+    ///  // a HTML label with automatic line wrapping
+    ///  var label2 = new qx.ui.basic.Label().set({
+    ///  value: "A long label text with auto-wrapping. This also may contain rich HTML markup.",
+    ///  rich : true,
+    ///  width: 120
+    ///  });
+    ///  this.getRoot().add(label2, {left:20, top:50});
+    /// 
+    /// 
+    /// The first label in this example is a basic text only label. As such no
+    /// automatic wrapping is supported. The second label is a long label containing
+    /// HTML markup with automatic line wrapping.
+    /// 
+    /// External Documentation
+    /// 
+    /// 
+    /// Documentation of this widget in the qooxdoo manual.
     /// </summary>
     public partial class Label : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IStringForm
     {
@@ -20,7 +54,17 @@ namespace qxDotNet.UI.Basic
 
 
         /// <summary>
-        /// The buddy property can be used to connect the label to another widget. That causes two things:   The label will always take the same enabled state as the buddy  widget.    A click on the label will focus the buddy widget.    This is the behavior of the for attribute of HTML: http://www.w3.org/TR/html401/interact/forms.html#adef-for
+        /// The buddy property can be used to connect the label to another widget.
+        /// That causes two things:
+        /// 
+        ///  The label will always take the same enabled state as the buddy
+        ///  widget.
+        ///  
+        ///  A tap on the label will focus the buddy widget.
+        /// 
+        /// This is the behavior of the for attribute of HTML:
+        /// http://www.w3.org/TR/html401/interact/forms.html#adef-for
+        /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget Buddy
         {
@@ -35,7 +79,11 @@ namespace qxDotNet.UI.Basic
         }
 
         /// <summary>
-        /// Switches between rich HTML and text content. The text mode (false) supports advanced features like ellipsis when the available space is not enough. HTML mode (true) supports multi-line content and all the markup features of HTML content.
+        /// Switches between rich HTML and text content. The text mode (false) supports
+        /// advanced features like ellipsis when the available space is not
+        /// enough. HTML mode (true) supports multi-line content and all the
+        /// markup features of HTML content.
+        /// 
         /// </summary>
         public bool? Rich
         {
@@ -52,6 +100,7 @@ namespace qxDotNet.UI.Basic
 
         /// <summary>
         /// Control the text alignment
+        /// 
         /// </summary>
         public qxDotNet.TextAlignEnum TextAlign
         {
@@ -67,7 +116,11 @@ namespace qxDotNet.UI.Basic
         }
 
         /// <summary>
-        /// Contains the HTML or text content. Interpretation depends on the value of {@link #rich}. In text mode entities and other HTML special content is not supported. But it is possible to use unicode escape sequences to insert symbols and other non ASCII characters.
+        /// Contains the HTML or text content. Interpretation depends on the value
+        /// of {@link #rich}. In text mode entities and other HTML special content
+        /// is not supported. But it is possible to use unicode escape sequences
+        /// to insert symbols and other non ASCII characters.
+        /// 
         /// </summary>
         public string Value
         {
@@ -83,7 +136,11 @@ namespace qxDotNet.UI.Basic
         }
 
         /// <summary>
-        /// Controls whether text wrap is activated or not. But please note, that this property works only in combination with the property {@link #rich}. The {@link #wrap} has only an effect if the {@link #rich} property is set to true, otherwise {@link #wrap} has no effect.
+        /// Controls whether text wrap is activated or not. But please note, that
+        /// this property works only in combination with the property {@link #rich}.
+        /// The {@link #wrap} has only an effect if the {@link #rich} property is
+        /// set to true, otherwise {@link #wrap} has no effect.
+        /// 
         /// </summary>
         public bool? Wrap
         {
@@ -97,15 +154,20 @@ namespace qxDotNet.UI.Basic
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.basic.Label";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -118,11 +180,18 @@ namespace qxDotNet.UI.Basic
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeRich'
+        /// </summary>
         protected virtual void OnChangeRich()
         {
             if (ChangeRich != null)
@@ -136,6 +205,9 @@ namespace qxDotNet.UI.Basic
         /// </summary>
         public event EventHandler ChangeRich;
 
+        /// <summary>
+        /// Raises event 'ChangeTextAlign'
+        /// </summary>
         protected virtual void OnChangeTextAlign()
         {
             if (ChangeTextAlign != null)
@@ -149,6 +221,9 @@ namespace qxDotNet.UI.Basic
         /// </summary>
         public event EventHandler ChangeTextAlign;
 
+        /// <summary>
+        /// Raises event 'ChangeValue'
+        /// </summary>
         protected virtual void OnChangeValue()
         {
             if (ChangeValue != null)

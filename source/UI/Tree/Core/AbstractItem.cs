@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Tree.Core
 {
     /// <summary>
-    /// The AbstractItem serves as a common superclass for the {@link qx.ui.tree.core.AbstractTreeItem} and {@link qx.ui.tree.VirtualTreeItem} classes.
+    /// The AbstractItem serves as a common superclass for the {@link
+    /// qx.ui.tree.core.AbstractTreeItem} and {@link qx.ui.tree.VirtualTreeItem} classes.
+    /// 
     /// </summary>
     public abstract partial class AbstractItem : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IModel
     {
@@ -18,11 +20,12 @@ namespace qxDotNet.UI.Tree.Core
         private string _label = "";
         private bool? _open = false;
         private qxDotNet.OpenSymbolModeEnum _openSymbolMode = OpenSymbolModeEnum.auto;
-//        private _var _model = null;
+//TODO: private _var _model = null;
 
 
         /// <summary>
         /// URI of "closed" icon. Can be any URI String supported by qx.ui.basic.Image.
+        /// 
         /// </summary>
         public string Icon
         {
@@ -39,6 +42,7 @@ namespace qxDotNet.UI.Tree.Core
 
         /// <summary>
         /// URI of "opened" icon. Can be any URI String supported by qx.ui.basic.Image.
+        /// 
         /// </summary>
         public string IconOpened
         {
@@ -55,6 +59,7 @@ namespace qxDotNet.UI.Tree.Core
 
         /// <summary>
         /// The number of pixel to indent the tree item for each level.
+        /// 
         /// </summary>
         public int Indent
         {
@@ -71,6 +76,7 @@ namespace qxDotNet.UI.Tree.Core
 
         /// <summary>
         /// The label/caption/text
+        /// 
         /// </summary>
         public string Label
         {
@@ -87,6 +93,7 @@ namespace qxDotNet.UI.Tree.Core
 
         /// <summary>
         /// Whether the tree item is opened.
+        /// 
         /// </summary>
         public bool? Open
         {
@@ -102,7 +109,9 @@ namespace qxDotNet.UI.Tree.Core
         }
 
         /// <summary>
-        /// Controls, when to show the open symbol. If the mode is "auto" , the open symbol is shown only if the item has child items.
+        /// Controls, when to show the open symbol. If the mode is "auto" , the open
+        /// symbol is shown only if the item has child items.
+        /// 
         /// </summary>
         public qxDotNet.OpenSymbolModeEnum OpenSymbolMode
         {
@@ -117,15 +126,20 @@ namespace qxDotNet.UI.Tree.Core
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.tree.core.AbstractItem";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -139,11 +153,18 @@ namespace qxDotNet.UI.Tree.Core
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeIcon'
+        /// </summary>
         protected virtual void OnChangeIcon()
         {
             if (ChangeIcon != null)
@@ -157,6 +178,9 @@ namespace qxDotNet.UI.Tree.Core
         /// </summary>
         public event EventHandler ChangeIcon;
 
+        /// <summary>
+        /// Raises event 'ChangeIconOpened'
+        /// </summary>
         protected virtual void OnChangeIconOpened()
         {
             if (ChangeIconOpened != null)
@@ -170,6 +194,9 @@ namespace qxDotNet.UI.Tree.Core
         /// </summary>
         public event EventHandler ChangeIconOpened;
 
+        /// <summary>
+        /// Raises event 'ChangeIndent'
+        /// </summary>
         protected virtual void OnChangeIndent()
         {
             if (ChangeIndent != null)
@@ -183,6 +210,9 @@ namespace qxDotNet.UI.Tree.Core
         /// </summary>
         public event EventHandler ChangeIndent;
 
+        /// <summary>
+        /// Raises event 'ChangeLabel'
+        /// </summary>
         protected virtual void OnChangeLabel()
         {
             if (ChangeLabel != null)
@@ -196,6 +226,9 @@ namespace qxDotNet.UI.Tree.Core
         /// </summary>
         public event EventHandler ChangeLabel;
 
+        /// <summary>
+        /// Raises event 'ChangeOpen'
+        /// </summary>
         protected virtual void OnChangeOpen()
         {
             if (ChangeOpen != null)
@@ -209,6 +242,9 @@ namespace qxDotNet.UI.Tree.Core
         /// </summary>
         public event EventHandler ChangeOpen;
 
+        /// <summary>
+        /// Raises event 'ChangeOpenSymbolMode'
+        /// </summary>
         protected virtual void OnChangeOpenSymbolMode()
         {
             if (ChangeOpenSymbolMode != null)
@@ -222,6 +258,9 @@ namespace qxDotNet.UI.Tree.Core
         /// </summary>
         public event EventHandler ChangeOpenSymbolMode;
 
+        /// <summary>
+        /// Raises event 'ChangeModel'
+        /// </summary>
         protected virtual void OnChangeModel()
         {
             if (ChangeModel != null)

@@ -7,99 +7,60 @@ using qxDotNet;
 namespace qxDotNet.UI.Table.Columnmodel
 {
     /// <summary>
-    /// A model that contains all meta data about columns, such as width, renderer, visibility and order.
+    /// A model that contains all meta data about columns, such as width, renderer,
+    /// visibility and order.
+    /// 
     /// </summary>
     public partial class Basic : qxDotNet.Core.Object
     {
 
-        private qxDotNet.UI.Table.ICellEditorFactory _cellEditorFactory = null;
-        private int _columnWidth = 0;
-        private qxDotNet.UI.Table.ICellRenderer _dataCellRenderer = null;
-        private qxDotNet.UI.Table.IHeaderRenderer _headerCellRenderer = null;
+
 
 
         /// <summary>
-        /// 
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        public qxDotNet.UI.Table.ICellEditorFactory CellEditorFactory
-        {
-            get
-            {
-                return _cellEditorFactory;
-            }
-            set
-            {
-               _cellEditorFactory = value;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int ColumnWidth
-        {
-            get
-            {
-                return _columnWidth;
-            }
-            set
-            {
-               _columnWidth = value;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public qxDotNet.UI.Table.ICellRenderer DataCellRenderer
-        {
-            get
-            {
-                return _dataCellRenderer;
-            }
-            set
-            {
-               _dataCellRenderer = value;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public qxDotNet.UI.Table.IHeaderRenderer HeaderCellRenderer
-        {
-            get
-            {
-                return _headerCellRenderer;
-            }
-            set
-            {
-               _headerCellRenderer = value;
-            }
-        }
-
-
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.columnmodel.Basic";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
-            state.SetPropertyValue("cellEditorFactory", _cellEditorFactory, null);
-            state.SetPropertyValue("columnWidth", _columnWidth, 0);
-            state.SetPropertyValue("dataCellRenderer", _dataCellRenderer, null);
-            state.SetPropertyValue("headerCellRenderer", _headerCellRenderer, null);
 
-            state.SetEvent("headerCellRendererChanged", false);
-            state.SetEvent("orderChanged", false);
-            state.SetEvent("visibilityChanged", false);
-            state.SetEvent("visibilityChangedPre", false);
-            state.SetEvent("widthChanged", false);
+            if (HeaderCellRendererChanged != null)
+            {
+                state.SetEvent("headerCellRendererChanged", false);
+            }
+            if (OrderChanged != null)
+            {
+                state.SetEvent("orderChanged", false);
+            }
+            if (VisibilityChanged != null)
+            {
+                state.SetEvent("visibilityChanged", false);
+            }
+            if (VisibilityChangedPre != null)
+            {
+                state.SetEvent("visibilityChangedPre", false);
+            }
+            if (WidthChanged != null)
+            {
+                state.SetEvent("widthChanged", false);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -125,6 +86,9 @@ namespace qxDotNet.UI.Table.Columnmodel
             }
         }
 
+        /// <summary>
+        /// Raises event 'HeaderCellRendererChanged'
+        /// </summary>
         protected virtual void OnHeaderCellRendererChanged()
         {
             if (HeaderCellRendererChanged != null)
@@ -134,10 +98,18 @@ namespace qxDotNet.UI.Table.Columnmodel
         }
 
         /// <summary>
-        /// Fired when the cell renderer of a column has changed. The data property of the event is a map having the following attributes:   col: The model index of the column that was moved. 
+        /// Fired when the cell renderer of a column has changed.
+        /// The data property of the event is a map having the following attributes:
+        /// 
+        ///  col: The model index of the column that was moved.
+        /// 
+        /// 
         /// </summary>
         public event EventHandler HeaderCellRendererChanged;
 
+        /// <summary>
+        /// Raises event 'OrderChanged'
+        /// </summary>
         protected virtual void OnOrderChanged()
         {
             if (OrderChanged != null)
@@ -147,10 +119,20 @@ namespace qxDotNet.UI.Table.Columnmodel
         }
 
         /// <summary>
-        /// Fired when the column order has changed. The data property of the event is a map having the following attributes:   col: The model index of the column that was moved.  fromOverXPos: The old overall x position of the column.  toOverXPos: The new overall x position of the column. 
+        /// Fired when the column order has changed. The data property of the
+        /// event is a map having the following attributes:
+        /// 
+        ///  col: The model index of the column that was moved.
+        ///  fromOverXPos: The old overall x position of the column.
+        ///  toOverXPos: The new overall x position of the column.
+        /// 
+        /// 
         /// </summary>
         public event EventHandler OrderChanged;
 
+        /// <summary>
+        /// Raises event 'VisibilityChanged'
+        /// </summary>
         protected virtual void OnVisibilityChanged()
         {
             if (VisibilityChanged != null)
@@ -160,10 +142,19 @@ namespace qxDotNet.UI.Table.Columnmodel
         }
 
         /// <summary>
-        /// Fired when the visibility of a column has changed. The data property of the event is a map having the following attributes:   col: The model index of the column the visibility of which has changed.  visible: Whether the column is now visible. 
+        /// Fired when the visibility of a column has changed. The data property of the
+        /// event is a map having the following attributes:
+        /// 
+        ///  col: The model index of the column the visibility of which has changed.
+        ///  visible: Whether the column is now visible.
+        /// 
+        /// 
         /// </summary>
         public event EventHandler VisibilityChanged;
 
+        /// <summary>
+        /// Raises event 'VisibilityChangedPre'
+        /// </summary>
         protected virtual void OnVisibilityChangedPre()
         {
             if (VisibilityChangedPre != null)
@@ -173,10 +164,15 @@ namespace qxDotNet.UI.Table.Columnmodel
         }
 
         /// <summary>
-        /// Fired when the visibility of a column has changed. This event is equal to "visibilityChanged", but is fired right before.
+        /// Fired when the visibility of a column has changed. This event is equal to
+        /// "visibilityChanged", but is fired right before.
+        /// 
         /// </summary>
         public event EventHandler VisibilityChangedPre;
 
+        /// <summary>
+        /// Raises event 'WidthChanged'
+        /// </summary>
         protected virtual void OnWidthChanged()
         {
             if (WidthChanged != null)
@@ -186,7 +182,14 @@ namespace qxDotNet.UI.Table.Columnmodel
         }
 
         /// <summary>
-        /// Fired when the width of a column has changed. The data property of the event is a map having the following attributes:   col: The model index of the column the width of which has changed.  newWidth: The new width of the column in pixels.  oldWidth: The old width of the column in pixels. 
+        /// Fired when the width of a column has changed. The data property of the event is
+        /// a map having the following attributes:
+        /// 
+        ///  col: The model index of the column the width of which has changed.
+        ///  newWidth: The new width of the column in pixels.
+        ///  oldWidth: The old width of the column in pixels.
+        /// 
+        /// 
         /// </summary>
         public event EventHandler WidthChanged;
 

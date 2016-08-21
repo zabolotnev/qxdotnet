@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// Each object which wants to store data representative for the real item should implement this interface.
+    /// Each object which wants to store data representative for the real item
+    /// should implement this interface.
+    /// 
     /// </summary>
     public interface IModel
     {

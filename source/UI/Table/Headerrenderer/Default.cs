@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table.Headerrenderer
 {
     /// <summary>
     /// The default header cell renderer.
+    /// 
     /// </summary>
     public partial class Default : qxDotNet.Core.Object, qxDotNet.UI.Table.IHeaderRenderer
     {
@@ -16,7 +17,8 @@ namespace qxDotNet.UI.Table.Headerrenderer
 
 
         /// <summary>
-        /// ToolTip to show if the mouse hovers of the icon
+        /// ToolTip to show if the pointer hovers of the icon
+        /// 
         /// </summary>
         public string ToolTip
         {
@@ -31,11 +33,19 @@ namespace qxDotNet.UI.Table.Headerrenderer
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.headerrenderer.Default";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -44,6 +54,10 @@ namespace qxDotNet.UI.Table.Headerrenderer
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

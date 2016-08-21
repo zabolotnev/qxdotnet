@@ -10,7 +10,7 @@ namespace qxDotNet
 
         private bool _bold;
         private string _color;
-        private DecorationEnum _decoration;
+        private DecorationEnum _decoration = DecorationEnum.@null;
         private bool _italic;
         private decimal _lineHeight;
         private int _size;

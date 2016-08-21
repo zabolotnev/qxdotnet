@@ -7,9 +7,15 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// This is a basic form field with common functionality for {@link TextArea} and {@link TextField}.  On every keystroke the value is synchronized with the value of the textfield. Value changes can be monitored by listening to the {@link #input} or {@link #changeValue} events, respectively.
+    /// This is a basic form field with common functionality for
+    /// {@link TextArea} and {@link TextField}.
+    /// 
+    /// On every keystroke the value is synchronized with the
+    /// value of the textfield. Value changes can be monitored by listening to the
+    /// {@link #input} or {@link #changeValue} events, respectively.
+    /// 
     /// </summary>
-    public abstract partial class AbstractField : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IStringForm, qxDotNet.UI.Form.IForm
+    public abstract partial class AbstractField : qxDotNet.UI.Core.ChildrenHandling, qxDotNet.UI.Form.IStringForm, qxDotNet.UI.Form.IForm
     {
 
         private string _filter = null;
@@ -18,7 +24,6 @@ namespace qxDotNet.UI.Form
         private string _placeholder = "";
         private bool? _readOnly = false;
         private qxDotNet.TextAlignEnum _textAlign = (TextAlignEnum)(-1);
-        private string _textSelection = "";
         private string _value = "";
         private string _invalidMessage = "";
         private bool? _required = false;
@@ -27,7 +32,11 @@ namespace qxDotNet.UI.Form
 
 
         /// <summary>
-        /// RegExp responsible for filtering the value of the textfield. the RegExp gives the range of valid values. The following example only allows digits in the textfield.  field.setFilter(/[0-9]/);
+        /// RegExp responsible for filtering the value of the textfield. the RegExp
+        /// gives the range of valid values.
+        /// The following example only allows digits in the textfield.
+        /// 
+        /// field.setFilter(/[0-9]/);
         /// </summary>
         public string Filter
         {
@@ -42,7 +51,10 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Whether the {@link #changeValue} event should be fired on every key input. If set to true, the changeValue event is equal to the {@link #input} event.
+        /// Whether the {@link #changeValue} event should be fired on every key
+        /// input. If set to true, the changeValue event is equal to the
+        /// {@link #input} event.
+        /// 
         /// </summary>
         public bool? LiveUpdate
         {
@@ -58,6 +70,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Maximal number of characters that can be entered in the TextArea.
+        /// 
         /// </summary>
         public int MaxLength
         {
@@ -72,7 +85,10 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// String value which will be shown as a hint if the field is all of: unset, unfocused and enabled. Set to null to not show a placeholder text.
+        /// String value which will be shown as a hint if the field is all of:
+        /// unset, unfocused and enabled. Set to null to not show a placeholder
+        /// text.
+        /// 
         /// </summary>
         public string Placeholder
         {
@@ -88,6 +104,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Whether the field is read only
+        /// 
         /// </summary>
         public bool? ReadOnly
         {
@@ -104,6 +121,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Alignment of the text
+        /// 
         /// </summary>
         public qxDotNet.TextAlignEnum TextAlign
         {
@@ -118,21 +136,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
+        /// Returns the current value of the textfield.
         /// 
-        /// </summary>
-        public string TextSelection
-        {
-            get
-            {
-                return _textSelection;
-            }
-            set
-            {
-               _textSelection = value;
-            }
-        }
-
-        /// <summary>
+        /// Sets the value of the textfield to the given value.
         /// 
         /// </summary>
         public string Value
@@ -149,6 +155,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Message which is shown in an invalid tooltip.
+        /// 
         /// </summary>
         public string InvalidMessage
         {
@@ -165,6 +172,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Flag signaling if a widget is required.
+        /// 
         /// </summary>
         public bool? Required
         {
@@ -180,7 +188,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Message which is shown in an invalid tooltip if the {@link #required} is set to true.
+        /// Message which is shown in an invalid tooltip if the {@link #required} is
+        /// set to true.
+        /// 
         /// </summary>
         public string RequiredInvalidMessage
         {
@@ -196,7 +206,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid state will be set.
+        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid
+        /// state will be set.
+        /// 
         /// </summary>
         public bool? Valid
         {
@@ -211,15 +223,20 @@ namespace qxDotNet.UI.Form
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.form.AbstractField";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -229,22 +246,24 @@ namespace qxDotNet.UI.Form
             state.SetPropertyValue("placeholder", _placeholder, "");
             state.SetPropertyValue("readOnly", _readOnly, false);
             state.SetPropertyValue("textAlign", _textAlign, (TextAlignEnum)(-1));
-            state.SetPropertyValue("textSelection", _textSelection, "");
             state.SetPropertyValue("value", _value, "");
             state.SetPropertyValue("invalidMessage", _invalidMessage, "");
             state.SetPropertyValue("required", _required, false);
             state.SetPropertyValue("requiredInvalidMessage", _requiredInvalidMessage, "");
             state.SetPropertyValue("valid", _valid, true);
 
+            state.SetEvent("changeValue", false, "value");
             if (Input != null)
             {
                 state.SetEvent("input", false);
             }
 
-            state.SetEvent("changeValue", false, "value");
-
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -258,6 +277,9 @@ namespace qxDotNet.UI.Form
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeReadOnly'
+        /// </summary>
         protected virtual void OnChangeReadOnly()
         {
             if (ChangeReadOnly != null)
@@ -271,6 +293,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeReadOnly;
 
+        /// <summary>
+        /// Raises event 'ChangeValue'
+        /// </summary>
         protected virtual void OnChangeValue()
         {
             if (ChangeValue != null)
@@ -280,10 +305,22 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// The event is fired each time the text field looses focus and the text field values has changed.  If you change {@link #liveUpdate} to true, the changeValue event will be fired after every keystroke and not only after every focus loss. In that mode, the changeValue event is equal to the {@link #input} event.  The method {@link qx.event.type.Data#getData} returns the current text value of the field.
+        /// The event is fired each time the text field looses focus and the
+        /// text field values has changed.
+        /// 
+        /// If you change {@link #liveUpdate} to true, the changeValue event will
+        /// be fired after every keystroke and not only after every focus loss. In
+        /// that mode, the changeValue event is equal to the {@link #input} event.
+        /// 
+        /// The method {@link qx.event.type.Data#getData} returns the
+        /// current text value of the field.
+        /// 
         /// </summary>
         public event EventHandler ChangeValue;
 
+        /// <summary>
+        /// Raises event 'Input'
+        /// </summary>
         protected virtual void OnInput()
         {
             if (Input != null)
@@ -293,10 +330,17 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// The event is fired on every keystroke modifying the value of the field.  The method {@link qx.event.type.Data#getData} returns the current value of the text field.
+        /// The event is fired on every keystroke modifying the value of the field.
+        /// 
+        /// The method {@link qx.event.type.Data#getData} returns the
+        /// current value of the text field.
+        /// 
         /// </summary>
         public event EventHandler Input;
 
+        /// <summary>
+        /// Raises event 'ChangeInvalidMessage'
+        /// </summary>
         protected virtual void OnChangeInvalidMessage()
         {
             if (ChangeInvalidMessage != null)
@@ -310,6 +354,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeInvalidMessage;
 
+        /// <summary>
+        /// Raises event 'ChangeRequired'
+        /// </summary>
         protected virtual void OnChangeRequired()
         {
             if (ChangeRequired != null)
@@ -323,6 +370,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeRequired;
 
+        /// <summary>
+        /// Raises event 'ChangeValid'
+        /// </summary>
         protected virtual void OnChangeValid()
         {
             if (ChangeValid != null)

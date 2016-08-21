@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table.Cellrenderer
 {
     /// <summary>
     /// A data cell renderer for boolean values.
+    /// 
     /// </summary>
     public partial class Boolean : qxDotNet.UI.Table.Cellrenderer.AbstractImage
     {
@@ -18,6 +19,7 @@ namespace qxDotNet.UI.Table.Cellrenderer
 
         /// <summary>
         /// The icon used to indicate the false state
+        /// 
         /// </summary>
         public string IconFalse
         {
@@ -33,6 +35,7 @@ namespace qxDotNet.UI.Table.Cellrenderer
 
         /// <summary>
         /// The icon used to indicate the true state
+        /// 
         /// </summary>
         public string IconTrue
         {
@@ -46,15 +49,20 @@ namespace qxDotNet.UI.Table.Cellrenderer
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.cellrenderer.Boolean";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -64,6 +72,10 @@ namespace qxDotNet.UI.Table.Cellrenderer
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

@@ -7,7 +7,10 @@ using qxDotNet;
 namespace qxDotNet.UI.Tabview
 {
     /// <summary>
-    /// A tab view is a multi page view where only one page is visible at each moment. It is possible to switch the pages using the buttons rendered by each page.
+    /// A tab view is a multi page view where only one page is visible
+    /// at each moment. It is possible to switch the pages using the
+    /// buttons rendered by each page.
+    /// 
     /// </summary>
     public partial class TabView : qxDotNet.UI.Core.Widget, qxDotNet.UI.Core.ISingleSelection
     {
@@ -22,6 +25,7 @@ namespace qxDotNet.UI.Tabview
 
         /// <summary>
         /// This property defines on which side of the TabView the bar should be positioned.
+        /// 
         /// </summary>
         public qxDotNet.BarPositionEnum BarPosition
         {
@@ -36,6 +40,12 @@ namespace qxDotNet.UI.Tabview
         }
 
         /// <summary>
+        /// Returns an array of currently selected items.
+        /// 
+        /// Note: The result is only a set of selected items, so the order can
+        /// differ from the sequence in which the items were added.
+        /// 
+        /// Replaces current selection with the given items.
         /// 
         /// </summary>
         public qxDotNet.UI.Tabview.Page Selection
@@ -52,6 +62,7 @@ namespace qxDotNet.UI.Tabview
 
         /// <summary>
         /// Bottom padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingBottom
         {
@@ -67,6 +78,7 @@ namespace qxDotNet.UI.Tabview
 
         /// <summary>
         /// Left padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingLeft
         {
@@ -82,6 +94,7 @@ namespace qxDotNet.UI.Tabview
 
         /// <summary>
         /// Right padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingRight
         {
@@ -97,6 +110,7 @@ namespace qxDotNet.UI.Tabview
 
         /// <summary>
         /// Top padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingTop
         {
@@ -110,15 +124,20 @@ namespace qxDotNet.UI.Tabview
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.tabview.TabView";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -129,10 +148,14 @@ namespace qxDotNet.UI.Tabview
             state.SetPropertyValue("contentPaddingRight", _contentPaddingRight, 0);
             state.SetPropertyValue("contentPaddingTop", _contentPaddingTop, 0);
 
-            state.SetEvent("changeSelection", true, "selection");
+            state.SetEvent("changeSelection", false, "selection");
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -142,6 +165,9 @@ namespace qxDotNet.UI.Tabview
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeSelection'
+        /// </summary>
         protected virtual void OnChangeSelection()
         {
             if (ChangeSelection != null)
@@ -152,6 +178,7 @@ namespace qxDotNet.UI.Tabview
 
         /// <summary>
         /// Fires after the selection was modified
+        /// 
         /// </summary>
         public event EventHandler ChangeSelection;
 

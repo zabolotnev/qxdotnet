@@ -7,7 +7,12 @@ using qxDotNet;
 namespace qxDotNet.UI.Core.Selection
 {
     /// <summary>
-    /// Generic selection manager to bring rich desktop like selection behavior to widgets and low-level interactive controls.  The selection handling supports both Shift and Ctrl/Meta modifies like known from native applications.
+    /// Generic selection manager to bring rich desktop like selection behavior
+    /// to widgets and low-level interactive controls.
+    /// 
+    /// The selection handling supports both Shift and Ctrl/Meta modifies like
+    /// known from native applications.
+    /// 
     /// </summary>
     public abstract partial class Abstract : qxDotNet.Core.Object
     {
@@ -18,7 +23,11 @@ namespace qxDotNet.UI.Core.Selection
 
 
         /// <summary>
-        /// Enable drag selection (multi selection of items through dragging the mouse in pressed states).  Only possible for the modes multi and additive
+        /// Enable drag selection (multi selection of items through
+        /// dragging the pointer in pressed states).
+        /// 
+        /// Only possible for the modes multi and additive
+        /// 
         /// </summary>
         public bool? Drag
         {
@@ -33,7 +42,14 @@ namespace qxDotNet.UI.Core.Selection
         }
 
         /// <summary>
-        /// Selects the selection mode to use.   single: One or no element is selected multi: Multi items could be selected. Also allows empty selections. additive: Easy Web-2.0 selection mode. Allows multiple selections without modifier keys. one: If possible always exactly one item is selected 
+        /// Selects the selection mode to use.
+        /// 
+        /// 
+        /// single: One or no element is selected
+        /// multi: Multi items could be selected. Also allows empty selections.
+        /// additive: Easy Web-2.0 selection mode. Allows multiple selections without modifier keys.
+        /// one: If possible always exactly one item is selected
+        /// 
         /// </summary>
         public qxDotNet.ModeEnum Mode
         {
@@ -48,7 +64,10 @@ namespace qxDotNet.UI.Core.Selection
         }
 
         /// <summary>
-        /// Enable quick selection mode, where no click is needed to change the selection.  Only possible for the modes single and one.
+        /// Enable quick selection mode, where no tap is needed to change the selection.
+        /// 
+        /// Only possible for the modes single and one.
+        /// 
         /// </summary>
         public bool? Quick
         {
@@ -62,15 +81,20 @@ namespace qxDotNet.UI.Core.Selection
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.core.selection.Abstract";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -78,10 +102,17 @@ namespace qxDotNet.UI.Core.Selection
             state.SetPropertyValue("mode", _mode, ModeEnum.single);
             state.SetPropertyValue("quick", _quick, false);
 
-            state.SetEvent("changeSelection", false);
+            if (ChangeSelection != null)
+            {
+                state.SetEvent("changeSelection", false);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -91,6 +122,9 @@ namespace qxDotNet.UI.Core.Selection
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeSelection'
+        /// </summary>
         protected virtual void OnChangeSelection()
         {
             if (ChangeSelection != null)
@@ -101,6 +135,7 @@ namespace qxDotNet.UI.Core.Selection
 
         /// <summary>
         /// Fires after the selection was modified. Contains the selection under the data property.
+        /// 
         /// </summary>
         public event EventHandler ChangeSelection;
 

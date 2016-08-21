@@ -5,27 +5,7 @@ namespace qxDotNet
 
     public enum DecorationEnum
     {
-        @null=-1, underline, line_through, overline
-    }
-    public enum StateEnum
-    {
-        created,configured,queued,sending,receiving,completed,aborted,timeout,failed
-    }
-    public enum AlignmentEnum
-    {
-        top_left,top_right,bottom_left,bottom_right,center
-    }
-    public enum OrientationEnum
-    {
-        horizontal,vertical
-    }
-    public enum PositionEnum
-    {
-        relative,absolute
-    }
-    public enum MethodEnum
-    {
-        GET,POST,PUT,HEAD,DELETE
+        @null,underline,line_through,overline
     }
     public enum IconPositionEnum
     {
@@ -37,7 +17,11 @@ namespace qxDotNet
     }
     public enum TextAlignEnum
     {
-        @null=-1, left, center, right, justify
+        left,center,right,justify
+    }
+    public enum OrientationEnum
+    {
+        horizontal,vertical
     }
     public enum ActionEnum
     {
@@ -49,15 +33,27 @@ namespace qxDotNet
     }
     public enum PlaceMethodEnum
     {
-        widget,mouse
+        widget,pointer
+    }
+    public enum AlignmentEnum
+    {
+        top_left,top_center,top_right,bottom_left,bottom_center,bottom_right,left_top,left_middle,left_bottom,right_top,right_middle,right_bottom
+    }
+    public enum AlignEnum
+    {
+        top, right, bottom, left, center, middle
     }
     public enum AlignXEnum
     {
         left,center,right
     }
+    public enum AlignmentYEnum
+    {
+        @null, top,middle,bottom,baseline
+    }
     public enum AlignYEnum
     {
-        top,middle,bottom,baseline
+        top, middle, bottom
     }
     public enum SelectionModeEnum
     {
@@ -69,7 +65,11 @@ namespace qxDotNet
     }
     public enum ScrollbarEnum
     {
-        @null=-1,auto,on,off,yes,no
+        auto,on,off
+    }
+    public enum ScrollbarVisibleEnum
+    {
+        @null, auto, no, yes
     }
     public enum ModeEnum
     {
@@ -78,10 +78,6 @@ namespace qxDotNet
     public enum VisibilityEnum
     {
         visible,hidden,excluded
-    }
-    public enum ColorPositionUnitEnum
-    {
-        px,percent
     }
     public enum BorderImageModeEnum
     {
@@ -115,6 +111,10 @@ namespace qxDotNet
     {
         window,opaque,transparent
     }
+    public enum TextAlign1Enum
+    {
+        left,center,right
+    }
     public enum LegendPositionEnum
     {
         top,middle
@@ -135,6 +135,10 @@ namespace qxDotNet
     {
         value,percent
     }
+    public enum LifeCycleStateEnum
+    {
+        initialize,start,stop,resume,wait,pause
+    }
     public enum BarPositionEnum
     {
         left,right,top,bottom
@@ -149,22 +153,10 @@ namespace qxDotNet
     }
     public enum OpenModeEnum
     {
-        click,dblclick,none
-    }
-    public enum AlignEnum
-    {
-        top,right,bottom,left,center,middle
+        tap,dbltap,none
     }
     public enum EdgeEnum
     {
         top,right,bottom,left
-    }
-    public enum TableSelectionModelEnum
-    {
-        NO_SELECTION = 1,
-        SINGLE_SELECTION = 2,
-        SINGLE_INTERVAL_SELECTION = 3,
-        MULTIPLE_INTERVAL_SELECTION = 4,
-        MULTIPLE_INTERVAL_SELECTION_TOGGLE = 5
     }
 }

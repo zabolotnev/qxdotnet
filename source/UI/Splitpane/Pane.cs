@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Splitpane
 {
     /// <summary>
-    /// A split panes divides an area into two panes. The ratio between the two panes is configurable by the user using the splitter.
+    /// A split panes divides an area into two panes. The ratio between the two
+    /// panes is configurable by the user using the splitter.
+    /// 
     /// </summary>
     public partial class Pane : qxDotNet.UI.Core.Widget
     {
@@ -17,7 +19,9 @@ namespace qxDotNet.UI.Splitpane
 
 
         /// <summary>
-        /// Distance between mouse cursor and splitter when the cursor should change and enable resizing.
+        /// Distance between pointer and splitter when the cursor should change
+        /// and enable resizing.
+        /// 
         /// </summary>
         public int Offset
         {
@@ -33,6 +37,7 @@ namespace qxDotNet.UI.Splitpane
 
         /// <summary>
         /// The orientation of the splitpane control.
+        /// 
         /// </summary>
         public qxDotNet.OrientationEnum Orientation
         {
@@ -46,15 +51,20 @@ namespace qxDotNet.UI.Splitpane
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.splitpane.Pane";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -64,6 +74,10 @@ namespace qxDotNet.UI.Splitpane
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

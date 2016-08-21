@@ -7,7 +7,7 @@ using qxDotNet;
 namespace qxDotNet.UI.Window
 {
    
-    public partial class Window : qxDotNet.UI.Container.Composite
+    public partial class Window
     {
 
         private bool _needToOpen;

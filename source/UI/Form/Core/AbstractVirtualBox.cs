@@ -7,16 +7,19 @@ using qxDotNet;
 namespace qxDotNet.UI.Form.Core
 {
     /// <summary>
-    /// Basic class for widgets which need a virtual list as popup for example a SelectBox. It's basically supports a drop-down as popup with a virtual list and the whole children management.
+    /// Basic class for widgets which need a virtual list as popup for example a
+    /// SelectBox. It's basically supports a drop-down as popup with a virtual list
+    /// and the whole children management.
+    /// 
     /// </summary>
     public abstract partial class AbstractVirtualBox : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IForm
     {
 
-//        private _var _delegate = null;
-//        private _var _iconOptions = null;
+//TODO: private _var _delegate = null;
+//TODO: private _var _iconOptions = null;
         private string _iconPath = "";
         private int _itemHeight = 25;
-//        private _var _labelOptions = null;
+//TODO: private _var _labelOptions = null;
         private string _labelPath = "";
         private decimal _maxListHeight = 200m;
         private qxDotNet.Data.Array _model = null;
@@ -27,7 +30,10 @@ namespace qxDotNet.UI.Form.Core
 
 
         /// <summary>
-        /// The path to the property which holds the information that should be displayed as an icon. This is only needed if objects are stored in the model and icons should be displayed.
+        /// The path to the property which holds the information that should be
+        /// displayed as an icon. This is only needed if objects are stored in the
+        /// model and icons should be displayed.
+        /// 
         /// </summary>
         public string IconPath
         {
@@ -44,6 +50,7 @@ namespace qxDotNet.UI.Form.Core
 
         /// <summary>
         /// Default item height.
+        /// 
         /// </summary>
         public int ItemHeight
         {
@@ -58,7 +65,10 @@ namespace qxDotNet.UI.Form.Core
         }
 
         /// <summary>
-        /// The path to the property which holds the information that should be displayed as a label. This is only needed if objects are stored in the model.
+        /// The path to the property which holds the information that should be
+        /// displayed as a label. This is only needed if objects are stored in the
+        /// model.
+        /// 
         /// </summary>
         public string LabelPath
         {
@@ -74,7 +84,9 @@ namespace qxDotNet.UI.Form.Core
         }
 
         /// <summary>
-        /// The maximum height of the drop-down list. Setting this value to null will set cause the list to be auto-sized.
+        /// The maximum height of the drop-down list. Setting this value to
+        /// null will set cause the list to be auto-sized.
+        /// 
         /// </summary>
         public decimal MaxListHeight
         {
@@ -90,6 +102,7 @@ namespace qxDotNet.UI.Form.Core
 
         /// <summary>
         /// Data array containing the data which should be shown in the drop-down.
+        /// 
         /// </summary>
         public qxDotNet.Data.Array Model
         {
@@ -106,6 +119,7 @@ namespace qxDotNet.UI.Form.Core
 
         /// <summary>
         /// Message which is shown in an invalid tooltip.
+        /// 
         /// </summary>
         public string InvalidMessage
         {
@@ -122,6 +136,7 @@ namespace qxDotNet.UI.Form.Core
 
         /// <summary>
         /// Flag signaling if a widget is required.
+        /// 
         /// </summary>
         public bool? Required
         {
@@ -137,7 +152,9 @@ namespace qxDotNet.UI.Form.Core
         }
 
         /// <summary>
-        /// Message which is shown in an invalid tooltip if the {@link #required} is set to true.
+        /// Message which is shown in an invalid tooltip if the {@link #required} is
+        /// set to true.
+        /// 
         /// </summary>
         public string RequiredInvalidMessage
         {
@@ -153,7 +170,9 @@ namespace qxDotNet.UI.Form.Core
         }
 
         /// <summary>
-        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid state will be set.
+        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid
+        /// state will be set.
+        /// 
         /// </summary>
         public bool? Valid
         {
@@ -168,15 +187,20 @@ namespace qxDotNet.UI.Form.Core
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.form.core.AbstractVirtualBox";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -193,11 +217,18 @@ namespace qxDotNet.UI.Form.Core
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeDelegate'
+        /// </summary>
         protected virtual void OnChangeDelegate()
         {
             if (ChangeDelegate != null)
@@ -211,6 +242,9 @@ namespace qxDotNet.UI.Form.Core
         /// </summary>
         public event EventHandler ChangeDelegate;
 
+        /// <summary>
+        /// Raises event 'ChangeIconOptions'
+        /// </summary>
         protected virtual void OnChangeIconOptions()
         {
             if (ChangeIconOptions != null)
@@ -224,6 +258,9 @@ namespace qxDotNet.UI.Form.Core
         /// </summary>
         public event EventHandler ChangeIconOptions;
 
+        /// <summary>
+        /// Raises event 'ChangeIconPath'
+        /// </summary>
         protected virtual void OnChangeIconPath()
         {
             if (ChangeIconPath != null)
@@ -237,6 +274,9 @@ namespace qxDotNet.UI.Form.Core
         /// </summary>
         public event EventHandler ChangeIconPath;
 
+        /// <summary>
+        /// Raises event 'ChangeLabelOptions'
+        /// </summary>
         protected virtual void OnChangeLabelOptions()
         {
             if (ChangeLabelOptions != null)
@@ -250,6 +290,9 @@ namespace qxDotNet.UI.Form.Core
         /// </summary>
         public event EventHandler ChangeLabelOptions;
 
+        /// <summary>
+        /// Raises event 'ChangeLabelPath'
+        /// </summary>
         protected virtual void OnChangeLabelPath()
         {
             if (ChangeLabelPath != null)
@@ -263,6 +306,9 @@ namespace qxDotNet.UI.Form.Core
         /// </summary>
         public event EventHandler ChangeLabelPath;
 
+        /// <summary>
+        /// Raises event 'ChangeModel'
+        /// </summary>
         protected virtual void OnChangeModel()
         {
             if (ChangeModel != null)
@@ -276,6 +322,9 @@ namespace qxDotNet.UI.Form.Core
         /// </summary>
         public event EventHandler ChangeModel;
 
+        /// <summary>
+        /// Raises event 'ChangeInvalidMessage'
+        /// </summary>
         protected virtual void OnChangeInvalidMessage()
         {
             if (ChangeInvalidMessage != null)
@@ -289,6 +338,9 @@ namespace qxDotNet.UI.Form.Core
         /// </summary>
         public event EventHandler ChangeInvalidMessage;
 
+        /// <summary>
+        /// Raises event 'ChangeRequired'
+        /// </summary>
         protected virtual void OnChangeRequired()
         {
             if (ChangeRequired != null)
@@ -302,6 +354,9 @@ namespace qxDotNet.UI.Form.Core
         /// </summary>
         public event EventHandler ChangeRequired;
 
+        /// <summary>
+        /// Raises event 'ChangeValid'
+        /// </summary>
         protected virtual void OnChangeValid()
         {
             if (ChangeValid != null)

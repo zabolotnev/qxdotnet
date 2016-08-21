@@ -7,7 +7,16 @@ using qxDotNet;
 namespace qxDotNet.Event
 {
     /// <summary>
-    /// Timer, which accelerates after each interval. The initial delay and the interval time can be set using the properties {@link #firstInterval} and {@link #interval}. The {@link #interval} events will be fired with decreasing interval times while the timer is running, until the {@link #minimum} is reached. The {@link #decrease} property sets the amount of milliseconds which will decreased after every firing.  This class is e.g. used in the {@link qx.ui.form.RepeatButton} and {@link qx.ui.form.HoverButton} widgets.
+    /// Timer, which accelerates after each interval. The initial delay and the
+    /// interval time can be set using the properties {@link #firstInterval}
+    /// and {@link #interval}. The {@link #interval} events will be fired with
+    /// decreasing interval times while the timer is running, until the {@link #minimum}
+    /// is reached. The {@link #decrease} property sets the amount of milliseconds
+    /// which will decreased after every firing.
+    /// 
+    /// This class is e.g. used in the {@link qx.ui.form.RepeatButton} and
+    /// {@link qx.ui.form.HoverButton} widgets.
+    /// 
     /// </summary>
     public partial class AcceleratingTimer : qxDotNet.Core.Object
     {
@@ -20,6 +29,7 @@ namespace qxDotNet.Event
 
         /// <summary>
         /// Decrease of the timer on each interval (for the next interval) until minTimer reached.
+        /// 
         /// </summary>
         public int Decrease
         {
@@ -34,7 +44,10 @@ namespace qxDotNet.Event
         }
 
         /// <summary>
-        /// Interval used for the first run of the timer. Usually a greater value than the "interval" property value to a little delayed reaction at the first time.
+        /// Interval used for the first run of the timer. Usually a greater value
+        /// than the "interval" property value to a little delayed reaction at the first
+        /// time.
+        /// 
         /// </summary>
         public int FirstInterval
         {
@@ -49,7 +62,9 @@ namespace qxDotNet.Event
         }
 
         /// <summary>
-        /// Interval used after the first run of the timer. Usually a smaller value than the "firstInterval" property value to get a faster reaction.
+        /// Interval used after the first run of the timer. Usually a smaller value
+        /// than the "firstInterval" property value to get a faster reaction.
+        /// 
         /// </summary>
         public int Interval
         {
@@ -65,6 +80,7 @@ namespace qxDotNet.Event
 
         /// <summary>
         /// This configures the minimum value for the timer interval.
+        /// 
         /// </summary>
         public int Minimum
         {
@@ -79,11 +95,19 @@ namespace qxDotNet.Event
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.event.AcceleratingTimer";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -92,20 +116,30 @@ namespace qxDotNet.Event
             state.SetPropertyValue("interval", _interval, 100);
             state.SetPropertyValue("minimum", _minimum, 20);
 
-            state.SetEvent("interval", false);
+            if (Interval != null)
+            {
+                state.SetEvent("interval", true);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
             if (eventName == "interval")
             {
-                OnInterval();
+                OnIntervalElapsed();
             }
         }
 
-        protected virtual void OnInterval()
+        /// <summary>
+        /// Raises event 'Interval'
+        /// </summary>
+        protected virtual void OnIntervalElapsed()
         {
             if (IntervalElapsed != null)
             {
@@ -115,6 +149,7 @@ namespace qxDotNet.Event
 
         /// <summary>
         /// This event if fired each time the interval time has elapsed
+        /// 
         /// </summary>
         public event EventHandler IntervalElapsed;
 

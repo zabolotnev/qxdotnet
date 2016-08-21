@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Toolbar
 {
     /// <summary>
     /// The button to fill the menubar
+    /// 
     /// </summary>
     public partial class MenuButton : qxDotNet.UI.Menubar.Button
     {
@@ -17,6 +18,7 @@ namespace qxDotNet.UI.Toolbar
 
         /// <summary>
         /// Whether the button should show an arrow to indicate the menu behind it
+        /// 
         /// </summary>
         public bool? ShowArrow
         {
@@ -30,15 +32,20 @@ namespace qxDotNet.UI.Toolbar
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.toolbar.MenuButton";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -47,6 +54,10 @@ namespace qxDotNet.UI.Toolbar
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

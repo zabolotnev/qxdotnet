@@ -7,13 +7,26 @@ using qxDotNet;
 namespace qxDotNet.UI.Tree
 {
     /// <summary>
-    /// The Tree class implements a tree widget, with collapsible and expandable container nodes and terminal leaf nodes. You instantiate a Tree object and then assign the tree a root folder using the {@link #root} property.  If you don't want to show the root item, you can hide it with the {@link #hideRoot} property.  The handling of selections within a tree is somewhat distributed between the root tree object and the attached {@link qx.ui.tree.selection.SelectionManager}. To get the currently selected element of a tree use the tree {@link #getSelection} method and tree {@link #setSelection} to set it. The TreeSelectionManager handles more coarse-grained issues like providing {@link #selectAll} and {@link #resetSelection} methods.
+    /// The Tree class implements a tree widget, with collapsible and expandable
+    /// container nodes and terminal leaf nodes. You instantiate a Tree object and
+    /// then assign the tree a root folder using the {@link #root} property.
+    /// 
+    /// If you don't want to show the root item, you can hide it with the
+    /// {@link #hideRoot} property.
+    /// 
+    /// The handling of selections within a tree is somewhat distributed
+    /// between the root tree object and the attached {@link qx.ui.tree.selection.SelectionManager}.
+    /// To get the currently selected element of a tree use the tree {@link #getSelection}
+    /// method and tree {@link #setSelection} to set it. The TreeSelectionManager
+    /// handles more coarse-grained issues like providing {@link #selectAll} and
+    /// {@link #resetSelection} methods.
+    /// 
     /// </summary>
     public partial class Tree : qxDotNet.UI.Core.Scroll.AbstractScrollArea, qxDotNet.UI.Core.IMultiSelection, qxDotNet.UI.Form.IModelSelection, qxDotNet.UI.Form.IForm
     {
 
         private bool? _hideRoot = false;
-        private qxDotNet.OpenModeEnum _openMode = OpenModeEnum.dblclick;
+        private qxDotNet.OpenModeEnum _openMode = OpenModeEnum.dbltap;
         private qxDotNet.UI.Tree.Core.AbstractTreeItem _root = null;
         private bool? _rootOpenClose = false;
         private bool? _dragSelection = false;
@@ -32,7 +45,9 @@ namespace qxDotNet.UI.Tree
 
 
         /// <summary>
-        /// Hide the root (Tree) node. This differs from the visibility property in that this property hides only the root node, not the node's children.
+        /// Hide the root (Tree) node. This differs from the visibility property in
+        /// that this property hides only the root node, not the node's children.
+        /// 
         /// </summary>
         public bool? HideRoot
         {
@@ -47,7 +62,9 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// Control whether clicks or double clicks should open or close the clicked folder.
+        /// Control whether tap or double tap should open or close the tapped
+        /// folder.
+        /// 
         /// </summary>
         public qxDotNet.OpenModeEnum OpenMode
         {
@@ -64,6 +81,7 @@ namespace qxDotNet.UI.Tree
 
         /// <summary>
         /// The root tree item of the tree to display
+        /// 
         /// </summary>
         public qxDotNet.UI.Tree.Core.AbstractTreeItem Root
         {
@@ -79,7 +97,12 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// Whether the Root should have an open/close button. This may also be used in conjunction with the hideNode property to provide for virtual root nodes. In the latter case, be very sure that the virtual root nodes are expanded programatically, since there will be no open/close button for the user to open them.
+        /// Whether the Root should have an open/close button. This may also be
+        /// used in conjunction with the hideNode property to provide for virtual root
+        /// nodes. In the latter case, be very sure that the virtual root nodes are
+        /// expanded programatically, since there will be no open/close button for the
+        /// user to open them.
+        /// 
         /// </summary>
         public bool? RootOpenClose
         {
@@ -94,7 +117,11 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// Enable drag selection (multi selection of items through dragging the mouse in pressed states).  Only possible for the selection modes multi and additive
+        /// Enable drag selection (multi selection of items through
+        /// dragging the pointer in pressed states).
+        /// 
+        /// Only possible for the selection modes multi and additive
+        /// 
         /// </summary>
         public bool? DragSelection
         {
@@ -109,7 +136,10 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// Enable quick selection mode, where no click is needed to change the selection.  Only possible for the modes single and one.
+        /// Enable quick selection mode, where no tap is needed to change the selection.
+        /// 
+        /// Only possible for the modes single and one.
+        /// 
         /// </summary>
         public bool? QuickSelection
         {
@@ -124,7 +154,11 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// The selection mode to use.  For further details please have a look at: {@link qx.ui.core.selection.Abstract#mode}
+        /// The selection mode to use.
+        /// 
+        /// For further details please have a look at:
+        /// {@link qx.ui.core.selection.Abstract#mode}
+        /// 
         /// </summary>
         public qxDotNet.SelectionModeEnum SelectionMode
         {
@@ -139,6 +173,12 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
+        /// Returns an array of currently selected items.
+        /// 
+        /// Note: The result is only a set of selected items, so the order can
+        /// differ from the sequence in which the items were added.
+        /// 
+        /// Replaces current selection with the given items.
         /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget Selection
@@ -155,6 +195,7 @@ namespace qxDotNet.UI.Tree
 
         /// <summary>
         /// Bottom padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingBottom
         {
@@ -170,6 +211,7 @@ namespace qxDotNet.UI.Tree
 
         /// <summary>
         /// Left padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingLeft
         {
@@ -185,6 +227,7 @@ namespace qxDotNet.UI.Tree
 
         /// <summary>
         /// Right padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingRight
         {
@@ -200,6 +243,7 @@ namespace qxDotNet.UI.Tree
 
         /// <summary>
         /// Top padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingTop
         {
@@ -214,6 +258,20 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
+        /// Returns always an array of the models of the selected items. If no
+        /// item is selected or no model is given, the array will be empty.
+        /// 
+        /// CAREFUL! The model selection can only work if every item item in the
+        /// selection providing widget has a model property!
+        /// 
+        /// Takes the given models in the array and searches for the corresponding
+        /// selectables. If an selectable does have that model attached, it will be
+        /// selected.
+        /// 
+        /// Attention: This method can have a time complexity of O(n^2)!
+        /// 
+        /// CAREFUL! The model selection can only work if every item item in the
+        /// selection providing widget has a model property!
         /// 
         /// </summary>
         public qxDotNet.Data.Array ModelSelection
@@ -230,6 +288,7 @@ namespace qxDotNet.UI.Tree
 
         /// <summary>
         /// Message which is shown in an invalid tooltip.
+        /// 
         /// </summary>
         public string InvalidMessage
         {
@@ -246,6 +305,7 @@ namespace qxDotNet.UI.Tree
 
         /// <summary>
         /// Flag signaling if a widget is required.
+        /// 
         /// </summary>
         public bool? Required
         {
@@ -261,7 +321,9 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// Message which is shown in an invalid tooltip if the {@link #required} is set to true.
+        /// Message which is shown in an invalid tooltip if the {@link #required} is
+        /// set to true.
+        /// 
         /// </summary>
         public string RequiredInvalidMessage
         {
@@ -277,7 +339,9 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid state will be set.
+        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid
+        /// state will be set.
+        /// 
         /// </summary>
         public bool? Valid
         {
@@ -292,20 +356,25 @@ namespace qxDotNet.UI.Tree
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.tree.Tree";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
             state.SetPropertyValue("hideRoot", _hideRoot, false);
-            state.SetPropertyValue("openMode", _openMode, OpenModeEnum.dblclick);
+            state.SetPropertyValue("openMode", _openMode, OpenModeEnum.dbltap);
             state.SetPropertyValue("root", _root, null);
             state.SetPropertyValue("rootOpenClose", _rootOpenClose, false);
             state.SetPropertyValue("dragSelection", _dragSelection, false);
@@ -322,13 +391,29 @@ namespace qxDotNet.UI.Tree
             state.SetPropertyValue("requiredInvalidMessage", _requiredInvalidMessage, "");
             state.SetPropertyValue("valid", _valid, true);
 
-            state.SetEvent("addItem", false);
-            state.SetEvent("removeItem", false);
-            state.SetEvent("changeSelection", false);
-            state.SetEvent("changeModelSelection", false);
+            if (AddItem != null)
+            {
+                state.SetEvent("addItem", false);
+            }
+            if (RemoveItem != null)
+            {
+                state.SetEvent("removeItem", false);
+            }
+            if (ChangeSelection != null)
+            {
+                state.SetEvent("changeSelection", false);
+            }
+            if (ChangeModelSelection != null)
+            {
+                state.SetEvent("changeModelSelection", false);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -350,6 +435,9 @@ namespace qxDotNet.UI.Tree
             }
         }
 
+        /// <summary>
+        /// Raises event 'AddItem'
+        /// </summary>
         protected virtual void OnAddItem()
         {
             if (AddItem != null)
@@ -359,10 +447,16 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// This event is fired after a tree item was added to the tree. The {@link qx.event.type.Data#getData} method of the event returns the added item.
+        /// This event is fired after a tree item was added to the tree. The
+        /// {@link qx.event.type.Data#getData} method of the event returns the
+        /// added item.
+        /// 
         /// </summary>
         public event EventHandler AddItem;
 
+        /// <summary>
+        /// Raises event 'ChangeOpenMode'
+        /// </summary>
         protected virtual void OnChangeOpenMode()
         {
             if (ChangeOpenMode != null)
@@ -376,6 +470,9 @@ namespace qxDotNet.UI.Tree
         /// </summary>
         public event EventHandler ChangeOpenMode;
 
+        /// <summary>
+        /// Raises event 'ChangeRoot'
+        /// </summary>
         protected virtual void OnChangeRoot()
         {
             if (ChangeRoot != null)
@@ -389,6 +486,9 @@ namespace qxDotNet.UI.Tree
         /// </summary>
         public event EventHandler ChangeRoot;
 
+        /// <summary>
+        /// Raises event 'RemoveItem'
+        /// </summary>
         protected virtual void OnRemoveItem()
         {
             if (RemoveItem != null)
@@ -398,10 +498,16 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// This event is fired after a tree item has been removed from the tree. The {@link qx.event.type.Data#getData} method of the event returns the removed item.
+        /// This event is fired after a tree item has been removed from the tree.
+        /// The {@link qx.event.type.Data#getData} method of the event returns the
+        /// removed item.
+        /// 
         /// </summary>
         public event EventHandler RemoveItem;
 
+        /// <summary>
+        /// Raises event 'ChangeSelection'
+        /// </summary>
         protected virtual void OnChangeSelection()
         {
             if (ChangeSelection != null)
@@ -412,9 +518,13 @@ namespace qxDotNet.UI.Tree
 
         /// <summary>
         /// Fires after the selection was modified
+        /// 
         /// </summary>
         public event EventHandler ChangeSelection;
 
+        /// <summary>
+        /// Raises event 'ChangeModelSelection'
+        /// </summary>
         protected virtual void OnChangeModelSelection()
         {
             if (ChangeModelSelection != null)
@@ -424,10 +534,15 @@ namespace qxDotNet.UI.Tree
         }
 
         /// <summary>
-        /// Pseudo event. It will never be fired because the array itself can not be changed. But the event description is needed for the data binding.
+        /// Pseudo event. It will never be fired because the array itself can not
+        /// be changed. But the event description is needed for the data binding.
+        /// 
         /// </summary>
         public event EventHandler ChangeModelSelection;
 
+        /// <summary>
+        /// Raises event 'ChangeInvalidMessage'
+        /// </summary>
         protected virtual void OnChangeInvalidMessage()
         {
             if (ChangeInvalidMessage != null)
@@ -441,6 +556,9 @@ namespace qxDotNet.UI.Tree
         /// </summary>
         public event EventHandler ChangeInvalidMessage;
 
+        /// <summary>
+        /// Raises event 'ChangeRequired'
+        /// </summary>
         protected virtual void OnChangeRequired()
         {
             if (ChangeRequired != null)
@@ -454,6 +572,9 @@ namespace qxDotNet.UI.Tree
         /// </summary>
         public event EventHandler ChangeRequired;
 
+        /// <summary>
+        /// Raises event 'ChangeValid'
+        /// </summary>
         protected virtual void OnChangeValid()
         {
             if (ChangeValid != null)

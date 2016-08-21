@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Core
 {
     /// <summary>
-    /// The base class of all items, which should be laid out using a layout manager {@link qx.ui.layout.Abstract}.
+    /// The base class of all items, which should be laid out using a layout manager
+    /// {@link qx.ui.layout.Abstract}.
+    /// 
     /// </summary>
     public abstract partial class LayoutItem : qxDotNet.Core.Object
     {
@@ -33,7 +35,12 @@ namespace qxDotNet.UI.Core
 
 
         /// <summary>
-        /// Horizontal alignment of the item in the parent layout.  Note: Item alignment is only supported by {@link LayoutItem} layouts where it would have a visual effect. Except for {@link Spacer}, which provides blank space for layouts, all classes that inherit {@link LayoutItem} support alignment.
+        /// Horizontal alignment of the item in the parent layout.
+        /// 
+        /// Note: Item alignment is only supported by {@link LayoutItem} layouts where
+        /// it would have a visual effect. Except for {@link Spacer}, which provides
+        /// blank space for layouts, all classes that inherit {@link LayoutItem} support alignment.
+        /// 
         /// </summary>
         public qxDotNet.AlignXEnum AlignX
         {
@@ -48,7 +55,12 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// Vertical alignment of the item in the parent layout.  Note: Item alignment is only supported by {@link LayoutItem} layouts where it would have a visual effect. Except for {@link Spacer}, which provides blank space for layouts, all classes that inherit {@link LayoutItem} support alignment.
+        /// Vertical alignment of the item in the parent layout.
+        /// 
+        /// Note: Item alignment is only supported by {@link LayoutItem} layouts where
+        /// it would have a visual effect. Except for {@link Spacer}, which provides
+        /// blank space for layouts, all classes that inherit {@link LayoutItem} support alignment.
+        /// 
         /// </summary>
         public qxDotNet.AlignYEnum AlignY
         {
@@ -64,6 +76,7 @@ namespace qxDotNet.UI.Core
 
         /// <summary>
         /// Whether the item can grow horizontally.
+        /// 
         /// </summary>
         public bool? AllowGrowX
         {
@@ -79,6 +92,7 @@ namespace qxDotNet.UI.Core
 
         /// <summary>
         /// Whether the item can grow vertically.
+        /// 
         /// </summary>
         public bool? AllowGrowY
         {
@@ -94,6 +108,7 @@ namespace qxDotNet.UI.Core
 
         /// <summary>
         /// Whether the item can shrink horizontally.
+        /// 
         /// </summary>
         public bool? AllowShrinkX
         {
@@ -109,6 +124,7 @@ namespace qxDotNet.UI.Core
 
         /// <summary>
         /// Whether the item can shrink vertically.
+        /// 
         /// </summary>
         public bool? AllowShrinkY
         {
@@ -123,7 +139,12 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The item's preferred height.  The computed height may differ from the given height due to stretching. Also take a look at the related properties {@link #minHeight} and {@link #maxHeight}.
+        /// The item's preferred height.
+        /// 
+        /// The computed height may differ from the given height due to
+        /// stretching. Also take a look at the related properties
+        /// {@link #minHeight} and {@link #maxHeight}.
+        /// 
         /// </summary>
         public int Height
         {
@@ -140,6 +161,7 @@ namespace qxDotNet.UI.Core
 
         /// <summary>
         /// Margin of the widget (bottom)
+        /// 
         /// </summary>
         public int MarginBottom
         {
@@ -155,6 +177,7 @@ namespace qxDotNet.UI.Core
 
         /// <summary>
         /// Margin of the widget (left)
+        /// 
         /// </summary>
         public int MarginLeft
         {
@@ -170,6 +193,7 @@ namespace qxDotNet.UI.Core
 
         /// <summary>
         /// Margin of the widget (right)
+        /// 
         /// </summary>
         public int MarginRight
         {
@@ -185,6 +209,7 @@ namespace qxDotNet.UI.Core
 
         /// <summary>
         /// Margin of the widget (top)
+        /// 
         /// </summary>
         public int MarginTop
         {
@@ -199,7 +224,10 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The user provided maximum height.  Also take a look at the related properties {@link #height} and {@link #minHeight}.
+        /// The user provided maximum height.
+        /// 
+        /// Also take a look at the related properties {@link #height} and {@link #minHeight}.
+        /// 
         /// </summary>
         public int MaxHeight
         {
@@ -214,7 +242,10 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The user provided maximal width.  Also take a look at the related properties {@link #width} and {@link #minWidth}.
+        /// The user provided maximal width.
+        /// 
+        /// Also take a look at the related properties {@link #width} and {@link #minWidth}.
+        /// 
         /// </summary>
         public int MaxWidth
         {
@@ -229,7 +260,10 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The user provided minimal height.  Also take a look at the related properties {@link #height} and {@link #maxHeight}.
+        /// The user provided minimal height.
+        /// 
+        /// Also take a look at the related properties {@link #height} and {@link #maxHeight}.
+        /// 
         /// </summary>
         public int MinHeight
         {
@@ -244,7 +278,10 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The user provided minimal width.  Also take a look at the related properties {@link #width} and {@link #maxWidth}.
+        /// The user provided minimal width.
+        /// 
+        /// Also take a look at the related properties {@link #width} and {@link #maxWidth}.
+        /// 
         /// </summary>
         public int MinWidth
         {
@@ -259,7 +296,12 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
-        /// The LayoutItem's preferred width.  The computed width may differ from the given width due to stretching. Also take a look at the related properties {@link #minWidth} and {@link #maxWidth}.
+        /// The LayoutItem's preferred width.
+        /// 
+        /// The computed width may differ from the given width due to
+        /// stretching. Also take a look at the related properties
+        /// {@link #minWidth} and {@link #maxWidth}.
+        /// 
         /// </summary>
         public int Width
         {
@@ -275,6 +317,11 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
+        /// Get the items parent. Even if the item has been added to a
+        /// layout, the parent is always a child of the containing item. The parent
+        /// item may be null.
+        /// 
+        /// Set the parent
         /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget LayoutParent
@@ -290,6 +337,9 @@ namespace qxDotNet.UI.Core
         }
 
         /// <summary>
+        /// Returns currently stored layout properties
+        /// 
+        /// Stores the given layout properties
         /// 
         /// </summary>
         public Map LayoutProperties
@@ -304,15 +354,20 @@ namespace qxDotNet.UI.Core
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.core.LayoutItem";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -338,11 +393,18 @@ namespace qxDotNet.UI.Core
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeHeight'
+        /// </summary>
         protected virtual void OnChangeHeight()
         {
             if (ChangeHeight != null)
@@ -356,6 +418,9 @@ namespace qxDotNet.UI.Core
         /// </summary>
         public event EventHandler ChangeHeight;
 
+        /// <summary>
+        /// Raises event 'ChangeWidth'
+        /// </summary>
         protected virtual void OnChangeWidth()
         {
             if (ChangeWidth != null)

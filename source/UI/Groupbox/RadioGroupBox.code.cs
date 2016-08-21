@@ -6,7 +6,7 @@ using qxDotNet;
 
 namespace qxDotNet.UI.Groupbox
 {
-    public partial class RadioGroupBox : qxDotNet.UI.Groupbox.GroupBox, qxDotNet.UI.Form.IRadioItem, qxDotNet.UI.Form.IExecutable, qxDotNet.UI.Form.IBooleanForm, qxDotNet.UI.Form.IModel
+    public partial class RadioGroupBox : qxDotNet.UI.Groupbox.GroupBox, qxDotNet.UI.Form.IRadioItem, qxDotNet.UI.Form.IBooleanForm, qxDotNet.UI.Form.IModel
     {
 
         private qxDotNet.UI.Core.Command _command = null;
@@ -46,22 +46,6 @@ namespace qxDotNet.UI.Groupbox
             set
             {
                 _value = value;
-            }
-        }
-
-        #endregion
-
-        #region IExecutable Members
-
-        qxDotNet.UI.Core.Command qxDotNet.UI.Form.IExecutable.Command
-        {
-            get
-            {
-                return _command;
-            }
-            set
-            {
-                _command = value;
             }
         }
 

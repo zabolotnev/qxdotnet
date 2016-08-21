@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table.Cellrenderer
 {
     /// <summary>
     /// The default data cell renderer.
+    /// 
     /// </summary>
     public partial class Default : qxDotNet.UI.Table.Cellrenderer.Abstract
     {
@@ -16,7 +17,9 @@ namespace qxDotNet.UI.Table.Cellrenderer
 
 
         /// <summary>
-        /// Whether the alignment should automatically be set according to the cell value. If true numbers will be right-aligned.
+        /// Whether the alignment should automatically be set according to the cell value.
+        /// If true numbers will be right-aligned.
+        /// 
         /// </summary>
         public bool? UseAutoAlign
         {
@@ -30,15 +33,20 @@ namespace qxDotNet.UI.Table.Cellrenderer
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.cellrenderer.Default";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -47,6 +55,10 @@ namespace qxDotNet.UI.Table.Cellrenderer
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

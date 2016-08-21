@@ -6,7 +6,7 @@ using qxDotNet;
 
 namespace qxDotNet.UI.Form
 {
-    public partial class Slider : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IForm, qxDotNet.UI.Form.INumberForm, qxDotNet.UI.Form.IRange
+    public partial class Slider : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IForm, qxDotNet.UI.Form.IRange
     {
 
         #region IForm Members
@@ -68,22 +68,6 @@ namespace qxDotNet.UI.Form
             set
             {
                 _valid = value;
-            }
-        }
-
-        #endregion
-
-        #region INumberForm Members
-
-        decimal INumberForm.Value
-        {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                _value = value;
             }
         }
 

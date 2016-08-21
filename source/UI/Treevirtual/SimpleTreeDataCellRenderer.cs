@@ -7,7 +7,23 @@ using qxDotNet;
 namespace qxDotNet.UI.Treevirtual
 {
     /// <summary>
-    /// A data cell renderer for the tree column of a simple tree  This cell renderer has provisions for subclasses to easily extend the appearance of the tree. If the tree should contain images, labels, etc. before the indentation, the subclass should override the method _addExtraContentBeforeIndentation(). Similarly, content can be added before the icon by overriding _addExtraContentBeforeIcon(), and before the label by overriding _addExtraContentBeforeLabel().  Each of these overridden methods that calls _addImage() can provide, as part of the map passed to _addImage(), a member called "tooltip" which contains the tool tip to present when the mouse is hovered over the image.  If this class is subclassed to form a new cell renderer, an instance of it must be provided, via the "custom"; parameter, to the TreeVirtual constructor.
+    /// A data cell renderer for the tree column of a simple tree
+    /// 
+    /// This cell renderer has provisions for subclasses to easily extend the
+    /// appearance of the tree. If the tree should contain images, labels,
+    /// etc. before the indentation, the subclass should override the method
+    /// _addExtraContentBeforeIndentation(). Similarly, content can be added before
+    /// the icon by overriding _addExtraContentBeforeIcon(), and before the label
+    /// by overriding _addExtraContentBeforeLabel().
+    /// 
+    /// Each of these overridden methods that calls _addImage() can provide, as
+    /// part of the map passed to _addImage(), a member called "tooltip" which
+    /// contains the tool tip to present when the mouse is hovered over the image.
+    /// 
+    /// If this class is subclassed to form a new cell renderer, an instance of it
+    /// must be provided, via the 'custom' parameter, to the TreeVirtual
+    /// constructor.
+    /// 
     /// </summary>
     public partial class SimpleTreeDataCellRenderer : qxDotNet.UI.Table.Cellrenderer.Abstract
     {
@@ -18,7 +34,9 @@ namespace qxDotNet.UI.Treevirtual
 
 
         /// <summary>
-        /// Set whether the open/close button should be displayed on a branch, even if the branch has no children.
+        /// Set whether the open/close button should be displayed on a branch, even
+        /// if the branch has no children.
+        /// 
         /// </summary>
         public bool? AlwaysShowOpenCloseSymbol
         {
@@ -33,7 +51,9 @@ namespace qxDotNet.UI.Treevirtual
         }
 
         /// <summary>
-        /// When true, exclude only the first-level tree lines, creating, effectively, multiple unrelated root nodes.
+        /// When true, exclude only the first-level tree lines, creating,
+        /// effectively, multiple unrelated root nodes.
+        /// 
         /// </summary>
         public bool? ExcludeFirstLevelTreeLines
         {
@@ -48,7 +68,9 @@ namespace qxDotNet.UI.Treevirtual
         }
 
         /// <summary>
-        /// Set whether lines linking tree children shall be drawn on the tree if the theme supports tree lines.
+        /// Set whether lines linking tree children shall be drawn on the tree
+        /// if the theme supports tree lines.
+        /// 
         /// </summary>
         public bool? UseTreeLines
         {
@@ -63,11 +85,19 @@ namespace qxDotNet.UI.Treevirtual
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.treevirtual.SimpleTreeDataCellRenderer";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -78,6 +108,10 @@ namespace qxDotNet.UI.Treevirtual
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

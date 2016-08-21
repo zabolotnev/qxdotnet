@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Tree.Core
 {
     /// <summary>
-    /// Interface describes the methods which the {@link qx.ui.tree.provider.WidgetProvider} uses for communication.
+    /// Interface describes the methods which the {@link qx.ui.tree.provider.WidgetProvider}
+    /// uses for communication.
+    /// 
     /// </summary>
     public interface IVirtualTree
     {

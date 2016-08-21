@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table.Headerrenderer
 {
     /// <summary>
     /// The default header cell widget
+    /// 
     /// </summary>
     public partial class HeaderCell : qxDotNet.UI.Container.Composite
     {
@@ -19,6 +20,7 @@ namespace qxDotNet.UI.Table.Headerrenderer
 
         /// <summary>
         /// Icon URL
+        /// 
         /// </summary>
         public string Icon
         {
@@ -34,6 +36,7 @@ namespace qxDotNet.UI.Table.Headerrenderer
 
         /// <summary>
         /// header cell label
+        /// 
         /// </summary>
         public string Label
         {
@@ -49,6 +52,7 @@ namespace qxDotNet.UI.Table.Headerrenderer
 
         /// <summary>
         /// The icon URL of the sorting indicator
+        /// 
         /// </summary>
         public string SortIcon
         {
@@ -63,11 +67,19 @@ namespace qxDotNet.UI.Table.Headerrenderer
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.headerrenderer.HeaderCell";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -78,6 +90,10 @@ namespace qxDotNet.UI.Table.Headerrenderer
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

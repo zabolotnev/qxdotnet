@@ -8,22 +8,28 @@ namespace qxDotNet.UI.Table.Celleditor
 {
     /// <summary>
     /// A cell editor factory creating select boxes.
+    /// 
     /// </summary>
     public partial class SelectBox : qxDotNet.Core.Object, qxDotNet.UI.Table.ICellEditorFactory
     {
 
-//        private _array _listData = null;
+//TODO: private _array _listData = null;
+
 
 
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.celleditor.SelectBox";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -31,6 +37,10 @@ namespace qxDotNet.UI.Table.Celleditor
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

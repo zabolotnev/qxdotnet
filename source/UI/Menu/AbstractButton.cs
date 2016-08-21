@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Menu
 {
     /// <summary>
-    /// The abstract menu button class is used for all type of menu content for example normal buttons, checkboxes or radiobuttons.
+    /// The abstract menu button class is used for all type of menu content
+    /// for example normal buttons, checkboxes or radiobuttons.
+    /// 
     /// </summary>
     public abstract partial class AbstractButton : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IExecutable
     {
@@ -16,11 +18,12 @@ namespace qxDotNet.UI.Menu
         private string _label = "";
         private qxDotNet.UI.Menu.Menu _menu = null;
         private bool? _showCommandLabel = true;
-        private qxDotNet.UI.Core.Command _command = null;
+        private qxDotNet.UI.Command.Command _command = null;
 
 
         /// <summary>
         /// The icon to use
+        /// 
         /// </summary>
         public string Icon
         {
@@ -37,6 +40,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// The label text of the button
+        /// 
         /// </summary>
         public string Label
         {
@@ -53,6 +57,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// Whether a sub menu should be shown and which one
+        /// 
         /// </summary>
         public qxDotNet.UI.Menu.Menu Menu
         {
@@ -69,6 +74,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// Indicates whether the label for the command (shortcut) should be visible or not.
+        /// 
         /// </summary>
         public bool? ShowCommandLabel
         {
@@ -84,9 +90,11 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// A command called if the {@link #execute} method is called, e.g. on a button click.
+        /// A command called if the {@link #execute} method is called, e.g. on a
+        /// button tap.
+        /// 
         /// </summary>
-        public qxDotNet.UI.Core.Command Command
+        public qxDotNet.UI.Command.Command Command
         {
             get
             {
@@ -99,15 +107,20 @@ namespace qxDotNet.UI.Menu
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.menu.AbstractButton";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -117,10 +130,17 @@ namespace qxDotNet.UI.Menu
             state.SetPropertyValue("showCommandLabel", _showCommandLabel, true);
             state.SetPropertyValue("command", _command, null);
 
-            state.SetEvent("execute", true);
+            if (Execute != null)
+            {
+                state.SetEvent("execute", true);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -130,6 +150,9 @@ namespace qxDotNet.UI.Menu
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeIcon'
+        /// </summary>
         protected virtual void OnChangeIcon()
         {
             if (ChangeIcon != null)
@@ -143,6 +166,9 @@ namespace qxDotNet.UI.Menu
         /// </summary>
         public event EventHandler ChangeIcon;
 
+        /// <summary>
+        /// Raises event 'ChangeLabel'
+        /// </summary>
         protected virtual void OnChangeLabel()
         {
             if (ChangeLabel != null)
@@ -156,6 +182,9 @@ namespace qxDotNet.UI.Menu
         /// </summary>
         public event EventHandler ChangeLabel;
 
+        /// <summary>
+        /// Raises event 'ChangeMenu'
+        /// </summary>
         protected virtual void OnChangeMenu()
         {
             if (ChangeMenu != null)
@@ -169,6 +198,9 @@ namespace qxDotNet.UI.Menu
         /// </summary>
         public event EventHandler ChangeMenu;
 
+        /// <summary>
+        /// Raises event 'ChangeShowCommandLabel'
+        /// </summary>
         protected virtual void OnChangeShowCommandLabel()
         {
             if (ChangeShowCommandLabel != null)
@@ -182,6 +214,9 @@ namespace qxDotNet.UI.Menu
         /// </summary>
         public event EventHandler ChangeShowCommandLabel;
 
+        /// <summary>
+        /// Raises event 'ChangeCommand'
+        /// </summary>
         protected virtual void OnChangeCommand()
         {
             if (ChangeCommand != null)
@@ -195,6 +230,9 @@ namespace qxDotNet.UI.Menu
         /// </summary>
         public event EventHandler ChangeCommand;
 
+        /// <summary>
+        /// Raises event 'Execute'
+        /// </summary>
         protected virtual void OnExecute()
         {
             if (Execute != null)
@@ -205,6 +243,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// Fired if the {@link #execute} method is invoked.
+        /// 
         /// </summary>
         public event EventHandler Execute;
 

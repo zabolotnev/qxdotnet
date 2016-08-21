@@ -7,7 +7,10 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// A list of items. Displays an automatically scrolling list for all added {@link qx.ui.form.ListItem} instances. Supports various selection options: single, multi, ...
+    /// A list of items. Displays an automatically scrolling list for all
+    /// added {@link qx.ui.form.ListItem} instances. Supports various
+    /// selection options: single, multi, ...
+    /// 
     /// </summary>
     public partial class List : qxDotNet.UI.Core.Scroll.AbstractScrollArea, qxDotNet.UI.Core.IMultiSelection, qxDotNet.UI.Form.IForm, qxDotNet.UI.Form.IModelSelection
     {
@@ -28,6 +31,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Controls whether the inline-find feature is activated or not
+        /// 
         /// </summary>
         public bool? EnableInlineFind
         {
@@ -43,6 +47,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Whether the list should be rendered horizontal or vertical.
+        /// 
         /// </summary>
         public qxDotNet.OrientationEnum Orientation
         {
@@ -58,6 +63,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Spacing between the items
+        /// 
         /// </summary>
         public int Spacing
         {
@@ -72,7 +78,11 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Enable drag selection (multi selection of items through dragging the mouse in pressed states).  Only possible for the selection modes multi and additive
+        /// Enable drag selection (multi selection of items through
+        /// dragging the pointer in pressed states).
+        /// 
+        /// Only possible for the selection modes multi and additive
+        /// 
         /// </summary>
         public bool? DragSelection
         {
@@ -87,7 +97,10 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Enable quick selection mode, where no click is needed to change the selection.  Only possible for the modes single and one.
+        /// Enable quick selection mode, where no tap is needed to change the selection.
+        /// 
+        /// Only possible for the modes single and one.
+        /// 
         /// </summary>
         public bool? QuickSelection
         {
@@ -102,7 +115,11 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// The selection mode to use.  For further details please have a look at: {@link qx.ui.core.selection.Abstract#mode}
+        /// The selection mode to use.
+        /// 
+        /// For further details please have a look at:
+        /// {@link qx.ui.core.selection.Abstract#mode}
+        /// 
         /// </summary>
         public qxDotNet.SelectionModeEnum SelectionMode
         {
@@ -117,6 +134,12 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
+        /// Returns an array of currently selected items.
+        /// 
+        /// Note: The result is only a set of selected items, so the order can
+        /// differ from the sequence in which the items were added.
+        /// 
+        /// Replaces current selection with the given items.
         /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget Selection
@@ -133,6 +156,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Message which is shown in an invalid tooltip.
+        /// 
         /// </summary>
         public string InvalidMessage
         {
@@ -149,6 +173,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Flag signaling if a widget is required.
+        /// 
         /// </summary>
         public bool? Required
         {
@@ -164,7 +189,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Message which is shown in an invalid tooltip if the {@link #required} is set to true.
+        /// Message which is shown in an invalid tooltip if the {@link #required} is
+        /// set to true.
+        /// 
         /// </summary>
         public string RequiredInvalidMessage
         {
@@ -180,7 +207,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid state will be set.
+        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid
+        /// state will be set.
+        /// 
         /// </summary>
         public bool? Valid
         {
@@ -196,6 +225,20 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
+        /// Returns always an array of the models of the selected items. If no
+        /// item is selected or no model is given, the array will be empty.
+        /// 
+        /// CAREFUL! The model selection can only work if every item item in the
+        /// selection providing widget has a model property!
+        /// 
+        /// Takes the given models in the array and searches for the corresponding
+        /// selectables. If an selectable does have that model attached, it will be
+        /// selected.
+        /// 
+        /// Attention: This method can have a time complexity of O(n^2)!
+        /// 
+        /// CAREFUL! The model selection can only work if every item item in the
+        /// selection providing widget has a model property!
         /// 
         /// </summary>
         public qxDotNet.Data.Array ModelSelection
@@ -211,11 +254,19 @@ namespace qxDotNet.UI.Form
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.form.List";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -251,6 +302,10 @@ namespace qxDotNet.UI.Form
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -272,6 +327,9 @@ namespace qxDotNet.UI.Form
             }
         }
 
+        /// <summary>
+        /// Raises event 'AddItem'
+        /// </summary>
         protected virtual void OnAddItem()
         {
             if (AddItem != null)
@@ -281,10 +339,16 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// This event is fired after a list item was added to the list. The {@link qx.event.type.Data#getData} method of the event returns the added item.
+        /// This event is fired after a list item was added to the list. The
+        /// {@link qx.event.type.Data#getData} method of the event returns the
+        /// added item.
+        /// 
         /// </summary>
         public event EventHandler AddItem;
 
+        /// <summary>
+        /// Raises event 'RemoveItem'
+        /// </summary>
         protected virtual void OnRemoveItem()
         {
             if (RemoveItem != null)
@@ -294,10 +358,16 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// This event is fired after a list item has been removed from the list. The {@link qx.event.type.Data#getData} method of the event returns the removed item.
+        /// This event is fired after a list item has been removed from the list.
+        /// The {@link qx.event.type.Data#getData} method of the event returns the
+        /// removed item.
+        /// 
         /// </summary>
         public event EventHandler RemoveItem;
 
+        /// <summary>
+        /// Raises event 'ChangeSelection'
+        /// </summary>
         protected virtual void OnChangeSelection()
         {
             if (ChangeSelection != null)
@@ -308,9 +378,13 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Fires after the selection was modified
+        /// 
         /// </summary>
         public event EventHandler ChangeSelection;
 
+        /// <summary>
+        /// Raises event 'ChangeInvalidMessage'
+        /// </summary>
         protected virtual void OnChangeInvalidMessage()
         {
             if (ChangeInvalidMessage != null)
@@ -324,6 +398,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeInvalidMessage;
 
+        /// <summary>
+        /// Raises event 'ChangeRequired'
+        /// </summary>
         protected virtual void OnChangeRequired()
         {
             if (ChangeRequired != null)
@@ -337,6 +414,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeRequired;
 
+        /// <summary>
+        /// Raises event 'ChangeValid'
+        /// </summary>
         protected virtual void OnChangeValid()
         {
             if (ChangeValid != null)
@@ -350,6 +430,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeValid;
 
+        /// <summary>
+        /// Raises event 'ChangeModelSelection'
+        /// </summary>
         protected virtual void OnChangeModelSelection()
         {
             if (ChangeModelSelection != null)
@@ -359,7 +442,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Pseudo event. It will never be fired because the array itself can not be changed. But the event description is needed for the data binding.
+        /// Pseudo event. It will never be fired because the array itself can not
+        /// be changed. But the event description is needed for the data binding.
+        /// 
         /// </summary>
         public event EventHandler ChangeModelSelection;
 

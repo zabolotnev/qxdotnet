@@ -7,7 +7,29 @@ using qxDotNet;
 namespace qxDotNet.UI.Control
 {
     /// <summary>
-    /// A date chooser is a small calendar including a navigation bar to switch the shown month. It includes a column for the calendar week and shows one month. Selecting a date is as easy as clicking on it.  To be conform with all form widgets, the {@link qx.ui.form.IForm} interface is implemented.  The following example creates and adds a date chooser to the root element. A listener alerts the user if a new date is selected.   var chooser = new qx.ui.control.DateChooser(); this.getRoot().add(chooser, { left : 20, top: 20});  chooser.addListener(\changeValue\, function(e) {  alert(e.getData()); });   Additionally to a selection event an execute event is available which is fired by doubleclick or taping the space / enter key. With this event you can for example save the selection and close the date chooser.
+    /// A date chooser is a small calendar including a navigation bar to switch the shown
+    /// month. It includes a column for the calendar week and shows one month. Selecting
+    /// a date is as easy as tapping on it.
+    /// 
+    /// To be conform with all form widgets, the {@link qx.ui.form.IForm} interface
+    /// is implemented.
+    /// 
+    /// The following example creates and adds a date chooser to the root element.
+    /// A listener alerts the user if a new date is selected.
+    /// 
+    /// 
+    /// var chooser = new qx.ui.control.DateChooser();
+    /// this.getRoot().add(chooser, { left : 20, top: 20});
+    /// 
+    /// chooser.addListener("changeValue", function(e) {
+    ///  alert(e.getData());
+    /// });
+    /// 
+    /// 
+    /// Additionally to a selection event an execute event is available which is
+    /// fired by doubletap or tapping the space / enter key. With this event you
+    /// can for example save the selection and close the date chooser.
+    /// 
     /// </summary>
     public partial class DateChooser : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IExecutable, qxDotNet.UI.Form.IForm, qxDotNet.UI.Form.IDateForm
     {
@@ -15,7 +37,7 @@ namespace qxDotNet.UI.Control
         private int _shownMonth = 0;
         private int _shownYear = 0;
         private DateTime? _value = null;
-        private qxDotNet.UI.Core.Command _command = null;
+        private qxDotNet.UI.Command.Command _command = null;
         private string _invalidMessage = "";
         private bool? _required = false;
         private string _requiredInvalidMessage = "";
@@ -24,6 +46,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The currently shown month. 0 = january, 1 = february, and so on.
+        /// 
         /// </summary>
         public int ShownMonth
         {
@@ -40,6 +63,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The currently shown year.
+        /// 
         /// </summary>
         public int ShownYear
         {
@@ -56,6 +80,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The date value of the widget.
+        /// 
         /// </summary>
         public DateTime? Value
         {
@@ -71,9 +96,11 @@ namespace qxDotNet.UI.Control
         }
 
         /// <summary>
-        /// A command called if the {@link #execute} method is called, e.g. on a button click.
+        /// A command called if the {@link #execute} method is called, e.g. on a
+        /// button tap.
+        /// 
         /// </summary>
-        public qxDotNet.UI.Core.Command Command
+        public qxDotNet.UI.Command.Command Command
         {
             get
             {
@@ -88,6 +115,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// Message which is shown in an invalid tooltip.
+        /// 
         /// </summary>
         public string InvalidMessage
         {
@@ -104,6 +132,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// Flag signaling if a widget is required.
+        /// 
         /// </summary>
         public bool? Required
         {
@@ -119,7 +148,9 @@ namespace qxDotNet.UI.Control
         }
 
         /// <summary>
-        /// Message which is shown in an invalid tooltip if the {@link #required} is set to true.
+        /// Message which is shown in an invalid tooltip if the {@link #required} is
+        /// set to true.
+        /// 
         /// </summary>
         public string RequiredInvalidMessage
         {
@@ -135,7 +166,9 @@ namespace qxDotNet.UI.Control
         }
 
         /// <summary>
-        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid state will be set.
+        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid
+        /// state will be set.
+        /// 
         /// </summary>
         public bool? Valid
         {
@@ -150,15 +183,20 @@ namespace qxDotNet.UI.Control
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.control.DateChooser";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -171,10 +209,21 @@ namespace qxDotNet.UI.Control
             state.SetPropertyValue("requiredInvalidMessage", _requiredInvalidMessage, "");
             state.SetPropertyValue("valid", _valid, true);
 
-            state.SetEvent("execute", false, "value");
+            if (Execute != null)
+            {
+                state.SetEvent("execute", true, "value");
+            }
+            else
+            {
+                state.SetEvent("execute", false, "value");
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -184,6 +233,9 @@ namespace qxDotNet.UI.Control
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeShownMonth'
+        /// </summary>
         protected virtual void OnChangeShownMonth()
         {
             if (ChangeShownMonth != null)
@@ -197,6 +249,9 @@ namespace qxDotNet.UI.Control
         /// </summary>
         public event EventHandler ChangeShownMonth;
 
+        /// <summary>
+        /// Raises event 'ChangeShownYear'
+        /// </summary>
         protected virtual void OnChangeShownYear()
         {
             if (ChangeShownYear != null)
@@ -210,6 +265,9 @@ namespace qxDotNet.UI.Control
         /// </summary>
         public event EventHandler ChangeShownYear;
 
+        /// <summary>
+        /// Raises event 'ChangeValue'
+        /// </summary>
         protected virtual void OnChangeValue()
         {
             if (ChangeValue != null)
@@ -223,6 +281,9 @@ namespace qxDotNet.UI.Control
         /// </summary>
         public event EventHandler ChangeValue;
 
+        /// <summary>
+        /// Raises event 'ChangeCommand'
+        /// </summary>
         protected virtual void OnChangeCommand()
         {
             if (ChangeCommand != null)
@@ -236,6 +297,9 @@ namespace qxDotNet.UI.Control
         /// </summary>
         public event EventHandler ChangeCommand;
 
+        /// <summary>
+        /// Raises event 'Execute'
+        /// </summary>
         protected virtual void OnExecute()
         {
             if (Execute != null)
@@ -246,9 +310,13 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// Fired if the {@link #execute} method is invoked.
+        /// 
         /// </summary>
         public event EventHandler Execute;
 
+        /// <summary>
+        /// Raises event 'ChangeInvalidMessage'
+        /// </summary>
         protected virtual void OnChangeInvalidMessage()
         {
             if (ChangeInvalidMessage != null)
@@ -262,6 +330,9 @@ namespace qxDotNet.UI.Control
         /// </summary>
         public event EventHandler ChangeInvalidMessage;
 
+        /// <summary>
+        /// Raises event 'ChangeRequired'
+        /// </summary>
         protected virtual void OnChangeRequired()
         {
             if (ChangeRequired != null)
@@ -275,6 +346,9 @@ namespace qxDotNet.UI.Control
         /// </summary>
         public event EventHandler ChangeRequired;
 
+        /// <summary>
+        /// Raises event 'ChangeValid'
+        /// </summary>
         protected virtual void OnChangeValid()
         {
             if (ChangeValid != null)

@@ -7,7 +7,8 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// A button which opens the connected menu when clicking on it.
+    /// A button which opens the connected menu when tapping on it.
+    /// 
     /// </summary>
     public partial class MenuButton : qxDotNet.UI.Form.Button
     {
@@ -16,7 +17,8 @@ namespace qxDotNet.UI.Form
 
 
         /// <summary>
-        /// The menu instance to show when clicking on the button
+        /// The menu instance to show when tapping on the button
+        /// 
         /// </summary>
         public qxDotNet.UI.Menu.Menu Menu
         {
@@ -31,15 +33,20 @@ namespace qxDotNet.UI.Form
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.form.MenuButton";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -48,11 +55,18 @@ namespace qxDotNet.UI.Form
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeMenu'
+        /// </summary>
         protected virtual void OnChangeMenu()
         {
             if (ChangeMenu != null)

@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Form
 {
     /// <summary>
     /// A check box widget with an optional label.
+    /// 
     /// </summary>
     public partial class CheckBox : qxDotNet.UI.Form.ToggleButton, qxDotNet.UI.Form.IForm, qxDotNet.UI.Form.IModel
     {
@@ -16,11 +17,12 @@ namespace qxDotNet.UI.Form
         private bool? _required = false;
         private string _requiredInvalidMessage = "";
         private bool? _valid = true;
-//        private _var _model = null;
+//TODO: private _var _model = null;
 
 
         /// <summary>
         /// Message which is shown in an invalid tooltip.
+        /// 
         /// </summary>
         public string InvalidMessage
         {
@@ -37,6 +39,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Flag signaling if a widget is required.
+        /// 
         /// </summary>
         public bool? Required
         {
@@ -52,7 +55,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Message which is shown in an invalid tooltip if the {@link #required} is set to true.
+        /// Message which is shown in an invalid tooltip if the {@link #required} is
+        /// set to true.
+        /// 
         /// </summary>
         public string RequiredInvalidMessage
         {
@@ -68,7 +73,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid state will be set.
+        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid
+        /// state will be set.
+        /// 
         /// </summary>
         public bool? Valid
         {
@@ -83,15 +90,20 @@ namespace qxDotNet.UI.Form
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.form.CheckBox";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -103,11 +115,18 @@ namespace qxDotNet.UI.Form
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeInvalidMessage'
+        /// </summary>
         protected virtual void OnChangeInvalidMessage()
         {
             if (ChangeInvalidMessage != null)
@@ -121,6 +140,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeInvalidMessage;
 
+        /// <summary>
+        /// Raises event 'ChangeRequired'
+        /// </summary>
         protected virtual void OnChangeRequired()
         {
             if (ChangeRequired != null)
@@ -134,6 +156,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeRequired;
 
+        /// <summary>
+        /// Raises event 'ChangeValid'
+        /// </summary>
         protected virtual void OnChangeValid()
         {
             if (ChangeValid != null)
@@ -147,6 +172,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeValid;
 
+        /// <summary>
+        /// Raises event 'ChangeModel'
+        /// </summary>
         protected virtual void OnChangeModel()
         {
             if (ChangeModel != null)

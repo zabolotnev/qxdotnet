@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table
 {
     /// <summary>
     /// Interface for creating the column visibility menu
+    /// 
     /// </summary>
     public interface IColumnMenuButton
     {

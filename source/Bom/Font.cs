@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.Bom
 {
     /// <summary>
-    /// A wrapper for CSS font styles. Fond objects can be applied to instances of {@link qx.html.Element}.
+    /// A wrapper for CSS font styles. Fond objects can be applied to instances
+    /// of {@link qx.html.Element}.
+    /// 
     /// </summary>
     public partial class Font : qxDotNet.Core.Object
     {
@@ -15,7 +17,7 @@ namespace qxDotNet.Bom
         private bool? _bold = false;
         private string _color = null;
         private qxDotNet.DecorationEnum _decoration = (DecorationEnum)(-1);
-//        private _array _family = null;
+//TODO: private _array _family = null;
         private bool? _italic = false;
         private decimal _lineHeight = 0m;
         private int _size = 0;
@@ -24,6 +26,7 @@ namespace qxDotNet.Bom
 
         /// <summary>
         /// Whether the font is bold
+        /// 
         /// </summary>
         public bool? Bold
         {
@@ -39,6 +42,7 @@ namespace qxDotNet.Bom
 
         /// <summary>
         /// The text color for this font
+        /// 
         /// </summary>
         public string Color
         {
@@ -54,6 +58,7 @@ namespace qxDotNet.Bom
 
         /// <summary>
         /// The text decoration for this font
+        /// 
         /// </summary>
         public qxDotNet.DecorationEnum Decoration
         {
@@ -69,6 +74,7 @@ namespace qxDotNet.Bom
 
         /// <summary>
         /// Whether the font is italic
+        /// 
         /// </summary>
         public bool? Italic
         {
@@ -83,7 +89,9 @@ namespace qxDotNet.Bom
         }
 
         /// <summary>
-        /// The line height as scaling factor of the default line height. A value of 1 corresponds to the default line height
+        /// The line height as scaling factor of the default line height. A value
+        /// of 1 corresponds to the default line height
+        /// 
         /// </summary>
         public decimal LineHeight
         {
@@ -99,6 +107,7 @@ namespace qxDotNet.Bom
 
         /// <summary>
         /// The font size (Unit: pixel)
+        /// 
         /// </summary>
         public int Size
         {
@@ -114,6 +123,7 @@ namespace qxDotNet.Bom
 
         /// <summary>
         /// The text shadow for this font
+        /// 
         /// </summary>
         public string TextShadow
         {
@@ -128,11 +138,19 @@ namespace qxDotNet.Bom
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.bom.Font";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -147,6 +165,10 @@ namespace qxDotNet.Bom
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

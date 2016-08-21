@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Control
 {
     /// <summary>
-    /// A popup which contains palettes of colors and the possibility to open the Colorselector to choose a color.
+    /// A popup which contains palettes of colors and the possibility to open the
+    /// Colorselector to choose a color.
+    /// 
     /// </summary>
     public partial class ColorPopup : qxDotNet.UI.Popup.Popup, qxDotNet.UI.Form.IColorForm
     {
@@ -16,8 +18,10 @@ namespace qxDotNet.UI.Control
         private decimal _green = 0m;
         private decimal _red = 0m;
 
+
         /// <summary>
         /// The numeric blue value of the selected color.
+        /// 
         /// </summary>
         public decimal Blue
         {
@@ -34,6 +38,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The numeric green value of the selected color.
+        /// 
         /// </summary>
         public decimal Green
         {
@@ -50,6 +55,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The numeric red value of the selected color.
+        /// 
         /// </summary>
         public decimal Red
         {
@@ -64,15 +70,20 @@ namespace qxDotNet.UI.Control
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.control.ColorPopup";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -82,16 +93,29 @@ namespace qxDotNet.UI.Control
 
             state.SetPropertyValue("value", _value, null);
 
-
-            state.SetEvent("changeValue", true, "value");
+            if (ChangeValue != null)
+            {
+                state.SetEvent("changeValue", true, "value");
+            }
+            else
+            {
+                state.SetEvent("changeValue", false, "value");
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeBlue'
+        /// </summary>
         protected virtual void OnChangeBlue()
         {
             if (ChangeBlue != null)
@@ -105,6 +129,9 @@ namespace qxDotNet.UI.Control
         /// </summary>
         public event EventHandler ChangeBlue;
 
+        /// <summary>
+        /// Raises event 'ChangeGreen'
+        /// </summary>
         protected virtual void OnChangeGreen()
         {
             if (ChangeGreen != null)
@@ -118,6 +145,9 @@ namespace qxDotNet.UI.Control
         /// </summary>
         public event EventHandler ChangeGreen;
 
+        /// <summary>
+        /// Raises event 'ChangeRed'
+        /// </summary>
         protected virtual void OnChangeRed()
         {
             if (ChangeRed != null)
@@ -131,6 +161,9 @@ namespace qxDotNet.UI.Control
         /// </summary>
         public event EventHandler ChangeRed;
 
+        /// <summary>
+        /// Raises event 'ChangeValue'
+        /// </summary>
         protected virtual void OnChangeValue()
         {
             if (ChangeValue != null)

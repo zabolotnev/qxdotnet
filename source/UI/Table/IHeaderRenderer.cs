@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table
 {
     /// <summary>
     /// A cell renderer for header cells.
+    /// 
     /// </summary>
     public interface IHeaderRenderer
     {

@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table.Columnmenu
 {
     /// <summary>
     /// The traditional qx.ui.menu.MenuButton to access the column visibility menu.
+    /// 
     /// </summary>
     public partial class Button : qxDotNet.UI.Form.MenuButton, qxDotNet.UI.Table.IColumnMenuButton
     {
@@ -15,11 +16,19 @@ namespace qxDotNet.UI.Table.Columnmenu
 
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.columnmenu.Button";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -27,6 +36,10 @@ namespace qxDotNet.UI.Table.Columnmenu
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

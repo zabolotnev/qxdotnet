@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.Util.Placement
 {
     /// <summary>
-    /// Contains methods to compute a position for any object which should be positioned relative to another object.
+    /// Contains methods to compute a position for any object which should
+    /// be positioned relative to another object.
+    /// 
     /// </summary>
     public partial class Placement : qxDotNet.Core.Object
     {
@@ -20,6 +22,7 @@ namespace qxDotNet.Util.Placement
 
         /// <summary>
         /// Specify with which edge of the target object, the object should be aligned
+        /// 
         /// </summary>
         public qxDotNet.AlignEnum Align
         {
@@ -35,6 +38,7 @@ namespace qxDotNet.Util.Placement
 
         /// <summary>
         /// The axis object to use for the horizontal placement
+        /// 
         /// </summary>
         public qxDotNet.Core.Object AxisX
         {
@@ -50,6 +54,7 @@ namespace qxDotNet.Util.Placement
 
         /// <summary>
         /// The axis object to use for the vertical placement
+        /// 
         /// </summary>
         public qxDotNet.Core.Object AxisY
         {
@@ -65,6 +70,7 @@ namespace qxDotNet.Util.Placement
 
         /// <summary>
         /// Specify to which edge of the target object, the object should be attached
+        /// 
         /// </summary>
         public qxDotNet.EdgeEnum Edge
         {
@@ -79,11 +85,19 @@ namespace qxDotNet.Util.Placement
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.util.placement.Placement";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -95,6 +109,10 @@ namespace qxDotNet.Util.Placement
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

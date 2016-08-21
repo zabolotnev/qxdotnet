@@ -7,7 +7,11 @@ using qxDotNet;
 namespace qxDotNet.UI.Core.Scroll
 {
     /// <summary>
-    /// This class represents a scroll able pane. This means that this widget may contain content which is bigger than the available (inner) dimensions of this widget. The widget also offer methods to control the scrolling position. It can only have exactly one child.
+    /// This class represents a scroll able pane. This means that this widget
+    /// may contain content which is bigger than the available (inner)
+    /// dimensions of this widget. The widget also offer methods to control
+    /// the scrolling position. It can only have exactly one child.
+    /// 
     /// </summary>
     public partial class ScrollPane : qxDotNet.UI.Core.Widget
     {
@@ -18,6 +22,7 @@ namespace qxDotNet.UI.Core.Scroll
 
         /// <summary>
         /// The horizontal scroll position
+        /// 
         /// </summary>
         public decimal ScrollX
         {
@@ -33,6 +38,7 @@ namespace qxDotNet.UI.Core.Scroll
 
         /// <summary>
         /// The vertical scroll position
+        /// 
         /// </summary>
         public decimal ScrollY
         {
@@ -46,34 +52,41 @@ namespace qxDotNet.UI.Core.Scroll
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.core.scroll.ScrollPane";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
             state.SetPropertyValue("scrollX", _scrollX, 0m);
             state.SetPropertyValue("scrollY", _scrollY, 0m);
 
-            state.SetEvent("scrollAnimationEnd", false);
-            if (ScrollX != null)
+            if (ScrollAnimationEnd != null)
             {
-                state.SetEvent("scrollX", false, "scrollX");
+                state.SetEvent("scrollAnimationEnd", false);
             }
-            if (ScrollY != null)
+            if (Update != null)
             {
-                state.SetEvent("scrollY", false, "scrollY");
+                state.SetEvent("update", false);
             }
-            state.SetEvent("update", false);
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -81,20 +94,15 @@ namespace qxDotNet.UI.Core.Scroll
             {
                 OnScrollAnimationEnd();
             }
-            if (eventName == "scrollX")
-            {
-                OnScrollX();
-            }
-            if (eventName == "scrollY")
-            {
-                OnScrollY();
-            }
             if (eventName == "update")
             {
                 OnUpdate();
             }
         }
 
+        /// <summary>
+        /// Raises event 'ScrollAnimationEnd'
+        /// </summary>
         protected virtual void OnScrollAnimationEnd()
         {
             if (ScrollAnimationEnd != null)
@@ -104,36 +112,15 @@ namespace qxDotNet.UI.Core.Scroll
         }
 
         /// <summary>
-        /// Fired on scroll animation end invoked by "scroll*"; methods.
+        /// Fired on scroll animation end invoked by 'scroll*' methods.
+        /// 
         /// </summary>
         public event EventHandler ScrollAnimationEnd;
 
-        protected virtual void OnScrollX()
-        {
-            if (ScrollXElapsed != null)
-            {
-                ScrollXElapsed.Invoke(this, System.EventArgs.Empty);
-            }
-        }
-
+        
         /// <summary>
-        /// Fired on change of the property {@link #scrollX}.
+        /// Raises event 'Update'
         /// </summary>
-        public event EventHandler ScrollXElapsed;
-
-        protected virtual void OnScrollY()
-        {
-            if (ScrollYElapsed != null)
-            {
-                ScrollYElapsed.Invoke(this, System.EventArgs.Empty);
-            }
-        }
-
-        /// <summary>
-        /// Fired on change of the property {@link #scrollY}.
-        /// </summary>
-        public event EventHandler ScrollYElapsed;
-
         protected virtual void OnUpdate()
         {
             if (Update != null)
@@ -144,6 +131,7 @@ namespace qxDotNet.UI.Core.Scroll
 
         /// <summary>
         /// Fired on resize of both the container or the content.
+        /// 
         /// </summary>
         public event EventHandler Update;
 

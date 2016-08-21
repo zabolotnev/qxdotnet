@@ -7,7 +7,36 @@ using qxDotNet;
 namespace qxDotNet.UI.Container
 {
     /// <summary>
-    /// The Resizer is a resizable container widget.  It allows to be resized (not moved), normally in the right and/or bottom directions. It is an alternative to splitters.  Example  Here is a little example of how to use the widget.    var resizer = new qx.ui.container.Resizer().set({  width: 200,  height: 100  });   resizer.setLayout(new qx.ui.layout.Canvas());  var text = new qx.ui.form.TextArea(\Resizeme\ I'mresizable\);  resizer.add(text, {edge: 0});   this.getRoot().add(resizer);   This example creates a resizer, configures it with a canvas layout and adds a text area to it.  External Documentation   Documentation of this widget in the qooxdoo manual.
+    /// The Resizer is a resizable container widget.
+    /// 
+    /// It allows to be resized (not moved), normally in
+    /// the right and/or bottom directions. It is an alternative to splitters.
+    /// 
+    /// Example
+    /// 
+    /// Here is a little example of how to use the widget.
+    /// 
+    /// 
+    ///  var resizer = new qx.ui.container.Resizer().set({
+    ///  width: 200,
+    ///  height: 100
+    ///  });
+    /// 
+    ///  resizer.setLayout(new qx.ui.layout.Canvas());
+    ///  var text = new qx.ui.form.TextArea("Resize me\
+    /// I'm resizable");
+    ///  resizer.add(text, {edge: 0});
+    /// 
+    ///  this.getRoot().add(resizer);
+    /// 
+    /// 
+    /// This example creates a resizer, configures it with a canvas layout and
+    /// adds a text area to it.
+    /// 
+    /// External Documentation
+    /// 
+    /// 
+    /// Documentation of this widget in the qooxdoo manual.
     /// </summary>
     public partial class Resizer : qxDotNet.UI.Container.Composite
     {
@@ -22,6 +51,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Whether the bottom edge is resizable
+        /// 
         /// </summary>
         public bool? ResizableBottom
         {
@@ -37,6 +67,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Whether the left edge is resizable
+        /// 
         /// </summary>
         public bool? ResizableLeft
         {
@@ -52,6 +83,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Whether the right edge is resizable
+        /// 
         /// </summary>
         public bool? ResizableRight
         {
@@ -67,6 +99,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Whether the top edge is resizable
+        /// 
         /// </summary>
         public bool? ResizableTop
         {
@@ -82,6 +115,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// The tolerance to activate resizing
+        /// 
         /// </summary>
         public int ResizeSensitivity
         {
@@ -97,6 +131,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Whether a frame replacement should be used during the resize sequence
+        /// 
         /// </summary>
         public bool? UseResizeFrame
         {
@@ -110,15 +145,20 @@ namespace qxDotNet.UI.Container
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.container.Resizer";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -132,6 +172,10 @@ namespace qxDotNet.UI.Container
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

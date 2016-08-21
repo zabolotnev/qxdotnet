@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Embed
 {
     /// <summary>
     /// Abstract base class for iframe widgets.
+    /// 
     /// </summary>
     public partial class AbstractIframe : qxDotNet.UI.Core.Widget
     {
@@ -18,6 +19,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Name of the iframe.
+        /// 
         /// </summary>
         public string FrameName
         {
@@ -33,6 +35,7 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// Source URL of the iframe.
+        /// 
         /// </summary>
         public string Source
         {
@@ -47,11 +50,19 @@ namespace qxDotNet.UI.Embed
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.embed.AbstractIframe";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -69,6 +80,10 @@ namespace qxDotNet.UI.Embed
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -82,6 +97,9 @@ namespace qxDotNet.UI.Embed
             }
         }
 
+        /// <summary>
+        /// Raises event 'Load'
+        /// </summary>
         protected virtual void OnLoad()
         {
             if (Load != null)
@@ -92,9 +110,13 @@ namespace qxDotNet.UI.Embed
 
         /// <summary>
         /// The "load" event is fired after the iframe content has successfully been loaded.
+        /// 
         /// </summary>
         public event EventHandler Load;
 
+        /// <summary>
+        /// Raises event 'Navigate'
+        /// </summary>
         protected virtual void OnNavigate()
         {
             if (Navigate != null)
@@ -104,7 +126,13 @@ namespace qxDotNet.UI.Embed
         }
 
         /// <summary>
-        /// The "navigate" event is fired whenever the location of the iframe changes.  Useful to track user navigation and internally used to keep the source property in sync. Only works when the destination source is of same origin than the page embedding the iframe.
+        /// The "navigate" event is fired whenever the location of the iframe
+        /// changes.
+        /// 
+        /// Useful to track user navigation and internally used to keep the source
+        /// property in sync. Only works when the destination source is of same
+        /// origin than the page embedding the iframe.
+        /// 
         /// </summary>
         public event EventHandler Navigate;
 

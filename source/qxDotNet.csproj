@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -14,6 +14,11 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,32 +69,16 @@
     <Compile Include="Application\Standalone.code.cs" />
     <Compile Include="Application\Standalone.cs" />
     <Compile Include="Bom\Blocker.cs" />
-    <Compile Include="Bom\FileReader.cs" />
     <Compile Include="Bom\Font.cs" />
-    <Compile Include="Bom\History.cs" />
-    <Compile Include="Bom\Htmlarea\HtmlArea.cs" />
-    <Compile Include="Bom\Htmlarea\Manager\Command.cs" />
-    <Compile Include="Bom\Htmlarea\Manager\UndoRedo.cs" />
-    <Compile Include="Bom\Media\Abstract.cs" />
-    <Compile Include="Bom\Media\Audio.cs" />
-    <Compile Include="Bom\Media\Video.cs" />
-    <Compile Include="Bom\Request\IRequest.cs" />
     <Compile Include="Bom\Shortcut.cs" />
-    <Compile Include="Bom\Webfonts\Validator.cs" />
-    <Compile Include="Bom\Webfonts\WebFont.cs" />
-    <Compile Include="Bom\WebWorker.cs" />
     <Compile Include="Common\AppPathAttribute.cs" />
     <Compile Include="Common\ClientHandler.cs" />
     <Compile Include="Common\ApplicationState.cs" />
     <Compile Include="Common\ConfigHandler.cs" />
     <Compile Include="Common\PropertyNameAttribute.cs" />
     <Compile Include="Common\TableState.cs" />
+    <Compile Include="Core\ClientMethodCall.cs" />
     <Compile Include="Data\Array.cs" />
-    <Compile Include="Data\Controller\Form.cs" />
-    <Compile Include="Data\Controller\IControllerDelegate.cs" />
-    <Compile Include="Data\Controller\ISelection.cs" />
-    <Compile Include="Data\Controller\List.cs" />
-    <Compile Include="Data\Controller\Object.cs" />
     <Compile Include="Data\Controller\Tree.cs" />
     <Compile Include="Data\IListData.cs" />
     <Compile Include="Enums.cs" />
@@ -98,15 +87,6 @@
     <Compile Include="Event\Timer.code.cs" />
     <Compile Include="Event\Timer.cs" />
     <Compile Include="Font.cs" />
-    <Compile Include="Html\Blocker.cs" />
-    <Compile Include="Html\Canvas.cs" />
-    <Compile Include="Html\Element.cs" />
-    <Compile Include="Html\Flash.cs" />
-    <Compile Include="Html\Iframe.cs" />
-    <Compile Include="Html\Image.cs" />
-    <Compile Include="Html\Input.cs" />
-    <Compile Include="Html\Label.cs" />
-    <Compile Include="Html\Root.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -117,6 +97,9 @@
     <Compile Include="UI\Basic\Atom.cs" />
     <Compile Include="UI\Basic\Image.cs" />
     <Compile Include="UI\Basic\Label.cs" />
+    <Compile Include="UI\Command\Command.cs" />
+    <Compile Include="UI\Command\Group.cs" />
+    <Compile Include="UI\Command\GroupManager.cs" />
     <Compile Include="UI\Container\Composite.code.cs" />
     <Compile Include="UI\Container\Composite.cs" />
     <Compile Include="UI\Container\Scroll.code.cs" />
@@ -129,15 +112,18 @@
     <Compile Include="UI\Control\ColorPopup.code.cs" />
     <Compile Include="UI\Control\DateChooser.cs" />
     <Compile Include="UI\Core\Blocker.cs" />
+    <Compile Include="UI\Core\ChildrenHandling.code.cs" />
     <Compile Include="UI\Core\ColumnData.cs" />
     <Compile Include="UI\Core\Command.cs" />
     <Compile Include="UI\Core\Command.code.cs" />
+    <Compile Include="UI\Core\DragDropScrolling.cs" />
     <Compile Include="UI\Core\LayoutItem.Code.cs" />
     <Compile Include="UI\Core\IMultiSelection.cs" />
     <Compile Include="UI\Core\ISingleSelection.cs" />
     <Compile Include="UI\Core\LayoutItem.cs" />
     <Compile Include="UI\Core\Scroll\AbstractScrollArea.cs" />
     <Compile Include="UI\Core\Scroll\IScrollBar.cs" />
+    <Compile Include="UI\Core\Scroll\NativeScrollBar.cs" />
     <Compile Include="UI\Core\Scroll\ScrollBar.cs" />
     <Compile Include="UI\Core\Scroll\ScrollPane.cs" />
     <Compile Include="UI\Core\Selection\Abstract.cs" />
@@ -176,8 +162,6 @@
     <Compile Include="UI\Form\SelectBox.code.cs" />
     <Compile Include="UI\Form\Spinner.code.cs" />
     <Compile Include="UI\Form\Slider.code.cs" />
-    <Compile Include="UI\Form\Validation\AsyncValidator.cs" />
-    <Compile Include="UI\Form\Validation\Manager.cs" />
     <Compile Include="UI\Form\VirtualComboBox.code.cs" />
     <Compile Include="UI\Form\Core\AbstractVirtualBox.cs" />
     <Compile Include="UI\Form\DateField.cs" />
@@ -214,7 +198,6 @@
     <Compile Include="UI\Form\VirtualSelectBox.cs" />
     <Compile Include="UI\Groupbox\CheckGroupBox.cs" />
     <Compile Include="UI\Groupbox\CheckGroupBox.code.cs" />
-    <Compile Include="UI\Groupbox\GroupBox.code.cs" />
     <Compile Include="UI\Groupbox\RadioGroupBox.code.cs" />
     <Compile Include="UI\Groupbox\GroupBox.cs" />
     <Compile Include="UI\Groupbox\RadioGroupBox.cs" />
@@ -226,89 +209,43 @@
     <Compile Include="UI\Layout\Canvas.cs" />
     <Compile Include="UI\Layout\Dock.cs" />
     <Compile Include="UI\Layout\Flow.cs" />
+    <Compile Include="UI\Layout\Grid.code.cs" />
     <Compile Include="UI\Layout\Grid.cs" />
     <Compile Include="UI\Layout\Grow.cs" />
     <Compile Include="UI\Layout\HBox.cs" />
     <Compile Include="UI\Layout\VBox.cs" />
-    <Compile Include="UI\List\Core\IListDelegate.cs" />
-    <Compile Include="UI\List\List.cs" />
     <Compile Include="UI\Menubar\Button.cs" />
     <Compile Include="UI\Menubar\MenuBar.code.cs" />
     <Compile Include="UI\Menubar\MenuBar.cs" />
     <Compile Include="UI\Menu\AbstractButton.cs" />
     <Compile Include="UI\Menu\Button.cs" />
     <Compile Include="UI\Menu\CheckBox.cs" />
-    <Compile Include="UI\Menu\Menu.code.cs" />
     <Compile Include="UI\Menu\Menu.cs" />
     <Compile Include="UI\Menu\RadioButton.cs" />
     <Compile Include="UI\Menu\Separator.cs" />
-    <Compile Include="UI\Mobile\Basic\Atom.cs" />
-    <Compile Include="UI\Mobile\Basic\Image.cs" />
-    <Compile Include="UI\Mobile\Basic\Label.cs" />
-    <Compile Include="UI\Mobile\Container\Carousel.cs" />
-    <Compile Include="UI\Mobile\Container\Collapsible.cs" />
-    <Compile Include="UI\Mobile\Container\Composite.cs" />
-    <Compile Include="UI\Mobile\Container\Drawer.cs" />
-    <Compile Include="UI\Mobile\Container\INavigation.cs" />
-    <Compile Include="UI\Mobile\Container\MasterDetail.cs" />
-    <Compile Include="UI\Mobile\Container\Navigation.cs" />
-    <Compile Include="UI\Mobile\Container\Scroll.cs" />
-    <Compile Include="UI\Mobile\Container\ScrollComposite.cs" />
-    <Compile Include="UI\Mobile\Core\Root.cs" />
-    <Compile Include="UI\Mobile\Core\Widget.cs" />
-    <Compile Include="UI\Mobile\Dialog\BusyIndicator.cs" />
-    <Compile Include="UI\Mobile\Dialog\Menu.cs" />
-    <Compile Include="UI\Mobile\Dialog\Picker.cs" />
-    <Compile Include="UI\Mobile\Dialog\Popup.cs" />
-    <Compile Include="UI\Mobile\Embed\Canvas.cs" />
-    <Compile Include="UI\Mobile\Embed\Html.cs" />
-    <Compile Include="UI\Mobile\Form\Button.cs" />
-    <Compile Include="UI\Mobile\Form\CheckBox.cs" />
-    <Compile Include="UI\Mobile\Form\TextField.cs" />
-    <Compile Include="UI\Mobile\Form\Slider.code.cs" />
-    <Compile Include="UI\Mobile\Form\Form.cs" />
-    <Compile Include="UI\Mobile\Form\Group.cs" />
-    <Compile Include="UI\Mobile\Form\Input.cs" />
-    <Compile Include="UI\Mobile\Form\Label.cs" />
-    <Compile Include="UI\Mobile\Form\NumberField.cs" />
-    <Compile Include="UI\Mobile\Form\PasswordField.cs" />
-    <Compile Include="UI\Mobile\Form\RadioButton.cs" />
-    <Compile Include="UI\Mobile\Form\RadioGroup.cs" />
-    <Compile Include="UI\Mobile\Form\Renderer\AbstractRenderer.cs" />
-    <Compile Include="UI\Mobile\Form\Renderer\Single.cs" />
-    <Compile Include="UI\Mobile\Form\Renderer\SinglePlaceholder.cs" />
-    <Compile Include="UI\Mobile\Form\Resetter.cs" />
-    <Compile Include="UI\Mobile\Form\Row.cs" />
-    <Compile Include="UI\Mobile\Form\SelectBox.cs" />
-    <Compile Include="UI\Mobile\Form\Slider.cs" />
-    <Compile Include="UI\Mobile\Form\TextArea.cs" />
-    <Compile Include="UI\Mobile\Form\TextField.code.cs" />
-    <Compile Include="UI\Mobile\Form\Title.cs" />
-    <Compile Include="UI\Mobile\Form\ToggleButton.cs" />
-    <Compile Include="UI\Mobile\Layout\Abstract.cs" />
-    <Compile Include="UI\Mobile\Layout\AbstractBox.cs" />
-    <Compile Include="UI\Mobile\Layout\Card.cs" />
-    <Compile Include="UI\Mobile\Layout\CardAnimation.cs" />
-    <Compile Include="UI\Mobile\Layout\HBox.cs" />
-    <Compile Include="UI\Mobile\Layout\VBox.cs" />
-    <Compile Include="UI\Mobile\List\IListDelegate.cs" />
-    <Compile Include="UI\Mobile\List\List.cs" />
-    <Compile Include="UI\Mobile\List\Provider\Provider.cs" />
-    <Compile Include="UI\Mobile\List\Renderer\Abstract.cs" />
-    <Compile Include="UI\Mobile\List\Renderer\Default.cs" />
-    <Compile Include="UI\Mobile\Navigationbar\BackButton.cs" />
-    <Compile Include="UI\Mobile\Navigationbar\Button.cs" />
-    <Compile Include="UI\Mobile\Navigationbar\NavigationBar.cs" />
-    <Compile Include="UI\Mobile\Navigationbar\Title.cs" />
-    <Compile Include="UI\Mobile\Page\Manager.cs" />
-    <Compile Include="UI\Mobile\Page\NavigationPage.cs" />
-    <Compile Include="UI\Mobile\Page\Page.cs" />
-    <Compile Include="UI\Mobile\Tabbar\TabBar.cs" />
-    <Compile Include="UI\Mobile\Tabbar\TabButton.cs" />
-    <Compile Include="UI\Mobile\Toolbar\Button.cs" />
-    <Compile Include="UI\Mobile\Toolbar\Separator.cs" />
-    <Compile Include="UI\Mobile\Toolbar\ToolBar.cs" />
     <Compile Include="UI\Popup\Popup.cs" />
+    <Compile Include="UI\Progressive\Headfoot\Abstract.cs" />
+    <Compile Include="UI\Progressive\Headfoot\Null.cs" />
+    <Compile Include="UI\Progressive\Headfoot\Progress.cs" />
+    <Compile Include="UI\Progressive\Headfoot\TableHeading.cs" />
+    <Compile Include="UI\Progressive\Model\Abstract.cs" />
+    <Compile Include="UI\Progressive\Model\Default.cs" />
+    <Compile Include="UI\Progressive\Progressive.cs" />
+    <Compile Include="UI\Progressive\Renderer\Abstract.cs" />
+    <Compile Include="UI\Progressive\Renderer\FunctionCaller.cs" />
+    <Compile Include="UI\Progressive\Renderer\Table\Cell\Abstract.cs" />
+    <Compile Include="UI\Progressive\Renderer\Table\Cell\Boolean.cs" />
+    <Compile Include="UI\Progressive\Renderer\Table\Cell\Conditional.cs" />
+    <Compile Include="UI\Progressive\Renderer\Table\Cell\Default.cs" />
+    <Compile Include="UI\Progressive\Renderer\Table\Cell\Html.cs" />
+    <Compile Include="UI\Progressive\Renderer\Table\Cell\Icon.cs" />
+    <Compile Include="UI\Progressive\Renderer\Table\Cell\Image.cs" />
+    <Compile Include="UI\Progressive\Renderer\Table\Cell\String.cs" />
+    <Compile Include="UI\Progressive\Renderer\Table\Row.cs" />
+    <Compile Include="UI\Progressive\Renderer\Table\Widths.cs" />
+    <Compile Include="UI\Progressive\State.cs" />
+    <Compile Include="UI\Progressive\Structure\Abstract.cs" />
+    <Compile Include="UI\Progressive\Structure\Default.cs" />
     <Compile Include="UI\Root\Abstract.cs" />
     <Compile Include="UI\Root\Application.cs" />
     <Compile Include="UI\Root\Inline.cs" />
@@ -317,6 +254,7 @@
     <Compile Include="UI\Table\Celleditor\AbstractField.cs" />
     <Compile Include="UI\Table\Celleditor\CheckBox.cs" />
     <Compile Include="UI\Table\Celleditor\ComboBox.cs" />
+    <Compile Include="UI\Table\Celleditor\Dynamic.cs" />
     <Compile Include="UI\Table\Celleditor\PasswordField.cs" />
     <Compile Include="UI\Table\Celleditor\SelectBox.cs" />
     <Compile Include="UI\Table\Celleditor\TextField.cs" />
@@ -327,7 +265,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UI\Table\Cellrenderer\Date.cs" />
+    <Compile Include="UI\Table\Cellrenderer\Debug.cs" />
     <Compile Include="UI\Table\Cellrenderer\Default.cs" />
+    <Compile Include="UI\Table\Cellrenderer\Dynamic.cs" />
     <Compile Include="UI\Table\Cellrenderer\Html.cs" />
     <Compile Include="UI\Table\Cellrenderer\Image.cs" />
     <Compile Include="UI\Table\Cellrenderer\Number.cs" />
@@ -350,15 +290,18 @@
     <Compile Include="UI\Table\IHeaderRenderer.cs" />
     <Compile Include="UI\Table\IRowRenderer.cs" />
     <Compile Include="UI\Table\ITableModel.cs" />
+    <Compile Include="UI\Table\Model\Abstract.code.cs" />
     <Compile Include="UI\Table\Model\Abstract.cs" />
+    <Compile Include="UI\Table\Model\Filtered.cs" />
     <Compile Include="UI\Table\Model\Remote.cs" />
+    <Compile Include="UI\Table\Model\Simple.cs" />
     <Compile Include="UI\Table\Pane\Clipper.cs" />
     <Compile Include="UI\Table\Pane\FocusIndicator.cs" />
     <Compile Include="UI\Table\Pane\Header.cs" />
     <Compile Include="UI\Table\Pane\Model.cs" />
     <Compile Include="UI\Table\Pane\Pane.cs" />
     <Compile Include="UI\Table\Pane\Scroller.cs" />
-    <Compile Include="UI\Table\RemoteModel.code.cs" />
+    <Compile Include="UI\Table\RemoteDataModel.code.cs" />
     <Compile Include="UI\Table\Rowrenderer\Default.cs" />
     <Compile Include="UI\Table\Selection\Manager.cs" />
     <Compile Include="UI\Table\Selection\Model.Code.cs" />
@@ -375,7 +318,6 @@
     <Compile Include="UI\Tabview\TabView.cs" />
     <Compile Include="UI\Toolbar\Button.cs" />
     <Compile Include="UI\Toolbar\CheckBox.cs" />
-    <Compile Include="UI\Toolbar\ToolBar.code.cs" />
     <Compile Include="UI\Toolbar\MenuButton.cs" />
     <Compile Include="UI\Toolbar\Part.cs" />
     <Compile Include="UI\Toolbar\RadioButton.cs" />
@@ -397,49 +339,7 @@
     <Compile Include="UI\Tree\Tree.cs" />
     <Compile Include="UI\Tree\TreeFile.cs" />
     <Compile Include="UI\Tree\TreeFolder.cs" />
-    <Compile Include="UI\Tree\VirtualTree.cs" />
-    <Compile Include="UI\Tree\VirtualTreeItem.cs" />
-    <Compile Include="UI\Virtual\Behavior\Prefetch.cs" />
-    <Compile Include="UI\Virtual\Cell\Abstract.cs" />
-    <Compile Include="UI\Virtual\Cell\AbstractImage.cs" />
-    <Compile Include="UI\Virtual\Cell\AbstractWidget.cs" />
-    <Compile Include="UI\Virtual\Cell\Boolean.cs" />
-    <Compile Include="UI\Virtual\Cell\Cell.cs" />
-    <Compile Include="UI\Virtual\Cell\Date.cs" />
-    <Compile Include="UI\Virtual\Cell\Html.cs" />
-    <Compile Include="UI\Virtual\Cell\ICell.cs" />
-    <Compile Include="UI\Virtual\Cell\Image.cs" />
-    <Compile Include="UI\Virtual\Cell\IWidgetCell.cs" />
-    <Compile Include="UI\Virtual\Cell\IWidgetCellDelegate.cs" />
-    <Compile Include="UI\Virtual\Cell\Number.cs" />
-    <Compile Include="UI\Virtual\Cell\String.cs" />
-    <Compile Include="UI\Virtual\Cell\WidgetCell.cs" />
-    <Compile Include="UI\Virtual\Core\Axis.cs" />
-    <Compile Include="UI\Virtual\Core\IHtmlCellProvider.cs" />
-    <Compile Include="UI\Virtual\Core\ILayer.cs" />
-    <Compile Include="UI\Virtual\Core\IWidgetCellProvider.cs" />
-    <Compile Include="UI\Virtual\Core\Pane.cs" />
-    <Compile Include="UI\Virtual\Core\Scroller.cs" />
-    <Compile Include="UI\Virtual\Layer\Abstract.cs" />
-    <Compile Include="UI\Virtual\Layer\AbstractBackground.cs" />
-    <Compile Include="UI\Virtual\Layer\Column.cs" />
-    <Compile Include="UI\Virtual\Layer\GridLines.cs" />
-    <Compile Include="UI\Virtual\Layer\HtmlCell.cs" />
-    <Compile Include="UI\Virtual\Layer\HtmlCellSpan.cs" />
-    <Compile Include="UI\Virtual\Layer\Row.cs" />
-    <Compile Include="UI\Virtual\Layer\WidgetCell.cs" />
-    <Compile Include="UI\Virtual\Layer\WidgetCellSpan.cs" />
-    <Compile Include="UI\Virtual\Selection\Abstract.cs" />
-    <Compile Include="UI\Virtual\Selection\CellLines.cs" />
-    <Compile Include="UI\Virtual\Selection\CellRectangle.cs" />
-    <Compile Include="UI\Virtual\Selection\Column.cs" />
-    <Compile Include="UI\Virtual\Selection\ISelectionDelegate.cs" />
-    <Compile Include="UI\Virtual\Selection\Row.cs" />
-    <Compile Include="UI\Window\Manager.cs" />
     <Compile Include="UI\Window\Window.code.cs" />
-    <Compile Include="UI\Window\Desktop.cs" />
-    <Compile Include="UI\Window\IDesktop.cs" />
-    <Compile Include="UI\Window\IWindowManager.cs" />
     <Compile Include="UI\Window\Window.cs" />
     <Compile Include="Encoder.cs" />
     <Compile Include="Map.cs" />
@@ -492,7 +392,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>python "$(ProjectDir)..\generate.py" build
+    <PostBuildEvent>python.exe "$(ProjectDir)..\generate.py" build
 xcopy /E /Y "$(ProjectDir)$(OutDir)qxdotnet.dll" "$(SolutionDir)build\bin\"
 xcopy /E /Y "$(ProjectDir)$(OutDir)qxdotnet.pdb" "$(SolutionDir)build\bin\"
 xcopy /E /Y "$(ProjectDir)$(OutDir)qxdotnet.xml" "$(SolutionDir)build\bin\"

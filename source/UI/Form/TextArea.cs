@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Form
 {
     /// <summary>
     /// The TextField is a multi-line text input field.
+    /// 
     /// </summary>
     public partial class TextArea : qxDotNet.UI.Form.AbstractField
     {
@@ -19,7 +20,15 @@ namespace qxDotNet.UI.Form
 
 
         /// <summary>
-        /// Whether the TextArea should automatically adjust to the height of the content.  To set the initial height, modify {@link #minHeight}. If you wish to set a minHeight below four lines of text, also set {@link #minimalLineHeight}. In order to limit growing to a certain height, set {@link #maxHeight} respectively. Please note that autoSize is ignored when the {@link #height} property is in use.
+        /// Whether the TextArea should automatically adjust to
+        /// the height of the content.
+        /// 
+        /// To set the initial height, modify {@link #minHeight}. If you wish
+        /// to set a minHeight below four lines of text, also set
+        /// {@link #minimalLineHeight}. In order to limit growing to a certain
+        /// height, set {@link #maxHeight} respectively. Please note that
+        /// autoSize is ignored when the {@link #height} property is in use.
+        /// 
         /// </summary>
         public bool? AutoSize
         {
@@ -35,6 +44,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Minimal line height. On default this is set to four lines.
+        /// 
         /// </summary>
         public int MinimalLineHeight
         {
@@ -50,6 +60,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Factor for scrolling the TextArea with the mouse wheel.
+        /// 
         /// </summary>
         public int SingleStep
         {
@@ -65,6 +76,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Controls whether text wrap is activated or not.
+        /// 
         /// </summary>
         public bool? Wrap
         {
@@ -78,15 +90,20 @@ namespace qxDotNet.UI.Form
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.form.TextArea";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -98,6 +115,10 @@ namespace qxDotNet.UI.Form
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

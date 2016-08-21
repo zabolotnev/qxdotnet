@@ -8,8 +8,9 @@ namespace qxDotNet.UI.Groupbox
 {
     /// <summary>
     /// Group boxes are used to group a set of form elements.
+    /// 
     /// </summary>
-    public partial class GroupBox : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IForm
+    public partial class GroupBox : qxDotNet.UI.Core.ChildrenHandling, qxDotNet.UI.Form.IForm
     {
 
         private qxDotNet.LegendPositionEnum _legendPosition = LegendPositionEnum.middle;
@@ -28,6 +29,7 @@ namespace qxDotNet.UI.Groupbox
 
         /// <summary>
         /// Property for setting the position of the legend.
+        /// 
         /// </summary>
         public qxDotNet.LegendPositionEnum LegendPosition
         {
@@ -42,6 +44,9 @@ namespace qxDotNet.UI.Groupbox
         }
 
         /// <summary>
+        /// Accessor method for the icon of the legend sub widget
+        /// 
+        /// Sets the icon of the legend sub widget.
         /// 
         /// </summary>
         public string Icon
@@ -57,6 +62,10 @@ namespace qxDotNet.UI.Groupbox
         }
 
         /// <summary>
+        /// Accessor method for the label of the legend sub widget
+        /// 
+        /// Sets the label of the legend sub widget if the given string is
+        /// valid. Otherwise the legend sub widget get not displayed.
         /// 
         /// </summary>
         public string Legend
@@ -72,6 +81,11 @@ namespace qxDotNet.UI.Groupbox
         }
 
         /// <summary>
+        /// Get the widget's layout manager.
+        /// 
+        /// Set a layout manager for the widget. A a layout manager can only be connected
+        /// with one widget. Reset the connection with a previous widget first, if you
+        /// like to use it in another widget instead.
         /// 
         /// </summary>
         public qxDotNet.UI.Layout.Abstract Layout
@@ -88,6 +102,7 @@ namespace qxDotNet.UI.Groupbox
 
         /// <summary>
         /// Bottom padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingBottom
         {
@@ -103,6 +118,7 @@ namespace qxDotNet.UI.Groupbox
 
         /// <summary>
         /// Left padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingLeft
         {
@@ -118,6 +134,7 @@ namespace qxDotNet.UI.Groupbox
 
         /// <summary>
         /// Right padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingRight
         {
@@ -133,6 +150,7 @@ namespace qxDotNet.UI.Groupbox
 
         /// <summary>
         /// Top padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingTop
         {
@@ -148,6 +166,7 @@ namespace qxDotNet.UI.Groupbox
 
         /// <summary>
         /// Message which is shown in an invalid tooltip.
+        /// 
         /// </summary>
         public string InvalidMessage
         {
@@ -164,6 +183,7 @@ namespace qxDotNet.UI.Groupbox
 
         /// <summary>
         /// Flag signaling if a widget is required.
+        /// 
         /// </summary>
         public bool? Required
         {
@@ -179,7 +199,9 @@ namespace qxDotNet.UI.Groupbox
         }
 
         /// <summary>
-        /// Message which is shown in an invalid tooltip if the {@link #required} is set to true.
+        /// Message which is shown in an invalid tooltip if the {@link #required} is
+        /// set to true.
+        /// 
         /// </summary>
         public string RequiredInvalidMessage
         {
@@ -195,7 +217,9 @@ namespace qxDotNet.UI.Groupbox
         }
 
         /// <summary>
-        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid state will be set.
+        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid
+        /// state will be set.
+        /// 
         /// </summary>
         public bool? Valid
         {
@@ -210,15 +234,20 @@ namespace qxDotNet.UI.Groupbox
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.groupbox.GroupBox";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -238,11 +267,18 @@ namespace qxDotNet.UI.Groupbox
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeInvalidMessage'
+        /// </summary>
         protected virtual void OnChangeInvalidMessage()
         {
             if (ChangeInvalidMessage != null)
@@ -256,6 +292,9 @@ namespace qxDotNet.UI.Groupbox
         /// </summary>
         public event EventHandler ChangeInvalidMessage;
 
+        /// <summary>
+        /// Raises event 'ChangeRequired'
+        /// </summary>
         protected virtual void OnChangeRequired()
         {
             if (ChangeRequired != null)
@@ -269,6 +308,9 @@ namespace qxDotNet.UI.Groupbox
         /// </summary>
         public event EventHandler ChangeRequired;
 
+        /// <summary>
+        /// Raises event 'ChangeValid'
+        /// </summary>
         protected virtual void OnChangeValid()
         {
             if (ChangeValid != null)

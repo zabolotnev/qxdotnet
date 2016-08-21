@@ -7,7 +7,28 @@ using qxDotNet;
 namespace qxDotNet.UI.Basic
 {
     /// <summary>
-    /// A multi-purpose widget, which combines a label with an icon.  The intended purpose of qx.ui.basic.Atom is to easily align the common icon-text combination in different ways.  This is useful for all types of buttons, tooltips, ...  Example  Here is a little example of how to use the widget.    var atom = new qx.ui.basic.Atom(\IconRight\, \icon/32/actions/go-next.png\);  this.getRoot().add(atom);   This example creates an atom with the label "Icon Right" and an icon.  External Documentation   Documentation of this widget in the qooxdoo manual.
+    /// A multi-purpose widget, which combines a label with an icon.
+    /// 
+    /// The intended purpose of qx.ui.basic.Atom is to easily align the common icon-text
+    /// combination in different ways.
+    /// 
+    /// This is useful for all types of buttons, tooltips, ...
+    /// 
+    /// Example
+    /// 
+    /// Here is a little example of how to use the widget.
+    /// 
+    /// 
+    ///  var atom = new qx.ui.basic.Atom("Icon Right", "icon/32/actions/go-next.png");
+    ///  this.getRoot().add(atom);
+    /// 
+    /// 
+    /// This example creates an atom with the label "Icon Right" and an icon.
+    /// 
+    /// External Documentation
+    /// 
+    /// 
+    /// Documentation of this widget in the qooxdoo manual.
     /// </summary>
     public partial class Atom : qxDotNet.UI.Core.Widget
     {
@@ -22,7 +43,14 @@ namespace qxDotNet.UI.Basic
 
 
         /// <summary>
-        /// Whether the content should be rendered centrally when to much space is available. Enabling this property centers in both axis. The behavior when disabled of the centering depends on the {@link #iconPosition} property. If the icon position is left or right, the X axis is not centered, only the Y axis. If the icon position is top or bottom, the Y axis is not centered. In case of e.g. an icon position of top-left no axis is centered.
+        /// Whether the content should be rendered centrally when to much space
+        /// is available. Enabling this property centers in both axis. The behavior
+        /// when disabled of the centering depends on the {@link #iconPosition} property.
+        /// If the icon position is left or right, the X axis
+        /// is not centered, only the Y axis. If the icon position is top
+        /// or bottom, the Y axis is not centered. In case of e.g. an
+        /// icon position of top-left no axis is centered.
+        /// 
         /// </summary>
         public bool? Center
         {
@@ -38,6 +66,7 @@ namespace qxDotNet.UI.Basic
 
         /// <summary>
         /// The space between the icon and the label
+        /// 
         /// </summary>
         public int Gap
         {
@@ -54,6 +83,7 @@ namespace qxDotNet.UI.Basic
 
         /// <summary>
         /// Any URI String supported by qx.ui.basic.Image to display an icon
+        /// 
         /// </summary>
         public string Icon
         {
@@ -69,7 +99,9 @@ namespace qxDotNet.UI.Basic
         }
 
         /// <summary>
-        /// The position of the icon in relation to the text. Only useful/needed if text and icon is configured and "show" is configured as "both" (default)
+        /// The position of the icon in relation to the text.
+        /// Only useful/needed if text and icon is configured and 'show' is configured as 'both' (default)
+        /// 
         /// </summary>
         public qxDotNet.IconPositionEnum IconPosition
         {
@@ -85,6 +117,7 @@ namespace qxDotNet.UI.Basic
 
         /// <summary>
         /// The label/caption/text of the qx.ui.basic.Atom instance
+        /// 
         /// </summary>
         public string Label
         {
@@ -100,7 +133,11 @@ namespace qxDotNet.UI.Basic
         }
 
         /// <summary>
-        /// Switches between rich HTML and text content. The text mode (false) supports advanced features like ellipsis when the available space is not enough. HTML mode (true) supports multi-line content and all the markup features of HTML content.
+        /// Switches between rich HTML and text content. The text mode (false) supports
+        /// advanced features like ellipsis when the available space is not
+        /// enough. HTML mode (true) supports multi-line content and all the
+        /// markup features of HTML content.
+        /// 
         /// </summary>
         public bool? Rich
         {
@@ -115,7 +152,9 @@ namespace qxDotNet.UI.Basic
         }
 
         /// <summary>
-        /// Configure the visibility of the sub elements/widgets. Possible values: both, label, icon
+        /// Configure the visibility of the sub elements/widgets.
+        /// Possible values: both, label, icon
+        /// 
         /// </summary>
         public qxDotNet.ShowEnum Show
         {
@@ -130,15 +169,20 @@ namespace qxDotNet.UI.Basic
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.basic.Atom";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -149,13 +193,22 @@ namespace qxDotNet.UI.Basic
             state.SetPropertyValue("label", _label, "");
             state.SetPropertyValue("rich", _rich, false);
             state.SetPropertyValue("show", _show, ShowEnum.both);
+
+
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeGap'
+        /// </summary>
         protected virtual void OnChangeGap()
         {
             if (ChangeGap != null)
@@ -169,6 +222,9 @@ namespace qxDotNet.UI.Basic
         /// </summary>
         public event EventHandler ChangeGap;
 
+        /// <summary>
+        /// Raises event 'ChangeIcon'
+        /// </summary>
         protected virtual void OnChangeIcon()
         {
             if (ChangeIcon != null)
@@ -182,6 +238,9 @@ namespace qxDotNet.UI.Basic
         /// </summary>
         public event EventHandler ChangeIcon;
 
+        /// <summary>
+        /// Raises event 'ChangeLabel'
+        /// </summary>
         protected virtual void OnChangeLabel()
         {
             if (ChangeLabel != null)
@@ -195,6 +254,9 @@ namespace qxDotNet.UI.Basic
         /// </summary>
         public event EventHandler ChangeLabel;
 
+        /// <summary>
+        /// Raises event 'ChangeShow'
+        /// </summary>
         protected virtual void OnChangeShow()
         {
             if (ChangeShow != null)

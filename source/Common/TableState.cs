@@ -1,4 +1,5 @@
-﻿using System;
+﻿using qxDotNet.UI.Table;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,12 +30,12 @@ namespace qxDotNet.Common
 
         private Dictionary<long, WeakReference> _models = new Dictionary<long,WeakReference>();
 
-        internal void RegisterModel(UI.Table.RemoteModel model)
+        internal void RegisterModel(ITableModel model)
         {
             lock (_models)
             {
                 var r = new WeakReference(model);
-                _models[model.clientId] = r;
+                _models[(model as qxDotNet.Core.Object).clientId] = r;
             }
         }
 
@@ -69,7 +70,7 @@ namespace qxDotNet.Common
             {
                 if (_models.ContainsKey(id))
                 {
-                    var model = _models[id].Target as UI.Table.RemoteModel;
+                    var model = _models[id].Target as RemoteDataModel;
                     if (model == null)
                     {
                         return;
@@ -85,7 +86,7 @@ namespace qxDotNet.Common
             {
                 if (_models.ContainsKey(id))
                 {
-                    var model = _models[id].Target as UI.Table.RemoteModel;
+                    var model = _models[id].Target as RemoteDataModel;
                     if (model == null)
                     {
                         _models.Remove(id);
@@ -151,7 +152,7 @@ namespace qxDotNet.Common
                             var format = model.GetColumnFormat(c);
                             if (string.IsNullOrEmpty(format))
                             {
-                                sb.Append(model.GetClientValue(Convert.ToString(row.GetValue(c))));
+                                sb.Append(qxDotNet.Core.Object.GetClientValue(Convert.ToString(row.GetValue(c))));
                             }
                             else
                             {
@@ -161,7 +162,7 @@ namespace qxDotNet.Common
                                     value = string.Format("{0: " + format + "}", value);
                                 }
                                 catch { }
-                                sb.Append(model.GetClientValue(value));
+                                sb.Append(qxDotNet.Core.Object.GetClientValue(value));
                             }
                             
                         }

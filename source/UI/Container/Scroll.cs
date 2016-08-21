@@ -7,7 +7,42 @@ using qxDotNet;
 namespace qxDotNet.UI.Container
 {
     /// <summary>
-    /// Container, which allows vertical and horizontal scrolling if the contents is larger than the container.  Note that this class can only have one child widget. This container has a fixed layout, which cannot be changed.  Example  Here is a little example of how to use the widget.    // create scroll container  var scroll = new qx.ui.container.Scroll().set({  width: 300,  height: 200  });   // add a widget which is larger than the container  scroll.add(new qx.ui.core.Widget().set({  width: 600,  minWidth: 600,  height: 400,  minHeight: 400  }));   this.getRoot().add(scroll);   This example creates a scroll container and adds a widget, which is larger than the container. This will cause the container to display vertical and horizontal toolbars.  External Documentation   Documentation of this widget in the qooxdoo manual.
+    /// Container, which allows vertical and horizontal scrolling if the contents is
+    /// larger than the container.
+    /// 
+    /// Note that this class can only have one child widget. This container has a
+    /// fixed layout, which cannot be changed.
+    /// 
+    /// Example
+    /// 
+    /// Here is a little example of how to use the widget.
+    /// 
+    /// 
+    ///  // create scroll container
+    ///  var scroll = new qx.ui.container.Scroll().set({
+    ///  width: 300,
+    ///  height: 200
+    ///  });
+    /// 
+    ///  // add a widget which is larger than the container
+    ///  scroll.add(new qx.ui.core.Widget().set({
+    ///  width: 600,
+    ///  minWidth: 600,
+    ///  height: 400,
+    ///  minHeight: 400
+    ///  }));
+    /// 
+    ///  this.getRoot().add(scroll);
+    /// 
+    /// 
+    /// This example creates a scroll container and adds a widget, which is larger
+    /// than the container. This will cause the container to display vertical
+    /// and horizontal toolbars.
+    /// 
+    /// External Documentation
+    /// 
+    /// 
+    /// Documentation of this widget in the qooxdoo manual.
     /// </summary>
     public partial class Scroll : qxDotNet.UI.Core.Scroll.AbstractScrollArea
     {
@@ -20,6 +55,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Bottom padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingBottom
         {
@@ -35,6 +71,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Left padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingLeft
         {
@@ -50,6 +87,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Right padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingRight
         {
@@ -65,6 +103,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Top padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingTop
         {
@@ -79,11 +118,19 @@ namespace qxDotNet.UI.Container
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.container.Scroll";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -95,6 +142,10 @@ namespace qxDotNet.UI.Container
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

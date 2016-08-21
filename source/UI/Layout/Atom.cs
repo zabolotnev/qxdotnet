@@ -7,7 +7,34 @@ using qxDotNet;
 namespace qxDotNet.UI.Layout
 {
     /// <summary>
-    /// A atom layout. Used to place an image and label in relation to each other. Useful to create buttons, list items, etc.  Features   Gap between icon and text (using {@link #gap}) Vertical and horizontal mode (using {@link #iconPosition}) Sorting options to place first child on top/left or bottom/right (using {@link #iconPosition}) Automatically middles/centers content to the available space Auto-sizing Supports more than two children (will be processed the same way like the previous ones)   Item Properties  None  Notes   Does not support margins and alignment of {@link qx.ui.core.LayoutItem}.   Alternative Names  None
+    /// A atom layout. Used to place an image and label in relation
+    /// to each other. Useful to create buttons, list items, etc.
+    /// 
+    /// Features
+    /// 
+    /// 
+    /// Gap between icon and text (using {@link #gap})
+    /// Vertical and horizontal mode (using {@link #iconPosition})
+    /// Sorting options to place first child on top/left or bottom/right (using {@link #iconPosition})
+    /// Automatically middles/centers content to the available space
+    /// Auto-sizing
+    /// Supports more than two children (will be processed the same way like the previous ones)
+    /// 
+    /// 
+    /// Item Properties
+    /// 
+    /// None
+    /// 
+    /// Notes
+    /// 
+    /// 
+    /// Does not support margins and alignment of {@link qx.ui.core.LayoutItem}.
+    /// 
+    /// 
+    /// Alternative Names
+    /// 
+    /// None
+    /// 
     /// </summary>
     public partial class Atom : qxDotNet.UI.Layout.Abstract
     {
@@ -18,7 +45,14 @@ namespace qxDotNet.UI.Layout
 
 
         /// <summary>
-        /// Whether the content should be rendered centrally when to much space is available. Enabling this property centers in both axis. The behavior when disabled of the centering depends on the {@link #iconPosition} property. If the icon position is left or right, the X axis is not centered, only the Y axis. If the icon position is top or bottom, the Y axis is not centered. In case of e.g. an icon position of top-left no axis is centered.
+        /// Whether the content should be rendered centrally when to much space
+        /// is available. Enabling this property centers in both axis. The behavior
+        /// when disabled of the centering depends on the {@link #iconPosition} property.
+        /// If the icon position is left or right, the X axis
+        /// is not centered, only the Y axis. If the icon position is top
+        /// or bottom, the Y axis is not centered. In case of e.g. an
+        /// icon position of top-left no axis is centered.
+        /// 
         /// </summary>
         public bool? Center
         {
@@ -34,6 +68,7 @@ namespace qxDotNet.UI.Layout
 
         /// <summary>
         /// The gap between the icon and the text
+        /// 
         /// </summary>
         public int Gap
         {
@@ -49,6 +84,7 @@ namespace qxDotNet.UI.Layout
 
         /// <summary>
         /// The position of the icon in relation to the text
+        /// 
         /// </summary>
         public qxDotNet.IconPositionEnum IconPosition
         {
@@ -62,15 +98,20 @@ namespace qxDotNet.UI.Layout
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.layout.Atom";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -81,6 +122,10 @@ namespace qxDotNet.UI.Layout
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

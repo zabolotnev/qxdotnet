@@ -7,9 +7,15 @@ using qxDotNet;
 namespace qxDotNet.UI.Menu
 {
     /// <summary>
-    /// The menu is a popup like control which supports buttons. It comes with full keyboard navigation and an improved timeout based mouse control behavior.  This class is the container for all derived instances of {@link qx.ui.menu.AbstractButton}.
+    /// The menu is a popup like control which supports buttons. It comes
+    /// with full keyboard navigation and an improved timeout based pointer
+    /// control behavior.
+    /// 
+    /// This class is the container for all derived instances of
+    /// {@link qx.ui.menu.AbstractButton}.
+    /// 
     /// </summary>
-    public partial class Menu : qxDotNet.UI.Core.Widget
+    public partial class Menu : qxDotNet.UI.Core.ChildrenHandling
     {
 
         private int _arrowColumnWidth = 0;
@@ -31,12 +37,13 @@ namespace qxDotNet.UI.Menu
         private int _offsetTop = 0;
         private qxDotNet.PlacementModeEnum _placementModeX = PlacementModeEnum.keep_align;
         private qxDotNet.PlacementModeEnum _placementModeY = PlacementModeEnum.keep_align;
-        private qxDotNet.PlaceMethodEnum _placeMethod = PlaceMethodEnum.mouse;
+        private qxDotNet.PlaceMethodEnum _placeMethod = PlaceMethodEnum.pointer;
         private qxDotNet.AlignmentEnum _position = AlignmentEnum.bottom_left;
 
 
         /// <summary>
         /// Default arrow column width if no sub menus are rendered
+        /// 
         /// </summary>
         public int ArrowColumnWidth
         {
@@ -52,6 +59,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// Blocks the background if value is true
+        /// 
         /// </summary>
         public bool? BlockBackground
         {
@@ -67,6 +75,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// Color of the blocker
+        /// 
         /// </summary>
         public string BlockerColor
         {
@@ -82,6 +91,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// Opacity of the blocker
+        /// 
         /// </summary>
         public decimal BlockerOpacity
         {
@@ -97,6 +107,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// Interval in ms after which sub menus should be closed
+        /// 
         /// </summary>
         public int CloseInterval
         {
@@ -111,7 +122,9 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// Default icon column width if no icons are rendered. This property is ignored as soon as an icon is present.
+        /// Default icon column width if no icons are rendered.
+        /// This property is ignored as soon as an icon is present.
+        /// 
         /// </summary>
         public int IconColumnWidth
         {
@@ -127,6 +140,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// The currently opened button (sub menu is visible)
+        /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget OpenedButton
         {
@@ -142,6 +156,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// Widget that opened the menu
+        /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget Opener
         {
@@ -157,6 +172,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// Interval in ms after which sub menus should be opened
+        /// 
         /// </summary>
         public int OpenInterval
         {
@@ -172,6 +188,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// The currently selected button
+        /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget SelectedButton
         {
@@ -187,6 +204,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// The spacing between each cell of the menu buttons
+        /// 
         /// </summary>
         public int SpacingX
         {
@@ -202,6 +220,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// The spacing between each menu button
+        /// 
         /// </summary>
         public int SpacingY
         {
@@ -217,6 +236,7 @@ namespace qxDotNet.UI.Menu
 
         /// <summary>
         /// Whether the widget should moved using DOM methods.
+        /// 
         /// </summary>
         public bool? DomMove
         {
@@ -231,7 +251,8 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// Bottom offset of the mouse pointer (in pixel)
+        /// Bottom offset of the pointer (in pixel)
+        /// 
         /// </summary>
         public int OffsetBottom
         {
@@ -246,7 +267,8 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// Left offset of the mouse pointer (in pixel)
+        /// Left offset of the pointer (in pixel)
+        /// 
         /// </summary>
         public int OffsetLeft
         {
@@ -261,7 +283,8 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// Right offset of the mouse pointer (in pixel)
+        /// Right offset of the pointer (in pixel)
+        /// 
         /// </summary>
         public int OffsetRight
         {
@@ -276,7 +299,8 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// Top offset of the mouse pointer (in pixel)
+        /// Top offset of the pointer (in pixel)
+        /// 
         /// </summary>
         public int OffsetTop
         {
@@ -291,7 +315,11 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// Selects the algorithm to place the widget horizontally. direct uses {@link qx.util.placement.DirectAxis}, keep-align uses {@link qx.util.placement.KeepAlignAxis} and best-fit uses {@link qx.util.placement.BestFitAxis}.
+        /// Selects the algorithm to place the widget horizontally. direct
+        /// uses {@link qx.util.placement.DirectAxis}, keep-align
+        /// uses {@link qx.util.placement.KeepAlignAxis} and best-fit
+        /// uses {@link qx.util.placement.BestFitAxis}.
+        /// 
         /// </summary>
         public qxDotNet.PlacementModeEnum PlacementModeX
         {
@@ -306,7 +334,11 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// Selects the algorithm to place the widget vertically. direct uses {@link qx.util.placement.DirectAxis}, keep-align uses {@link qx.util.placement.KeepAlignAxis} and best-fit uses {@link qx.util.placement.BestFitAxis}.
+        /// Selects the algorithm to place the widget vertically. direct
+        /// uses {@link qx.util.placement.DirectAxis}, keep-align
+        /// uses {@link qx.util.placement.KeepAlignAxis} and best-fit
+        /// uses {@link qx.util.placement.BestFitAxis}.
+        /// 
         /// </summary>
         public qxDotNet.PlacementModeEnum PlacementModeY
         {
@@ -321,7 +353,9 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// Whether the widget should be placed relative to an other widget or to the mouse cursor.
+        /// Whether the widget should be placed relative to an other widget or to
+        /// the pointer.
+        /// 
         /// </summary>
         public qxDotNet.PlaceMethodEnum PlaceMethod
         {
@@ -336,7 +370,27 @@ namespace qxDotNet.UI.Menu
         }
 
         /// <summary>
-        /// Position of the aligned object in relation to the opener.  Please note than changes to this property are only applied when re-aligning the widget.  The first part of the value is the edge to attach to. The second part the alignment of the orthogonal edge after the widget has been attached.  The default value "bottom-left" for example means that the widget should be shown directly under the given target and then should be aligned to be left edge:   +--------+ | target | +--------+ +-------------+ | widget | +-------------+ 
+        /// Position of the aligned object in relation to the opener.
+        /// 
+        /// Please note than changes to this property are only applied
+        /// when re-aligning the widget.
+        /// 
+        /// The first part of the value is the edge to attach to. The second
+        /// part the alignment of the orthogonal edge after the widget
+        /// has been attached.
+        /// 
+        /// The default value "bottom-left" for example means that the
+        /// widget should be shown directly under the given target and
+        /// then should be aligned to be left edge:
+        /// 
+        /// 
+        /// +--------+
+        /// | target |
+        /// +--------+
+        /// +-------------+
+        /// | widget |
+        /// +-------------+
+        /// 
         /// </summary>
         public qxDotNet.AlignmentEnum Position
         {
@@ -350,15 +404,20 @@ namespace qxDotNet.UI.Menu
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.menu.Menu";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -381,12 +440,16 @@ namespace qxDotNet.UI.Menu
             state.SetPropertyValue("offsetTop", _offsetTop, 0);
             state.SetPropertyValue("placementModeX", _placementModeX, PlacementModeEnum.keep_align);
             state.SetPropertyValue("placementModeY", _placementModeY, PlacementModeEnum.keep_align);
-            state.SetPropertyValue("placeMethod", _placeMethod, PlaceMethodEnum.mouse);
+            state.SetPropertyValue("placeMethod", _placeMethod, PlaceMethodEnum.pointer);
             state.SetPropertyValue("position", _position, AlignmentEnum.bottom_left);
 
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

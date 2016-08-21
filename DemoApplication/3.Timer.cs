@@ -41,6 +41,7 @@ namespace DemoApplication
             btnStop.Execute += new EventHandler(btnStop_Execute);
 
             timer = new qxDotNet.Event.Timer();
+            timer.Enabled = false;
             timer.IntervalElapsed += new EventHandler(timer_IntervalElapsed);
             
 

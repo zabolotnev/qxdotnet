@@ -35,6 +35,7 @@ namespace DemoApplication
             var column = new qxDotNet.UI.Table.Column();
             column.Name = "Code";
             column.Field = "Code";
+            column.Width = 300;
             table.Columns.Add(column);
 
             column = new qxDotNet.UI.Table.Column();

@@ -26,7 +26,7 @@
 import sys, os, re, subprocess, codecs, optparse
 
 CMD_PYTHON = sys.executable
-QOOXDOO_PATH = 'qooxdoo-3.5-sdk'
+QOOXDOO_PATH = 'qooxdoo-5.0.1-sdk'
 QX_PYLIB = "tool/pylib"
 
 ##
@@ -145,8 +145,5 @@ else:
     argList = ['"%s"' % x for x in argList]  # quote argv elements
 
 cmd = " ".join(argList)
-try:
-    retval = subprocess.call(cmd, shell=True)
-except:
-    retval = 3
+retval = subprocess.call(cmd, shell=True)
 sys.exit(retval)

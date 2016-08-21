@@ -7,18 +7,22 @@ using qxDotNet;
 namespace qxDotNet.UI.Table.Pane
 {
     /// <summary>
-    /// The table pane that shows a certain section from a table. This class handles the display of the data part of a table and is therefore the base for virtual scrolling.
+    /// The table pane that shows a certain section from a table. This class handles
+    /// the display of the data part of a table and is therefore the base for virtual
+    /// scrolling.
+    /// 
     /// </summary>
     public partial class Pane : qxDotNet.UI.Core.Widget
     {
 
-        private decimal _firstVisibleRow = 0;
-        private decimal _maxCacheLines = 1000;
-        private decimal _visibleRowCount = 0;
+        private decimal _firstVisibleRow = 0m;
+        private decimal _maxCacheLines = 1000m;
+        private decimal _visibleRowCount = 0m;
 
 
         /// <summary>
         /// The index of the first row to show.
+        /// 
         /// </summary>
         public decimal FirstVisibleRow
         {
@@ -33,7 +37,9 @@ namespace qxDotNet.UI.Table.Pane
         }
 
         /// <summary>
-        /// Maximum number of cached rows. If the value is -1 the cache size is unlimited
+        /// Maximum number of cached rows. If the value is -1 the cache
+        /// size is unlimited
+        /// 
         /// </summary>
         public decimal MaxCacheLines
         {
@@ -49,6 +55,7 @@ namespace qxDotNet.UI.Table.Pane
 
         /// <summary>
         /// The number of rows to show.
+        /// 
         /// </summary>
         public decimal VisibleRowCount
         {
@@ -63,23 +70,41 @@ namespace qxDotNet.UI.Table.Pane
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.pane.Pane";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
-            state.SetPropertyValue("firstVisibleRow", _firstVisibleRow, 0);
-            state.SetPropertyValue("maxCacheLines", _maxCacheLines, 1000);
-            state.SetPropertyValue("visibleRowCount", _visibleRowCount, 0);
+            state.SetPropertyValue("firstVisibleRow", _firstVisibleRow, 0m);
+            state.SetPropertyValue("maxCacheLines", _maxCacheLines, 1000m);
+            state.SetPropertyValue("visibleRowCount", _visibleRowCount, 0m);
 
-            state.SetEvent("paneReloadsData", false);
-            state.SetEvent("paneUpdated", false);
+            if (PaneReloadsData != null)
+            {
+                state.SetEvent("paneReloadsData", false);
+            }
+            if (PaneUpdated != null)
+            {
+                state.SetEvent("paneUpdated", false);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -93,6 +118,9 @@ namespace qxDotNet.UI.Table.Pane
             }
         }
 
+        /// <summary>
+        /// Raises event 'PaneReloadsData'
+        /// </summary>
         protected virtual void OnPaneReloadsData()
         {
             if (PaneReloadsData != null)
@@ -102,10 +130,17 @@ namespace qxDotNet.UI.Table.Pane
         }
 
         /// <summary>
-        /// Whether the current view port of the pane has not loaded data. The data object of the event indicates if the table pane has to reload data or not. Can be used to give the user feedback of the loading state of the rows.
+        /// Whether the current view port of the pane has not loaded data.
+        /// The data object of the event indicates if the table pane has to reload
+        /// data or not. Can be used to give the user feedback of the loading state
+        /// of the rows.
+        /// 
         /// </summary>
         public event EventHandler PaneReloadsData;
 
+        /// <summary>
+        /// Raises event 'PaneUpdated'
+        /// </summary>
         protected virtual void OnPaneUpdated()
         {
             if (PaneUpdated != null)
@@ -115,7 +150,10 @@ namespace qxDotNet.UI.Table.Pane
         }
 
         /// <summary>
-        /// Whenever the content of the table pane has been updated (rendered) trigger a paneUpdated event. This allows the canvas cellrenderer to act once the new cells have been integrated in the dom.
+        /// Whenever the content of the table pane has been updated (rendered)
+        /// trigger a paneUpdated event. This allows the canvas cellrenderer to act
+        /// once the new cells have been integrated in the dom.
+        /// 
         /// </summary>
         public event EventHandler PaneUpdated;
 

@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Core.Scroll
 {
     /// <summary>
-    /// The ScrollArea provides a container widget with on demand scroll bars if the content size exceeds the size of the container.
+    /// The ScrollArea provides a container widget with on demand scroll bars
+    /// if the content size exceeds the size of the container.
+    /// 
     /// </summary>
     public abstract partial class AbstractScrollArea : qxDotNet.UI.Core.Widget
     {
@@ -20,7 +22,13 @@ namespace qxDotNet.UI.Core.Scroll
 
 
         /// <summary>
-        /// The policy, when the horizontal scrollbar should be shown.   auto: Show scrollbar on demand  on: Always show the scrollbar  off: Never show the scrollbar 
+        /// The policy, when the horizontal scrollbar should be shown.
+        /// 
+        ///  auto: Show scrollbar on demand
+        ///  on: Always show the scrollbar
+        ///  off: Never show the scrollbar
+        /// 
+        /// 
         /// </summary>
         public qxDotNet.ScrollbarEnum ScrollbarX
         {
@@ -35,7 +43,13 @@ namespace qxDotNet.UI.Core.Scroll
         }
 
         /// <summary>
-        /// The policy, when the horizontal scrollbar should be shown.   auto: Show scrollbar on demand  on: Always show the scrollbar  off: Never show the scrollbar 
+        /// The policy, when the horizontal scrollbar should be shown.
+        /// 
+        ///  auto: Show scrollbar on demand
+        ///  on: Always show the scrollbar
+        ///  off: Never show the scrollbar
+        /// 
+        /// 
         /// </summary>
         public qxDotNet.ScrollbarEnum ScrollbarY
         {
@@ -51,6 +65,7 @@ namespace qxDotNet.UI.Core.Scroll
 
         /// <summary>
         /// The factor for slowing down the scrolling.
+        /// 
         /// </summary>
         public float DragScrollSlowDownFactor
         {
@@ -66,6 +81,7 @@ namespace qxDotNet.UI.Core.Scroll
 
         /// <summary>
         /// The threshold for the x-axis (in pixel) to activate scrolling at the edges.
+        /// 
         /// </summary>
         public int DragScrollThresholdX
         {
@@ -81,6 +97,7 @@ namespace qxDotNet.UI.Core.Scroll
 
         /// <summary>
         /// The threshold for the y-axis (in pixel) to activate scrolling at the edges.
+        /// 
         /// </summary>
         public int DragScrollThresholdY
         {
@@ -94,15 +111,20 @@ namespace qxDotNet.UI.Core.Scroll
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.core.scroll.AbstractScrollArea";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -112,11 +134,21 @@ namespace qxDotNet.UI.Core.Scroll
             state.SetPropertyValue("dragScrollThresholdX", _dragScrollThresholdX, 30);
             state.SetPropertyValue("dragScrollThresholdY", _dragScrollThresholdY, 30);
 
-            state.SetEvent("scrollAnimationXEnd", false);
-            state.SetEvent("scrollAnimationYEnd", false);
+            if (ScrollAnimationXEnd != null)
+            {
+                state.SetEvent("scrollAnimationXEnd", false);
+            }
+            if (ScrollAnimationYEnd != null)
+            {
+                state.SetEvent("scrollAnimationYEnd", false);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -130,6 +162,9 @@ namespace qxDotNet.UI.Core.Scroll
             }
         }
 
+        /// <summary>
+        /// Raises event 'ScrollAnimationXEnd'
+        /// </summary>
         protected virtual void OnScrollAnimationXEnd()
         {
             if (ScrollAnimationXEnd != null)
@@ -140,9 +175,13 @@ namespace qxDotNet.UI.Core.Scroll
 
         /// <summary>
         /// Fired as soon as the scroll animation in X direction ends.
+        /// 
         /// </summary>
         public event EventHandler ScrollAnimationXEnd;
 
+        /// <summary>
+        /// Raises event 'ScrollAnimationYEnd'
+        /// </summary>
         protected virtual void OnScrollAnimationYEnd()
         {
             if (ScrollAnimationYEnd != null)
@@ -153,6 +192,7 @@ namespace qxDotNet.UI.Core.Scroll
 
         /// <summary>
         /// Fired as soon as the scroll animation in X direction ends.
+        /// 
         /// </summary>
         public event EventHandler ScrollAnimationYEnd;
 

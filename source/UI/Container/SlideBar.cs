@@ -8,8 +8,9 @@ namespace qxDotNet.UI.Container
 {
     /// <summary>
     /// Container, which provides scrolling in one dimension (vertical or horizontal).
+    /// 
     /// </summary>
-    public partial class SlideBar : qxDotNet.UI.Core.Widget
+    public partial class SlideBar : qxDotNet.UI.Core.ChildrenHandling
     {
 
         private qxDotNet.OrientationEnum _orientation = OrientationEnum.horizontal;
@@ -19,6 +20,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// Orientation of the bar
+        /// 
         /// </summary>
         public qxDotNet.OrientationEnum Orientation
         {
@@ -34,6 +36,7 @@ namespace qxDotNet.UI.Container
 
         /// <summary>
         /// The number of pixels to scroll if the buttons are pressed
+        /// 
         /// </summary>
         public int ScrollStep
         {
@@ -48,6 +51,11 @@ namespace qxDotNet.UI.Container
         }
 
         /// <summary>
+        /// Get the widget's layout manager.
+        /// 
+        /// Set a layout manager for the widget. A a layout manager can only be connected
+        /// with one widget. Reset the connection with a previous widget first, if you
+        /// like to use it in another widget instead.
         /// 
         /// </summary>
         public qxDotNet.UI.Layout.Abstract Layout
@@ -62,15 +70,20 @@ namespace qxDotNet.UI.Container
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.container.SlideBar";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -78,10 +91,17 @@ namespace qxDotNet.UI.Container
             state.SetPropertyValue("scrollStep", _scrollStep, 15);
             state.SetPropertyValue("layout", _layout, null);
 
-            state.SetEvent("scrollAnimationEnd", false);
+            if (ScrollAnimationEnd != null)
+            {
+                state.SetEvent("scrollAnimationEnd", false);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -91,6 +111,9 @@ namespace qxDotNet.UI.Container
             }
         }
 
+        /// <summary>
+        /// Raises event 'ScrollAnimationEnd'
+        /// </summary>
         protected virtual void OnScrollAnimationEnd()
         {
             if (ScrollAnimationEnd != null)
@@ -100,7 +123,8 @@ namespace qxDotNet.UI.Container
         }
 
         /// <summary>
-        /// Fired on scroll animation end invoked by "scroll*"; methods.
+        /// Fired on scroll animation end invoked by 'scroll*' methods.
+        /// 
         /// </summary>
         public event EventHandler ScrollAnimationEnd;
 

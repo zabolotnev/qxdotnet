@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table.Cellrenderer
 {
     /// <summary>
     /// Specific data cell renderer for dates.
+    /// 
     /// </summary>
     public partial class Date : qxDotNet.UI.Table.Cellrenderer.Conditional
     {
@@ -17,6 +18,7 @@ namespace qxDotNet.UI.Table.Cellrenderer
 
         /// <summary>
         /// DateFormat used to format the data.
+        /// 
         /// </summary>
         public qxDotNet.Util.Format.DateFormat DateFormat
         {
@@ -30,15 +32,20 @@ namespace qxDotNet.UI.Table.Cellrenderer
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.cellrenderer.Date";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -47,6 +54,10 @@ namespace qxDotNet.UI.Table.Cellrenderer
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace qxDotNet
 {
-    public static class StringExtensions
+    internal static class StringExtensions
     {
 
         public static string EscapeToJS(this string value)

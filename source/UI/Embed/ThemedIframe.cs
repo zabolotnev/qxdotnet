@@ -7,7 +7,13 @@ using qxDotNet;
 namespace qxDotNet.UI.Embed
 {
     /// <summary>
-    /// Container widget for internal frames (iframes) with qooxdoo scroll bar and size hint support.  An iframe can display any HTML page inside the widget. Note that custom scroll bars do only work if the iframe's source points to the same domain as the application.
+    /// Container widget for internal frames (iframes) with qooxdoo scroll bar and
+    /// size hint support.
+    /// 
+    /// An iframe can display any HTML page inside the widget. Note that custom
+    /// scroll bars do only work if the iframe's source points to the same domain
+    /// as the application.
+    /// 
     /// </summary>
     public partial class ThemedIframe : qxDotNet.UI.Embed.AbstractIframe
     {
@@ -17,7 +23,13 @@ namespace qxDotNet.UI.Embed
 
 
         /// <summary>
-        /// The policy, when the horizontal scrollbar should be shown.   auto: Show scrollbar on demand  on: Always show the scrollbar  off: Never show the scrollbar 
+        /// The policy, when the horizontal scrollbar should be shown.
+        /// 
+        ///  auto: Show scrollbar on demand
+        ///  on: Always show the scrollbar
+        ///  off: Never show the scrollbar
+        /// 
+        /// 
         /// </summary>
         public qxDotNet.ScrollbarEnum ScrollbarX
         {
@@ -32,7 +44,13 @@ namespace qxDotNet.UI.Embed
         }
 
         /// <summary>
-        /// The policy, when the horizontal scrollbar should be shown.   auto: Show scrollbar on demand  on: Always show the scrollbar  off: Never show the scrollbar 
+        /// The policy, when the horizontal scrollbar should be shown.
+        /// 
+        ///  auto: Show scrollbar on demand
+        ///  on: Always show the scrollbar
+        ///  off: Never show the scrollbar
+        /// 
+        /// 
         /// </summary>
         public qxDotNet.ScrollbarEnum ScrollbarY
         {
@@ -47,11 +65,19 @@ namespace qxDotNet.UI.Embed
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.embed.ThemedIframe";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -61,6 +87,10 @@ namespace qxDotNet.UI.Embed
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

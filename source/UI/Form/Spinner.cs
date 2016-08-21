@@ -7,7 +7,35 @@ using qxDotNet;
 namespace qxDotNet.UI.Form
 {
     /// <summary>
-    /// A spinner is a control that allows you to adjust a numerical value, typically within an allowed range. An obvious example would be to specify the month of a year as a number in the range 1 - 12.  To do so, a spinner encompasses a field to display the current value (a textfield) and controls such as up and down buttons to change that value. The current value can also be changed by editing the display field directly, or using mouse wheel and cursor keys.  An optional {@link #numberFormat} property allows you to control the format of how a value can be entered and will be displayed.  A brief, but non-trivial example:   var s = new qx.ui.form.Spinner(); s.set({  maximum: 3000,  minimum: -3000 }); var nf = new qx.util.format.NumberFormat(); nf.setMaximumFractionDigits(2); s.setNumberFormat(nf);   A spinner instance without any further properties specified in the constructor or a subsequent set command will appear with default values and behaviour.
+    /// A spinner is a control that allows you to adjust a numerical value,
+    /// typically within an allowed range. An obvious example would be to specify the
+    /// month of a year as a number in the range 1 - 12.
+    /// 
+    /// To do so, a spinner encompasses a field to display the current value (a
+    /// textfield) and controls such as up and down buttons to change that value. The
+    /// current value can also be changed by editing the display field directly, or
+    /// using mouse wheel and cursor keys.
+    /// 
+    /// An optional {@link #numberFormat} property allows you to control the format of
+    /// how a value can be entered and will be displayed.
+    /// 
+    /// A brief, but non-trivial example:
+    /// 
+    /// 
+    /// var s = new qx.ui.form.Spinner();
+    /// s.set({
+    ///  maximum: 3000,
+    ///  minimum: -3000
+    /// });
+    /// var nf = new qx.util.format.NumberFormat();
+    /// nf.setMaximumFractionDigits(2);
+    /// s.setNumberFormat(nf);
+    /// 
+    /// 
+    /// A spinner instance without any further properties specified in the
+    /// constructor or a subsequent set command will appear with default
+    /// values and behaviour.
+    /// 
     /// </summary>
     public partial class Spinner : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.INumberForm, qxDotNet.UI.Form.IRange, qxDotNet.UI.Form.IForm
     {
@@ -18,7 +46,6 @@ namespace qxDotNet.UI.Form
         private qxDotNet.Util.Format.NumberFormat _numberFormat = null;
         private decimal _pageStep = 10m;
         private decimal _singleStep = 1m;
-//        private _var _value = 0;
         private bool? _wrap = false;
         private int _contentPaddingBottom = 0;
         private int _contentPaddingLeft = 0;
@@ -32,6 +59,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Controls whether the textfield of the spinner is editable or not
+        /// 
         /// </summary>
         public bool? Editable
         {
@@ -47,6 +75,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// maximal value of the Range object
+        /// 
         /// </summary>
         public decimal Maximum
         {
@@ -63,6 +92,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// minimal value of the Range object
+        /// 
         /// </summary>
         public decimal Minimum
         {
@@ -79,6 +109,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Controls the display of the number in the textfield
+        /// 
         /// </summary>
         public qxDotNet.Util.Format.NumberFormat NumberFormat
         {
@@ -94,6 +125,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// The amount to increment on each pageup/pagedown keypress
+        /// 
         /// </summary>
         public decimal PageStep
         {
@@ -108,7 +140,8 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// The amount to increment on each event (keypress or mousedown)
+        /// The amount to increment on each event (keypress or pointerdown)
+        /// 
         /// </summary>
         public decimal SingleStep
         {
@@ -124,6 +157,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// whether the value should wrap around
+        /// 
         /// </summary>
         public bool? Wrap
         {
@@ -139,6 +173,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Bottom padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingBottom
         {
@@ -154,6 +189,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Left padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingLeft
         {
@@ -169,6 +205,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Right padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingRight
         {
@@ -184,6 +221,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Top padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingTop
         {
@@ -199,6 +237,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Message which is shown in an invalid tooltip.
+        /// 
         /// </summary>
         public string InvalidMessage
         {
@@ -215,6 +254,7 @@ namespace qxDotNet.UI.Form
 
         /// <summary>
         /// Flag signaling if a widget is required.
+        /// 
         /// </summary>
         public bool? Required
         {
@@ -230,7 +270,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Message which is shown in an invalid tooltip if the {@link #required} is set to true.
+        /// Message which is shown in an invalid tooltip if the {@link #required} is
+        /// set to true.
+        /// 
         /// </summary>
         public string RequiredInvalidMessage
         {
@@ -246,7 +288,9 @@ namespace qxDotNet.UI.Form
         }
 
         /// <summary>
-        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid state will be set.
+        /// Flag signaling if a widget is valid. If a widget is invalid, an invalid
+        /// state will be set.
+        /// 
         /// </summary>
         public bool? Valid
         {
@@ -261,15 +305,20 @@ namespace qxDotNet.UI.Form
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.form.Spinner";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -289,16 +338,35 @@ namespace qxDotNet.UI.Form
             state.SetPropertyValue("requiredInvalidMessage", _requiredInvalidMessage, "");
             state.SetPropertyValue("valid", _valid, true);
 
-            state.SetPropertyValue("value", _value, 0);
+            state.SetPropertyValue("value", _value, 0m);
 
+            if (ChangeValue != null)
+            {
+                state.SetEvent("changeValue", true, "value");
+            }
+            else
+            {
+                state.SetEvent("changeValue", false, "value");
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
+            if (eventName == "changeValue")
+            {
+                OnChangeValue();
+            }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeMaximum'
+        /// </summary>
         protected virtual void OnChangeMaximum()
         {
             if (ChangeMaximum != null)
@@ -312,6 +380,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeMaximum;
 
+        /// <summary>
+        /// Raises event 'ChangeMinimum'
+        /// </summary>
         protected virtual void OnChangeMinimum()
         {
             if (ChangeMinimum != null)
@@ -325,6 +396,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeMinimum;
 
+        /// <summary>
+        /// Raises event 'ChangeValue'
+        /// </summary>
         protected virtual void OnChangeValue()
         {
             if (ChangeValue != null)
@@ -338,6 +412,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeValue;
 
+        /// <summary>
+        /// Raises event 'ChangeInvalidMessage'
+        /// </summary>
         protected virtual void OnChangeInvalidMessage()
         {
             if (ChangeInvalidMessage != null)
@@ -351,6 +428,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeInvalidMessage;
 
+        /// <summary>
+        /// Raises event 'ChangeRequired'
+        /// </summary>
         protected virtual void OnChangeRequired()
         {
             if (ChangeRequired != null)
@@ -364,6 +444,9 @@ namespace qxDotNet.UI.Form
         /// </summary>
         public event EventHandler ChangeRequired;
 
+        /// <summary>
+        /// Raises event 'ChangeValid'
+        /// </summary>
         protected virtual void OnChangeValid()
         {
             if (ChangeValid != null)

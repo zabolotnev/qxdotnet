@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Core.Scroll
 {
     /// <summary>
     /// All widget used as scrollbars must implement this interface.
+    /// 
     /// </summary>
     public interface IScrollBar
     {

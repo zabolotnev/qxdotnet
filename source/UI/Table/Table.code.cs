@@ -12,7 +12,6 @@ namespace qxDotNet.UI.Table
     public partial class Table : qxDotNet.UI.Core.Widget, Selection.ISelectionModelMapper 
     {
 
-        private RemoteModel _model;
         private ColumnCollection _columns;
         private RowCollection _rows;
 
@@ -26,8 +25,9 @@ namespace qxDotNet.UI.Table
         public Table()
         {
             _rows = new RowCollection(this);
-            _model = new RemoteModel(this);
-            _columns = new ColumnCollection(_model);
+            _tableModel = new RemoteDataModel();
+            (_tableModel as RemoteDataModel).Init(this);
+            _columns = new ColumnCollection(_tableModel as RemoteDataModel);
             SelectionModel = new qxDotNet.UI.Table.Selection.Model();
         }
 
@@ -59,6 +59,11 @@ namespace qxDotNet.UI.Table
 
         public void Refresh()
         {
+            if (_tableModel == null)
+            {
+                return;
+            }
+            (_tableModel as Model.Abstract).Init(this);
             _accessors = null;
             _rows.Clear();
             if (_dataSource != null)
@@ -208,21 +213,22 @@ namespace qxDotNet.UI.Table
 
         protected internal override System.Collections.IEnumerable GetChildren(bool isNewOnly)
         {
-            yield return _model;
+            yield return _tableModel;
             yield return _selectionModel;
         }
 
         protected internal override void CustomPreRender(System.Web.HttpResponse response, bool isRefreshRequest)
         {
-            Common.TableState.Instance.RegisterModel(_model);
-            if (_model.Modified || isRefreshRequest)
+            Common.TableState.Instance.RegisterModel(_tableModel);
+            var model = _tableModel as qxDotNet.Core.Object;
+            if (_tableModel.Modified || isRefreshRequest)
             {
                 var sb = new StringBuilder();
 
-                sb.AppendLine(_model.GetReference() + "._id_=" + _model.clientId + ";");
+                sb.AppendLine(model.GetReference() + "._id_=" + model.clientId + ";");
 
                 // setColumns
-                sb.Append(_model.GetReference() + ".setColumns([");
+                sb.Append(model.GetReference() + ".setColumns([");
                 var f = false;
                 foreach (var item in Columns)
                 {
@@ -252,7 +258,8 @@ namespace qxDotNet.UI.Table
 
         protected internal override void CustomPostRender(System.Web.HttpResponse response, bool isRefreshRequest)
         {
-            if (_model.Modified  || isRefreshRequest)
+            var model = _tableModel as qxDotNet.Core.Object;
+            if (_tableModel.Modified  || isRefreshRequest)
             {
                 var sb = new StringBuilder();
 
@@ -267,8 +274,8 @@ namespace qxDotNet.UI.Table
                     {
                         sb.AppendLine(tcm + ".setColumnWidth(" + id + "," + item.Width + ");");
                     }
-                    sb.AppendLine(_model.GetReference() + ".setColumnEditable(" + id + "," + GetClientValue(item.Editable) + ");");
-                    sb.AppendLine(_model.GetReference() + ".setColumnSortable(" + id + "," + GetClientValue(item.Sortable) + ");");
+                    sb.AppendLine(model.GetReference() + ".setColumnEditable(" + id + "," + GetClientValue(item.Editable) + ");");
+                    sb.AppendLine(model.GetReference() + ".setColumnSortable(" + id + "," + GetClientValue(item.Sortable) + ");");
                     if (item.CellRenderer != null)
                     {
                         sb.AppendLine(tcm + ".setDataCellRenderer(" + id + "," + item.CellRenderer.GetReference() + ");");
@@ -280,11 +287,11 @@ namespace qxDotNet.UI.Table
                 }
 
                 response.Write(sb.ToString());
-                _model.ResetModified();
+                _tableModel.ResetModified();
             }
             if (_needToRefresh)
             {
-                response.Write(_model.GetReference() + ".reloadData();\n");
+                response.Write(model.GetReference() + ".reloadData();\n");
                 _needToRefresh = false;
             }
             base.CustomPostRender(response, isRefreshRequest);

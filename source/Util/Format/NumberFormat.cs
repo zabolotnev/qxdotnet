@@ -8,11 +8,13 @@ namespace qxDotNet.Util.Format
 {
     /// <summary>
     /// A formatter and parser for numbers.
+    /// 
     /// </summary>
     public partial class NumberFormat : qxDotNet.Core.Object, qxDotNet.Util.Format.IFormat
     {
 
         private bool? _groupingUsed = true;
+        private string _locale = null;
         private decimal _maximumFractionDigits = 0m;
         private decimal _maximumIntegerDigits = 0m;
         private decimal _minimumFractionDigits = 0m;
@@ -23,6 +25,7 @@ namespace qxDotNet.Util.Format
 
         /// <summary>
         /// Whether thousand groupings should be used {e.g. "1,432,234.65"}.
+        /// 
         /// </summary>
         public bool? GroupingUsed
         {
@@ -37,7 +40,26 @@ namespace qxDotNet.Util.Format
         }
 
         /// <summary>
-        /// The maximum number of fraction digits (digits after the decimal separator). Superfluous digits will cause rounding ("1.8277" -> "1.83")
+        /// Locale used
+        /// 
+        /// </summary>
+        public string Locale
+        {
+            get
+            {
+                return _locale;
+            }
+            set
+            {
+               _locale = value;
+               OnChangeLocale();
+            }
+        }
+
+        /// <summary>
+        /// The maximum number of fraction digits (digits after the decimal separator).
+        /// Superfluous digits will cause rounding ("1.8277" -> "1.83")
+        /// 
         /// </summary>
         public decimal MaximumFractionDigits
         {
@@ -52,7 +74,9 @@ namespace qxDotNet.Util.Format
         }
 
         /// <summary>
-        /// The maximum number of integer digits (superfluous digits will be cut off ("1923" -> "23").
+        /// The maximum number of integer digits (superfluous digits will be cut off
+        /// ("1923" -> "23").
+        /// 
         /// </summary>
         public decimal MaximumIntegerDigits
         {
@@ -67,7 +91,9 @@ namespace qxDotNet.Util.Format
         }
 
         /// <summary>
-        /// The minimum number of fraction digits (digits after the decimal separator). Missing digits will be filled up with 0 ("1.5" -> "1.500")
+        /// The minimum number of fraction digits (digits after the decimal separator).
+        /// Missing digits will be filled up with 0 ("1.5" -> "1.500")
+        /// 
         /// </summary>
         public decimal MinimumFractionDigits
         {
@@ -82,7 +108,9 @@ namespace qxDotNet.Util.Format
         }
 
         /// <summary>
-        /// The minimum number of integer digits (digits before the decimal separator). Missing digits will be filled up with 0 ("19" -> "0019").
+        /// The minimum number of integer digits (digits before the decimal separator).
+        /// Missing digits will be filled up with 0 ("19" -> "0019").
+        /// 
         /// </summary>
         public decimal MinimumIntegerDigits
         {
@@ -98,6 +126,7 @@ namespace qxDotNet.Util.Format
 
         /// <summary>
         /// Sets the postfix to put after the number {" %" -> "56.13 %"}.
+        /// 
         /// </summary>
         public string Postfix
         {
@@ -114,6 +143,7 @@ namespace qxDotNet.Util.Format
 
         /// <summary>
         /// The prefix to put before the number {"EUR " -> "EUR 12.31"}.
+        /// 
         /// </summary>
         public string Prefix
         {
@@ -128,19 +158,25 @@ namespace qxDotNet.Util.Format
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.util.format.NumberFormat";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
             state.SetPropertyValue("groupingUsed", _groupingUsed, true);
+            state.SetPropertyValue("locale", _locale, null);
             state.SetPropertyValue("maximumFractionDigits", _maximumFractionDigits, 0m);
             state.SetPropertyValue("maximumIntegerDigits", _maximumIntegerDigits, 0m);
             state.SetPropertyValue("minimumFractionDigits", _minimumFractionDigits, 0m);
@@ -151,11 +187,34 @@ namespace qxDotNet.Util.Format
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeLocale'
+        /// </summary>
+        protected virtual void OnChangeLocale()
+        {
+            if (ChangeLocale != null)
+            {
+                ChangeLocale.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fired on change of the property {@link #locale}.
+        /// </summary>
+        public event EventHandler ChangeLocale;
+
+        /// <summary>
+        /// Raises event 'ChangeNumberFormat'
+        /// </summary>
         protected virtual void OnChangeNumberFormat()
         {
             if (ChangeNumberFormat != null)

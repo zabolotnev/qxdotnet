@@ -7,9 +7,19 @@ using qxDotNet;
 namespace qxDotNet.UI.Toolbar
 {
     /// <summary>
-    /// The Toolbar class is the main part of the toolbar widget.  It can handle added {@link Button}s, {@link CheckBox}es, {@link RadioButton}s and {@link Separator}s in its {@link #add} method. The {@link #addSpacer} method adds a spacer at the current toolbar position. This means that the widgets added after the method call of {@link #addSpacer} are aligned to the right of the toolbar.  For more details on the documentation of the toolbar widget, take a look at the documentation of the {@link qx.ui.toolbar}-Package.
+    /// The Toolbar class is the main part of the toolbar widget.
+    /// 
+    /// It can handle added {@link Button}s, {@link CheckBox}es, {@link RadioButton}s
+    /// and {@link Separator}s in its {@link #add} method. The {@link #addSpacer} method
+    /// adds a spacer at the current toolbar position. This means that the widgets
+    /// added after the method call of {@link #addSpacer} are aligned to the right of
+    /// the toolbar.
+    /// 
+    /// For more details on the documentation of the toolbar widget, take a look at the
+    /// documentation of the {@link qx.ui.toolbar}-Package.
+    /// 
     /// </summary>
-    public partial class ToolBar : qxDotNet.UI.Core.Widget
+    public partial class ToolBar : qxDotNet.UI.Core.ChildrenHandling
     {
 
         private qxDotNet.UI.Menu.Menu _openMenu = null;
@@ -21,6 +31,7 @@ namespace qxDotNet.UI.Toolbar
 
         /// <summary>
         /// Holds the currently open menu (when the toolbar is used for menus)
+        /// 
         /// </summary>
         public qxDotNet.UI.Menu.Menu OpenMenu
         {
@@ -37,6 +48,7 @@ namespace qxDotNet.UI.Toolbar
 
         /// <summary>
         /// Enables the overflow handling which automatically removes items.
+        /// 
         /// </summary>
         public bool? OverflowHandling
         {
@@ -51,7 +63,10 @@ namespace qxDotNet.UI.Toolbar
         }
 
         /// <summary>
-        /// Widget which will be shown if at least one toolbar item is hidden. Keep in mind to add this widget to the toolbar before you set it as indicator!
+        /// Widget which will be shown if at least one toolbar item is hidden.
+        /// Keep in mind to add this widget to the toolbar before you set it as
+        /// indicator!
+        /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget OverflowIndicator
         {
@@ -67,6 +82,7 @@ namespace qxDotNet.UI.Toolbar
 
         /// <summary>
         /// Whether icons, labels, both or none should be shown.
+        /// 
         /// </summary>
         public qxDotNet.ShowEnum Show
         {
@@ -83,6 +99,7 @@ namespace qxDotNet.UI.Toolbar
 
         /// <summary>
         /// The spacing between every child of the toolbar
+        /// 
         /// </summary>
         public int Spacing
         {
@@ -96,15 +113,20 @@ namespace qxDotNet.UI.Toolbar
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.toolbar.ToolBar";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -114,11 +136,21 @@ namespace qxDotNet.UI.Toolbar
             state.SetPropertyValue("show", _show, ShowEnum.both);
             state.SetPropertyValue("spacing", _spacing, 0);
 
-            state.SetEvent("hideItem", false);
-            state.SetEvent("showItem", false);
+            if (HideItem != null)
+            {
+                state.SetEvent("hideItem", false);
+            }
+            if (ShowItem != null)
+            {
+                state.SetEvent("showItem", false);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -132,6 +164,9 @@ namespace qxDotNet.UI.Toolbar
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeOpenMenu'
+        /// </summary>
         protected virtual void OnChangeOpenMenu()
         {
             if (ChangeOpenMenu != null)
@@ -145,6 +180,9 @@ namespace qxDotNet.UI.Toolbar
         /// </summary>
         public event EventHandler ChangeOpenMenu;
 
+        /// <summary>
+        /// Raises event 'ChangeShow'
+        /// </summary>
         protected virtual void OnChangeShow()
         {
             if (ChangeShow != null)
@@ -158,6 +196,9 @@ namespace qxDotNet.UI.Toolbar
         /// </summary>
         public event EventHandler ChangeShow;
 
+        /// <summary>
+        /// Raises event 'HideItem'
+        /// </summary>
         protected virtual void OnHideItem()
         {
             if (HideItem != null)
@@ -168,9 +209,13 @@ namespace qxDotNet.UI.Toolbar
 
         /// <summary>
         /// Fired if an item will be hidden by the {@link #overflowHandling}.
+        /// 
         /// </summary>
         public event EventHandler HideItem;
 
+        /// <summary>
+        /// Raises event 'ShowItem'
+        /// </summary>
         protected virtual void OnShowItem()
         {
             if (ShowItem != null)
@@ -181,6 +226,7 @@ namespace qxDotNet.UI.Toolbar
 
         /// <summary>
         /// Fired if an item will be show by the {@link #overflowHandling}.
+        /// 
         /// </summary>
         public event EventHandler ShowItem;
 

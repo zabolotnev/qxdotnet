@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table.Pane
 {
     /// <summary>
     /// The focus indicator widget
+    /// 
     /// </summary>
     public partial class FocusIndicator : qxDotNet.UI.Container.Composite
     {
@@ -18,6 +19,7 @@ namespace qxDotNet.UI.Table.Pane
 
         /// <summary>
         /// Table column, where the indicator is placed.
+        /// 
         /// </summary>
         public int Column
         {
@@ -33,6 +35,7 @@ namespace qxDotNet.UI.Table.Pane
 
         /// <summary>
         /// Table row, where the indicator is placed.
+        /// 
         /// </summary>
         public int Row
         {
@@ -47,11 +50,19 @@ namespace qxDotNet.UI.Table.Pane
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.pane.FocusIndicator";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -61,6 +72,10 @@ namespace qxDotNet.UI.Table.Pane
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

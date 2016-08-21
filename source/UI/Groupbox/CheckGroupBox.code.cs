@@ -6,7 +6,7 @@ using qxDotNet;
 
 namespace qxDotNet.UI.Groupbox
 {
-    public partial class CheckGroupBox : qxDotNet.UI.Groupbox.GroupBox, qxDotNet.UI.Form.IExecutable, qxDotNet.UI.Form.IBooleanForm, qxDotNet.UI.Form.IModel
+    public partial class CheckGroupBox : qxDotNet.UI.Groupbox.GroupBox, qxDotNet.UI.Form.IBooleanForm, qxDotNet.UI.Form.IModel
     {
 
         private qxDotNet.UI.Core.Command _command = null;
@@ -22,22 +22,6 @@ namespace qxDotNet.UI.Groupbox
                 _command = value;
             }
         }
-
-        #region IExecutable Members
-
-        qxDotNet.UI.Core.Command qxDotNet.UI.Form.IExecutable.Command
-        {
-            get
-            {
-                return _command;
-            }
-            set
-            {
-                _command = value;
-            }
-        }
-
-        #endregion
 
         #region IBooleanForm Members
 

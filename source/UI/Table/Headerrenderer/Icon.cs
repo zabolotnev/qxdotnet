@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Table.Headerrenderer
 {
     /// <summary>
-    /// A header cell renderer which renders an icon (only). The icon cannot be combined with text.
+    /// A header cell renderer which renders an icon (only). The icon cannot be combined
+    /// with text.
+    /// 
     /// </summary>
     public partial class Icon : qxDotNet.UI.Table.Headerrenderer.Default
     {
@@ -17,6 +19,7 @@ namespace qxDotNet.UI.Table.Headerrenderer
 
         /// <summary>
         /// URL of the icon to show
+        /// 
         /// </summary>
         public string IconUrl
         {
@@ -31,11 +34,19 @@ namespace qxDotNet.UI.Table.Headerrenderer
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.table.headerrenderer.Icon";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -44,6 +55,10 @@ namespace qxDotNet.UI.Table.Headerrenderer
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

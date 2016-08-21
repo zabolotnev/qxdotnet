@@ -7,9 +7,12 @@ using qxDotNet;
 namespace qxDotNet.UI.Window
 {
     /// <summary>
-    /// A window widget  More information can be found in the package description {@link qx.ui.window}.
+    /// A window widget
+    /// 
+    /// More information can be found in the package description {@link qx.ui.window}.
+    /// 
     /// </summary>
-    public partial class Window : qxDotNet.UI.Container.Composite
+    public partial class Window : qxDotNet.UI.Core.ChildrenHandling
     {
 
         private bool? _active = false;
@@ -17,7 +20,7 @@ namespace qxDotNet.UI.Window
         private bool? _allowMaximize = true;
         private bool? _allowMinimize = true;
         private bool? _alwaysOnTop = false;
-        private string _caption = "";
+        private string _caption = null;
         private string _icon = "";
         private bool? _modal = false;
         private bool? _showClose = true;
@@ -25,6 +28,7 @@ namespace qxDotNet.UI.Window
         private bool? _showMinimize = true;
         private bool? _showStatusbar = false;
         private string _status = "";
+        private qxDotNet.UI.Layout.Abstract _layout = null;
         private bool? _resizableBottom = true;
         private bool? _resizableLeft = true;
         private bool? _resizableRight = true;
@@ -40,7 +44,9 @@ namespace qxDotNet.UI.Window
 
 
         /// <summary>
-        /// If the window is active, only one window in a single qx.ui.window.Manager could  have set this to true at the same time.
+        /// If the window is active, only one window in a single qx.ui.window.Manager could
+        ///  have set this to true at the same time.
+        /// 
         /// </summary>
         public bool? Active
         {
@@ -57,6 +63,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Should the user have the ability to close the window
+        /// 
         /// </summary>
         public bool? AllowClose
         {
@@ -72,6 +79,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Should the user have the ability to maximize the window
+        /// 
         /// </summary>
         public bool? AllowMaximize
         {
@@ -87,6 +95,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Should the user have the ability to minimize the window
+        /// 
         /// </summary>
         public bool? AllowMinimize
         {
@@ -102,6 +111,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Should the window be always on top
+        /// 
         /// </summary>
         public bool? AlwaysOnTop
         {
@@ -116,6 +126,9 @@ namespace qxDotNet.UI.Window
             }
         }
 
+        /// <summary>
+        /// The text of the caption
+        /// </summary>
         public string Caption
         {
             get
@@ -127,9 +140,10 @@ namespace qxDotNet.UI.Window
                 _caption = value;
             }
         }
-
+        
         /// <summary>
         /// The icon of the caption
+        /// 
         /// </summary>
         public string Icon
         {
@@ -146,6 +160,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Should the window be modal (this disables minimize and maximize buttons)
+        /// 
         /// </summary>
         public bool? Modal
         {
@@ -162,6 +177,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Should the close button be shown
+        /// 
         /// </summary>
         public bool? ShowClose
         {
@@ -177,6 +193,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Should the maximize button be shown
+        /// 
         /// </summary>
         public bool? ShowMaximize
         {
@@ -192,6 +209,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Should the minimize button be shown
+        /// 
         /// </summary>
         public bool? ShowMinimize
         {
@@ -207,6 +225,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Should the statusbar be shown
+        /// 
         /// </summary>
         public bool? ShowStatusbar
         {
@@ -222,6 +241,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// The text of the statusbar
+        /// 
         /// </summary>
         public string Status
         {
@@ -237,7 +257,28 @@ namespace qxDotNet.UI.Window
         }
 
         /// <summary>
+        /// Get the widget's layout manager.
+        /// 
+        /// Set a layout manager for the widget. A a layout manager can only be connected
+        /// with one widget. Reset the connection with a previous widget first, if you
+        /// like to use it in another widget instead.
+        /// 
+        /// </summary>
+        public qxDotNet.UI.Layout.Abstract Layout
+        {
+            get
+            {
+                return _layout;
+            }
+            set
+            {
+               _layout = value;
+            }
+        }
+
+        /// <summary>
         /// Whether the bottom edge is resizable
+        /// 
         /// </summary>
         public bool? ResizableBottom
         {
@@ -253,6 +294,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Whether the left edge is resizable
+        /// 
         /// </summary>
         public bool? ResizableLeft
         {
@@ -268,6 +310,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Whether the right edge is resizable
+        /// 
         /// </summary>
         public bool? ResizableRight
         {
@@ -283,6 +326,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Whether the top edge is resizable
+        /// 
         /// </summary>
         public bool? ResizableTop
         {
@@ -298,6 +342,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// The tolerance to activate resizing
+        /// 
         /// </summary>
         public int ResizeSensitivity
         {
@@ -313,6 +358,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Whether a frame replacement should be used during the resize sequence
+        /// 
         /// </summary>
         public bool? UseResizeFrame
         {
@@ -328,6 +374,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Whether the widget is movable
+        /// 
         /// </summary>
         public bool? Movable
         {
@@ -343,6 +390,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Whether to use a frame instead of the original widget during move sequences
+        /// 
         /// </summary>
         public bool? UseMoveFrame
         {
@@ -358,6 +406,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Bottom padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingBottom
         {
@@ -373,6 +422,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Left padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingLeft
         {
@@ -388,6 +438,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Right padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingRight
         {
@@ -403,6 +454,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Top padding of the content pane
+        /// 
         /// </summary>
         public int ContentPaddingTop
         {
@@ -416,25 +468,29 @@ namespace qxDotNet.UI.Window
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.window.Window";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
-            if (_closed) return;
             base.Render(state);
             state.SetPropertyValue("active", _active, false);
             state.SetPropertyValue("allowClose", _allowClose, true);
             state.SetPropertyValue("allowMaximize", _allowMaximize, true);
             state.SetPropertyValue("allowMinimize", _allowMinimize, true);
             state.SetPropertyValue("alwaysOnTop", _alwaysOnTop, false);
-            state.SetPropertyValue("caption", _caption, "");
+            state.SetPropertyValue("caption", _caption, null);
             state.SetPropertyValue("icon", _icon, "");
             state.SetPropertyValue("modal", _modal, false);
             state.SetPropertyValue("showClose", _showClose, true);
@@ -442,6 +498,7 @@ namespace qxDotNet.UI.Window
             state.SetPropertyValue("showMinimize", _showMinimize, true);
             state.SetPropertyValue("showStatusbar", _showStatusbar, false);
             state.SetPropertyValue("status", _status, "");
+            state.SetPropertyValue("layout", _layout, null);
             state.SetPropertyValue("resizableBottom", _resizableBottom, true);
             state.SetPropertyValue("resizableLeft", _resizableLeft, true);
             state.SetPropertyValue("resizableRight", _resizableRight, true);
@@ -457,19 +514,19 @@ namespace qxDotNet.UI.Window
 
             if (BeforeClose != null)
             {
-                state.SetEvent("beforeClose", false);
+                state.SetEvent("beforeClose", true);
             }
             if (BeforeMaximize != null)
             {
-                state.SetEvent("beforeMaximize", false);
+                state.SetEvent("beforeMaximize", true);
             }
             if (BeforeMinimize != null)
             {
-                state.SetEvent("beforeMinimize", false);
+                state.SetEvent("beforeMinimize", true);
             }
             if (BeforeRestore != null)
             {
-                state.SetEvent("beforeRestore", false);
+                state.SetEvent("beforeRestore", true);
             }
             if (Close != null)
             {
@@ -477,19 +534,23 @@ namespace qxDotNet.UI.Window
             }
             if (Maximize != null)
             {
-                state.SetEvent("maximize", false);
+                state.SetEvent("maximize", true);
             }
             if (Minimize != null)
             {
-                state.SetEvent("minimize", false);
+                state.SetEvent("minimize", true);
             }
             if (Restore != null)
             {
-                state.SetEvent("restore", false);
+                state.SetEvent("restore", true);
             }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -527,6 +588,9 @@ namespace qxDotNet.UI.Window
             }
         }
 
+        /// <summary>
+        /// Raises event 'BeforeClose'
+        /// </summary>
         protected virtual void OnBeforeClose()
         {
             if (BeforeClose != null)
@@ -536,10 +600,17 @@ namespace qxDotNet.UI.Window
         }
 
         /// <summary>
-        /// Fired before the window is closed.  The close action can be prevented by calling {@link qx.event.type.Event#preventDefault} on the event object
+        /// Fired before the window is closed.
+        /// 
+        /// The close action can be prevented by calling
+        /// {@link qx.event.type.Event#preventDefault} on the event object
+        /// 
         /// </summary>
         public event EventHandler BeforeClose;
 
+        /// <summary>
+        /// Raises event 'BeforeMaximize'
+        /// </summary>
         protected virtual void OnBeforeMaximize()
         {
             if (BeforeMaximize != null)
@@ -549,10 +620,17 @@ namespace qxDotNet.UI.Window
         }
 
         /// <summary>
-        /// Fired before the window is maximize.  The maximize action can be prevented by calling {@link qx.event.type.Event#preventDefault} on the event object
+        /// Fired before the window is maximize.
+        /// 
+        /// The maximize action can be prevented by calling
+        /// {@link qx.event.type.Event#preventDefault} on the event object
+        /// 
         /// </summary>
         public event EventHandler BeforeMaximize;
 
+        /// <summary>
+        /// Raises event 'BeforeMinimize'
+        /// </summary>
         protected virtual void OnBeforeMinimize()
         {
             if (BeforeMinimize != null)
@@ -562,10 +640,17 @@ namespace qxDotNet.UI.Window
         }
 
         /// <summary>
-        /// Fired before the window is minimize.  The minimize action can be prevented by calling {@link qx.event.type.Event#preventDefault} on the event object
+        /// Fired before the window is minimize.
+        /// 
+        /// The minimize action can be prevented by calling
+        /// {@link qx.event.type.Event#preventDefault} on the event object
+        /// 
         /// </summary>
         public event EventHandler BeforeMinimize;
 
+        /// <summary>
+        /// Raises event 'BeforeRestore'
+        /// </summary>
         protected virtual void OnBeforeRestore()
         {
             if (BeforeRestore != null)
@@ -575,10 +660,17 @@ namespace qxDotNet.UI.Window
         }
 
         /// <summary>
-        /// Fired before the window is restored from a minimized or maximized state.  The restored action can be prevented by calling {@link qx.event.type.Event#preventDefault} on the event object
+        /// Fired before the window is restored from a minimized or maximized state.
+        /// 
+        /// The restored action can be prevented by calling
+        /// {@link qx.event.type.Event#preventDefault} on the event object
+        /// 
         /// </summary>
         public event EventHandler BeforeRestore;
 
+        /// <summary>
+        /// Raises event 'ChangeActive'
+        /// </summary>
         protected virtual void OnChangeActive()
         {
             if (ChangeActive != null)
@@ -592,6 +684,9 @@ namespace qxDotNet.UI.Window
         /// </summary>
         public event EventHandler ChangeActive;
 
+        /// <summary>
+        /// Raises event 'ChangeAlwaysOnTop'
+        /// </summary>
         protected virtual void OnChangeAlwaysOnTop()
         {
             if (ChangeAlwaysOnTop != null)
@@ -605,6 +700,9 @@ namespace qxDotNet.UI.Window
         /// </summary>
         public event EventHandler ChangeAlwaysOnTop;
 
+        /// <summary>
+        /// Raises event 'ChangeCaption'
+        /// </summary>
         protected virtual void OnChangeCaption()
         {
             if (ChangeCaption != null)
@@ -618,6 +716,9 @@ namespace qxDotNet.UI.Window
         /// </summary>
         public event EventHandler ChangeCaption;
 
+        /// <summary>
+        /// Raises event 'ChangeIcon'
+        /// </summary>
         protected virtual void OnChangeIcon()
         {
             if (ChangeIcon != null)
@@ -631,6 +732,9 @@ namespace qxDotNet.UI.Window
         /// </summary>
         public event EventHandler ChangeIcon;
 
+        /// <summary>
+        /// Raises event 'ChangeModal'
+        /// </summary>
         protected virtual void OnChangeModal()
         {
             if (ChangeModal != null)
@@ -644,6 +748,9 @@ namespace qxDotNet.UI.Window
         /// </summary>
         public event EventHandler ChangeModal;
 
+        /// <summary>
+        /// Raises event 'ChangeStatus'
+        /// </summary>
         protected virtual void OnChangeStatus()
         {
             if (ChangeStatus != null)
@@ -657,6 +764,9 @@ namespace qxDotNet.UI.Window
         /// </summary>
         public event EventHandler ChangeStatus;
 
+        /// <summary>
+        /// Raises event 'Close'
+        /// </summary>
         protected virtual void OnClose()
         {
             if (Close != null)
@@ -667,9 +777,13 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Fired if the window is closed
+        /// 
         /// </summary>
         public event EventHandler Close;
 
+        /// <summary>
+        /// Raises event 'Maximize'
+        /// </summary>
         protected virtual void OnMaximize()
         {
             if (Maximize != null)
@@ -680,9 +794,13 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Fired if the window is maximized
+        /// 
         /// </summary>
         public event EventHandler Maximize;
 
+        /// <summary>
+        /// Raises event 'Minimize'
+        /// </summary>
         protected virtual void OnMinimize()
         {
             if (Minimize != null)
@@ -693,9 +811,13 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Fired if the window is minimized
+        /// 
         /// </summary>
         public event EventHandler Minimize;
 
+        /// <summary>
+        /// Raises event 'Restore'
+        /// </summary>
         protected virtual void OnRestore()
         {
             if (Restore != null)
@@ -706,6 +828,7 @@ namespace qxDotNet.UI.Window
 
         /// <summary>
         /// Fired if the window is restored from a minimized or maximized state
+        /// 
         /// </summary>
         public event EventHandler Restore;
 

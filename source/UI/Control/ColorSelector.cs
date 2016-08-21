@@ -7,7 +7,10 @@ using qxDotNet;
 namespace qxDotNet.UI.Control
 {
     /// <summary>
-    /// A typical color selector as known from native applications.  Includes support for RGB and HSB color areas.
+    /// A typical color selector as known from native applications.
+    /// 
+    /// Includes support for RGB and HSB color areas.
+    /// 
     /// </summary>
     public partial class ColorSelector : qxDotNet.UI.Core.Widget, qxDotNet.UI.Form.IColorForm
     {
@@ -23,6 +26,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The numeric blue value of the selected color.
+        /// 
         /// </summary>
         public int Blue
         {
@@ -38,6 +42,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The numeric brightness value.
+        /// 
         /// </summary>
         public decimal Brightness
         {
@@ -53,6 +58,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The numeric green value of the selected color.
+        /// 
         /// </summary>
         public int Green
         {
@@ -68,6 +74,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The numeric hue value.
+        /// 
         /// </summary>
         public decimal Hue
         {
@@ -83,6 +90,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The numeric red value of the selected color.
+        /// 
         /// </summary>
         public int Red
         {
@@ -98,6 +106,7 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// The numeric saturation value.
+        /// 
         /// </summary>
         public decimal Saturation
         {
@@ -112,6 +121,12 @@ namespace qxDotNet.UI.Control
         }
 
         /// <summary>
+        /// Returns the currently selected color.
+        /// 
+        /// The value of the ColorSelector is a string containing the HEX value of
+        /// the currently selected color. Take a look at
+        /// {@link qx.util.ColorUtil#stringToRgb} to see what kind of input the
+        /// method can handle.
         /// 
         /// </summary>
         public string Value
@@ -126,15 +141,20 @@ namespace qxDotNet.UI.Control
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.control.ColorSelector";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -146,25 +166,22 @@ namespace qxDotNet.UI.Control
             state.SetPropertyValue("saturation", _saturation, 0m);
             state.SetPropertyValue("value", _value, "");
 
-            if (ChangeValue != null)
-            {
-                state.SetEvent("changeValue", false);
-            }
+            state.SetEvent("changeValue", false, "value");
             if (Dialogcancel != null)
             {
-                state.SetEvent("dialogcancel", false);
+                state.SetEvent("dialogcancel", true);
             }
             if (Dialogok != null)
             {
-                state.SetEvent("dialogok", false);
+                state.SetEvent("dialogok", true);
             }
-
-            state.SetEvent("changeValue", false, "value");
-            state.SetEvent("dialogcancel", true);
-            state.SetEvent("dialogok", true);
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -182,6 +199,9 @@ namespace qxDotNet.UI.Control
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeValue'
+        /// </summary>
         protected virtual void OnChangeValue()
         {
             if (ChangeValue != null)
@@ -192,9 +212,13 @@ namespace qxDotNet.UI.Control
 
         /// <summary>
         /// Fired when the value changes
+        /// 
         /// </summary>
         public event EventHandler ChangeValue;
 
+        /// <summary>
+        /// Raises event 'Dialogcancel'
+        /// </summary>
         protected virtual void OnDialogcancel()
         {
             if (Dialogcancel != null)
@@ -204,10 +228,14 @@ namespace qxDotNet.UI.Control
         }
 
         /// <summary>
-        /// Fired when the "Cancel" button is clicked.
+        /// Fired when the "Cancel" button is tapped.
+        /// 
         /// </summary>
         public event EventHandler Dialogcancel;
 
+        /// <summary>
+        /// Raises event 'Dialogok'
+        /// </summary>
         protected virtual void OnDialogok()
         {
             if (Dialogok != null)
@@ -217,7 +245,8 @@ namespace qxDotNet.UI.Control
         }
 
         /// <summary>
-        /// Fired when the "OK" button is clicked.
+        /// Fired when the "OK" button is tapped.
+        /// 
         /// </summary>
         public event EventHandler Dialogok;
 

@@ -8,17 +8,21 @@ namespace qxDotNet.UI.Groupbox
 {
     /// <summary>
     /// A group box, which has a radio button near the legend.
+    /// 
     /// </summary>
-    public partial class RadioGroupBox : qxDotNet.UI.Groupbox.GroupBox, qxDotNet.UI.Form.IRadioItem, qxDotNet.UI.Form.IExecutable, qxDotNet.UI.Form.IBooleanForm, qxDotNet.UI.Form.IModel
+    public partial class RadioGroupBox : qxDotNet.UI.Groupbox.GroupBox, qxDotNet.UI.Form.IRadioItem, qxDotNet.UI.Form.IBooleanForm, qxDotNet.UI.Form.IModel
     {
 
-//        private _var _command = null;
+//TODO: private _var _command = null;
         private qxDotNet.UI.Form.RadioGroup _group = null;
         private bool? _value = false;
-//        private _var _model = null;
+//TODO: private _var _model = null;
 
 
         /// <summary>
+        /// Returns the radio group
+        /// 
+        /// Sets the radio group to use
         /// 
         /// </summary>
         public qxDotNet.UI.Form.RadioGroup Group
@@ -34,6 +38,9 @@ namespace qxDotNet.UI.Groupbox
         }
 
         /// <summary>
+        /// The value of the groupbox
+        /// 
+        /// Configures the value of the groupbox.
         /// 
         /// </summary>
         public bool? Value
@@ -48,26 +55,41 @@ namespace qxDotNet.UI.Groupbox
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.groupbox.RadioGroupBox";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
             state.SetPropertyValue("group", _group, null);
             state.SetPropertyValue("value", _value, false);
 
-            state.SetEvent("changeValue", false, "value");
-            state.SetEvent("execute", true);
+            if (ChangeValue != null)
+            {
+                state.SetEvent("changeValue", false);
+            }
+            if (Execute != null)
+            {
+                state.SetEvent("execute", true);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -81,6 +103,9 @@ namespace qxDotNet.UI.Groupbox
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeValue'
+        /// </summary>
         protected virtual void OnChangeValue()
         {
             if (ChangeValue != null)
@@ -91,9 +116,13 @@ namespace qxDotNet.UI.Groupbox
 
         /// <summary>
         /// Fired when the included radiobutton changed its value
+        /// 
         /// </summary>
         public event EventHandler ChangeValue;
 
+        /// <summary>
+        /// Raises event 'Execute'
+        /// </summary>
         protected virtual void OnExecute()
         {
             if (Execute != null)
@@ -104,9 +133,13 @@ namespace qxDotNet.UI.Groupbox
 
         /// <summary>
         /// Fired if the {@link #execute} method is invoked.
+        /// 
         /// </summary>
         public event EventHandler Execute;
 
+        /// <summary>
+        /// Raises event 'ChangeModel'
+        /// </summary>
         protected virtual void OnChangeModel()
         {
             if (ChangeModel != null)

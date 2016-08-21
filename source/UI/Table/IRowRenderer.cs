@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table
 {
     /// <summary>
     /// Interface for a row renderer.
+    /// 
     /// </summary>
     public interface IRowRenderer
     {

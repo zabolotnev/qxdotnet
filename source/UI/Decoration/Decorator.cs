@@ -7,7 +7,16 @@ using qxDotNet;
 namespace qxDotNet.UI.Decoration
 {
     /// <summary>
-    /// Decorator including all decoration possibilities from mixins:   Background color Background image Background gradient Single and double borders Border radius Box shadow 
+    /// Decorator including all decoration possibilities from mixins:
+    /// 
+    /// 
+    /// Background color
+    /// Background image
+    /// Background gradient
+    /// Single and double borders
+    /// Border radius
+    /// Box shadow
+    /// 
     /// </summary>
     public partial class Decorator : qxDotNet.UI.Decoration.Abstract, qxDotNet.UI.Decoration.IDecorator
     {
@@ -27,17 +36,17 @@ namespace qxDotNet.UI.Decoration
         private string _innerColorLeft = null;
         private string _innerColorRight = null;
         private string _innerColorTop = null;
-        private decimal _innerOpacity = 1;
-        private decimal _innerWidthBottom = 0;
-        private decimal _innerWidthLeft = 0;
-        private decimal _innerWidthRight = 0;
-        private decimal _innerWidthTop = 0;
-        private qxDotNet.ColorPositionUnitEnum _colorPositionUnit = ColorPositionUnitEnum.percent;
+        private decimal _innerOpacity = 1m;
+        private decimal _innerWidthBottom = 0m;
+        private decimal _innerWidthLeft = 0m;
+        private decimal _innerWidthRight = 0m;
+        private decimal _innerWidthTop = 0m;
+        private string _colorPositionUnit = "%";
         private string _endColor = null;
-        private decimal _endColorPosition = 100;
+        private decimal _endColorPosition = 100m;
         private qxDotNet.OrientationEnum _orientation = OrientationEnum.vertical;
         private string _startColor = null;
-        private decimal _startColorPosition = 0;
+        private decimal _startColorPosition = 0m;
         private string _borderImage = "";
         private qxDotNet.BorderImageModeEnum _borderImageMode = BorderImageModeEnum.grid;
         private bool? _fill = true;
@@ -51,6 +60,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// Color of the background
+        /// 
         /// </summary>
         public string BackgroundColor
         {
@@ -66,6 +76,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// bottom left corner radius
+        /// 
         /// </summary>
         public int RadiusBottomLeft
         {
@@ -81,6 +92,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// bottom right corner radius
+        /// 
         /// </summary>
         public int RadiusBottomRight
         {
@@ -96,6 +108,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// top left corner radius
+        /// 
         /// </summary>
         public int RadiusTopLeft
         {
@@ -111,6 +124,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// top right corner radius
+        /// 
         /// </summary>
         public int RadiusTopRight
         {
@@ -126,6 +140,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// Inset shadows are drawn inside the border.
+        /// 
         /// </summary>
         public bool? Inset
         {
@@ -141,6 +156,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// The blur radius of the shadow.
+        /// 
         /// </summary>
         public int ShadowBlurRadius
         {
@@ -156,6 +172,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// The color of the shadow.
+        /// 
         /// </summary>
         public string ShadowColor
         {
@@ -171,6 +188,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// Horizontal length of the shadow.
+        /// 
         /// </summary>
         public int ShadowHorizontalLength
         {
@@ -186,6 +204,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// The spread radius of the shadow.
+        /// 
         /// </summary>
         public int ShadowSpreadRadius
         {
@@ -201,6 +220,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// Vertical length of the shadow.
+        /// 
         /// </summary>
         public int ShadowVerticalLength
         {
@@ -216,6 +236,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// bottom inner color of border
+        /// 
         /// </summary>
         public string InnerColorBottom
         {
@@ -231,6 +252,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// left inner color of border
+        /// 
         /// </summary>
         public string InnerColorLeft
         {
@@ -246,6 +268,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// right inner color of border
+        /// 
         /// </summary>
         public string InnerColorRight
         {
@@ -261,6 +284,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// top inner color of border
+        /// 
         /// </summary>
         public string InnerColorTop
         {
@@ -276,6 +300,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// The opacity of the inner border.
+        /// 
         /// </summary>
         public decimal InnerOpacity
         {
@@ -291,6 +316,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// bottom width of border
+        /// 
         /// </summary>
         public decimal InnerWidthBottom
         {
@@ -306,6 +332,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// left width of border
+        /// 
         /// </summary>
         public decimal InnerWidthLeft
         {
@@ -321,6 +348,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// right width of border
+        /// 
         /// </summary>
         public decimal InnerWidthRight
         {
@@ -336,6 +364,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// top width of border
+        /// 
         /// </summary>
         public decimal InnerWidthTop
         {
@@ -350,9 +379,10 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// Defines if the given positions are in % or px.
+        /// Defines if the given positions are in "%" or "px".
+        /// 
         /// </summary>
-        public qxDotNet.ColorPositionUnitEnum ColorPositionUnit
+        public string ColorPositionUnit
         {
             get
             {
@@ -365,7 +395,9 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// End color of the background gradient. Note that alpha transparency (rgba) is not supported in IE 8.
+        /// End color of the background gradient.
+        /// Note that alpha transparency (rgba) is not supported in IE 8.
+        /// 
         /// </summary>
         public string EndColor
         {
@@ -381,6 +413,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// Position in percent where to start the color.
+        /// 
         /// </summary>
         public decimal EndColorPosition
         {
@@ -396,6 +429,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// The orientation of the gradient.
+        /// 
         /// </summary>
         public qxDotNet.OrientationEnum Orientation
         {
@@ -410,7 +444,9 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// Start color of the background gradient. Note that alpha transparency (rgba) is not supported in IE 8.
+        /// Start color of the background gradient.
+        /// Note that alpha transparency (rgba) is not supported in IE 8.
+        /// 
         /// </summary>
         public string StartColor
         {
@@ -426,6 +462,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// Position in percent where to start the color.
+        /// 
         /// </summary>
         public decimal StartColorPosition
         {
@@ -441,6 +478,7 @@ namespace qxDotNet.UI.Decoration
 
         /// <summary>
         /// Base image URL.
+        /// 
         /// </summary>
         public string BorderImage
         {
@@ -455,7 +493,13 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// Configures the border image mode. Supported values:   horizontal: left and right border images  vertical: top and bottom border images  grid: border images for all edges 
+        /// Configures the border image mode. Supported values:
+        /// 
+        ///  horizontal: left and right border images
+        ///  vertical: top and bottom border images
+        ///  grid: border images for all edges
+        /// 
+        /// 
         /// </summary>
         public qxDotNet.BorderImageModeEnum BorderImageMode
         {
@@ -470,7 +514,9 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// If set to false, the center image will be omitted and only the border will be drawn.
+        /// If set to false, the center image will be omitted and only
+        /// the border will be drawn.
+        /// 
         /// </summary>
         public bool? Fill
         {
@@ -485,7 +531,18 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// This property specifies how the images for the sides and the middle part of the border image are scaled and tiled horizontally.  Values have the following meanings:   stretch: The image is stretched to fill the area.  repeat: The image is tiled (repeated) to fill the area.  round: The image is tiled (repeated) to fill the area. If it does not  fill the area with a whole number of tiles, the image is rescaled so  that it does. 
+        /// This property specifies how the images for the sides and the middle part
+        /// of the border image are scaled and tiled horizontally.
+        /// 
+        /// Values have the following meanings:
+        /// 
+        ///  stretch: The image is stretched to fill the area.
+        ///  repeat: The image is tiled (repeated) to fill the area.
+        ///  round: The image is tiled (repeated) to fill the area. If it does not
+        ///  fill the area with a whole number of tiles, the image is rescaled so
+        ///  that it does.
+        /// 
+        /// 
         /// </summary>
         public qxDotNet.RepeatEnum RepeatX
         {
@@ -500,7 +557,18 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// This property specifies how the images for the sides and the middle part of the border image are scaled and tiled vertically.  Values have the following meanings:   stretch: The image is stretched to fill the area.  repeat: The image is tiled (repeated) to fill the area.  round: The image is tiled (repeated) to fill the area. If it does not  fill the area with a whole number of tiles, the image is rescaled so  that it does. 
+        /// This property specifies how the images for the sides and the middle part
+        /// of the border image are scaled and tiled vertically.
+        /// 
+        /// Values have the following meanings:
+        /// 
+        ///  stretch: The image is stretched to fill the area.
+        ///  repeat: The image is tiled (repeated) to fill the area.
+        ///  round: The image is tiled (repeated) to fill the area. If it does not
+        ///  fill the area with a whole number of tiles, the image is rescaled so
+        ///  that it does.
+        /// 
+        /// 
         /// </summary>
         public qxDotNet.RepeatEnum RepeatY
         {
@@ -515,7 +583,10 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// The bottom slice line of the base image. The slice properties divide the image into nine regions, which define the corner, edge and the center images.
+        /// The bottom slice line of the base image. The slice properties divide the
+        /// image into nine regions, which define the corner, edge and the center
+        /// images.
+        /// 
         /// </summary>
         public int SliceBottom
         {
@@ -530,7 +601,10 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// The left slice line of the base image. The slice properties divide the image into nine regions, which define the corner, edge and the center images.
+        /// The left slice line of the base image. The slice properties divide the
+        /// image into nine regions, which define the corner, edge and the center
+        /// images.
+        /// 
         /// </summary>
         public int SliceLeft
         {
@@ -545,7 +619,10 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// The right slice line of the base image. The slice properties divide the image into nine regions, which define the corner, edge and the center images.
+        /// The right slice line of the base image. The slice properties divide the
+        /// image into nine regions, which define the corner, edge and the center
+        /// images.
+        /// 
         /// </summary>
         public int SliceRight
         {
@@ -560,7 +637,10 @@ namespace qxDotNet.UI.Decoration
         }
 
         /// <summary>
-        /// The top slice line of the base image. The slice properties divide the image into nine regions, which define the corner, edge and the center images.
+        /// The top slice line of the base image. The slice properties divide the
+        /// image into nine regions, which define the corner, edge and the center
+        /// images.
+        /// 
         /// </summary>
         public int SliceTop
         {
@@ -575,11 +655,19 @@ namespace qxDotNet.UI.Decoration
         }
 
 
+        /// <summary>
+        /// Returns Qooxdoo type name for this type
+        /// </summary>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.decoration.Decorator";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -598,17 +686,17 @@ namespace qxDotNet.UI.Decoration
             state.SetPropertyValue("innerColorLeft", _innerColorLeft, null);
             state.SetPropertyValue("innerColorRight", _innerColorRight, null);
             state.SetPropertyValue("innerColorTop", _innerColorTop, null);
-            state.SetPropertyValue("innerOpacity", _innerOpacity, 1);
-            state.SetPropertyValue("innerWidthBottom", _innerWidthBottom, 0);
-            state.SetPropertyValue("innerWidthLeft", _innerWidthLeft, 0);
-            state.SetPropertyValue("innerWidthRight", _innerWidthRight, 0);
-            state.SetPropertyValue("innerWidthTop", _innerWidthTop, 0);
-            state.SetPropertyValue("colorPositionUnit", _colorPositionUnit, ColorPositionUnitEnum.percent);
+            state.SetPropertyValue("innerOpacity", _innerOpacity, 1m);
+            state.SetPropertyValue("innerWidthBottom", _innerWidthBottom, 0m);
+            state.SetPropertyValue("innerWidthLeft", _innerWidthLeft, 0m);
+            state.SetPropertyValue("innerWidthRight", _innerWidthRight, 0m);
+            state.SetPropertyValue("innerWidthTop", _innerWidthTop, 0m);
+            state.SetPropertyValue("colorPositionUnit", _colorPositionUnit, "%");
             state.SetPropertyValue("endColor", _endColor, null);
-            state.SetPropertyValue("endColorPosition", _endColorPosition, 100);
+            state.SetPropertyValue("endColorPosition", _endColorPosition, 100m);
             state.SetPropertyValue("orientation", _orientation, OrientationEnum.vertical);
             state.SetPropertyValue("startColor", _startColor, null);
-            state.SetPropertyValue("startColorPosition", _startColorPosition, 0);
+            state.SetPropertyValue("startColorPosition", _startColorPosition, 0m);
             state.SetPropertyValue("borderImage", _borderImage, "");
             state.SetPropertyValue("borderImageMode", _borderImageMode, BorderImageModeEnum.grid);
             state.SetPropertyValue("fill", _fill, true);
@@ -622,6 +710,10 @@ namespace qxDotNet.UI.Decoration
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

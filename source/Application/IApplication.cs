@@ -8,6 +8,7 @@ namespace qxDotNet.Application
 {
     /// <summary>
     /// This interface defines what an application class has to implement.
+    /// 
     /// </summary>
     public interface IApplication
     {

@@ -10,7 +10,7 @@ namespace qxDotNet.UI.Table
     public class Column
     {
 
-        private RemoteModel _owner;
+        private RemoteDataModel _owner;
         private string _name = "";
         private string _field = "";
         private bool _sortable = true;
@@ -20,7 +20,7 @@ namespace qxDotNet.UI.Table
         private Celleditor.AbstractField _cellEditor;
         private string _format;
 
-        internal void setOwner(RemoteModel owner)
+        internal void setOwner(RemoteDataModel owner)
         {
             _owner = owner;
         }
@@ -70,7 +70,7 @@ namespace qxDotNet.UI.Table
                 _field = value;
                 if (_owner != null)
                 {
-                    _owner.ResetData();
+                    _owner.GetTable().ResetData();
                 }
             }
         }
@@ -145,9 +145,9 @@ namespace qxDotNet.UI.Table
 
     public class ColumnCollection : Collection<Column>
     {
-        private RemoteModel _model;
+        private RemoteDataModel _model;
 
-        internal ColumnCollection(RemoteModel Model)
+        internal ColumnCollection(RemoteDataModel Model)
         {
             _model = Model;
         }

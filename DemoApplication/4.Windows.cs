@@ -9,6 +9,10 @@ namespace DemoApplication
     public partial class MainForm
     {
 
+        private Guid _uploadFileGuid;
+
+        private qxDotNet.UploadWidget.UploadButton uploadButton;
+
         private qxDotNet.UI.Tabview.Page loadPage4()
         {
             var page = new qxDotNet.UI.Tabview.Page();
@@ -19,7 +23,7 @@ namespace DemoApplication
             window.Layout = new qxDotNet.UI.Layout.Canvas();
 
             window.Caption = "Login window";
-            window.Width = 300;
+            window.Width = 400;
             window.Height = 200;
 
             page.Add(window);
@@ -66,31 +70,58 @@ namespace DemoApplication
                 .Add("top", 70));
             borndate.Width = 100;
 
+            var uploadForm = new qxDotNet.UploadWidget.UploadForm();
+            uploadForm.Layout = new qxDotNet.UI.Layout.Basic();
+            window.Add(uploadForm,
+                new Map()
+                .Add("left", 80)
+                .Add("top", 70));
+            //uploadForm.Width = 100;
+
+            _uploadFileGuid = Guid.NewGuid();
+
+            uploadForm.Name = "uploadForm";
+            uploadForm.Url = "UploadFile.aspx?id=" + _uploadFileGuid.ToString();
+            uploadForm.Completed += new EventHandler(uploadForm_Completed);
+
+            uploadButton = new qxDotNet.UploadWidget.UploadButton();
+            uploadButton.FieldName = "uploadField";
+            uploadButton.Label = "Upload file";
+            uploadForm.Add(uploadButton);
+            uploadButton.Width = 250;
+
             var submit = new qxDotNet.UI.Form.Button();
             submit.Label = "Submit";
             window.Add(submit,
                 new Map()
-                .Add("left", 80)
-                .Add("top", 100));
+                .Add("left", 10)
+                .Add("top", 10));
 
             submit.Execute += new EventHandler(submit_Execute);
+
+
 
             window.Open();
 
             return page;
         }
 
+        void uploadForm_Completed(object sender, EventArgs e)
+        {
+            var stream = UploadFileHandler.Instance.GetFile(_uploadFileGuid.ToString());
+            if (stream == null)
+            {
+                return;
+            }
+            //uploadField.FileName = " ";
+            var rdr = new System.IO.StreamReader(stream);
+            var content = rdr.ReadToEnd();
+            qxDotNet.UI.Dialog.MessageBox.Show(content);
+        }
+
         private void submit_Execute(object sender, EventArgs e)
         {
-            var dialog = new qxDotNet.UI.Window.Window();
-            dialog.Caption = "Dialog window";
-            dialog.Width = 300;
-            dialog.Height = 150;
-            dialog.Modal = true;
-            GetRoot().Add(dialog, new Map()
-                .Add("left", 300)
-                .Add("top",300));
-            dialog.Open();
+            System.Threading.Thread.Sleep(5000);
         }
 
     }

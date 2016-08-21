@@ -7,7 +7,9 @@ using qxDotNet;
 namespace qxDotNet.UI.Tooltip
 {
     /// <summary>
-    /// A Tooltip provides additional information for widgets when the user hovers over a widget.
+    /// A Tooltip provides additional information for widgets when the user hovers
+    /// over a widget.
+    /// 
     /// </summary>
     public partial class ToolTip : qxDotNet.UI.Popup.Popup
     {
@@ -23,6 +25,7 @@ namespace qxDotNet.UI.Tooltip
 
         /// <summary>
         /// Position of the arrow pointing towards the opening widget *
+        /// 
         /// </summary>
         public qxDotNet.ArrowPositionEnum ArrowPosition
         {
@@ -38,6 +41,7 @@ namespace qxDotNet.UI.Tooltip
 
         /// <summary>
         /// Interval after the tooltip is hidden (in milliseconds)
+        /// 
         /// </summary>
         public int HideTimeout
         {
@@ -52,7 +56,9 @@ namespace qxDotNet.UI.Tooltip
         }
 
         /// <summary>
-        /// Any URI String supported by qx.ui.basic.Image to display an icon in ToolTips's atom.
+        /// Any URI String supported by qx.ui.basic.Image to display an icon in
+        /// ToolTips's atom.
+        /// 
         /// </summary>
         public string Icon
         {
@@ -68,6 +74,7 @@ namespace qxDotNet.UI.Tooltip
 
         /// <summary>
         /// The label/caption/text of the ToolTip's atom.
+        /// 
         /// </summary>
         public string Label
         {
@@ -83,6 +90,7 @@ namespace qxDotNet.UI.Tooltip
 
         /// <summary>
         /// Widget that opened the tooltip
+        /// 
         /// </summary>
         public qxDotNet.UI.Core.Widget Opener
         {
@@ -97,7 +105,11 @@ namespace qxDotNet.UI.Tooltip
         }
 
         /// <summary>
-        /// Switches between rich HTML and text content. The text mode (false) supports advanced features like ellipsis when the available space is not enough. HTML mode (true) supports multi-line content and all the markup features of HTML content.
+        /// Switches between rich HTML and text content. The text mode
+        /// (false) supports advanced features like ellipsis when the
+        /// available space is not enough. HTML mode (true) supports
+        /// multi-line content and all the markup features of HTML content.
+        /// 
         /// </summary>
         public bool? Rich
         {
@@ -113,6 +125,7 @@ namespace qxDotNet.UI.Tooltip
 
         /// <summary>
         /// Interval after the tooltip is shown (in milliseconds)
+        /// 
         /// </summary>
         public int ShowTimeout
         {
@@ -126,15 +139,20 @@ namespace qxDotNet.UI.Tooltip
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.tooltip.ToolTip";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -149,6 +167,10 @@ namespace qxDotNet.UI.Tooltip
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);

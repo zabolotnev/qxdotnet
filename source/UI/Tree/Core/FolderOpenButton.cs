@@ -8,16 +8,18 @@ namespace qxDotNet.UI.Tree.Core
 {
     /// <summary>
     /// The small folder open/close button
+    /// 
     /// </summary>
     public partial class FolderOpenButton : qxDotNet.UI.Basic.Image
     {
 
         private bool? _open = false;
-        private qxDotNet.UI.Core.Command _command = null;
+        private qxDotNet.UI.Command.Command _command = null;
 
 
         /// <summary>
         /// Whether the button state is "open"
+        /// 
         /// </summary>
         public bool? Open
         {
@@ -33,9 +35,11 @@ namespace qxDotNet.UI.Tree.Core
         }
 
         /// <summary>
-        /// A command called if the {@link #execute} method is called, e.g. on a button click.
+        /// A command called if the {@link #execute} method is called, e.g. on a
+        /// button tap.
+        /// 
         /// </summary>
-        public qxDotNet.UI.Core.Command Command
+        public qxDotNet.UI.Command.Command Command
         {
             get
             {
@@ -48,25 +52,37 @@ namespace qxDotNet.UI.Tree.Core
             }
         }
 
+
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.tree.core.FolderOpenButton";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
             state.SetPropertyValue("open", _open, false);
             state.SetPropertyValue("command", _command, null);
 
-            state.SetEvent("execute", false);
+            if (Execute != null)
+            {
+                state.SetEvent("execute", true);
+            }
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
@@ -76,6 +92,9 @@ namespace qxDotNet.UI.Tree.Core
             }
         }
 
+        /// <summary>
+        /// Raises event 'ChangeOpen'
+        /// </summary>
         protected virtual void OnChangeOpen()
         {
             if (ChangeOpen != null)
@@ -89,6 +108,9 @@ namespace qxDotNet.UI.Tree.Core
         /// </summary>
         public event EventHandler ChangeOpen;
 
+        /// <summary>
+        /// Raises event 'ChangeCommand'
+        /// </summary>
         protected virtual void OnChangeCommand()
         {
             if (ChangeCommand != null)
@@ -102,6 +124,9 @@ namespace qxDotNet.UI.Tree.Core
         /// </summary>
         public event EventHandler ChangeCommand;
 
+        /// <summary>
+        /// Raises event 'Execute'
+        /// </summary>
         protected virtual void OnExecute()
         {
             if (Execute != null)
@@ -112,6 +137,7 @@ namespace qxDotNet.UI.Tree.Core
 
         /// <summary>
         /// Fired if the {@link #execute} method is invoked.
+        /// 
         /// </summary>
         public event EventHandler Execute;
 

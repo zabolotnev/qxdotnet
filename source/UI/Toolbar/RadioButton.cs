@@ -7,23 +7,31 @@ using qxDotNet;
 namespace qxDotNet.UI.Toolbar
 {
     /// <summary>
-    /// Radio buttons are used to manage a single selection. Radio buttons only make sense used in a group of two or more of them. They are managed (connected) to a {@link qx.ui.form.RadioGroup} to handle the selection.
+    /// Radio buttons are used to manage a single selection. Radio buttons only
+    /// make sense used in a group of two or more of them. They are managed (connected)
+    /// to a {@link qx.ui.form.RadioGroup} to handle the selection.
+    /// 
     /// </summary>
     public partial class RadioButton : qxDotNet.UI.Toolbar.CheckBox, qxDotNet.UI.Form.IModel, qxDotNet.UI.Form.IRadioItem
     {
 
-//        private _var _model = null;
+//TODO: private _var _model = null;
+
 
 
         /// <summary>
-        /// Internal implementation
+        /// Returns Qooxdoo type name for this type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         protected internal override string GetTypeName()
         {
             return "qx.ui.toolbar.RadioButton";
         }
 
+        /// <summary>
+        /// Generates client code
+        /// </summary>
+        /// <param name="state">Serialized property values</param>
         internal override void Render(qxDotNet.Core.Object.PropertyBag state)
         {
             base.Render(state);
@@ -31,11 +39,18 @@ namespace qxDotNet.UI.Toolbar
 
         }
 
+        /// <summary>
+        /// Dispatches client events
+        /// </summary>
+        /// <param name="eventName">Client event name</param>
         internal override void InvokeEvent(string eventName)
         {
             base.InvokeEvent(eventName);
         }
 
+        /// <summary>
+        /// Raises event 'ChangeModel'
+        /// </summary>
         protected virtual void OnChangeModel()
         {
             if (ChangeModel != null)

@@ -11,7 +11,7 @@ namespace DemoApplication
     public partial class MainForm : qxDotNet.Application.Standalone
     {
 
-
+        private qxDotNet.UI.Container.Composite root;
         private qxDotNet.UI.Container.Composite dock;
         private qxDotNet.UI.Tabview.TabView tabs;
 
@@ -22,10 +22,11 @@ namespace DemoApplication
             this.Title = "qxdotnet DemoApplication";
 
             // this is a root element
-            var root = GetRoot();
+            root = GetRoot();
 
             // using dock container for menu and toolbar
             dock = new qxDotNet.UI.Container.Composite(new qxDotNet.UI.Layout.Dock());
+
             root.Add(dock,
                 new Map()
                 .Add("left", 0)
@@ -82,7 +83,8 @@ namespace DemoApplication
             tabs.Add(loadPage1());
 
             // page 2. Data table
-            tabs.Add(loadPage2());
+            var tab = loadPage2();
+            tabs.Add(tab);
 
             // page 3. Progress bar and timer
             tabs.Add(loadPage3());
@@ -93,7 +95,7 @@ namespace DemoApplication
 
         private void menuAbout_Execute(object sender, EventArgs e)
         {
-            qxDotNet.UI.Dialog.MessageBox.Show("qxdotnet DemoApplication. Based on qooxdoo 1.6");
+            qxDotNet.UI.Dialog.MessageBox.Show("qxdotnet DemoApplication. Based on qooxdoo 5.0.1");
         }
 
         private void toolbtn_Execute(object sender, EventArgs e)

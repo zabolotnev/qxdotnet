@@ -8,10 +8,14 @@ namespace qxDotNet.UI.Table
 {
     /// <summary>
     /// The data model of a table.
+    /// 
     /// </summary>
-    public interface ITableModel
+    internal interface ITableModel
     {
 
+        bool Modified { get; }
+
+        void ResetModified();
 
     }
 }

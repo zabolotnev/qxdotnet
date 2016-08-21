@@ -8,6 +8,7 @@ namespace qxDotNet.UI.Table
 {
     /// <summary>
     /// A factory creating widgets to use for editing table cells.
+    /// 
     /// </summary>
     public interface ICellEditorFactory
     {
