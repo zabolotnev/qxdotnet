@@ -392,7 +392,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>python.exe "$(ProjectDir)..\generate.py" build
+    <PostBuildEvent>echo python.exe "$(ProjectDir)..\generate.py" build
+python.exe "$(ProjectDir)..\generate.py" build
 xcopy /E /Y "$(ProjectDir)$(OutDir)qxdotnet.dll" "$(SolutionDir)build\bin\"
 xcopy /E /Y "$(ProjectDir)$(OutDir)qxdotnet.pdb" "$(SolutionDir)build\bin\"
 xcopy /E /Y "$(ProjectDir)$(OutDir)qxdotnet.xml" "$(SolutionDir)build\bin\"

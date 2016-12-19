@@ -1,7 +1,8 @@
 
-/* ***
-@asset(qxdotnet/*)
-@asset(qx/icon/Oxygen/48/status*)
+/**
+*
+* @asset(qxdotnet/*)
+* @asset(qx/icon/Oxygen/48/status*)
 */
 
 qx.Class.define("qxdotnet.Application",
