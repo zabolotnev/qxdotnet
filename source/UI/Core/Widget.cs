@@ -23,7 +23,7 @@ namespace qxDotNet.UI.Core
         private bool? _blockToolTip = false;
         private qxDotNet.UI.Menu.Menu _contextMenu = null;
         private string _cursor = null;
-        private string _decorator = null;
+        private object _decorator = null;
         private bool? _draggable = false;
         private bool? _droppable = false;
         private bool? _enabled = true;
@@ -185,7 +185,7 @@ namespace qxDotNet.UI.Core
         /// defined in the decoration theme.
         /// 
         /// </summary>
-        public string Decorator
+        public object Decorator
         {
             get
             {
