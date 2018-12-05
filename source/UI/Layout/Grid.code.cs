@@ -203,8 +203,8 @@ namespace qxDotNet.UI.Layout
         public Grid SetColumnAlign(int column, AlignXEnum  hAlign, AlignYEnum vAlign)
         {
             var map = new Map()
-                .Add(nameof(hAlign), hAlign)
-                .Add(nameof(vAlign), vAlign);
+                .Add("hAlign", hAlign)
+                .Add("vAlign", vAlign);
             _columnAlign[column] = map;
 
             CallClientMethod(
@@ -309,8 +309,8 @@ namespace qxDotNet.UI.Layout
         public Grid SetRowAlign(int row, AlignXEnum hAlign, AlignYEnum vAlign)
         {
             var map = new Map()
-                .Add(nameof(hAlign), hAlign)
-                .Add(nameof(vAlign), vAlign);
+                .Add("hAlign", hAlign)
+                .Add("vAlign", vAlign);
             _rowAlign[row] = map;
 
             CallClientMethod(
