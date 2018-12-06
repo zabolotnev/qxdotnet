@@ -44,7 +44,7 @@
   "let" :
   {
     "APPLICATION"  : "qxdotnet",
-    "QOOXDOO_PATH" : "qooxdoo-5.0.1-sdk",
+    "QOOXDOO_PATH" : "qooxdoo-5.0.2-sdk",
     "QXTHEME"      : "qxdotnet.theme.Theme",
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.theme.*", "${APPLICATION}.test.*", "${APPLICATION}.simulation.*"],
     "LOCALES"      : [ "ru", "en" ],

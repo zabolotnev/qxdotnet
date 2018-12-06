@@ -250,5 +250,5 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
-/qooxdoo-5.0.1-sdk
+/qooxdoo-5.0.2-sdk
 /build

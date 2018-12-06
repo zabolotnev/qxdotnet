@@ -89,6 +89,7 @@ namespace qxDotNet.Common
                             }
                             if (evXML.ChildNodes.Count > 0)
                             {
+                                var modifiedControls = new HashSet<Core.Object>();
                                 var eventsToInvoke = new List<Pair<Core.Object, string>>();
                                 foreach (XmlElement node in evXML.ChildNodes[0].ChildNodes)
                                 {
@@ -110,12 +111,22 @@ namespace qxDotNet.Common
                                                         if (item.LocalName != "_id" && item.LocalName != "_n")
                                                         {
                                                             control.SetPropertyValue(item.LocalName, decodeXMLAttribute(item.Value));
+                                                            if (!modifiedControls.Contains(control))
+                                                            {
+                                                                modifiedControls.Add(control);
+                                                            }
                                                         }
                                                     }
                                                 }
                                             }
                                         }
                                     }
+                                }
+                                foreach (var item in modifiedControls)
+                                {
+                                    var st = item.GetState();
+                                    item.Render(st);
+                                    st.Commit();
                                 }
                                 foreach (var item in eventsToInvoke)
                                 {
@@ -233,7 +244,6 @@ namespace qxDotNet.Common
                 obj.CustomPostRender(response, _isRefreshRequest);
                 return;
             }
-            var stateBag = obj.GetState();
             Dictionary<string, object> properties;
             List<Core.Object.EventInfo> events;
             var st = obj.GetState();

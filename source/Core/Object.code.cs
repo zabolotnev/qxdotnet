@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace qxDotNet.Core
     /// The qooxdoo root class. All other classes are direct or indirect subclasses of this one.  
     /// This class contains methods for:   object management (creation and destruction) interfaces for event system generic setter/getter support interfaces for logging console user friendly OO interfaces like {@link #self} or {@link #base} 
     /// </summary>
-    public abstract class Object
+    public abstract class Object : INotifyPropertyChanged
     {
         private long _clientId = 0;
         private bool _created = false;
@@ -83,6 +84,7 @@ namespace qxDotNet.Core
             if (p != null)
             {
                 p.SetValue(this, ConvertToType(p.PropertyType, value), null);
+                OnPropertyChanged(p.Name);
             }
         }
 
@@ -201,6 +203,17 @@ namespace qxDotNet.Core
             }
             _newMethods.Clear();
         }
+
+        protected internal virtual void OnPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// The function is responsible for binding a source objects property to a target objects property. Both properties have to have the usual qooxdoo getter and setter. The source property also needs to fire change-events on every change of its value. Please keep in mind, that this binding is unidirectional. If you need a binding in both directions, you have to use two of this bindings.
