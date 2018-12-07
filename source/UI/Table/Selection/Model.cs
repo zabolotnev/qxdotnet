@@ -56,7 +56,7 @@ namespace qxDotNet.UI.Table.Selection
 
             if (ChangeSelection != null)
             {
-                state.SetEvent("changeSelection", false);
+                state.SetEvent("changeSelection", false, "selectedRanges");
             }
 
         }
