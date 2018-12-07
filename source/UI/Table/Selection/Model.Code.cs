@@ -23,6 +23,7 @@ namespace qxDotNet.UI.Table.Selection
             set
             {
                 _selectedIndex = value;
+                OnPropertyChanged("SelectedIndex");
             }
         }
 
@@ -49,6 +50,7 @@ namespace qxDotNet.UI.Table.Selection
                         int.TryParse(s2[0], out _selectedIndex);
                     }
                 }
+                OnPropertyChanged("SelectedIndex");
             }
             else
             {

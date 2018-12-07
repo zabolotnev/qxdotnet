@@ -53,12 +53,9 @@ namespace qxDotNet.UI.Table.Selection
         {
             base.Render(state);
             state.SetPropertyValue("selectionMode", _selectionMode, 2);
+            state.SetPropertyValue("selection", _selectedIndex, -1);
 
-            if (ChangeSelection != null)
-            {
-                state.SetEvent("changeSelection", false, "selectedRanges");
-            }
-
+            state.SetEvent("changeSelection", false, "selectedRanges");
         }
 
         /// <summary>
