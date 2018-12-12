@@ -117,6 +117,7 @@
     <Compile Include="UI\Core\Command.cs" />
     <Compile Include="UI\Core\Command.code.cs" />
     <Compile Include="UI\Core\DragDropScrolling.cs" />
+    <Compile Include="UI\Core\IChildrenHandling.code.cs" />
     <Compile Include="UI\Core\LayoutItem.Code.cs" />
     <Compile Include="UI\Core\IMultiSelection.cs" />
     <Compile Include="UI\Core\ISingleSelection.cs" />

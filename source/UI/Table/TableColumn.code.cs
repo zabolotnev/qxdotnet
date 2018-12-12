@@ -19,6 +19,7 @@ namespace qxDotNet.UI.Table
         private Cellrenderer.Abstract _cellRenderer;
         private Celleditor.AbstractField _cellEditor;
         private string _format;
+        private Func<Row, object, object> _calculateAction;
 
         internal void setOwner(RemoteDataModel owner)
         {
@@ -137,6 +138,19 @@ namespace qxDotNet.UI.Table
             set
             {
                 _cellEditor = value;
+                modelModified();
+            }
+        }
+
+        public Func<Row, object, object> CalculateAction
+        {
+            get
+            {
+                return _calculateAction;
+            }
+            set
+            {
+                _calculateAction = value;
                 modelModified();
             }
         }

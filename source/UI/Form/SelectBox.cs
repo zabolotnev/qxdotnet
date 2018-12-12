@@ -102,14 +102,8 @@ namespace qxDotNet.UI.Form
             state.SetPropertyValue("selection", _selection, null);
             state.SetPropertyValue("modelSelection", _modelSelection, null);
 
-            if (ChangeSelection != null)
-            {
-                state.SetEvent("changeSelection", true, "selection");
-            }
-            else
-            {
-                state.SetEvent("changeSelection", false, "selection");
-            }
+            state.SetEvent("changeSelection", true, "selection");
+
             if (ChangeModelSelection != null)
             {
                 state.SetEvent("changeModelSelection", false);

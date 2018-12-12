@@ -81,15 +81,17 @@ namespace qxDotNet.UI.Table
                 {
                     if (!_sordDescendant)
                     {
-                        foreach (var item in list.OrderBy(r => GetValue(r.BindingItem, _sortColumnIndex)))
+                        foreach (var item in list.OrderBy(r => GetValue(r.BindingItem, r, _sortColumnIndex)))
                         {
+                            item.RowIndex = _rows.Count;
                             _rows.Add(item);
                         }
                     }
                     else
                     {
-                        foreach (var item in list.OrderByDescending(r => GetValue(r.BindingItem, _sortColumnIndex)))
+                        foreach (var item in list.OrderByDescending(r => GetValue(r.BindingItem, r, _sortColumnIndex)))
                         {
+                            item.RowIndex = _rows.Count;
                             _rows.Add(item);
                         }
                     }
@@ -98,6 +100,7 @@ namespace qxDotNet.UI.Table
                 {
                     foreach (var item in list)
                     {
+                        item.RowIndex = _rows.Count;
                         _rows.Add(item);
                     }
                 }
@@ -126,7 +129,7 @@ namespace qxDotNet.UI.Table
             _accessors = new List<System.Reflection.MemberInfo>();
             foreach (var c in Columns)
 	        {
-        		if (string.IsNullOrEmpty(c.Field))
+        		if (string.IsNullOrEmpty(c.Field) || c.CalculateAction != null)
                 {
                     _accessors.Add(null);
                 }
@@ -166,16 +169,21 @@ namespace qxDotNet.UI.Table
 	        }
         }
 
-        internal object GetValue(object item, int column)
+        internal object GetValue(object item, Row row, int column)
         {
             CheckAccessors();
             if (_accessors == null) 
             {
                 return null;
             }
-            if (column >= _accessors.Count) 
+            if (column < 0 || column >= _accessors.Count) 
             {
                 return null;
+            }
+            var c = Columns[column];
+            if (c.CalculateAction != null)
+            {
+                return c.CalculateAction(row, item);
             }
             if (item == null)
             {

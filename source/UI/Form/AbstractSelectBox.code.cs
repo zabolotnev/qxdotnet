@@ -8,7 +8,7 @@ using qxDotNet.UI.Core;
 namespace qxDotNet.UI.Form
 {
 
-    public abstract partial class AbstractSelectBox : Widget, qxDotNet.UI.Form.IForm
+    public abstract partial class AbstractSelectBox : Widget, qxDotNet.UI.Form.IForm, IChildrenHandling
     {
 
         public void Add(LayoutItem child)
@@ -46,6 +46,11 @@ namespace qxDotNet.UI.Form
         protected internal override string GetRemoveObjectReference(qxDotNet.Core.Object obj)
         {
             return GetReference() + ".remove(" + obj.GetReference() + ");\n";
+        }
+
+        void IChildrenHandling.Add(LayoutItem child, Map options)
+        {
+            throw new NotImplementedException();
         }
 
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace qxDotNet.UI.Core
 {
-    public class ChildrenHandling : Widget
+    public class ChildrenHandling : Widget, IChildrenHandling
     {
 
         protected internal override string GetAddObjectReference(qxDotNet.Core.Object obj)

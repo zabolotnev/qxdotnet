@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using qxDotNet;
+using qxDotNet.UI.Core;
 
 namespace qxDotNet.UI.Tabview
 {
-    public partial class TabView : qxDotNet.UI.Core.Widget, qxDotNet.UI.Core.ISingleSelection
+    public partial class TabView : qxDotNet.UI.Core.Widget, qxDotNet.UI.Core.ISingleSelection, IChildrenHandling
     {
 
         private PageCollection _pages;
@@ -82,6 +83,26 @@ namespace qxDotNet.UI.Tabview
             {
                 return base.GetSetPropertyValueExpression(name, value);
             }
+        }
+
+        void IChildrenHandling.Add(LayoutItem child)
+        {
+            this.Add((Page)child);
+        }
+
+        void IChildrenHandling.Add(LayoutItem child, Map options)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IChildrenHandling.Remove(LayoutItem child)
+        {
+            this.Remove((Page)child);
+        }
+
+        void IChildrenHandling.RemoveAll()
+        {
+            RemoveAll();
         }
 
         #region ISingleSelection Members

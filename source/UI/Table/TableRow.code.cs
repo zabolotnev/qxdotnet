@@ -24,7 +24,7 @@ namespace qxDotNet.UI.Table
         
         public object GetValue(int column)
         {
-            return _owner.GetValue(_bindingItem, column);
+            return _owner.GetValue(_bindingItem, this, column);
         }
 
         public object BindingItem
@@ -34,6 +34,8 @@ namespace qxDotNet.UI.Table
                 return _bindingItem;
             }
         }
+
+        public int RowIndex { get; set; }
 
         public int UserIndex { get; set; }
 
