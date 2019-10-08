@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using qxDotNet;
+using qxDotNet.UI.Dialog;
 
 namespace DemoApplication
 {
@@ -33,6 +34,13 @@ namespace DemoApplication
                 .Add("edge", "center"));
 
             var column = new qxDotNet.UI.Table.Column();
+            column.Name = "Num";
+            column.Width = 300;
+            column.CalculateAction = (r, m) => r.RowIndex + 1;
+            column.Sortable = false;
+            table.Columns.Add(column);
+
+            column = new qxDotNet.UI.Table.Column();
             column.Name = "Code";
             column.Field = "Code";
             column.Width = 300;
@@ -50,10 +58,8 @@ namespace DemoApplication
             table.Columns.Add(column);
 
             table.DataSource = data;
-
             return page;
         }
-
     }
 
     public class SampleData

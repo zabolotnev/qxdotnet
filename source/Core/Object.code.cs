@@ -164,12 +164,12 @@ namespace qxDotNet.Core
 
         protected internal virtual string GetAddObjectReference(Object obj)
         {
-            return null;
+            return GetReference() + ".add(" + obj.GetReference() + ");\n";
         }
 
         protected internal virtual string GetRemoveObjectReference(Object obj)
         {
-            return null;
+            return GetReference() + ".remove(" + obj.GetReference() + ");\n";
         }
 
         internal PropertyBag GetState()

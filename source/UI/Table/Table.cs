@@ -266,8 +266,12 @@ namespace qxDotNet.UI.Table
             }
             set
             {
-               _selectionModel = value;
-               OnChangeSelectionModel();
+                _selectionModel = value;
+                if (_selectionModel != null)
+                {
+                    _selectionModel._mapper = this;
+                }
+                OnChangeSelectionModel();
             }
         }
 
