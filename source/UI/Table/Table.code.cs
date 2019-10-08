@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using qxDotNet;
 using System.Collections;
+using qxDotNet.Core;
 
 namespace qxDotNet.UI.Table
 {
@@ -340,6 +341,15 @@ namespace qxDotNet.UI.Table
 
         #endregion
 
+        protected internal override string GetAddObjectReference(qxDotNet.Core.Object obj)
+        {
+            return null;
+        }
+
+        protected internal override string GetRemoveObjectReference(qxDotNet.Core.Object obj)
+        {
+            return null;
+        }
     }
 
 }
