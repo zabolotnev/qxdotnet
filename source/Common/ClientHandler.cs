@@ -59,7 +59,7 @@ namespace qxDotNet.Common
                 else
                 {
                     context.Response.ContentType = "text/html";
-                    context.Response.Write(Properties.Resources.StandaloneBootstrap.Replace("%APPNAME%", appState.Name));
+                    context.Response.Write(Properties.Resources.StandaloneBootstrap.Replace("%APPNAME%", "/" + appState.Name));
                 }
             }
         }
